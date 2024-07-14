@@ -13,11 +13,11 @@ function Home() {
 
   const teamA = [
     { name: 'Abdulaziz', img: ImageUrl, points: 190 },
-    { name: '', img: ImageUrl, points: null },
+    { name: 'Omar', img: ImageUrl, points: 50 },
   ];
 
   const teamB = [
-    { name: '', img: ImageUrl, points: null },
+    { name: 'Ahmed', img: ImageUrl, points: 110 },
     { name: '', img: ImageUrl, points: null },
   ];
   return (

@@ -93,7 +93,7 @@ function MatchCard({
                           </div>
                         </>
                       ) : (
-                        <button className="text-green-500 text-sm font-medium px-4 py-2 bg-gray-200 rounded-lg">
+                        <button className="text-blue-500 text-sm font-medium px-4 py-2 bg-gray-200 rounded-lg transition-all hover:bg-gray-300">
                           Request to join
                         </button>
                       )}
@@ -132,7 +132,7 @@ function MatchCard({
                           )}
                         </>
                       ) : (
-                        <button className="text-green-500 text-sm font-medium px-4 py-2 bg-gray-200 rounded-lg">
+                        <button className="text-blue-500 text-sm font-medium px-4 py-2 bg-gray-200 rounded-lg transition-all hover:bg-gray-300">
                           Request to join
                         </button>
                       )}

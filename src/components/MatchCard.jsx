@@ -31,6 +31,8 @@ function MatchCard({
   matchStatus,
   matchFee,
   backgroundImage,
+  onRequestJoin,
+  matchId,
 }) {
   const totalPlayers = teamA.length + teamB.length;
   const joinedPlayers = [...teamA, ...teamB].filter(
@@ -53,7 +55,7 @@ function MatchCard({
       >
         <div className="absolute inset-0 bg-black opacity-50 filter blur-lg"></div>
         <div className="relative p-4 ">
-          <div className="flex justify-between items-center">
+          <div className="flex justify-between items-center border-b-[1px] py-2">
             <div>
               <h1 className="text-xl font-bold text-white">{title}</h1>
               <p className="text-sm text-gray-300">{distance} km away</p>
@@ -103,7 +105,10 @@ function MatchCard({
                           </div>
                         </>
                       ) : (
-                        <button className="text-blue-300 text-sm font-medium px-4 py-2 max-md:text-xs bg-gray-700 rounded-lg transition-all hover:bg-gray-600">
+                        <button
+                          className="text-blue-300 text-sm font-medium px-4 py-2 max-md:text-xs bg-gray-700 rounded-lg transition-all hover:bg-gray-600"
+                          onClick={() => onRequestJoin('A', index, matchId)}
+                        >
                           Request to join
                         </button>
                       )}
@@ -144,7 +149,10 @@ function MatchCard({
                           )}
                         </>
                       ) : (
-                        <button className="text-blue-300 text-sm font-medium px-4 py-2 max-md:text-xs bg-gray-700 rounded-lg transition-all hover:bg-gray-600">
+                        <button
+                          className="text-blue-300 text-sm font-medium px-4 py-2 max-md:text-xs bg-gray-700 rounded-lg transition-all hover:bg-gray-600"
+                          onClick={() => onRequestJoin('B', index, matchId)}
+                        >
                           Request to join
                         </button>
                       )}

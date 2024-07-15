@@ -1,14 +1,18 @@
 import React from 'react';
 
 function CardCategory(props) {
+  const bgColorClass = {
+    'green-400': 'bg-green-400',
+    'orange-400': 'bg-orange-400',
+    'cyan-400': 'bg-cyan-400',
+  }[props.bgColor];
+
   return (
     <div className="relative flex flex-col justify-center w-[30%] max-md:w-full">
-      <div
-        className={`group relative cursor-pointer overflow-hidden px-6 pt-10 pb-8 shadow-xl ring-1 ring-gray-900/5 transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl mx-auto max-w-sm sm:rounded-lg sm:px-10 w-full sm:max-w-full`}
-      >
+      <div className="group relative cursor-pointer overflow-hidden px-6 pt-10 pb-8 shadow-xl ring-1 ring-gray-900/5 transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl mx-auto max-w-sm sm:rounded-lg sm:px-10 w-full sm:max-w-full">
         <div className="relative flex items-center justify-center h-24 w-24 mx-auto">
           <span
-            className={`absolute inset-0 h-24 w-24 rounded-full bg-${props.bgColor} transition-all duration-300 group-hover:scale-[10]`}
+            className={`absolute inset-0 h-24 w-24 rounded-full ${bgColorClass} transition-all duration-300 group-hover:scale-[10]`}
           ></span>
           <img
             src={props.img}

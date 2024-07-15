@@ -124,7 +124,7 @@ function Home() {
         {/* <NavBar /> */}
         <main className="max-w-full h-full flex relative overflow-y-auto">
           <div className="flex flex-col w-full my-4">
-            <div className="text-center text-5xl p-2 tracking-widest">
+            <div className="text-center text-5xl p-2 tracking-widest text-secondary">
               Sports
             </div>
             <Fade triggerOnce={true} direction="left">
@@ -153,7 +153,7 @@ function Home() {
 
             <div className="py-8 flex flex-col justify-center items-center w-full gap-1">
               {/* Search Input */}
-              <div className="text-center text-5xl p-2 tracking-widest">
+              <div className="text-center text-5xl p-2 tracking-widest text-secondary">
                 Matches
               </div>
 

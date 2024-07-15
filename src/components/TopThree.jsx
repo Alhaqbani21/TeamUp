@@ -2,7 +2,7 @@ import React from 'react';
 
 function TopThree({ players, crown }) {
   return (
-    <div className="flex justify-center items-center mb-8 shadow-2xl p-2 rounded-xl">
+    <div className="flex justify-center items-center mb-8 shadow-2xl p-2 rounded-xl ">
       <div className="flex flex-col items-center mx-4">
         <img
           src={players[1].img}

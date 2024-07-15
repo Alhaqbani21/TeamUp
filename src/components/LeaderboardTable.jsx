@@ -18,7 +18,7 @@ function LeaderboardTable({ players }) {
   }
 
   return (
-    <div className="w-[70%] max-md:w-full">
+    <div className="w-[70%] max-md:w-[90%]">
       {players.map((player, index) => (
         <div
           key={player.rank}

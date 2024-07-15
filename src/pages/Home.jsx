@@ -1,11 +1,12 @@
 import React from 'react';
 import NavBar from '../components/NavBar';
 import SideBar from '../components/SideBar';
-import CardCatigory from '../components/CardCatigory';
+import CardCategory from '../components/CardCategory';
 import padelImage from '../assets/padel_Image.png';
 import basketBall from '../assets/basket_Ball.png';
 import VollyBall from '../assets/VollyBall.png';
 import MatchCard from '../components/MatchCard';
+import { Fade } from 'react-awesome-reveal';
 
 function Home() {
   const ImageUrl =
@@ -26,46 +27,39 @@ function Home() {
       <div className="w-full h-full flex flex-col justify-between">
         <NavBar />
         <main className="max-w-full h-full flex relative overflow-y-auto">
-          <div>
-            {/* <div className="h-full w-full m-4 flex flex-wrap items-start justify-start rounded-tl grid-flow-col auto-cols-max gap-4 overflow-y-scroll">
-            <div className="w-96 h-60 rounded-lg flex-shrink-0 flex-grow bg-gray-400"></div>
-            <div className="w-96 h-60 rounded-lg flex-shrink-0 flex-grow bg-gray-400"></div>
-            <div className="w-96 h-60 rounded-lg flex-shrink-0 flex-grow bg-gray-400"></div>
-            <div className="w-96 h-60 rounded-lg flex-shrink-0 flex-grow bg-gray-400"></div>
-            <div className="w-96 h-60 rounded-lg flex-shrink-0 flex-grow bg-gray-400"></div>
-            <div className="w-96 h-60 rounded-lg flex-shrink-0 flex-grow bg-gray-400"></div>
-            <div className="w-96 h-60 rounded-lg flex-shrink-0 flex-grow bg-gray-400"></div>
-            <div className="w-96 h-60 rounded-lg flex-shrink-0 flex-grow bg-gray-400"></div>
-            <div className="w-96 h-60 rounded-lg flex-shrink-0 flex-grow bg-gray-400"></div>
-          </div> */}
-          </div>
-
           <div className="flex flex-col w-full my-4">
-            <div className="text-center text-5xl p-2">Sports</div>
-            <div className="bg-base-100 flex justify-center items-center gap-3 h-min max-md:flex-col py-12 ">
-              <CardCatigory
-                title={'Padel'}
-                bgColor={'green-400'}
-                img={padelImage}
-              />
-              <CardCatigory
-                bgColor={'orange-400'}
-                img={basketBall}
-                title={'Basket ball'}
-              />
-              <CardCatigory
-                bgColor={'cyan-400'}
-                img={VollyBall}
-                title={'Volly ball'}
-              />
+            <div className="text-center text-5xl p-2 tracking-widest">
+              Sports
             </div>
+            <Fade triggerOnce={true} direction="left">
+              <div className="bg-base-100 flex justify-center items-center gap-3 h-min max-md:flex-col py-12 ">
+                <CardCategory
+                  title={'Padel'}
+                  bgColor={'green-400'}
+                  img={padelImage}
+                />
+
+                <CardCategory
+                  bgColor={'orange-400'}
+                  img={basketBall}
+                  title={'Basket ball'}
+                />
+                <CardCategory
+                  bgColor={'cyan-400'}
+                  img={VollyBall}
+                  title={'Volly ball'}
+                />
+              </div>
+            </Fade>
             <div className="flex w-full flex-col">
               <div className="divider"></div>
             </div>
 
             <div className="py-8 flex flex-col justify-center items-center w-full gap-1">
               {/* Search Input */}
-              <div className="text-center text-5xl p-2">Matches</div>
+              <div className="text-center text-5xl p-2 tracking-widest">
+                Matches
+              </div>
 
               <div className="form-control p-0 flex-row w-full justify-center mb-4">
                 <input
@@ -115,7 +109,7 @@ function Home() {
                 court="Court 2"
                 players="2v2"
                 matchStatus="Match is full!"
-                matchFee="50 SAR"
+                matchFee="Cut 50 SAR"
                 backgroundImage={
                   'https://champs-sportsclub.com/wp-content/uploads/2024/05/Playing-Tennis-padel-1.jpg'
                 }
@@ -132,7 +126,7 @@ function Home() {
                 court="Court 2"
                 players="2v2"
                 matchStatus="Match is full!"
-                matchFee="50 SAR"
+                matchFee="Cut 50 SAR"
                 backgroundImage={
                   'https://champs-sportsclub.com/wp-content/uploads/2024/05/Playing-Tennis-padel-1.jpg'
                 }
@@ -149,7 +143,7 @@ function Home() {
                 court="Court 2"
                 players="2v2"
                 matchStatus="Match is full!"
-                matchFee="50 SAR"
+                matchFee="Cut 50 SAR"
                 backgroundImage={
                   'https://champs-sportsclub.com/wp-content/uploads/2024/05/Playing-Tennis-padel-1.jpg'
                 }
@@ -166,7 +160,7 @@ function Home() {
                 court="Court 2"
                 players="2v2"
                 matchStatus="Match is full!"
-                matchFee="50 SAR"
+                matchFee="Cut 50 SAR"
                 backgroundImage={
                   'https://champs-sportsclub.com/wp-content/uploads/2024/05/Playing-Tennis-padel-1.jpg'
                 }
@@ -183,7 +177,7 @@ function Home() {
                 court="Court 2"
                 players="2v2"
                 matchStatus="Match is full!"
-                matchFee="50 SAR"
+                matchFee="Cut 50 SAR"
                 backgroundImage={
                   'https://champs-sportsclub.com/wp-content/uploads/2024/05/Playing-Tennis-padel-1.jpg'
                 }

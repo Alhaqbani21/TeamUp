@@ -13,7 +13,9 @@ function NavBar() {
       <header className="h-16 w-full flex items-center relative justify-end px-5 space-x-10 bg-base-200">
         <div className="flex flex-shrink-0 items-center space-x-4 text-white">
           <div className="flex flex-col items-end justify-center">
-            <div className="text-md font-medium text-center">Abdulaziz</div>
+            <div className="text-md font-medium text-center text-black">
+              Abdulaziz
+            </div>
             <div className="flex justify-around items-center bg-base-300 rounded-md text-black px-2">
               <img className="w-7" src={Platinum_1_Rank} alt="" />
               <div className="text-base font-regular text-blue-500">

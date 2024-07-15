@@ -7,7 +7,7 @@ import Silver_1_Rank from '../assets/Silver_1_Rank.png';
 
 function SideBar() {
   return (
-    <aside className="h-full w-32 flex flex-col space-y-10 items-center justify-center relative bg-base-200 text-white">
+    <aside className="h-full w-32 flex flex-col space-y-10 items-center justify-center relative shadow-md text-white">
       <div className="h-10 w-20 gap-1 flex items-center justify-between rounded-lg cursor-pointer hover:text-gray-800 hover:bg-white hover:duration-300 hover:ease-linear focus:bg-white">
         <svg
           xmlns="http://www.w3.org/2000/svg"

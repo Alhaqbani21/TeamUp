@@ -16,7 +16,9 @@ function NavBar() {
             <div className="text-md font-medium text-center">Abdulaziz</div>
             <div className="flex justify-around items-center bg-base-300 rounded-md text-black px-2">
               <img className="w-7" src={Platinum_1_Rank} alt="" />
-              <div className="text-base font-regular">190 points</div>
+              <div className="text-base font-regular text-blue-500">
+                190 points
+              </div>
             </div>
           </div>
           <div className="avatar">

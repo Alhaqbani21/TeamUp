@@ -42,7 +42,7 @@ function Home() {
 
           <div className="flex flex-col w-full my-4">
             <div className="text-center text-5xl p-2">Sports</div>
-            <div className="bg-base-100 flex justify-center items-center gap-3 h-min max-md:flex-col py-12">
+            <div className="bg-base-100 flex justify-center items-center gap-3 h-min max-md:flex-col py-12 ">
               <CardCatigory
                 title={'Padel'}
                 bgColor={'green-400'}
@@ -62,7 +62,47 @@ function Home() {
             <div className="flex w-full flex-col">
               <div className="divider"></div>
             </div>
+
             <div className="py-8 flex flex-col justify-center items-center w-full gap-1">
+              {/* Search Input */}
+              <div className="text-center text-5xl p-2">Matches</div>
+
+              <div className="form-control p-0 flex-row w-full justify-center mb-4">
+                <input
+                  type="text"
+                  placeholder="Search for match"
+                  className="px-3  w-[30%] input rounded-none rounded-s-lg
+            input-bordered focus:outline-none  shadow-2xl max-md:w-[70%]"
+                  onChange={(e) => 'setsearchInput(e.target.value)'}
+                  onKeyDown={(e) => (e.key === 'Enter' ? null : null)}
+                />
+
+                <button
+                  onClick={() => {}}
+                  className="w-10 bg-blue-400 rounded-r-lg"
+                >
+                  {' '}
+                  <svg
+                    className=" m-auto
+        text-slate-200 "
+                    aria-hidden="true"
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke="currentColor"
+                      strokeLinecap="round"
+                      strokeWidth="2"
+                      d="m21 21-3.5-3.5M17 10a7 7 0 1 1-14 0 7 7 0 0 1 14 0Z"
+                    />
+                  </svg>
+                </button>
+              </div>
+
+              {/* Matches */}
               <MatchCard
                 title="Padel Art"
                 distance="423.5"
@@ -76,6 +116,9 @@ function Home() {
                 players="2v2"
                 matchStatus="Match is full!"
                 matchFee="50 SAR"
+                backgroundImage={
+                  'https://champs-sportsclub.com/wp-content/uploads/2024/05/Playing-Tennis-padel-1.jpg'
+                }
               />
               <MatchCard
                 title="Padel Art"
@@ -90,6 +133,9 @@ function Home() {
                 players="2v2"
                 matchStatus="Match is full!"
                 matchFee="50 SAR"
+                backgroundImage={
+                  'https://champs-sportsclub.com/wp-content/uploads/2024/05/Playing-Tennis-padel-1.jpg'
+                }
               />
               <MatchCard
                 title="Padel Art"
@@ -104,6 +150,9 @@ function Home() {
                 players="2v2"
                 matchStatus="Match is full!"
                 matchFee="50 SAR"
+                backgroundImage={
+                  'https://champs-sportsclub.com/wp-content/uploads/2024/05/Playing-Tennis-padel-1.jpg'
+                }
               />
               <MatchCard
                 title="Padel Art"
@@ -118,6 +167,9 @@ function Home() {
                 players="2v2"
                 matchStatus="Match is full!"
                 matchFee="50 SAR"
+                backgroundImage={
+                  'https://champs-sportsclub.com/wp-content/uploads/2024/05/Playing-Tennis-padel-1.jpg'
+                }
               />
               <MatchCard
                 title="Padel Art"
@@ -132,20 +184,9 @@ function Home() {
                 players="2v2"
                 matchStatus="Match is full!"
                 matchFee="50 SAR"
-              />
-              <MatchCard
-                title="Padel Art"
-                distance="423.5"
-                price="SAR 200"
-                date="15 Jul"
-                time="5:00PM-6:30PM"
-                status="Upcoming"
-                teamA={teamA}
-                teamB={teamB}
-                court="Court 2"
-                players="2v2"
-                matchStatus="Match is full!"
-                matchFee="50 SAR"
+                backgroundImage={
+                  'https://champs-sportsclub.com/wp-content/uploads/2024/05/Playing-Tennis-padel-1.jpg'
+                }
               />
             </div>
           </div>

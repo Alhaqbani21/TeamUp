@@ -2,7 +2,7 @@ import React from 'react';
 
 function SideBar() {
   return (
-    <aside className="h-full w-32 flex flex-col space-y-10 items-center justify-center relative bg-green-800 text-white">
+    <aside className="h-full w-32 flex flex-col space-y-10 items-center justify-center relative bg-base-200 text-white">
       <div className="h-10 w-20 gap-1 flex items-center justify-center rounded-lg cursor-pointer hover:text-gray-800 hover:bg-white  hover:duration-300 hover:ease-linear focus:bg-white">
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -16,7 +16,6 @@ function SideBar() {
             clipRule="evenodd"
           />
         </svg>
-        <span>Profile</span>
       </div>
       <div className="h-10 w-10 flex items-center justify-center rounded-lg cursor-pointer hover:text-gray-800 hover:bg-white  hover:duration-300 hover:ease-linear focus:bg-white">
         <svg

@@ -1,10 +1,10 @@
 import React from 'react';
 
-function CardCatigory(props) {
+function CardCategory(props) {
   return (
-    <div className="relative flex flex-col justify-center">
+    <div className="relative flex flex-col justify-center w-[30%] max-md:w-full">
       <div
-        className={`group relative cursor-pointer overflow-hidden   px-6 pt-10 pb-8 shadow-xl ring-1 ring-gray-900/5 transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl sm:mx-auto sm:max-w-sm hover:rounded-lg sm:px-10`}
+        className={`group relative cursor-pointer overflow-hidden px-6 pt-10 pb-8 shadow-xl ring-1 ring-gray-900/5 transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl mx-auto max-w-sm sm:rounded-lg sm:px-10 w-full sm:max-w-full`}
       >
         <div className="relative flex items-center justify-center h-24 w-24 mx-auto">
           <span
@@ -27,4 +27,4 @@ function CardCatigory(props) {
   );
 }
 
-export default CardCatigory;
+export default CardCategory;

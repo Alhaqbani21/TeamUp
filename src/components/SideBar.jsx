@@ -4,15 +4,16 @@ import Gold_1_Rank from '../assets/Gold_1_Rank.png';
 import Iron_1_Rank from '../assets/Iron_1_Rank.png';
 import Platinum_1_Rank from '../assets/Platinum_1_Rank.png';
 import Silver_1_Rank from '../assets/Silver_1_Rank.png';
+import { MdOutlineLeaderboard } from 'react-icons/md';
 
 function SideBar() {
   return (
-    <aside className="h-full w-32 flex flex-col space-y-10 items-center justify-center relative  text-white border-gray-400 bg-base-300 shadow-md z-50">
-      <div className="h-max py-2 w-32 flex flex-col space-y-10 items-center justify-center relative  rounded-lg ">
-        <div className="h-10 w-20 gap-1 flex items-center justify-between rounded-lg cursor-pointer hover:text-gray-800 hover:bg-white hover:duration-300 hover:ease-linear focus:bg-white">
+    <aside className="h-full w-32 flex flex-col space-y-10 items-start justify-center relative text-white border-gray-400 z-50">
+      <div className="h-max ps-1 w-16 flex flex-col space-y-6 items-start justify-center relative bg-base-300 rounded-r-3xl hover:w-32 group hover:ps-0 hover:bg-white hover:text-gray-800 transition-all duration-300 ease-linear">
+        <div className="h-10 w-full flex items-center justify-start pl-2 space-x-2 rounded-tr-3xl cursor-pointer  hover:bg-base-200">
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            className="h-6 w-6"
+            className="h-6 w-6 text-black group-hover:text-gray-800 "
             viewBox="0 0 20 20"
             fill="black"
           >
@@ -22,33 +23,35 @@ function SideBar() {
               clipRule="evenodd"
             />
           </svg>
-          <span className="text-black w-[80%]">Profile</span>
+          <span className="text-black group-hover:text-gray-800 hidden group-hover:inline-block">
+            Profile
+          </span>
         </div>
-        <div className="h-10 w-20 gap-1 flex items-center justify-between rounded-lg cursor-pointer  hover:text-gray-800 hover:bg-white hover:duration-300 hover:ease-linear focus:bg-white">
-          <CiCirclePlus color="black" size={25} />
-          <span className="text-black w-[80%]">Book</span>
+        <div className="h-10 w-full flex items-center justify-start pl-2 space-x-2  cursor-pointer hover:bg-base-200">
+          <CiCirclePlus
+            color="black"
+            size={25}
+            className="group-hover:text-gray-800"
+          />
+          <span className="text-black group-hover:text-gray-800 hidden group-hover:inline-block">
+            Book
+          </span>
         </div>
-        <div className="h-10 w-20 gap-1 flex items-center justify-between rounded-lg cursor-pointer hover:text-gray-800 hover:bg-white hover:duration-300 hover:ease-linear focus:bg-white">
+        <div className="h-10 w-full flex items-center justify-start pl-2 space-x-2  cursor-pointer hover:bg-base-200">
+          <MdOutlineLeaderboard
+            color="black"
+            size={25}
+            className="group-hover:text-gray-800"
+          />
+
+          <span className="text-black group-hover:text-gray-800 hidden group-hover:inline-block">
+            Top 10
+          </span>
+        </div>
+        <div className="h-10 w-full flex items-center justify-start pl-2 space-x-2 rounded-br-3xl  cursor-pointer hover:bg-base-200">
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            className="h-6 w-6"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="black"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth="2"
-              d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"
-            />
-          </svg>
-          <span className="text-black w-[80%]">Settings</span>
-        </div>
-        <div className="h-10 w-20 gap-1 flex items-center justify-between rounded-lg cursor-pointer hover:text-gray-800 hover:bg-white hover:duration-300 hover:ease-linear focus:bg-white">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            className="h-6 w-6"
+            className="h-6 w-6 text-black group-hover:text-gray-800"
             fill="none"
             viewBox="0 0 24 24"
             stroke="black"
@@ -66,7 +69,9 @@ function SideBar() {
               d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
             />
           </svg>
-          <span className="text-black w-[80%]">Settings</span>
+          <span className="text-black group-hover:text-gray-800 hidden group-hover:inline-block">
+            Settings
+          </span>
         </div>
       </div>
       <div className="flex flex-col-reverse items-center absolute bottom-0 mb-10">

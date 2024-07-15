@@ -90,11 +90,11 @@ function MatchCard({
           </div>
 
           <div className="flex max-md:flex-col justify-around items-center my-5">
-            <div className="flex items-center max-md:mb-3">
+            <div className="flex items-center max-md:mb-10">
               <div className="text-xl font-bold text-gray-300 mr-2 shadow-lg border-2 rounded-full px-3 py-1">
                 A
               </div>
-              <div className="flex flex-col gap-2 w-full">
+              <div className="flex flex-col gap-10 w-full">
                 {teamA.map((player, index) => (
                   <div key={index} className="flex items-center space-x-2">
                     <img
@@ -136,7 +136,7 @@ function MatchCard({
               <div className="text-xl font-bold text-gray-300 mr-2 shadow-lg border-2 rounded-full px-3 py-1">
                 B
               </div>
-              <div className="flex flex-col gap-2">
+              <div className="flex flex-col gap-10">
                 {teamB.map((player, index) => (
                   <div key={index} className="flex items-center space-x-2">
                     <img

@@ -5,74 +5,68 @@ import Iron_1_Rank from '../assets/Iron_1_Rank.png';
 import Platinum_1_Rank from '../assets/Platinum_1_Rank.png';
 import Silver_1_Rank from '../assets/Silver_1_Rank.png';
 import { MdOutlineLeaderboard } from 'react-icons/md';
+import { Link } from 'react-router-dom';
+import { IoHomeOutline } from 'react-icons/io5';
 
 function SideBar() {
   return (
     <aside className="h-full w-32 flex flex-col space-y-10 items-start justify-center relative text-white border-gray-400 z-50">
-      <div className="h-max ps-1 w-16 flex flex-col space-y-6 items-start justify-center relative bg-base-300 rounded-r-3xl hover:w-32 group hover:ps-0 hover:bg-white hover:text-gray-800 transition-all duration-300 ease-linear">
-        <div className="h-10 w-full flex items-center justify-start pl-2 space-x-2 rounded-tr-3xl cursor-pointer  hover:bg-base-200">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            className="h-6 w-6 text-black group-hover:text-gray-800 "
-            viewBox="0 0 20 20"
-            fill="black"
-          >
-            <path
-              fillRule="evenodd"
-              d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z"
-              clipRule="evenodd"
+      <div className="h-max ps-1 w-16 flex flex-col space-y-6 items-start justify-center relative bg-primary rounded-r-3xl hover:w-32 group hover:ps-0 hover:bg-white hover:text-gray-800 transition-all duration-300 ease-linear">
+        <Link className="w-full" to={'../'}>
+          <div className="h-10 w-full flex items-center justify-start pl-2 space-x-2 rounded-tr-3xl cursor-pointer  hover:bg-base-200">
+            <IoHomeOutline
+              size={25}
+              className="group-hover:text-black text-white"
             />
-          </svg>
-          <span className="text-black group-hover:text-gray-800 hidden group-hover:inline-block">
-            Profile
-          </span>
-        </div>
-        <div className="h-10 w-full flex items-center justify-start pl-2 space-x-2  cursor-pointer hover:bg-base-200">
-          <CiCirclePlus
-            color="black"
-            size={25}
-            className="group-hover:text-gray-800"
-          />
-          <span className="text-black group-hover:text-gray-800 hidden group-hover:inline-block">
-            Book
-          </span>
-        </div>
-        <div className="h-10 w-full flex items-center justify-start pl-2 space-x-2  cursor-pointer hover:bg-base-200">
-          <MdOutlineLeaderboard
-            color="black"
-            size={25}
-            className="group-hover:text-gray-800"
-          />
 
-          <span className="text-black group-hover:text-gray-800 hidden group-hover:inline-block">
-            Top 10
-          </span>
-        </div>
-        <div className="h-10 w-full flex items-center justify-start pl-2 space-x-2 rounded-br-3xl  cursor-pointer hover:bg-base-200">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            className="h-6 w-6 text-black group-hover:text-gray-800"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="black"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth="2"
-              d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"
+            <span className=" group-hover:text-secondary font-bold hidden group-hover:inline-block">
+              Home
+            </span>
+          </div>
+        </Link>
+        <Link className="w-full" to={''}>
+          <div className="h-10 w-full flex items-center justify-start pl-2 space-x-2  cursor-pointer hover:bg-base-200">
+            <CiCirclePlus
+              size={25}
+              className="group-hover:text-black text-white"
             />
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth="2"
-              d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
+            <span className="group-hover:text-secondary font-bold hidden group-hover:inline-block">
+              Book
+            </span>
+          </div>
+        </Link>
+
+        <Link className="w-full" to={'../top10'}>
+          <div className="h-10 w-full flex items-center justify-start pl-2 space-x-2  cursor-pointer hover:bg-base-200">
+            <MdOutlineLeaderboard
+              size={25}
+              className="group-hover:text-black text-white"
             />
-          </svg>
-          <span className="text-black group-hover:text-gray-800 hidden group-hover:inline-block">
-            Settings
-          </span>
-        </div>
+            <span className="group-hover:text-secondary font-bold hidden group-hover:inline-block">
+              Top 10
+            </span>
+          </div>
+        </Link>
+
+        <Link className="w-full" to={'../profile'}>
+          <div className="h-10 w-full flex items-center justify-start pl-2 space-x-2 rounded-br-3xl cursor-pointer  hover:bg-base-200">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className="h-6 w-6 text-black group-hover:text-gray-800 group-hover:fill-black"
+              viewBox="0 0 20 20"
+              fill="white"
+            >
+              <path
+                fillRule="evenodd"
+                d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z"
+                clipRule="evenodd"
+              />
+            </svg>
+            <span className=" group-hover:text-secondary font-bold hidden group-hover:inline-block">
+              Profile
+            </span>
+          </div>
+        </Link>
       </div>
       <div className="flex flex-col-reverse items-center absolute bottom-0 mb-10">
         <div className="flex flex-col justify-center items-center mb-2">

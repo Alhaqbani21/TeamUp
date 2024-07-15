@@ -1,21 +1,26 @@
-import * as React from "react";
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import Home from "../pages/Home";
-import SignUp from "../pages/SignUp";
-import Login from "../pages/Login";
+import * as React from 'react';
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import Home from '../pages/Home';
+import SignUp from '../pages/SignUp';
+import Login from '../pages/Login';
+import Top10 from '../pages/Top10';
 
 const router = createBrowserRouter([
   {
-    path: "/",
+    path: '/',
     element: <Home />,
   },
   {
-    path: "/SignUp",
+    path: '/SignUp',
     element: <SignUp />,
   },
   {
-    path: "/Login",
+    path: '/Login',
     element: <Login />,
+  },
+  {
+    path: '/top10',
+    element: <Top10 />,
   },
 ]);
 function Router() {

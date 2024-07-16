@@ -60,14 +60,6 @@ function MatchCard({
   const matchTime = `${date}, ${time}`;
   const backgroundColor = getBackgroundColor(matchTime);
 
-  const sliderSettings = {
-    dots: true,
-    infinite: false,
-    speed: 500,
-    slidesToShow: 2,
-    slidesToScroll: 2,
-  };
-
   return (
     <Fade triggerOnce={true} direction="right" className="w-[90%] ">
       <div

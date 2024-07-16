@@ -7,6 +7,7 @@ import Top10 from '../pages/Top10';
 import Reservation from '../pages/Reservation';
 import Book from '../pages/Book';
 import Booking from '../pages/Booking';
+import Profile from '../pages/Profile';
 
 const router = createBrowserRouter([
   {
@@ -37,6 +38,10 @@ const router = createBrowserRouter([
   {
     path: '/Booking',
     element: <Booking />,
+  },
+  {
+    path: '/profile',
+    element: <Profile />,
   },
 ]);
 function Router() {

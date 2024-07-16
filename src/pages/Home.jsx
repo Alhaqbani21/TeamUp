@@ -1,5 +1,5 @@
-import React from 'react';
-import NavBar from '../components/NavBar';
+// import React from 'react';
+// import NavBar from '../components/NavBar';
 import SideBar from '../components/SideBar';
 import CardCategory from '../components/CardCategory';
 import padelImage from '../assets/padel_Image.png';

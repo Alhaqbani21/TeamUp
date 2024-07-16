@@ -3,12 +3,13 @@ import Gold_1_Rank from '../assets/Gold_1_Rank.png';
 import Iron_1_Rank from '../assets/Iron_1_Rank.png';
 import Platinum_1_Rank from '../assets/Platinum_1_Rank.png';
 import Silver_1_Rank from '../assets/Silver_1_Rank.png';
+import { Link } from 'react-router-dom';
 
 function NavBar() {
   return (
     <div className="flex bg-base-200 items-center">
       <div className="text-3xl ms-4 cursor-pointer hover:bg-base-300 p-2 rounded-md">
-        Logo
+       <Link to={'/player'}>Logo</Link> 
       </div>
       <header className="h-16 w-full flex items-center relative justify-end px-5 space-x-10 bg-base-200">
         <div className="flex flex-shrink-0 items-center space-x-4 text-white">

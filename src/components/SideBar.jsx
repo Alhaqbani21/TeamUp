@@ -24,7 +24,7 @@ function SideBar() {
             </span>
           </div>
         </Link>
-        <Link className="w-full" to={''}>
+        <Link className="w-full" to={'../Book'}>
           <div className="h-10 w-full flex items-center justify-start pl-2 space-x-2  cursor-pointer hover:bg-base-200">
             <CiCirclePlus
               size={25}
@@ -48,7 +48,7 @@ function SideBar() {
           </div>
         </Link>
 
-        <Link className="w-full" to={'../profile'}>
+        <Link className="w-full" to={'../Playes'}>
           <div className="h-10 w-full flex items-center justify-start pl-2 space-x-2 rounded-br-3xl cursor-pointer  hover:bg-base-200">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -63,7 +63,7 @@ function SideBar() {
               />
             </svg>
             <span className=" group-hover:text-secondary font-bold hidden group-hover:inline-block">
-              Profile
+              Players
             </span>
           </div>
         </Link>

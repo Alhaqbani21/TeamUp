@@ -4,6 +4,9 @@ import Home from '../pages/Home';
 import SignUp from '../pages/SignUp';
 import Login from '../pages/Login';
 import Top10 from '../pages/Top10';
+import Reservation from '../pages/Reservation';
+import Book from '../pages/Book';
+import Booking from '../pages/Booking';
 
 const router = createBrowserRouter([
   {
@@ -21,6 +24,19 @@ const router = createBrowserRouter([
   {
     path: '/top10',
     element: <Top10 />,
+  },
+  {
+    path: '/Playes',
+    element: <Reservation />,
+  },
+
+  {
+    path: '/Book',
+    element: <Book />,
+  },
+  {
+    path: '/Booking',
+    element: <Booking />,
   },
 ]);
 function Router() {

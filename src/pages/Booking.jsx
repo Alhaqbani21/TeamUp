@@ -88,7 +88,7 @@ function Booking() {
                       <div className="mb-4">
                         <button
                           type="button"
-                          className="w-full py-2 text-center text-white bg-gray-600 rounded-lg shadow-md hover:bg-blue-600 focus:outline-none"
+                          className="w-full py-2 text-center text-white bg-gray-600 rounded-lg shadow-md hover:bg-primary focus:outline-none"
                         >
                           12:00 PM
                         </button>

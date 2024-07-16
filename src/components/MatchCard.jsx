@@ -178,26 +178,30 @@ function MatchCard({
             </div>
           </div>
           <div className="grid grid-cols-3 gap-4 mt-4 text-sm text-gray-300">
-            <div className="flex flex-col items-center">
+            {/* <div className="flex flex-col items-center">
               <span className="text-gray-300 text-lg tracking-widest">
                 Court
               </span>
               <span className="font-bold text-white">{court}</span>
-            </div>
-            <div className="flex flex-col items-center">
+            </div> */}
+            {/* <div className="flex flex-col items-center">
               <span className="text-gray-300 text-lg tracking-widest">
                 Players
               </span>
               <span className="font-bold text-white">{players}</span>
-            </div>
-            <div className="flex flex-col items-center">
+            </div> */}
+            {/* <div className="flex flex-col items-center">
               <span className="text-gray-300 text-lg tracking-widest">
                 Time
               </span>
               <span className="font-bold text-white">{time}</span>
-            </div>
+            </div> */}
           </div>
-          <div className="flex justify-between items-center mt-4 bg-base-100 py-2 px-4 rounded-lg">
+          <div
+            className={`flex justify-between items-center mt-4 ${
+              statusText === 'Match is full!' ? `bg-gray-400` : 'bg-secondary'
+            }  py-2 px-4 rounded-lg`}
+          >
             <span className="text-black font-medium">{statusText}</span>
             <span className="text-black font-semibold">Cut is {matchFee}</span>
           </div>

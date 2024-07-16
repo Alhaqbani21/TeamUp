@@ -35,7 +35,7 @@ export default function Basketball() {
                 //   backgroundColor: teamA == "TeamA" ? "#232f3e" : "#596a7e",
                 // }}
                 onClick={() => setteamA("TeamA")}
-                className=" rounded-full  bg-primary h-12 w-12 "
+                className=" rounded-full  bg-primary h-12 w-12  hover:cursor-pointer"
               />
               Team A
             </div>
@@ -57,7 +57,7 @@ export default function Basketball() {
             </div>
           </div>
           <img
-            className="h-[70vh] max-sm:w-full max-sm:h-[50vh] w-[100vw]"
+            className="h-[70vh] max-sm:w-full max-sm:h-[50vh] w-[100vw]  hover:cursor-pointer"
             src={Basketballw}
             alt=""
           />

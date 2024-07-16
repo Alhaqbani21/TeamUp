@@ -53,7 +53,7 @@ export default function Volly() {
                 //   backgroundColor: teamA == "TeamA" ? "#232f3e" : "#596a7e",
                 // }}
                 onClick={() => setteamA("TeamA")}
-                className=" rounded-full  bg-primary h-12 w-12 "
+                className=" hover:cursor-pointer rounded-full  bg-primary h-12 w-12 "
               />
               Team A
             </div>
@@ -69,7 +69,7 @@ export default function Volly() {
                 //   backgroundColor: teamA == "TeamA" ? "#232f3e" : "#596a7e",
                 // }}
                 onClick={() => setteamA("TeamB")}
-                className=" rounded-full 
+                className=" rounded-full  hover:cursor-pointer
                  bg-base-300 h-12 w-12 "
               />
               Team B

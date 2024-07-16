@@ -5,7 +5,11 @@ function Booking() {
   const params = useParams().id;
   const sceImage =
     params == "padel"
-      ? "https://i.pinimg.com/564x/e9/cd/a7/e9cda718f10716d9eb01c4ce03fa04f3.jpg" :(params=='Basketball')?'https://i.pinimg.com/564x/0a/0d/12/0a0d1234e829cf469e8788283ff149fa.jpg'
+      ? "https://i.pinimg.com/564x/e9/cd/a7/e9cda718f10716d9eb01c4ce03fa04f3.jpg"
+      : params == "Basketball"
+      ? "https://i.pinimg.com/564x/0a/0d/12/0a0d1234e829cf469e8788283ff149fa.jpg"
+      : params == "Volly"
+      ? "https://i.pinimg.com/564x/8d/1b/93/8d1b93b282c5797459f54a36422d192a.jpg"
       : "https://img.pikbest.com/ai/illus_our/20230427/c1335e4e27e5cd31007af894089719db.jpg!bw700";
   return (
     <>
@@ -62,25 +66,25 @@ function Booking() {
                       <div className="grid grid-cols-2 gap-4 mb-4">
                         <button
                           type="button"
-                          className="w-full py-2 text-center text-white bg-gray-600 rounded-lg shadow-md hover:bg-blue-600 focus:outline-none"
+                          className="w-full py-2 text-center text-white bg-gray-600 rounded-lg shadow-md hover:bg-primary focus:outline-none"
                         >
                           4:00 PM
                         </button>
                         <button
                           type="button"
-                          className="w-full py-2 text-center text-white bg-gray-600 rounded-lg shadow-md hover:bg-blue-600 focus:outline-none"
+                          className="w-full py-2 text-center text-white bg-gray-600 rounded-lg shadow-md hover:bg-primary focus:outline-none"
                         >
                           6:00 PM
                         </button>
                         <button
                           type="button"
-                          className="w-full py-2 text-center text-white bg-gray-600 rounded-lg shadow-md hover:bg-blue-600 focus:outline-none"
+                          className="w-full py-2 text-center text-white bg-gray-600 rounded-lg shadow-md hover:bg-primary focus:outline-none"
                         >
                           8:00 PM
                         </button>
                         <button
                           type="button"
-                          className="w-full py-2 text-center text-white bg-gray-600 rounded-lg shadow-md hover:bg-blue-600 focus:outline-none"
+                          className="w-full py-2 text-center text-white bg-gray-600 rounded-lg shadow-md hover:bg-primary focus:outline-none"
                         >
                           10:00 PM
                         </button>

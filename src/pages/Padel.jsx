@@ -49,7 +49,7 @@ export default function Padel() {
                   //   backgroundColor: teamA == "TeamA" ? "#232f3e" : "#596a7e",
                   // }}
                   onClick={() => setteamA("TeamA")}
-                  className=" rounded-full  bg-primary h-12 w-12 "
+                  className=" rounded-full  hover:cursor-pointer bg-primary h-12 w-12 "
                 />
                 Team A
               </div>
@@ -65,7 +65,7 @@ export default function Padel() {
                   //   backgroundColor: teamA == "TeamA" ? "#232f3e" : "#596a7e",
                   // }}
                   onClick={() => setteamA("TeamB")}
-                  className=" rounded-full  bg-base-300 h-12 w-12 "
+                  className=" rounded-full  bg-base-300 h-12 w-12  hover:cursor-pointer "
                 />
                 Team B
               </div>
@@ -77,15 +77,13 @@ export default function Padel() {
               alt=""
             />
             {teamA == "TeamA" ? (
-              <div
-                                        >
+              <div>
                 {" "}
                 <Players name="Ali" x="left-20" y="top-24" img={team1} />
                 <Players name="Ahmed" x="right-20" y="top-24" img={team1} />
               </div>
             ) : (
-              <div
-              >
+              <div>
                 <Players name="Saad" x="right-20" y="bottom-10" img={team2} />{" "}
                 <Players name="You" x="left-20" y="bottom-10" img={team2} />
               </div>
@@ -98,11 +96,9 @@ export default function Padel() {
         w-full p-3  "
             >
               {teamA == "TeamA" ? (
-                      <DetailePlayers team='A' PlayersA={PlayersA}/>
-
+                <DetailePlayers team="A" PlayersA={PlayersA} />
               ) : (
-                <DetailePlayers team='B' PlayersA={PlayersB}/>
-
+                <DetailePlayers team="B" PlayersA={PlayersB} />
               )}
             </div>
             {/* <div className=" max-sm:mt-2  gap-3 mt-7 items-center px-3">
@@ -125,7 +121,7 @@ export default function Padel() {
               <span className="">Riyadh Padel </span>
             </div>
             <iframe
-                className="justify-between max-sm:w-full rounded-t-md
+              className="justify-between max-sm:w-full rounded-t-md
          p-3"
               src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d231841.9078419849!2d47.07881927490232!3d24.77730544035784!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3e2f012025ed9db1%3A0xa56f148f6e1a0b53!2zUml5YWRoIFBhZGVsIHwg2YXYsdmD2LIg2KjYp9iv2YQg2KfZhNix2YrYp9i2!5e0!3m2!1sar!2ssa!4v1720995659360!5m2!1sar!2ssa"
               width="600"

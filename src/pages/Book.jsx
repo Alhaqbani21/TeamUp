@@ -28,12 +28,12 @@ function Book() {
                     <div
                       style={{
                         backgroundImage:
-                          "url(https://img.pikbest.com/ai/illus_our/20230427/c1335e4e27e5cd31007af894089719db.jpg!bw700)",
+                          "url(https://i.pinimg.com/474x/5c/93/42/5c9342018257adcbd3583e22de1461d9.jpg)",
                       }}
                       className="bg-gray-300 h-64 w-full rounded-lg shadow-md bg-cover bg-center"
                     />
                     <div className="w-full bg-white -mt-10 shadow-lg rounded-lg overflow-hidden">
-                      <Link to={"/Booking/Stad"}>
+                      <Link to={"/Booking/Volly"}>
                         <div className="py-4 text-center font-bold uppercase tracking-wide text-gray-800">
                           Volly
                         </div>

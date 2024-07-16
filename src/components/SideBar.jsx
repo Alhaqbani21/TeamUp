@@ -24,11 +24,7 @@ function SideBar() {
             </span>
           </div>
         </Link>
-<<<<<<< HEAD
         <Link className="w-full" to={'../Book'}>
-=======
-        <Link className="w-full" to={"/Book"}>
->>>>>>> Amal
           <div className="h-10 w-full flex items-center justify-start pl-2 space-x-2  cursor-pointer hover:bg-base-200">
             <CiCirclePlus
               size={25}

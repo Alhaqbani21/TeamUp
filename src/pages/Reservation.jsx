@@ -6,6 +6,7 @@ import Iron_1_Rank from "../assets/Iron_1_Rank.png";
 import Silver_1_Rank from "../assets/Silver_1_Rank.png";
 import Basketball from "./Basketball";
 import Volly from "./Volly";
+import SideBar from "../components/SideBar";
 
 export default function Reservation() {
   const [view, setview] = React.useState("padel");
@@ -22,13 +23,21 @@ export default function Reservation() {
 
         <span onClick={() => setview("padel")}>Padel</span>
       </nav>
-      {view === "padel" ? (
-        <Padel />
-      ) : view === "Basketball" ? (
-        <Basketball />
-      ) : (
-        <Volly />
-      )}
+      <div className="h-screen w-full bg-base-100 relative flex overflow-hidden">
+        <SideBar />
+        <div className="w-full h-full flex flex-col justify-between">
+          {/* <NavBar /> */}
+          <main className="max-w-full h-full flex relative overflow-y-auto">
+            {view === "padel" ? (
+              <Padel />
+            ) : view === "Basketball" ? (
+              <Basketball />
+            ) : (
+              <Volly />
+            )}
+          </main>
+        </div>
+      </div>
     </div>
   );
 }

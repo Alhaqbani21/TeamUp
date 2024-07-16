@@ -42,52 +42,49 @@ export default function Volly() {
   }
   return (
     <main className="hero min-h-screen rounded-xl  ">
-      {/* <div
-        className="relative h-screen w-full flex flex-col items-center justify-center text-center text-white bg-cover bg-center"
-        style={{
-          backgroundImage:
-            "url(https://i.pinimg.com/564x/15/2e/9f/152e9f4f6de2a5dbc5a711f819bafaaf.jpg)",
-        }}
-      >
-        <div className="absolute top-0 right-0 bottom-0 left-0 bg-gray-800 opacity-80"></div> */}
-
-      {/* </div> */}
-
       <div className="w-[80vw] max-sm:flex-col max-sm:items-center max-sm:w-full gap-5 bg-base-100 rounded-lg flex">
-        <div className="h-[70vh]  max-sm:h-[40vh] max-sm:w-[80vw] w-[30vw] rounded-s-xl shadow-2xl relative ">
-          <div className="w-full flex gap-1">
-            <button
-              style={{
-                backgroundColor: teamA == "TeamA" ? "#232f3e" : "#596a7e",
-              }}
-              onClick={() => setteamA("TeamA")}
-              className="btn text-base-100 w-[50%]"
-            >
+        <div className="h-[70vh]  max-sm:h-[40vh] max-sm:w-[80vw] w-[60vw] rounded-s-xl shadow-2xl relative ">
+          <div className="w-full pt-3 justify-around bg-transparent   flex gap-1">
+            <div className="">
+              <img
+                src={team1}
+                // style={{
+                //   backgroundColor: teamA == "TeamA" ? "#232f3e" : "#596a7e",
+                // }}
+                onClick={() => setteamA("TeamA")}
+                className=" rounded-full  bg-primary h-12 w-12 "
+              />
               Team A
-            </button>
-            <button
-              style={{
-                backgroundColor: teamA == "TeamA" ? "#596a7e" : "#232f3e",
-              }}
-              onClick={() => setteamA("TeamB")}
-              className="btn text-base-100 w-[50%]"
-            >
+            </div>
+            <div className="flex flex-col justify-center items-center">
+              <Timer date={"Jul 18, 2024 20:00:00"} />
+              08:00 PM
+            </div>
+            <div>
+              {" "}
+              <img
+                src={team2}
+                // style={{
+                //   backgroundColor: teamA == "TeamA" ? "#232f3e" : "#596a7e",
+                // }}
+                onClick={() => setteamA("TeamB")}
+                className=" rounded-full  bg-base-300 h-12 w-12 "
+              />
               Team B
-            </button>
+            </div>
           </div>
-
           <img
-            className="h-[70vh] w-[30vw]  max-sm:w-[80vw] max-sm:h-[40vh]"
+            className="h-[70vh] max-sm:w-full max-sm:h-[40vh] w-[60vw]"
             src={Basketballw}
             alt=""
           />
           {teamA == "TeamA" ? (
             <>
               {" "}
-              <Players name="Ali" x="left-0" y="top-9" img={team1} />
+              <Players name="Ali" x="left-0" y="top-14" img={team1} />
               <Players name="Ahmed" x="right-10" y="top-20" img={team1} />
-              <Players name="Omar" x="left-28" y="top-40" img={team1} />
-              <Players name="Anas" x="left-28" y="top-9" img={team1} />
+              <Players name="Omar" x="left-48" y="top-40" img={team1} />
+              <Players name="Anas" x="left-28" y="top-14" img={team1} />
               <Players name="Fahad" x="left-10" y="top-40" img={team1} />
               <Players name="Yasser" x="right-0" y="top-40" img={team1} />
             </>
@@ -97,21 +94,16 @@ export default function Volly() {
               <Players name="You" x="right-10" y="bottom-10" img={team2} />
               <Players name="Talal" x="left-0" y="bottom-0" img={team2} />
               <Players name="Sultan" x="right-28" y="bottom-0" img={team2} />
-              <Players name="Turki" x="right-28" y="bottom-28" img={team2} />
-              <Players name="Fahad" x="right-0" y="bottom-28" img={team2} />
-              <Players name="Khalid" x="left-10" y="bottom-28" img={team2} />
+              <Players name="Turki" x="right-40" y="bottom-10" img={team2} />
+              <Players name="Fahad" x="right-0" y="bottom-14" img={team2} />
+              <Players name="Khalid" x="left-10" y="bottom-14" img={team2} />
             </>
           )}
         </div>
 
         <div className=" w-full max-sm:mt-8 h-max text-xl text-black bg-base-100 px-7 ">
-          <Timer date="Jul 18, 2024 10:00:00" />
-          <div className="flex  max-sm:mt-2  gap-3 mt-9 items-center px-3">
-            <h1>Time</h1>
-            <div className=" text-secondary text-lg">
-              18 Jul, 8:00PM-11:30PM
-            </div>
-          </div>
+          {/* <Timer date="Jul 18, 2024 10:00:00" /> */}
+
           <br />
           <div
             className="flex justify-between
@@ -171,7 +163,12 @@ export default function Volly() {
               </div>
             )}
           </div>
-
+          <div className="flex  max-sm:mt-2  gap-3 mt-9 items-center px-3">
+            <h1>Time</h1>
+            <div className=" text-secondary text-lg">
+              18 Jul, 8:00PM-11:30PM
+            </div>
+          </div>
           <div className="flex  max-sm:mt-0  gap-3 mt-7 items-center px-3">
             <h1>Cost</h1>
             <div className=" text-secondary text-lg">150 SAR</div>
@@ -187,9 +184,9 @@ export default function Volly() {
           <iframe
             className="justify-between rounded-t-md
          p-3"
-            width="400"
+            width="600"
+            height="350"
             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d28984.649675036628!2d46.65272988916017!3d24.758404600000002!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3e2ee391d45fed47%3A0x288dfaf3ede32e76!2z2YXZhNi52Kgg2KfZhNmD2LHYqSDYp9mE2LfYp9im2LHYqSAtIFZvbGxleWJhbGwgR3JvdW5k!5e0!3m2!1sar!2ssa!4v1721094221754!5m2!1sar!2ssa"
-            height="250"
             allowFullScreen=""
             loading="lazy"
             referrerPolicy="no-referrer-when-downgrade"

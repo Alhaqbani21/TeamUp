@@ -9,6 +9,7 @@ import MatchCard from '../components/MatchCard';
 import { Fade } from 'react-awesome-reveal';
 import moment from 'moment';
 import basketBallImage from '../assets/basketBallImage.png';
+import BottomNavBar from '../components/BottomNavBar';
 
 function Home() {
   const ImageUrl =
@@ -188,6 +189,7 @@ function Home() {
   return (
     <div className="h-screen w-full bg-base-100 relative flex overflow-hidden">
       <SideBar />
+      <BottomNavBar />
       <div className="w-full h-full flex flex-col justify-between">
         {/* <NavBar /> */}
         <main className="max-w-full h-full flex relative overflow-y-auto">

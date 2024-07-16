@@ -133,7 +133,7 @@ function Home() {
       isWithinTwoHours: isWithinTwoHours('17 Jul', '5:00PM'),
     },
     {
-      id: 6,
+      id: 5,
       title: 'Padel Art - 1/4',
       distance: '423.5',
       price: 'SAR 200',
@@ -156,7 +156,7 @@ function Home() {
       isWithinTwoHours: isWithinTwoHours('18 Jul', '6:00PM'),
     },
     {
-      id: 2,
+      id: 6,
       title: 'Padel Art - Full',
       distance: '423.5',
       price: 'SAR 200',

@@ -26,7 +26,7 @@ const router = createBrowserRouter([
     element: <Top10 />,
   },
   {
-    path: '/Playes',
+    path: '/Players',
     element: <Reservation />,
   },
 

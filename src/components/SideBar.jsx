@@ -1,18 +1,18 @@
-import React from 'react';
-import { CiCirclePlus } from 'react-icons/ci';
-import Gold_1_Rank from '../assets/Gold_1_Rank.png';
-import Iron_1_Rank from '../assets/Iron_1_Rank.png';
-import Platinum_1_Rank from '../assets/Platinum_1_Rank.png';
-import Silver_1_Rank from '../assets/Silver_1_Rank.png';
-import { MdOutlineLeaderboard } from 'react-icons/md';
-import { Link } from 'react-router-dom';
-import { IoHomeOutline } from 'react-icons/io5';
+import React from "react";
+import { CiCirclePlus } from "react-icons/ci";
+import Gold_1_Rank from "../assets/Gold_1_Rank.png";
+import Iron_1_Rank from "../assets/Iron_1_Rank.png";
+import Platinum_1_Rank from "../assets/Platinum_1_Rank.png";
+import Silver_1_Rank from "../assets/Silver_1_Rank.png";
+import { MdOutlineLeaderboard } from "react-icons/md";
+import { Link } from "react-router-dom";
+import { IoHomeOutline } from "react-icons/io5";
 
 function SideBar() {
   return (
     <aside className="h-full w-32 flex flex-col space-y-10  items-start justify-center relative text-white border-gray-400 z-50 max-md:hidden ">
       <div className="h-max ps-1  w-16 flex flex-col space-y-6 py-4 hover:py-0 items-start justify-center   bg-primary rounded-r-3xl z-50  absolute hover:w-32 group hover:ps-0 hover:bg-white hover:text-gray-800 transition-all duration-300 ease-linear">
-        <Link className="w-full " to={'../'}>
+        <Link className="w-full " to={"../"}>
           <div className="h-10  w-full flex items-center justify-start pl-2 space-x-2 rounded-tr-3xl cursor-pointer  hover:bg-base-200">
             <IoHomeOutline
               size={25}
@@ -24,7 +24,7 @@ function SideBar() {
             </span>
           </div>
         </Link>
-        <Link className="w-full" to={'../Book'}>
+        <Link className="w-full" to={"../Book"}>
           <div className="h-10 w-full flex items-center justify-start pl-2 space-x-2  cursor-pointer hover:bg-base-200">
             <CiCirclePlus
               size={25}
@@ -36,7 +36,7 @@ function SideBar() {
           </div>
         </Link>
 
-        <Link className="w-full" to={'../top10'}>
+        <Link className="w-full" to={"../top10"}>
           <div className="h-10 w-full flex items-center justify-start pl-2 space-x-2  cursor-pointer hover:bg-base-200">
             <MdOutlineLeaderboard
               size={25}
@@ -48,7 +48,7 @@ function SideBar() {
           </div>
         </Link>
 
-        <Link className="w-full" to={'../Playes'}>
+        <Link className="w-full" to={"../Players"}>
           <div className="h-10 w-full flex items-center justify-start pl-2 space-x-2 rounded-br-3xl cursor-pointer  hover:bg-base-200">
             <svg
               xmlns="http://www.w3.org/2000/svg"

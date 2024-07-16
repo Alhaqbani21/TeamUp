@@ -37,36 +37,8 @@ export default function Timer({ date }) {
   }, []);
   return (
     <>
-      {/* <div className="flex max-sm:justify-center gap-5 text-primary">
-        {day != "00" && (
-          <div>
-            <span className="countdown font-mono text-2xl">
-              <span style={{ "--value": day }}></span>
-            </span>
-            day
-          </div>
-        )}
-        <div>
-          <span class="countdown font-mono text-2xl">
-            <span style={{ "--value": hours }}></span>
-          </span>
-          hours
-        </div>
-        <div>
-          <span class="countdown font-mono text-2xl">
-            <span style={{ "--value": minutes }}></span>
-          </span>
-          min
-        </div>
-        <div>
-          <span class="countdown font-mono text-2xl">
-            <span style={{ "--value": second }}></span>
-          </span>
-          sec
-        </div>
-      </div> */}
-      <br />
-      <div className="flex max-sm:justify-center text-2xl font-bold gap-5 text-primary">
+ 
+      <div className="flex max-sm:justify-center  max-sm:text-lg text-2xl font-bold gap-5 text-primary">
         {day != "0" && (
           <div>
             <span className="countdown font-mono text-2xl">

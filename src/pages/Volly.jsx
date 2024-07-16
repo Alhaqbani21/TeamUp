@@ -9,6 +9,7 @@ import Iron_1_Rank from "../assets/Iron_1_Rank.png";
 import Silver_1_Rank from "../assets/Silver_1_Rank.png";
 import { Fade } from "react-awesome-reveal";
 import Timer from "../components/Timer";
+import DetailePlayers from "../components/DetailePlayers";
 export default function Volly() {
   const [teamA, setteamA] = useState("TeamA");
 
@@ -41,9 +42,9 @@ export default function Volly() {
     }
   }
   return (
-    <main className="hero min-h-screen rounded-xl  ">
-      <div className="w-[80vw] max-sm:flex-col max-sm:items-center max-sm:w-full gap-5 bg-base-100 rounded-lg flex">
-        <div className="h-[70vh]  max-sm:h-[40vh] max-sm:w-[80vw] w-[60vw] rounded-s-xl shadow-2xl relative ">
+    <main className="hero min-h-screen rounded-xl ">
+      <div className="w-[80vw] max-sm:w-[90vw] max-sm:flex-col  max-sm:justify-center max-sm:items-center  gap-9 bg-base-100 rounded-lg flex">
+        <div className="h-[70vh]  max-sm:h-[50vh] max-sm:w-[80vw] w-[60vw] rounded-s-xl  relative ">
           <div className="w-full pt-3 justify-around bg-transparent   flex gap-1">
             <div className="">
               <img
@@ -68,13 +69,14 @@ export default function Volly() {
                 //   backgroundColor: teamA == "TeamA" ? "#232f3e" : "#596a7e",
                 // }}
                 onClick={() => setteamA("TeamB")}
-                className=" rounded-full  bg-base-300 h-12 w-12 "
+                className=" rounded-full 
+                 bg-base-300 h-12 w-12 "
               />
               Team B
             </div>
           </div>
           <img
-            className="h-[70vh] max-sm:w-full max-sm:h-[40vh] w-[60vw]"
+            className="h-[70vh] max-sm:w-full max-sm:h-[50vh] w-[60vw]"
             src={Basketballw}
             alt=""
           />
@@ -101,66 +103,18 @@ export default function Volly() {
           )}
         </div>
 
-        <div className=" w-full max-sm:mt-8 h-max text-xl text-black bg-base-100 px-7 ">
+        <div className="max-sm:p-0 w-full max-sm:mt-8 h-max text-xl text-black bg-base-100 px-7 ">
           {/* <Timer date="Jul 18, 2024 10:00:00" /> */}
 
-          <br />
           <div
             className="flex justify-between
         w-full p-3  "
           >
             {teamA == "TeamA" ? (
-              <div className="flex  items-center  gap-6">
-                <div className="text-xl  font-bold text-secondary m-2 shadow-lg border-2 rounded-full px-3 h-10">
-                  A
-                </div>
-                <div className=" max-sm:grid max-sm:grid-cols-3 flex  gap-5  ">
-                  {PlayersA.map((player) => (
-                    <Fade duration={1000} triggerOnce={true} direction="right">
-                      <div>
-                        {" "}
-                        <p className="text-lg font-medium ">{player.name}</p>
-                        <div className="flex items-center gap-2">
-                          <p className="text-base text-secondary ">
-                            {player.points} points
-                          </p>
-                          <img
-                            className="w-7"
-                            src={getRankImage(player.points)}
-                            alt="Rank"
-                          />
-                        </div>{" "}
-                      </div>
-                    </Fade>
-                  ))}
-                </div>{" "}
-              </div>
+            <DetailePlayers team='A' PlayersA={PlayersA}/>
             ) : (
-              <div className="flex  items-center  gap-6">
-                <div className="text-xl  font-bold text-secondary m-2 shadow-lg border-2 rounded-full px-3 h-10">
-                  B
-                </div>
-                <div className=" max-sm:grid max-sm:grid-cols-3 flex  gap-5  ">
-                  {PlayersB.map((player) => (
-                    <Fade triggerOnce={true} direction="right">
-                      <div>
-                        {" "}
-                        <p className="text-lg font-medium ">{player.name}</p>
-                        <div className="flex items-center gap-2">
-                          <p className="text-base text-secondary ">
-                            {player.points} points
-                          </p>
-                          <img
-                            className="w-7"
-                            src={getRankImage(player.points)}
-                            alt="Rank"
-                          />
-                        </div>{" "}
-                      </div>{" "}
-                    </Fade>
-                  ))}
-                </div>{" "}
-              </div>
+              <DetailePlayers team='B' PlayersA={PlayersB}/>
+
             )}
           </div>
           <div className="flex  max-sm:mt-2  gap-3 mt-9 items-center px-3">
@@ -177,12 +131,10 @@ export default function Volly() {
             <br />
 
             {/* <span className="">Volleyball Ground </span> */}
-            <address className="text-sm">
-              Volleyball Ground، 3387 الواعظ، حي حطين، الرياض 13512 7099،
-            </address>
+            <address className="text-sm">Volleyball Ground </address>
           </div>
           <iframe
-            className="justify-between rounded-t-md
+            className="justify-between max-sm:w-full rounded-t-md
          p-3"
             width="600"
             height="350"

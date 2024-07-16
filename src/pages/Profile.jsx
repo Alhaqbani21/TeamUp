@@ -48,7 +48,7 @@ function Profile() {
     <div className="h-screen w-full bg-base-100 relative flex overflow-hidden">
       <SideBar />
       <BottomNavBar />
-      <div className="w-full h-full flex relative flex-col items-center ">
+      <div className="w-full h-full flex relative flex-col items-center overflow-y-auto overflow-x-hidden">
         <div className="relative w-full">
           <img
             src={PadelBanner}
@@ -65,10 +65,10 @@ function Profile() {
           </div>
         </div>
 
-        <div className="w-full flex flex-col items-center pt-20">
+        <div className="w-full flex flex-col items-center pt-20 ">
           <div className="md:ms-72 rounded-lg p-4 w-full mt-4">
-            <div className="w-full md:w-[80%] my-auto py-6 flex flex-col justify-center gap-2">
-              <div className="w-full flex sm:flex-row xs:flex-col gap-5 justify-center">
+            <div className="w-full md:w-[80%] my-auto py-6 flex flex-col justify-center gap-2 ">
+              <div className="w-full flex sm:flex-row xs:flex-col gap-5 justify-center ">
                 <div className="w-full">
                   <dl className=" divide-y  text-white divide-gray-700">
                     <div className="flex flex-col pb-3">

@@ -6,6 +6,7 @@ import RankSteps from '../components/RankSteps';
 import { Fade } from 'react-awesome-reveal';
 import crownImage from '../assets/crown.png';
 import trophyImage from '../assets/trophyImage.png';
+import BottomNavBar from '../components/BottomNavBar';
 
 function Top10() {
   const playerImagePlaceholder =
@@ -25,10 +26,12 @@ function Top10() {
   ];
 
   return (
-    <div className="h-screen w-full bg-base-100 relative flex overflow-hidden">
+    <div className="h-screen w-full bg-base-100 relative flex overflow-hidden ">
       <SideBar />
-      <div className="w-full h-full flex flex-col justify-between">
-        <main className="max-w-full h-full flex relative overflow-y-auto">
+      <BottomNavBar />
+
+      <div className="w-full h-full flex flex-col justify-between ">
+        <main className="max-w-full h-full flex relative overflow-y-auto ">
           <div className="flex flex-col w-full my-4">
             <div className="text-center flex justify-center max-md:mb-4 gap-4 items-center text-5xl p-2 tracking-widest text-primary">
               <img className="max-md:hidden w-24" src={trophyImage} alt="" />
@@ -51,7 +54,7 @@ function Top10() {
                 <div className="divider"></div>
               </div>
               <Fade
-                className="w-full flex flex-col items-center"
+                className="w-full flex flex-col items-center mb-20"
                 triggerOnce={true}
                 direction="left"
               >

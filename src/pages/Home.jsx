@@ -1,5 +1,5 @@
-import React from 'react';
-import NavBar from '../components/NavBar';
+// import React from 'react';
+// import NavBar from '../components/NavBar';
 import SideBar from '../components/SideBar';
 import CardCategory from '../components/CardCategory';
 import padelImage from '../assets/padel_Image.png';
@@ -8,6 +8,8 @@ import VollyBall from '../assets/VollyBall.png';
 import MatchCard from '../components/MatchCard';
 import { Fade } from 'react-awesome-reveal';
 import moment from 'moment';
+import basketBallImage from '../assets/basketBallImage.png';
+import BottomNavBar from '../components/BottomNavBar';
 
 function Home() {
   const ImageUrl =
@@ -15,6 +17,8 @@ function Home() {
   const backgroundImage =
     'https://champs-sportsclub.com/wp-content/uploads/2024/05/Playing-Tennis-padel-1.jpg';
 
+  const backgroundImageVolly = 'https://images.alphacoders.com/134/1349291.png';
+  const backgroundImageBasket = basketBallImage;
   function isWithinTwoHours(date, time) {
     const matchTime = moment(`${date} ${time.split('-')[0]}`, 'DD MMM h:mmA');
     const now = moment();
@@ -23,28 +27,67 @@ function Home() {
   const matches = [
     {
       id: 1,
-      title: 'Padel Art - Full',
+      title: 'Basket ball - Full',
       distance: '423.5',
-      price: 'SAR 200',
+      price: 'SAR 220',
       date: '15 Jul',
       time: '5:00PM-6:30PM',
       status: 'Upcoming',
       teamA: [
         { name: 'Abdulaziz', img: ImageUrl, points: 190 },
         { name: 'Omar', img: ImageUrl, points: 50 },
+        { name: 'Omar', img: ImageUrl, points: 50 },
+        { name: 'Omar', img: ImageUrl, points: 50 },
+        { name: '', img: ImageUrl, points: null },
       ],
       teamB: [
         { name: 'Ahmed', img: ImageUrl, points: 110 },
         { name: 'Khalid', img: ImageUrl, points: 120 },
+        { name: 'Khalid', img: ImageUrl, points: 120 },
+        { name: 'Khalid', img: ImageUrl, points: 120 },
+        { name: '', img: ImageUrl, points: null },
       ],
       court: 'Court 1',
       players: '2v2',
       matchFee: '50 SAR',
-      backgroundImage,
+      category: 'Vollyball',
+      backgroundImage: backgroundImageBasket,
       isWithinTwoHours: isWithinTwoHours('15 Jul', '5:00PM'),
     },
     {
       id: 2,
+      title: 'VollyBall - Full',
+      distance: '423.5',
+      price: 'SAR 220',
+      date: '15 Jul',
+      time: '5:00PM-6:30PM',
+      status: 'Upcoming',
+      teamA: [
+        { name: 'Abdulaziz', img: ImageUrl, points: 190 },
+        { name: 'Omar', img: ImageUrl, points: 50 },
+        { name: 'Omar', img: ImageUrl, points: 50 },
+        { name: 'Omar', img: ImageUrl, points: 50 },
+        { name: '', img: ImageUrl, points: null },
+        { name: '', img: ImageUrl, points: null },
+      ],
+      teamB: [
+        { name: 'Ahmed', img: ImageUrl, points: 110 },
+        { name: 'Khalid', img: ImageUrl, points: 120 },
+        { name: 'Khalid', img: ImageUrl, points: 120 },
+        { name: 'Khalid', img: ImageUrl, points: 120 },
+        { name: '', img: ImageUrl, points: null },
+        { name: '', img: ImageUrl, points: null },
+      ],
+      court: 'Court 1',
+      players: '2v2',
+      matchFee: '50 SAR',
+      category: 'Vollyball',
+      backgroundImage: backgroundImageVolly,
+      isWithinTwoHours: isWithinTwoHours('15 Jul', '5:00PM'),
+    },
+
+    {
+      id: 3,
       title: 'Padel Art - 3/4',
       distance: '423.5',
       price: 'SAR 200',
@@ -63,10 +106,11 @@ function Home() {
       players: '2v2',
       matchFee: '50 SAR',
       backgroundImage,
+      category: 'Padel',
       isWithinTwoHours: isWithinTwoHours('15 Jul', '4:00PM'),
     },
     {
-      id: 3,
+      id: 4,
       title: 'Padel Art - 2/4',
       distance: '423.5',
       price: 'SAR 200',
@@ -85,10 +129,11 @@ function Home() {
       players: '2v2',
       matchFee: '50 SAR',
       backgroundImage,
+      category: 'Padel',
       isWithinTwoHours: isWithinTwoHours('17 Jul', '5:00PM'),
     },
     {
-      id: 4,
+      id: 6,
       title: 'Padel Art - 1/4',
       distance: '423.5',
       price: 'SAR 200',
@@ -106,8 +151,32 @@ function Home() {
       court: 'Court 4',
       players: '2v2',
       matchFee: '50 SAR',
+      category: 'Padel',
       backgroundImage,
       isWithinTwoHours: isWithinTwoHours('18 Jul', '6:00PM'),
+    },
+    {
+      id: 2,
+      title: 'Padel Art - Full',
+      distance: '423.5',
+      price: 'SAR 200',
+      date: '15 Jul',
+      time: '5:00PM-6:30PM',
+      status: 'Upcoming',
+      teamA: [
+        { name: 'Abdulaziz', img: ImageUrl, points: 190 },
+        { name: 'Omar', img: ImageUrl, points: 50 },
+      ],
+      teamB: [
+        { name: 'Ahmed', img: ImageUrl, points: 110 },
+        { name: 'Khalid', img: ImageUrl, points: 120 },
+      ],
+      court: 'Court 1',
+      players: '2v2',
+      matchFee: '50 SAR',
+      category: 'Padel',
+      backgroundImage,
+      isWithinTwoHours: isWithinTwoHours('15 Jul', '5:00PM'),
     },
   ];
 
@@ -120,6 +189,7 @@ function Home() {
   return (
     <div className="h-screen w-full bg-base-100 relative flex overflow-hidden">
       <SideBar />
+      <BottomNavBar />
       <div className="w-full h-full flex flex-col justify-between">
         {/* <NavBar /> */}
         <main className="max-w-full h-full flex relative overflow-y-auto">

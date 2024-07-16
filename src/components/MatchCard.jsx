@@ -5,6 +5,9 @@ import Iron_1_Rank from '../assets/Iron_1_Rank.png';
 import Silver_1_Rank from '../assets/Silver_1_Rank.png';
 import { Fade } from 'react-awesome-reveal';
 import moment from 'moment';
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
+import Slider from 'react-slick';
 
 function getRankImage(points) {
   if (points >= 150) {
@@ -22,7 +25,7 @@ function getBackgroundColor(matchTime) {
   const now = moment();
   const matchMoment = moment(matchTime, 'DD MMM, h:mmA');
   if (matchMoment.diff(now, 'hours') <= 2) {
-    return 'bg-green-700';
+    return 'bg-secondary';
   } else {
     return 'bg-orange-400';
   }
@@ -57,10 +60,18 @@ function MatchCard({
   const matchTime = `${date}, ${time}`;
   const backgroundColor = getBackgroundColor(matchTime);
 
+  const sliderSettings = {
+    dots: true,
+    infinite: false,
+    speed: 500,
+    slidesToShow: 2,
+    slidesToScroll: 2,
+  };
+
   return (
     <Fade triggerOnce={true} direction="right" className="w-[90%] ">
       <div
-        className={`w-full ${backgroundColor} shadow-md overflow-hidden relative rounded-md`}
+        className={`w-full shadow-md bg-primary overflow-hidden relative rounded-md`}
         style={{
           backgroundImage: `url(${backgroundImage})`,
           backgroundSize: 'cover',
@@ -68,7 +79,8 @@ function MatchCard({
         }}
       >
         <div className="absolute inset-0 bg-black opacity-50 filter blur-lg"></div>
-        <div className="relative p-4 ">
+        <div className="relative p-4  flex flex-col justify-center">
+          {/* Here */}
           <div className="flex justify-between items-center border-b-[1px] py-2">
             <div className="flex flex-col justify-center">
               <h1 className="text-xl font-bold text-white">{title}</h1>
@@ -79,33 +91,38 @@ function MatchCard({
                 </div>
               </div>
             </div>
-            <div className="flex justify-between items-center my-4">
-              <div className="text-gray-300 bg-gray-700 py-1 px-2 rounded-lg">
-                {status}
-              </div>
-            </div>
-            <div className="text-lg font-semibold bg-green-400 py-1 px-2 rounded-lg text-white">
+
+            <div className="text-lg font-semibold bg-secondary py-1 px-2 rounded-lg text-white">
               {price}
             </div>
           </div>
 
-          <div className="flex max-md:flex-col justify-around items-center my-5">
-            <div className="flex items-center max-md:mb-10">
-              <div className="text-xl font-bold text-gray-300 mr-2 shadow-lg border-2 rounded-full px-3 py-1">
+          {/* Here */}
+          <div
+            className={`w-max text-white self-center  text-lg my-4  bg-gray-700 ${backgroundColor} py-1 px-2 rounded-lg`}
+          >
+            {status}
+          </div>
+          <div className="flex max-md:flex-col justify-around items-center my-5 ">
+            <div className="flex justify-start items-center max-md:mb-10 max-md:self-start">
+              <div className="text-xl font-bold text-gray-300 mr-4 shadow-lg border-2 rounded-full px-3 py-1">
                 A
               </div>
-              <div className="flex flex-col gap-10 w-full">
+              <div className="grid grid-cols-2 max-md:gap-x-1 gap-x-4 gap-y-10 min-w-full">
                 {teamA.map((player, index) => (
-                  <div key={index} className="flex items-center space-x-2">
+                  <div
+                    key={index}
+                    className="flex items-center space-x-2 flex-wrap"
+                  >
                     <img
-                      className="h-10 w-10 rounded-full"
+                      className="max-md:h-8 max-md:w-8 h-10 w-10 rounded-full"
                       src={player.img}
                       alt={player.name || 'Add Player'}
                     />
                     <div className="text-wrap">
                       {player.name ? (
-                        <>
-                          <p className="text-sm font-medium text-white">
+                        <div className="">
+                          <p className="text-sm font-medium text-white  max-md:text-xs">
                             {player.name}
                           </p>
                           <div className="flex items-center gap-2">
@@ -118,13 +135,13 @@ function MatchCard({
                               alt="Rank"
                             />
                           </div>
-                        </>
+                        </div>
                       ) : (
                         <button
                           className="text-blue-300 text-sm font-medium px-4 py-2 max-md:text-xs bg-gray-700 rounded-lg transition-all hover:bg-gray-600"
                           onClick={() => onRequestJoin('A', index, matchId)}
                         >
-                          Request to join
+                          Join
                         </button>
                       )}
                     </div>
@@ -132,22 +149,28 @@ function MatchCard({
                 ))}
               </div>
             </div>
-            <div className="flex items-center">
-              <div className="text-xl font-bold text-gray-300 mr-2 shadow-lg border-2 rounded-full px-3 py-1">
+            <div className="text-white tracking-wide text-3xl rounded-full p-2 bg-primary">
+              VS
+            </div>
+            <div className="flex justify-start items-center max-md:mt-10 max-md:self-start">
+              <div className="text-xl font-bold text-gray-300 mr-4 shadow-lg border-2 rounded-full px-3 py-1">
                 B
               </div>
-              <div className="flex flex-col gap-10">
+              <div className="grid grid-cols-2 max-md:gap-x-1 gap-x-4 gap-y-10 min-w-full">
                 {teamB.map((player, index) => (
-                  <div key={index} className="flex items-center space-x-2">
+                  <div
+                    key={index}
+                    className="flex items-center space-x-2 flex-wrap"
+                  >
                     <img
-                      className="h-10 w-10 rounded-full"
+                      className="max-md:h-8 max-md:w-8 h-10 w-10 rounded-full"
                       src={player.img}
                       alt={player.name || 'Add Player'}
                     />
                     <div className="text-wrap">
                       {player.name ? (
                         <>
-                          <p className="text-sm font-medium text-white">
+                          <p className="text-sm font-medium text-white  max-md:text-xs">
                             {player.name}
                           </p>
                           {player.points && (
@@ -168,7 +191,7 @@ function MatchCard({
                           className="text-blue-300 text-sm font-medium px-4 py-2 max-md:text-xs bg-gray-700 rounded-lg transition-all hover:bg-gray-600"
                           onClick={() => onRequestJoin('B', index, matchId)}
                         >
-                          Request to join
+                          Join
                         </button>
                       )}
                     </div>
@@ -177,33 +200,33 @@ function MatchCard({
               </div>
             </div>
           </div>
-          <div className="grid grid-cols-3 gap-4 mt-4 text-sm text-gray-300">
-            {/* <div className="flex flex-col items-center">
+          {/* <div className="grid grid-cols-3 gap-4 mt-4 text-sm text-gray-300">
+            <div className="flex flex-col items-center">
               <span className="text-gray-300 text-lg tracking-widest">
                 Court
               </span>
               <span className="font-bold text-white">{court}</span>
-            </div> */}
-            {/* <div className="flex flex-col items-center">
+            </div>
+            <div className="flex flex-col items-center">
               <span className="text-gray-300 text-lg tracking-widest">
                 Players
               </span>
               <span className="font-bold text-white">{players}</span>
-            </div> */}
-            {/* <div className="flex flex-col items-center">
+            </div>
+            <div className="flex flex-col items-center">
               <span className="text-gray-300 text-lg tracking-widest">
                 Time
               </span>
               <span className="font-bold text-white">{time}</span>
-            </div> */}
-          </div>
+            </div>
+          </div> */}
           <div
             className={`flex justify-between items-center mt-4 ${
               statusText === 'Match is full!' ? `bg-gray-400` : 'bg-secondary'
             }  py-2 px-4 rounded-lg`}
           >
-            <span className="text-black font-medium">{statusText}</span>
-            <span className="text-black font-semibold">Cut is {matchFee}</span>
+            <span className="text-white font-medium">{statusText}</span>
+            <span className="text-white font-semibold">Cut is {matchFee}</span>
           </div>
         </div>
       </div>

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { CiCirclePlus } from 'react-icons/ci';
-import { MdOutlineLeaderboard } from 'react-icons/md';
+import { MdOutlineLeaderboard, MdSportsHandball } from 'react-icons/md';
 import { Link, useLocation } from 'react-router-dom';
 import { IoHomeOutline } from 'react-icons/io5';
 import { BiUserCircle } from 'react-icons/bi';
@@ -48,6 +48,20 @@ function BottomNavBar() {
         <div
           className={`flex flex-col items-center ${
             activePath === '../Players'
+              ? 'text-secondary font-bold'
+              : 'text-white'
+          }`}
+        >
+          <MdSportsHandball
+            size={25}
+            className="group-hover:text-black text-white"
+          />
+        </div>
+      </Link>
+      <Link to={'../profile'} onClick={() => handleIconClick('../profile')}>
+        <div
+          className={`flex flex-col items-center ${
+            activePath === '../profile'
               ? 'text-secondary font-bold'
               : 'text-white'
           }`}

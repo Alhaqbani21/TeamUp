@@ -32,7 +32,7 @@ function Booking() {
                   quae.
                 </p>
                 <a
-                  href="/Cardd"
+                  href="/Book"
                   aria-label=""
                   className="inline-flex items-center font-semibold tracking-wider transition-colors duration-200 text-white hover:text-teal-accent-700"
                 >

@@ -35,9 +35,10 @@ function Top10() {
               Leaderboard
               <img className="w-24 max-md:hidden" src={trophyImage} alt="" />
             </div>
-
             <RankSteps />
-
+            <span className="text-center text-3xl mb-3 tracking-wider font-bold text-primary">
+              Top 3
+            </span>{' '}
             <div className="flex flex-col items-center">
               <Fade
                 triggerOnce={true}

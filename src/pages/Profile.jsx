@@ -47,30 +47,31 @@ function Profile() {
     <div className="h-screen w-full bg-base-100 relative flex overflow-hidden">
       <SideBar />
       <BottomNavBar />
-      <div className="w-full h-full flex relative flex-col items-center bg-primary">
+      <div className="w-full h-full flex relative flex-col items-center ">
         <div className="relative w-full">
           <img
             src="https://media.istockphoto.com/id/1363976548/photo/paddle-tennis-racket-and-balls-on-the-blue-paddle-court.jpg?s=612x612&w=0&k=20&c=yxbb5H6rbALy_YG5awOHCRyn7Ge02SQL8SwAcbeKIwA="
             alt="User Cover"
             className="w-full xl:h-[20rem] lg:h-[18rem] md:h-[16rem] sm:h-[14rem] xs:h-[11rem] object-cover filter blur-sm"
           />
-          <div className="absolute left-10 -bottom-24">
+          <div className="absolute left-28 -bottom-28 max-md:left-1/2 max-md:transform max-md:-translate-x-1/2">
             <img
               src={avatarPlaceholder}
               alt="User Profile"
               className="rounded-full w-40 h-40 border-4 border-white"
             />
-            <h1 className="text-white text-4xl font-serif">{user.name}</h1>
+            <h1 className="text-primary text-4xl font-serif">{user.name}</h1>
           </div>
         </div>
+
         <div className="w-full flex flex-col items-center pt-20">
-          <div className="bg-primary rounded-lg p-4 w-full mt-4">
-            <div className="w-full my-auto py-6 flex flex-col justify-center gap-2">
-              <div className="w-full flex sm:flex-row xs:flex-col gap-2 justify-center">
+          <div className="md:ms-44 rounded-lg p-4 w-full mt-4">
+            <div className="w-full md:w-[80%] my-auto py-6 flex flex-col justify-center gap-2">
+              <div className="w-full flex sm:flex-row xs:flex-col gap-5 justify-center">
                 <div className="w-full">
                   <dl className=" divide-y  text-white divide-gray-700">
                     <div className="flex flex-col pb-3">
-                      <dt className="mb-1 text-gray-500 md:text-lg dark:text-gray-400">
+                      <dt className="mb-1  md:text-lg text-primary">
                         Joined At
                       </dt>
                       <Fade
@@ -78,13 +79,13 @@ function Profile() {
                         direction="left"
                         className="w-full "
                       >
-                        <dd className="text-lg font-semibold">
+                        <dd className="text-lg font-semibold text-blue-400">
                           {user.joinedAt}
                         </dd>
                       </Fade>
                     </div>
                     <div className="flex flex-col py-3">
-                      <dt className="mb-1 text-gray-500 md:text-lg dark:text-gray-400">
+                      <dt className="mb-1  md:text-lg text-primary">
                         Location
                       </dt>
                       <Fade
@@ -92,13 +93,13 @@ function Profile() {
                         direction="left"
                         className="w-full "
                       >
-                        <dd className="text-lg font-semibold">
+                        <dd className="text-lg font-semibold text-blue-400">
                           {user.location}
                         </dd>
                       </Fade>
                     </div>
                     <div className="flex flex-col py-3">
-                      <dt className="mb-1 text-gray-500 md:text-lg dark:text-gray-400">
+                      <dt className="mb-1  md:text-lg text-primary">
                         Phone Number
                       </dt>
                       <Fade
@@ -106,19 +107,21 @@ function Profile() {
                         direction="left"
                         className="w-full "
                       >
-                        <dd className="text-lg font-semibold">{user.number}</dd>
+                        <dd className="text-lg font-semibold text-blue-400">
+                          {user.number}
+                        </dd>
                       </Fade>
                     </div>
                     <div className="flex flex-col py-3">
-                      <dt className="mb-1 text-gray-500 md:text-lg dark:text-gray-400">
-                        Email
-                      </dt>
+                      <dt className="mb-1  md:text-lg text-primary">Email</dt>
                       <Fade
                         triggerOnce={true}
                         direction="left"
                         className="w-full "
                       >
-                        <dd className="text-lg font-semibold">{user.email}</dd>
+                        <dd className="text-lg font-semibold text-blue-400">
+                          {user.email}
+                        </dd>
                       </Fade>
                     </div>
                   </dl>
@@ -126,26 +129,30 @@ function Profile() {
                 <div className="w-full">
                   <dl className=" divide-y  text-white divide-gray-700">
                     <div className="flex flex-col pb-3">
-                      <dt className="mb-1  md:text-lg text-gray-400">Rank</dt>
+                      <dt className="mb-1  md:text-lg text-primary">Rank</dt>
                       <Fade triggerOnce={true} direction="right" className="">
                         <div className="flex items-center gap-2">
-                          <div className="text-lg font-semibold">{rank} </div>
+                          <div className="text-lg font-semibold text-blue-400">
+                            {rank}{' '}
+                          </div>
                           <img src={rankImage} alt="Rank" className="w-7 h-7" />
                         </div>
                       </Fade>
                     </div>
                     <div className="flex flex-col pt-3 ">
-                      <dt className="mb-1 md:text-lg text-gray-400">Points</dt>
+                      <dt className="mb-1  md:text-lg text-primary">Points</dt>
                       <Fade triggerOnce={true} direction="right" className="">
-                        <dd className="text-lg font-semibold">{user.points}</dd>
+                        <dd className="text-lg font-semibold text-blue-400 mb-3">
+                          {user.points}
+                        </dd>
                       </Fade>
                     </div>
                     <div className="flex flex-col pt-3">
-                      <dt className="mb-1 md:text-lg text-gray-400">
+                      <dt className="mb-1  md:text-lg text-primary">
                         Matches Played
                       </dt>
                       <Fade triggerOnce={true} direction="right" className="">
-                        <dd className="text-lg font-semibold">
+                        <dd className="text-lg font-semibold text-blue-400">
                           {user.matchesPlayed}
                         </dd>
                       </Fade>

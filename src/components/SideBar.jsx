@@ -11,7 +11,7 @@ import { MdSportsHandball } from 'react-icons/md';
 
 function SideBar() {
   return (
-    <aside className="h-full w-32 flex flex-col space-y-10  items-start justify-center relative text-white border-gray-400 z-50 max-md:hidden ">
+    <aside className="h-full w-32 flex flex-col space-y-10  items-start justify-center absolute text-white border-gray-400 z-50 max-md:hidden ">
       <div className="h-max ps-1  w-16 flex flex-col space-y-6 py-4 hover:py-0 items-start justify-center   bg-primary rounded-r-3xl z-50  absolute hover:w-32 group hover:ps-0 hover:bg-white hover:text-gray-800 transition-all duration-300 ease-linear">
         <Link className="w-full " to={'../'}>
           <div className="h-10  w-full flex items-center justify-start pl-2 space-x-2 rounded-tr-3xl cursor-pointer  hover:bg-base-200">

@@ -1,6 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 export default {
-  content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
+  content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
     extend: {},
   },
@@ -8,26 +8,27 @@ export default {
     themes: [
       {
         mytheme: {
-          primary: '232f3e',
+          primary: "232f3e",
 
-          secondary: '#007955',
+          secondary: "#007955",
 
-          accent: '#00c7ff',
+          accent: "#00c7ff",
 
-          neutral: '#002926',
+          neutral: "#002926",
 
-          'base-100': '#e3e6e6',
+          "base-100": "#e3e6e6",
 
-          info: '#008ace',
+          info: "#008ace",
 
-          success: '#009b6d',
+          success: "#009b6d",
 
-          warning: '#d96d00',
+          warning: "#d96d00",
 
-          error: '#ff3c4f',
+          error: "#ff3c4f",
         },
       },
     ],
   },
-  plugins: [require('daisyui')],
+  // eslint-disable-next-line no-undef
+  plugins: [require("daisyui")],
 };

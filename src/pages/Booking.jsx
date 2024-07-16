@@ -1,11 +1,17 @@
-import { Fade } from 'react-awesome-reveal';
+import { Fade } from "react-awesome-reveal";
+import { useParams } from "react-router-dom";
 
 function Booking() {
+  const params = useParams().id;
+  const sceImage =
+    params == "padel"
+      ? "https://i.pinimg.com/564x/e9/cd/a7/e9cda718f10716d9eb01c4ce03fa04f3.jpg" :(params=='Basketball')?'https://i.pinimg.com/564x/0a/0d/12/0a0d1234e829cf469e8788283ff149fa.jpg'
+      : "https://img.pikbest.com/ai/illus_our/20230427/c1335e4e27e5cd31007af894089719db.jpg!bw700";
   return (
     <>
       <div className="relative min-h-screen">
         <img
-          src="https://img.pikbest.com/ai/illus_our/20230427/c1335e4e27e5cd31007af894089719db.jpg!bw700"
+          src={sceImage}
           className="absolute inset-0 object-cover w-full h-full"
           alt=""
         />

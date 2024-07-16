@@ -33,9 +33,11 @@ function Book() {
                       className="bg-gray-300 h-64 w-full rounded-lg shadow-md bg-cover bg-center"
                     />
                     <div className="w-full bg-white -mt-10 shadow-lg rounded-lg overflow-hidden">
-                      <div className="py-4 text-center font-bold uppercase tracking-wide text-gray-800">
-                        Stad Revolt
-                      </div>
+                      <Link to={"/Booking/Stad"}>
+                        <div className="py-4 text-center font-bold uppercase tracking-wide text-gray-800">
+                          Volly
+                        </div>
+                      </Link>
                       <div className="flex items-center justify-between py-4 px-6 bg-gray-400">
                         <h1 className="text-gray-800 font-bold">$129</h1>
                         <h1 className="bg-[#007955] text-xs text-white px-4 py-2 font-semibold rounded uppercase hover:bg-[#6bc1a7]">
@@ -56,10 +58,10 @@ function Book() {
                       className="bg-gray-300 h-64 w-full rounded-lg shadow-md bg-cover bg-center"
                     />
                     <div className="w-full bg-white -mt-10 shadow-lg rounded-lg overflow-hidden">
-                      <Link to={"/Booking"}>
+                      <Link to={"/Booking/padel"}>
                         {" "}
                         <div className="py-4 text-center font-bold uppercase tracking-wide text-gray-800">
-                          Stad Revolt
+                          Padel
                         </div>
                       </Link>
                       <div className="flex items-center justify-between py-4 px-6 bg-gray-400">
@@ -82,9 +84,11 @@ function Book() {
                       className="bg-gray-300 h-64 w-full rounded-lg shadow-md bg-cover bg-center"
                     />
                     <div className="w-full bg-white -mt-10 shadow-lg rounded-lg overflow-hidden">
-                      <div className="py-4 text-center font-bold uppercase tracking-wide text-gray-800">
-                        Stad Revolt
-                      </div>
+                      <Link to={"/Booking/Basketball"}>
+                        <div className="py-4 text-center font-bold uppercase tracking-wide text-gray-800">
+                          Basketball
+                        </div>
+                      </Link>
                       <div className="flex items-center justify-between py-4 px-6 bg-gray-400">
                         <h1 className="text-gray-800 font-bold">$129</h1>
                         <h1 className="bg-[#007955] text-xs text-white px-4 py-2 font-semibold rounded uppercase hover:bg-[#6bc1a7]">

@@ -67,7 +67,7 @@ function Profile() {
 
         <div className="w-full flex flex-col items-center pt-20 ">
           <div className="md:ms-72 rounded-lg p-4 w-full mt-4">
-            <div className="w-full md:w-[80%] my-auto py-6 flex flex-col justify-center gap-2 ">
+            <div className="w-full md:w-[80%] my-auto py-14 flex flex-col justify-center gap-2 ">
               <div className="w-full flex sm:flex-row xs:flex-col gap-5 justify-center ">
                 <div className="w-full">
                   <dl className=" divide-y  text-white divide-gray-700">

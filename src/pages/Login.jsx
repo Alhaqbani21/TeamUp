@@ -52,9 +52,12 @@ function Login() {
                     </h1>
                   </Link>
                   <div className="relative">
-                    <button className="bg-[#007955] text-white rounded-md px-2 py-1">
-                      Submit
-                    </button>
+                    <Link to={"/Home"}>
+                      {" "}
+                      <button className="bg-[#007955] text-white rounded-md px-2 py-1">
+                        Submit
+                      </button>
+                    </Link>
                   </div>
                 </div>
               </div>

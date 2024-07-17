@@ -12,14 +12,10 @@ import Landingpage from "../pages/Landingpage";
 
 const router = createBrowserRouter([
   {
-    path: "/Landingpage",
+    path: "/",
     element: <Landingpage />,
   },
 
-  {
-    path: "/",
-    element: <Home />,
-  },
   {
     path: "/SignUp",
     element: <SignUp />,
@@ -27,6 +23,10 @@ const router = createBrowserRouter([
   {
     path: "/Login",
     element: <Login />,
+  },
+  {
+    path: "/Home",
+    element: <Home />,
   },
   {
     path: "/top10",

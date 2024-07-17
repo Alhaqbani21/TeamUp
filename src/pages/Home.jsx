@@ -134,29 +134,6 @@ function Home() {
     },
     {
       id: 5,
-      title: 'Padel Art - 1/4',
-      distance: '423.5',
-      price: 'SAR 200',
-      date: '18 Jul',
-      time: '6:00PM-7:30PM', // Within 2 hours
-      status: 'Upcoming',
-      teamA: [
-        { name: 'Abdulaziz', img: ImageUrl, points: 190 },
-        { name: '', img: ImageUrl, points: null },
-      ],
-      teamB: [
-        { name: '', img: ImageUrl, points: null },
-        { name: '', img: ImageUrl, points: null },
-      ],
-      court: 'Court 4',
-      players: '2v2',
-      matchFee: '50 SAR',
-      category: 'Padel',
-      backgroundImage,
-      isWithinTwoHours: isWithinTwoHours('18 Jul', '6:00PM'),
-    },
-    {
-      id: 6,
       title: 'Padel Art - Full',
       distance: '423.5',
       price: 'SAR 200',

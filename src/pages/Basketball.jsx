@@ -39,8 +39,8 @@ export default function Basketball() {
               Team A
             </div>
             <div className="flex flex-col justify-center items-center">
-              <Timer date="Jul 16, 2024 19:00:00" />
-              07:00 PM
+              <Timer date="Jul 17, 2024 20:00:00" />
+              08:00 PM
             </div>
             <div
               className="group cursor-pointer"
@@ -96,7 +96,7 @@ export default function Basketball() {
           <div className="flex gap-3  max-sm:mt-2  mt-9 items-center px-3">
             <h1>Time</h1>
             <div className=" text-secondary text-lg">
-              16 Jul, 7:00PM-10:30PM
+              17 Jul, 8:00PM-10:30PM
               <br />
             </div>
           </div>

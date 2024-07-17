@@ -1,46 +1,52 @@
-import * as React from 'react';
-import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-import Home from '../pages/Home';
-import SignUp from '../pages/SignUp';
-import Login from '../pages/Login';
-import Top10 from '../pages/Top10';
-import Reservation from '../pages/Reservation';
-import Book from '../pages/Book';
-import Booking from '../pages/Booking';
-import Profile from '../pages/Profile';
+import * as React from "react";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import Home from "../pages/Home";
+import SignUp from "../pages/SignUp";
+import Login from "../pages/Login";
+import Top10 from "../pages/Top10";
+import Reservation from "../pages/Reservation";
+import Book from "../pages/Book";
+import Booking from "../pages/Booking";
+import Profile from "../pages/Profile";
+import Landingpage from "../pages/Landingpage";
 
 const router = createBrowserRouter([
   {
-    path: '/',
+    path: "/Landingpage",
+    element: <Landingpage />,
+  },
+
+  {
+    path: "/",
     element: <Home />,
   },
   {
-    path: '/SignUp',
+    path: "/SignUp",
     element: <SignUp />,
   },
   {
-    path: '/Login',
+    path: "/Login",
     element: <Login />,
   },
   {
-    path: '/top10',
+    path: "/top10",
     element: <Top10 />,
   },
   {
-    path: '/Players',
+    path: "/Players",
     element: <Reservation />,
   },
 
   {
-    path: '/Book',
+    path: "/Book",
     element: <Book />,
   },
   {
-    path: '/Booking/:id',
+    path: "/Booking/:id",
     element: <Booking />,
   },
   {
-    path: '/profile',
+    path: "/profile",
     element: <Profile />,
   },
 ]);

@@ -46,14 +46,13 @@ export default function Volly() {
       <div className="w-[80vw] max-sm:w-[90vw] max-sm:flex-col  max-sm:justify-center max-sm:items-center  gap-9 bg-base-100 rounded-lg flex">
         <div className="h-[70vh]  max-sm:h-[50vh] max-sm:w-[80vw] w-[60vw] rounded-s-xl  relative ">
           <div className="w-full pt-3 justify-around bg-transparent   flex gap-1">
-            <div className="">
+            <div
+              onClick={() => setteamA("TeamA")}
+              className="group cursor-pointer"
+            >
               <img
                 src={team1}
-                // style={{
-                //   backgroundColor: teamA == "TeamA" ? "#232f3e" : "#596a7e",
-                // }}
-                onClick={() => setteamA("TeamA")}
-                className=" hover:cursor-pointer rounded-full  bg-primary h-12 w-12 "
+                className="  group-hover:opacity-75 rounded-full  bg-primary h-12 w-12 "
               />
               Team A
             </div>
@@ -61,15 +60,14 @@ export default function Volly() {
               <Timer date={"Jul 18, 2024 20:00:00"} />
               08:00 PM
             </div>
-            <div>
+            <div
+              onClick={() => setteamA("TeamB")}
+              className="group cursor-pointer"
+            >
               {" "}
               <img
                 src={team2}
-                // style={{
-                //   backgroundColor: teamA == "TeamA" ? "#232f3e" : "#596a7e",
-                // }}
-                onClick={() => setteamA("TeamB")}
-                className=" rounded-full  hover:cursor-pointer
+                className=" rounded-full  group-hover:opacity-75
                  bg-base-300 h-12 w-12 "
               />
               Team B
@@ -111,10 +109,9 @@ export default function Volly() {
         w-full p-3  "
           >
             {teamA == "TeamA" ? (
-            <DetailePlayers team='A' PlayersA={PlayersA}/>
+              <DetailePlayers team="A" PlayersA={PlayersA} />
             ) : (
-              <DetailePlayers team='B' PlayersA={PlayersB}/>
-
+              <DetailePlayers team="B" PlayersA={PlayersB} />
             )}
           </div>
           <div className="flex  max-sm:mt-2  gap-3 mt-9 items-center px-3">

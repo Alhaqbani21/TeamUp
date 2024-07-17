@@ -42,14 +42,13 @@ export default function Padel() {
         <div className="w-[80vw] max-sm:flex-col max-sm:items-center max-sm:w-full gap-5 bg-base-100 rounded-lg flex">
           <div className="h-[70vh]  max-sm:h-[50vh] max-sm:w-[80vw] w-[60vw] rounded-s-xl relative ">
             <div className="w-full pt-3 justify-around bg-transparent   flex gap-1">
-              <div className="">
+              <div
+                onClick={() => setteamA("TeamA")}
+                className="group cursor-pointer"
+              >
                 <img
                   src={team1}
-                  // style={{
-                  //   backgroundColor: teamA == "TeamA" ? "#232f3e" : "#596a7e",
-                  // }}
-                  onClick={() => setteamA("TeamA")}
-                  className=" rounded-full  hover:cursor-pointer bg-primary h-12 w-12 "
+                  className=" rounded-full group-hover:opacity-70  hover:cursor-pointer bg-primary h-12 w-12 "
                 />
                 Team A
               </div>
@@ -57,15 +56,14 @@ export default function Padel() {
                 <Timer date={"Jul 17, 2024 17:00:00"} />
                 05:00 PM
               </div>
-              <div>
+              <div
+                onClick={() => setteamA("TeamB")}
+                className="group cursor-pointer"
+              >
                 {" "}
                 <img
                   src={team2}
-                  // style={{
-                  //   backgroundColor: teamA == "TeamA" ? "#232f3e" : "#596a7e",
-                  // }}
-                  onClick={() => setteamA("TeamB")}
-                  className=" rounded-full  bg-base-300 h-12 w-12  hover:cursor-pointer "
+                  className="group-hover:opacity-70 rounded-full  bg-base-300 h-12 w-12 "
                 />
                 Team B
               </div>

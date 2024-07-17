@@ -70,9 +70,12 @@ function SignUp() {
                   <div className="relative">
                     <Link to={"/Login"}>
                       {" "}
-                      <button className="bg-[#007955] text-white rounded-md px-2 py-1">
-                        Submit
-                      </button>{" "}
+                      <button
+                        className="middle none center mr-3 rounded-lg bg-[#007955] py-3 px-6 font-sans text-xs font-bold uppercase text-white shadow-md shadow-[#508172] transition-all hover:shadow-lg hover:shadow-[#508172] focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
+                        data-ripple-light="true"
+                      >
+                        SignUp
+                      </button>
                     </Link>
                   </div>
                 </div>

@@ -15,10 +15,10 @@ function BottomNavBar() {
 
   return (
     <aside className="md:hidden fixed bottom-0 w-full bg-primary py-5 z-50 flex justify-around items-center rounded-t-3xl">
-      <Link to={'../'} onClick={() => handleIconClick('../')}>
+      <Link to={'../Home'} onClick={() => handleIconClick('../Home')}>
         <div
           className={`flex flex-col items-center ${
-            activePath === '../' ? 'text-secondary font-bold' : 'text-white'
+            activePath === '../Home' ? 'text-secondary font-bold' : 'text-white'
           }`}
         >
           <IoHomeOutline size={25} />

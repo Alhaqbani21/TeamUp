@@ -59,10 +59,10 @@ function Booking() {
               <div className="w-full max-w-xl xl:px-8 xl:w-5/12">
                 <Fade direction="right" delay={200}>
                   <div className="bg-white rounded-lg shadow-2xl p-7 sm:p-10 mt-[12em] ml-[8em] w-5/6">
-                    <h3 className="mb-4 text-xl font-semibold sm:text-center sm:mb-6 sm:text-2xl">
+                    <h3 className="mb-4 text-xl font-semibold sm:text-center sm:mb-6 sm:text-2xl max-sm:text-center max-sm:mr-4">
                       Available Times
                     </h3>
-                    <form className="max-w-md mx-auto ">
+                    <form className="max-w-md mx-auto max-sm:mr-9  ">
                       <div className="grid grid-cols-2 gap-4 mb-4">
                         <button
                           type="button"

@@ -4,7 +4,7 @@ function SignUp() {
     <>
       {/* component */}
       <div className="min-h-screen bg-[#e3e6e6] py-6 flex flex-col justify-center sm:py-12">
-        <div className="relative py-3 sm:max-w-xl sm:mx-auto max-sm:max-w-xl max-sm:mx-auto ">
+        <div className="relative py-3 sm:max-w-xl sm:mx-auto max-sm:max-w-xl max-sm:mx-auto">
           <div className="absolute inset-0 bg-gradient-to-r from-[#a0e2c6] to-[#007955] shadow-lg transform -skew-y-6 sm:skew-y-0 sm:-rotate-6 sm:rounded-3xl max-sm:rounded-3xl max-sm:-rotate-6 "></div>
           <div className="relative px-4 py-10 bg-white shadow-lg sm:rounded-3xl sm:p-20 max-sm:p-20 max-sm:rounded-3xl">
             <div className="max-w-md mx-auto">
@@ -63,16 +63,17 @@ function SignUp() {
                       Password
                     </label>
                   </div>
-                  <Link to={"Login"}>
+                  <Link to={"/Login"}>
                     {" "}
-                    <h1 className="text-sm text-black ">
-                      I Do not have an account?
-                    </h1>
+                    <h1 className="text-sm text-black ">I have an acuont?</h1>
                   </Link>
                   <div className="relative">
-                    <button className="bg-[#007955] text-white rounded-md px-2 py-1">
-                      Submit
-                    </button>
+                    <Link to={"/Login"}>
+                      {" "}
+                      <button className="bg-[#007955] text-white rounded-md px-2 py-1">
+                        Submit
+                      </button>{" "}
+                    </Link>
                   </div>
                 </div>
               </div>

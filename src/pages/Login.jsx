@@ -46,8 +46,10 @@ function Login() {
                       Password
                     </label>
                   </div>
-                  <Link to={"SignUp"}>
-                    <h1 className="text-sm text-black ">I have an acuont?</h1>
+                  <Link to={"/SignUp"}>
+                    <h1 className="text-sm text-black ">
+                      I Do not have an account?
+                    </h1>
                   </Link>
                   <div className="relative">
                     <button className="bg-[#007955] text-white rounded-md px-2 py-1">

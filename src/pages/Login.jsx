@@ -54,8 +54,11 @@ function Login() {
                   <div className="relative">
                     <Link to={"/Home"}>
                       {" "}
-                      <button className="bg-[#007955] text-white rounded-md px-2 py-1">
-                        Submit
+                      <button
+                        className="middle none center mr-3 rounded-lg bg-gradient-to-tr from-[#007955] to-[#508172] py-3 px-6 font-sans text-xs font-bold uppercase text-white shadow-md shadow-[#508172] transition-all hover:shadow-lg hover:shadow-[#508172] active:opacity-[0.85] disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
+                        data-ripple-light="true"
+                      >
+                        Login
                       </button>
                     </Link>
                   </div>

@@ -1,11 +1,12 @@
 // import { Fade } from "react-awesome-reveal";
-import { Link } from "react-router-dom";
+import landingPageVideo from '../assets/landingPageVideo.mp4';
+import { Link } from 'react-router-dom';
 function Landingpage() {
   return (
     <>
       <div className="relative min-h-screen">
         <video
-          src="https://cdn.pixabay.com/video/2020/11/07/55611-502387760_large.mp4"
+          src={landingPageVideo}
           className="absolute inset-0 object-cover w-full h-full"
           autoPlay
           loop
@@ -39,8 +40,8 @@ function Landingpage() {
                   Join us now and enjoy <br className="hidden md:block" />
                 </p>
                 <div className="flex">
-                  <Link to={"/SignUp"}>
-                    {" "}
+                  <Link to={'/SignUp'}>
+                    {' '}
                     <button
                       className="middle none center mr-3 rounded-lg bg-[#007955] py-3 px-6 font-sans text-xs font-bold uppercase text-white shadow-md shadow-[#508172] transition-all hover:shadow-lg hover:shadow-[#508172] focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
                       data-ripple-light="true"
@@ -48,8 +49,8 @@ function Landingpage() {
                       SignUp
                     </button>
                   </Link>
-                  <Link to={"/Login"}>
-                    {" "}
+                  <Link to={'/Login'}>
+                    {' '}
                     <button
                       className="middle none center mr-3 rounded-lg bg-gradient-to-tr from-[#007955] to-[#508172] py-3 px-6 font-sans text-xs font-bold uppercase text-white shadow-md shadow-[#508172] transition-all hover:shadow-lg hover:shadow-[#508172] active:opacity-[0.85] disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
                       data-ripple-light="true"

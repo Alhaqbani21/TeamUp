@@ -1,16 +1,17 @@
-import { Fade } from 'react-awesome-reveal';
-import SideBar from '../components/SideBar';
-import Cardheder from '../components/Cardheder';
-import { Link } from 'react-router-dom';
+import { Fade } from "react-awesome-reveal";
+import SideBar from "../components/SideBar";
+import Cardheder from "../components/Cardheder";
+import { Link } from "react-router-dom";
+import BottomNavBar from "../components/BottomNavBar";
 function Book() {
   return (
     <>
       <div className="h-screen w-full bg-base-100 relative flex overflow-hidden">
         <SideBar />
-
+        <BottomNavBar />
         <div className="w-full h-full flex flex-col  justify-between overflow-y-auto">
           <div className="w-[70vw] mx-auto">
-            {' '}
+            {" "}
             <Cardheder />
           </div>
 
@@ -24,15 +25,15 @@ function Book() {
               <div className="grid lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 gap-8 items-center justify-center mt-8 px-4">
                 {/* c1 */}
                 <Fade direction="right">
-                  <div className="flex flex-col justify-center items-center w-full max-w-xs mx-auto">
+                  <div className="flex flex-col justify-center items-center w-full max-w-xs mx-auto max-sm:w-64 ">
                     <Link
                       className="w-full hover:scale-105 transition-all"
-                      to={'/Booking/Volly'}
+                      to={"/Booking/Volly"}
                     >
                       <div
                         style={{
                           backgroundImage:
-                            'url(https://i.pinimg.com/474x/5c/93/42/5c9342018257adcbd3583e22de1461d9.jpg)',
+                            "url(https://i.pinimg.com/474x/5c/93/42/5c9342018257adcbd3583e22de1461d9.jpg)",
                         }}
                         className="bg-gray-300 h-64 w-full rounded-lg shadow-md bg-cover bg-center"
                       />
@@ -55,17 +56,17 @@ function Book() {
                   <div className="flex flex-col justify-center items-center w-full max-w-xs mx-auto">
                     <Link
                       className="w-full hover:scale-105 transition-all"
-                      to={'/Booking/padel'}
+                      to={"/Booking/padel"}
                     >
                       <div
                         style={{
                           backgroundImage:
-                            'url(https://i.pinimg.com/564x/e9/cd/a7/e9cda718f10716d9eb01c4ce03fa04f3.jpg)',
+                            "url(https://i.pinimg.com/564x/e9/cd/a7/e9cda718f10716d9eb01c4ce03fa04f3.jpg)",
                         }}
                         className="bg-gray-300 h-64 w-full rounded-lg shadow-md bg-cover bg-center"
                       />
                       <div className="w-full bg-white -mt-10 shadow-lg rounded-lg overflow-hidden">
-                        {' '}
+                        {" "}
                         <div className="py-4 text-center font-bold uppercase tracking-wide text-gray-800">
                           Padel
                         </div>
@@ -84,12 +85,12 @@ function Book() {
                   <div className="flex flex-col justify-center items-center w-full max-w-xs mx-auto">
                     <Link
                       className="w-full hover:scale-105 transition-all"
-                      to={'/Booking/Basketball'}
+                      to={"/Booking/Basketball"}
                     >
                       <div
                         style={{
                           backgroundImage:
-                            'url(https://i.pinimg.com/564x/0a/0d/12/0a0d1234e829cf469e8788283ff149fa.jpg)',
+                            "url(https://i.pinimg.com/564x/0a/0d/12/0a0d1234e829cf469e8788283ff149fa.jpg)",
                         }}
                         className="bg-gray-300 h-64 w-full rounded-lg shadow-md bg-cover bg-center"
                       />
@@ -113,7 +114,7 @@ function Book() {
                     <div
                       style={{
                         backgroundImage:
-                          'url(https://img.pikbest.com/ai/illus_our/20230427/c1335e4e27e5cd31007af894089719db.jpg!bw700)',
+                          "url(https://img.pikbest.com/ai/illus_our/20230427/c1335e4e27e5cd31007af894089719db.jpg!bw700)",
                       }}
                       className="bg-gray-300 h-64 w-full rounded-lg shadow-md bg-cover bg-center"
                     />

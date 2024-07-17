@@ -1,13 +1,13 @@
-import React from 'react';
-import Platinum_1_Rank from '../assets/Platinum_1_Rank.png';
-import Gold_1_Rank from '../assets/Gold_1_Rank.png';
-import Iron_1_Rank from '../assets/Iron_1_Rank.png';
-import Silver_1_Rank from '../assets/Silver_1_Rank.png';
-import { Fade } from 'react-awesome-reveal';
-import moment from 'moment';
-import 'slick-carousel/slick/slick.css';
-import 'slick-carousel/slick/slick-theme.css';
-import Slider from 'react-slick';
+import React from "react";
+import Platinum_1_Rank from "../assets/Platinum_1_Rank.png";
+import Gold_1_Rank from "../assets/Gold_1_Rank.png";
+import Iron_1_Rank from "../assets/Iron_1_Rank.png";
+import Silver_1_Rank from "../assets/Silver_1_Rank.png";
+import { Fade } from "react-awesome-reveal";
+import moment from "moment";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+// import Slider from 'react-slick';
 
 function getRankImage(points) {
   if (points >= 150) {
@@ -23,11 +23,11 @@ function getRankImage(points) {
 
 function getBackgroundColor(matchTime) {
   const now = moment();
-  const matchMoment = moment(matchTime, 'DD MMM, h:mmA');
-  if (matchMoment.diff(now, 'hours') <= 2) {
-    return 'bg-secondary';
+  const matchMoment = moment(matchTime, "DD MMM, h:mmA");
+  if (matchMoment.diff(now, "hours") <= 2) {
+    return "bg-secondary";
   } else {
-    return 'bg-orange-400';
+    return "bg-orange-400";
   }
 }
 
@@ -54,7 +54,7 @@ function MatchCard({
   ).length;
   const statusText =
     joinedPlayers === totalPlayers
-      ? 'Match is full!'
+      ? "Match is full!"
       : `${joinedPlayers}/${totalPlayers} players joined`;
 
   const matchTime = `${date}, ${time}`;
@@ -66,8 +66,8 @@ function MatchCard({
         className={`w-full shadow-md bg-primary overflow-hidden relative rounded-md`}
         style={{
           backgroundImage: `url(${backgroundImage})`,
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
+          backgroundSize: "cover",
+          backgroundPosition: "center",
         }}
       >
         <div className="absolute inset-0 bg-black opacity-50 filter blur-lg"></div>
@@ -109,7 +109,7 @@ function MatchCard({
                     <img
                       className="max-md:h-8 max-md:w-8 h-10 w-10 rounded-full"
                       src={player.img}
-                      alt={player.name || 'Add Player'}
+                      alt={player.name || "Add Player"}
                     />
                     <div className="text-wrap">
                       {player.name ? (
@@ -131,7 +131,7 @@ function MatchCard({
                       ) : (
                         <button
                           className="text-blue-300 text-sm font-medium px-4 py-2 max-md:text-xs bg-gray-700 rounded-lg transition-all hover:bg-gray-600"
-                          onClick={() => onRequestJoin('A', index, matchId)}
+                          onClick={() => onRequestJoin("A", index, matchId)}
                         >
                           Join
                         </button>
@@ -157,7 +157,7 @@ function MatchCard({
                     <img
                       className="max-md:h-8 max-md:w-8 h-10 w-10 rounded-full"
                       src={player.img}
-                      alt={player.name || 'Add Player'}
+                      alt={player.name || "Add Player"}
                     />
                     <div className="text-wrap">
                       {player.name ? (
@@ -181,7 +181,7 @@ function MatchCard({
                       ) : (
                         <button
                           className="text-blue-300 text-sm font-medium px-4 py-2 max-md:text-xs bg-gray-700 rounded-lg transition-all hover:bg-gray-600"
-                          onClick={() => onRequestJoin('B', index, matchId)}
+                          onClick={() => onRequestJoin("B", index, matchId)}
                         >
                           Join
                         </button>
@@ -214,7 +214,7 @@ function MatchCard({
           </div> */}
           <div
             className={`flex justify-between items-center mt-4 ${
-              statusText === 'Match is full!' ? `bg-gray-400` : 'bg-secondary'
+              statusText === "Match is full!" ? `bg-gray-400` : "bg-secondary"
             }  py-2 px-4 rounded-lg`}
           >
             <span className="text-white font-medium">{statusText}</span>

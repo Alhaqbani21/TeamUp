@@ -27,31 +27,29 @@ export default function Basketball() {
     <main className="hero min-h-screen rounded-xl  ">
       <div className="w-[75vw]  max-sm:flex-col max-sm:items-center  max-sm:w-full gap-9 bg-base-100 rounded-lg flex">
         <div className="h-[70vh]  max-sm:h-[50vh] max-sm:w-[80vw] rounded-s-xl relative ">
-          <div className="w-full pt-3 justify-around bg-transparent   flex gap-1">
-            <div className="">
+          <div className="w-full pt-3 justify-around bg-transnt   flex gap-1">
+            <div
+              className="group cursor-pointer"
+              onClick={() => setteamA("TeamA")}
+            >
               <img
                 src={team1}
-                // style={{
-                //   backgroundColor: teamA == "TeamA" ? "#232f3e" : "#596a7e",
-                // }}
-                onClick={() => setteamA("TeamA")}
-                className=" rounded-full  bg-primary h-12 w-12  hover:cursor-pointer"
+                className=" rounded-full  bg-primary h-12 w-12  group-hover:opacity-75"
               />
               Team A
             </div>
             <div className="flex flex-col justify-center items-center">
-              <Timer date="Jul 16, 2024 19:00:00" />
-              07:00 PM
+              <Timer date="Jul 17, 2024 20:00:00" />
+              08:00 PM
             </div>
-            <div>
+            <div
+              className="group cursor-pointer"
+              onClick={() => setteamA("TeamB")}
+            >
               {" "}
               <img
                 src={team2}
-                // style={{
-                //   backgroundColor: teamA == "TeamA" ? "#232f3e" : "#596a7e",
-                // }}
-                onClick={() => setteamA("TeamB")}
-                className=" rounded-full  bg-base-300 h-12 w-12 "
+                className=" group-hover:opacity-75 rounded-full  bg-base-300 h-12 w-12 "
               />
               Team B
             </div>
@@ -98,13 +96,13 @@ export default function Basketball() {
           <div className="flex gap-3  max-sm:mt-2  mt-9 items-center px-3">
             <h1>Time</h1>
             <div className=" text-secondary text-lg">
-              16 Jul, 7:00PM-10:30PM
+              17 Jul, 8:00PM-10:30PM
               <br />
             </div>
           </div>
           <div className="flex  max-sm:mt-0 gap-3 mt-7 items-center px-3">
             <h1>Cost</h1>
-            <div className=" text-secondary text-lg">150 SAR</div>
+            <div className=" text-secondary text-lg">100 SAR</div>
           </div>
           <div
             className="flex  max-sm:mt-0 justify-between mt-4 rounded-t-md

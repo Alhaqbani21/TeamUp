@@ -23,8 +23,8 @@ export default function DetailePlayers(props) {
         Team {props.team}
       </div>
       <div className=" flex  max-sm:grid  max-sm:grid-cols-2 max-sm:items-center  max-sm:gap-2 gap-10  ">
-        {props.PlayersA.map((player) => (
-          <Fade duration={1000} triggerOnce={true} direction="right">
+        {props.PlayersA.map((player,index) => (
+          <Fade key={index} duration={1000} triggerOnce={true} direction="right">
             <div>
               {" "}
               <p className="text-lg font-medium ">{player.name}</p>

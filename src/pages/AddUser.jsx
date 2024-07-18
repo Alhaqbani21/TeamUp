@@ -78,7 +78,7 @@ function AddUser() {
         });
       }
 
-      navigate('../LoginFireBase');
+      navigate('../Home');
     } catch (error) {
       console.error('Error signing up with Google: ', error);
       // Handle errors appropriately

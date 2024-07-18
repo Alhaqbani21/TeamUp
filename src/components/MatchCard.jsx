@@ -97,7 +97,7 @@ function MatchCard({
           </div>
           <div className="flex max-md:flex-col justify-around items-center my-5 ">
             <div className="flex justify-start items-center max-md:mb-10 max-md:self-start">
-              <div className="text-xl font-bold  mr-4 shadow-lg border-2 border-orange-300 text-orange-300 rounded-full px-3 py-1">
+              <div className="text-xl font-bold  mr-6 shadow-lg border-2  border-orange-300 text-orange-300 rounded-full px-3 py-1">
                 A
               </div>
               <div className="grid grid-cols-2 max-md:gap-x-1 gap-x-4 gap-y-10 min-w-full">
@@ -145,7 +145,7 @@ function MatchCard({
               VS
             </div>
             <div className="flex justify-start items-center max-md:mt-10 max-md:self-start">
-              <div className="text-xl font-bold border-orange-300 text-orange-300 mr-4 shadow-lg border-2 rounded-full px-3 py-1">
+              <div className="text-xl font-bold border-orange-300 text-orange-300 mr-6 shadow-lg border-2 rounded-full px-3 py-1">
                 B
               </div>
               <div className="grid grid-cols-2 max-md:gap-x-1 gap-x-4 gap-y-10 min-w-full">
@@ -222,7 +222,7 @@ function MatchCard({
                 statusText
               ) : (
                 <>
-                  <span className="text-orange-300">{`${joinedPlayers}/${totalPlayers}`}</span>
+                  <span className="text-orange-300 mr-1">{`${joinedPlayers}/${totalPlayers}`}</span>
                   {' players joined'}
                 </>
               )}

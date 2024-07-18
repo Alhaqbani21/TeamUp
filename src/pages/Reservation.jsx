@@ -27,16 +27,16 @@ export default function Reservation() {
         <span onClick={() => setview("padel")}>Padel</span>
       </nav>
       <div
-        className="h-screen  w-full bg-base-100 relative
+        className="h-screen w-full bg-base-100 relative
        flex overflow-hidden"
       >
         <div className="">
           <SideBar />
           <BottomNavBar />
         </div>
-        <div className="w-full   h-full flex flex-col justify-between">
+        <div className="w-full  h-full flex flex-col justify-between">
           {/* <NavBar /> */}
-          <main className="max-w-full max-sm:px-3 h-full flex relative overflow-y-auto">
+          <main className="max-w-full max-sm:px-1 h-full flex relative overflow-y-auto">
             {view === "padel" ? (
               <Padel />
             ) : view === "Basketball" ? (

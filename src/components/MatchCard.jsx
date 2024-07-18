@@ -1,12 +1,12 @@
-import React from "react";
-import Platinum_1_Rank from "../assets/Platinum_1_Rank.png";
-import Gold_1_Rank from "../assets/Gold_1_Rank.png";
-import Iron_1_Rank from "../assets/Iron_1_Rank.png";
-import Silver_1_Rank from "../assets/Silver_1_Rank.png";
-import { Fade } from "react-awesome-reveal";
-import moment from "moment";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
+import React from 'react';
+import Platinum_1_Rank from '../assets/Platinum_1_Rank.png';
+import Gold_1_Rank from '../assets/Gold_1_Rank.png';
+import Iron_1_Rank from '../assets/Iron_1_Rank.png';
+import Silver_1_Rank from '../assets/Silver_1_Rank.png';
+import { Fade } from 'react-awesome-reveal';
+import moment from 'moment';
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
 // import Slider from 'react-slick';
 
 function getRankImage(points) {
@@ -23,11 +23,11 @@ function getRankImage(points) {
 
 function getBackgroundColor(matchTime) {
   const now = moment();
-  const matchMoment = moment(matchTime, "DD MMM, h:mmA");
-  if (matchMoment.diff(now, "hours") <= 2) {
-    return "bg-secondary";
+  const matchMoment = moment(matchTime, 'DD MMM, h:mmA');
+  if (matchMoment.diff(now, 'hours') <= 2) {
+    return 'bg-secondary';
   } else {
-    return "bg-orange-400";
+    return 'bg-orange-400';
   }
 }
 
@@ -54,7 +54,7 @@ function MatchCard({
   ).length;
   const statusText =
     joinedPlayers === totalPlayers
-      ? "Match is full!"
+      ? 'Match is full!'
       : `${joinedPlayers}/${totalPlayers} players joined`;
 
   const matchTime = `${date}, ${time}`;
@@ -66,8 +66,8 @@ function MatchCard({
         className={`w-full shadow-md bg-primary overflow-hidden relative rounded-md`}
         style={{
           backgroundImage: `url(${backgroundImage})`,
-          backgroundSize: "cover",
-          backgroundPosition: "center",
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
         }}
       >
         <div className="absolute inset-0 bg-black opacity-50 filter blur-lg"></div>
@@ -97,7 +97,7 @@ function MatchCard({
           </div>
           <div className="flex max-md:flex-col justify-around items-center my-5 ">
             <div className="flex justify-start items-center max-md:mb-10 max-md:self-start">
-              <div className="text-xl font-bold text-gray-300 mr-4 shadow-lg border-2 rounded-full px-3 py-1">
+              <div className="text-xl font-bold  mr-6 shadow-lg border-2  border-orange-300 text-orange-300 rounded-full px-3 py-1">
                 A
               </div>
               <div className="grid grid-cols-2 max-md:gap-x-1 gap-x-4 gap-y-10 min-w-full">
@@ -109,7 +109,7 @@ function MatchCard({
                     <img
                       className="max-md:h-8 max-md:w-8 h-10 w-10 rounded-full"
                       src={player.img}
-                      alt={player.name || "Add Player"}
+                      alt={player.name || 'Add Player'}
                     />
                     <div className="text-wrap">
                       {player.name ? (
@@ -130,8 +130,8 @@ function MatchCard({
                         </div>
                       ) : (
                         <button
-                          className="text-blue-300 text-sm font-medium px-4 py-2 max-md:text-xs bg-gray-700 rounded-lg transition-all hover:bg-gray-600"
-                          onClick={() => onRequestJoin("A", index, matchId)}
+                          className="text-orange-300 text-sm font-medium px-4 py-2 max-md:text-xs bg-gray-700 rounded-lg transition-all hover:bg-gray-600"
+                          onClick={() => onRequestJoin('A', index, matchId)}
                         >
                           Join
                         </button>
@@ -141,11 +141,11 @@ function MatchCard({
                 ))}
               </div>
             </div>
-            <div className="text-white tracking-wide text-3xl rounded-full p-2 bg-primary">
+            <div className="text-orange-300 tracking-wide text-4xl rounded-full p-2 ">
               VS
             </div>
             <div className="flex justify-start items-center max-md:mt-10 max-md:self-start">
-              <div className="text-xl font-bold text-gray-300 mr-4 shadow-lg border-2 rounded-full px-3 py-1">
+              <div className="text-xl font-bold border-orange-300 text-orange-300 mr-6 shadow-lg border-2 rounded-full px-3 py-1">
                 B
               </div>
               <div className="grid grid-cols-2 max-md:gap-x-1 gap-x-4 gap-y-10 min-w-full">
@@ -157,7 +157,7 @@ function MatchCard({
                     <img
                       className="max-md:h-8 max-md:w-8 h-10 w-10 rounded-full"
                       src={player.img}
-                      alt={player.name || "Add Player"}
+                      alt={player.name || 'Add Player'}
                     />
                     <div className="text-wrap">
                       {player.name ? (
@@ -180,8 +180,8 @@ function MatchCard({
                         </>
                       ) : (
                         <button
-                          className="text-blue-300 text-sm font-medium px-4 py-2 max-md:text-xs bg-gray-700 rounded-lg transition-all hover:bg-gray-600"
-                          onClick={() => onRequestJoin("B", index, matchId)}
+                          className="text-orange-300 text-sm font-medium px-4 py-2 max-md:text-xs bg-gray-700 rounded-lg transition-all hover:bg-gray-600"
+                          onClick={() => onRequestJoin('B', index, matchId)}
                         >
                           Join
                         </button>
@@ -214,10 +214,19 @@ function MatchCard({
           </div> */}
           <div
             className={`flex justify-between items-center mt-4 ${
-              statusText === "Match is full!" ? `bg-gray-400` : "bg-secondary"
+              statusText === 'Match is full!' ? `bg-gray-400` : 'bg-secondary '
             }  py-2 px-4 rounded-lg`}
           >
-            <span className="text-white font-medium">{statusText}</span>
+            <span className="font-medium text-white">
+              {statusText === 'Match is full!' ? (
+                statusText
+              ) : (
+                <>
+                  <span className="text-orange-300 mr-1">{`${joinedPlayers}/${totalPlayers}`}</span>
+                  {' players joined'}
+                </>
+              )}
+            </span>
             <span className="text-white font-semibold">Cut is {matchFee}</span>
           </div>
         </div>

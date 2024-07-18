@@ -26,7 +26,7 @@ function LeaderboardTable({ players }) {
             index % 2 === 0 ? 'bg-primary' : 'bg-[#3146617c]'
           } rounded-lg my-2 shadow-lg`}
         >
-          <div className="text-2xl font-bold text-white w-8">{player.rank}</div>
+          <div className="text-2xl font-bold text-white w-8">{index + 4}</div>
           <img
             src={player.img}
             alt={player.name}

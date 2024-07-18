@@ -1,8 +1,77 @@
-import { Link } from "react-router-dom";
+import { useState } from 'react';
+
+import {
+  signInWithEmailAndPassword,
+  GoogleAuthProvider,
+  signInWithPopup,
+} from 'firebase/auth';
+import { auth, db } from '../config/firebase';
+import { Link, useNavigate } from 'react-router-dom';
+import { setDoc, doc, getDoc } from 'firebase/firestore';
 
 // import image1 from "../assets/image1.jpg";
 
 function Login() {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
+  const navigate = useNavigate();
+
+  async function handleLogin() {
+    if (email && password) {
+      try {
+        await signInWithEmailAndPassword(auth, email, password);
+        navigate('../Home');
+      } catch (error) {
+        setError(error.message);
+        console.error('Error logging in: ', error);
+      }
+    }
+  }
+
+  async function handleGoogleSignIn() {
+    const provider = new GoogleAuthProvider();
+    try {
+      const result = await signInWithPopup(auth, provider);
+      const user = result.user;
+
+      // Check if the user document exists in users collection
+      const userDoc = await getDoc(doc(db, 'users', user.uid));
+      if (!userDoc.exists()) {
+        // Add user to users collection
+        await setDoc(doc(db, 'users', user.uid), {
+          name: user.displayName,
+          email: user.email,
+          joinedAt: formatDate(new Date().toISOString()),
+          location: 'Saudi Arabia, Riyadh',
+          points: 0,
+          matchesPlayed: 0,
+        });
+      }
+
+      // Check if the user document exists in leaderboard collection
+      const leaderboardDoc = await getDoc(doc(db, 'leaderboard', user.uid));
+      if (!leaderboardDoc.exists()) {
+        // Add user to leaderboard collection
+        await setDoc(doc(db, 'leaderboard', user.uid), {
+          name: user.displayName,
+          points: 0,
+        });
+      }
+
+      navigate('../Home');
+    } catch (error) {
+      console.error('Error signing up with Google: ', error);
+      // Handle errors appropriately
+    }
+  }
+
+  // to format the date for the JoindAt
+  function formatDate(dateString) {
+    const options = { year: 'numeric', month: 'long', day: 'numeric' };
+    return new Date(dateString).toLocaleDateString(undefined, options);
+  }
+
   return (
     <>
       <div className="bg-white relative lg:py-20 h-screen">
@@ -35,6 +104,8 @@ function Login() {
                     <input
                       placeholder="123@ex.com"
                       type="text"
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
                       className="border placeholder-gray-400 focus:outline-none
                   focus:border-black w-full pt-4 pr-4 pb-4 pl-4 mt-2 mr-0 mb-0 ml-0 text-base block bg-white
                   border-gray-300 rounded-md"
@@ -48,6 +119,8 @@ function Login() {
                       Password
                     </p>
                     <input
+                      value={password}
+                      onChange={(e) => setPassword(e.target.value)}
                       placeholder="Password"
                       type="password"
                       className="border placeholder-gray-400 focus:outline-none
@@ -56,18 +129,25 @@ function Login() {
                     />
                   </div>
                   <div className="relative">
-                    <Link
-                      to={"/Home"}
-                      className="w-full inline-block pt-4 pr-5 pb-4 pl-5 text-xl font-medium text-center text-white bg-[#007955]
+                    <div
+                      onClick={handleLogin}
+                      className="cursor-pointer w-full inline-block pt-4 pr-5 pb-4 pl-5 text-xl font-medium text-center text-white bg-[#007955]
                   rounded-lg transition duration-200 hover:bg-[#215244]"
                     >
                       LogIn
-                    </Link>
+                    </div>
+                    <button
+                      onClick={handleGoogleSignIn}
+                      className="middle none center rounded-lg bg-[#db4437] py-3 px-6 font-sans text-xs font-bold uppercase text-white shadow-md shadow-[#c33c28] transition-all hover:shadow-lg hover:shadow-[#c33c28] focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
+                      data-ripple-light="true"
+                    >
+                      Login with Google
+                    </button>
                     <p className="text-center text-sm mt-2">
-                      I Do not have an account?{" "}
+                      I Do not have an account?{' '}
                       <Link
                         className="text-blue-500 underline"
-                        to={"../SignUp"}
+                        to={'../SignUp'}
                       >
                         SignUp
                       </Link>

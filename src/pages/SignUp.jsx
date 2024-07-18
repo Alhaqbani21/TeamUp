@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import image1 from "../assets/image1.jpg";
+// import image1 from "../assets/image1.jpg";
 function SignUp() {
   return (
     <>
@@ -12,7 +12,10 @@ function SignUp() {
           <div className="flex flex-col items-center w-full pt-5 pr-10 pb-20 pl-10 lg:pt-20 lg:flex-row">
             <div className="w-full bg-cover relative max-w-md lg:max-w-2xl lg:w-7/12">
               <div className="flex flex-col items-center justify-center w-full h-full relative lg:pr-10">
-                <img src={image1} className="btn-" />
+                <img
+                  src="https://i.pinimg.com/564x/06/90/7e/06907e118f54b6005cfd81e672a5b925.jpg"
+                  className="btn-"
+                />
               </div>
             </div>
             <div className="w-full mt-20 mr-0 mb-0 ml-0 relative z-10 max-w-2xl lg:mt-0 lg:w-5/12">
@@ -83,7 +86,7 @@ function SignUp() {
                   </div>
                 </div>
               </div>
-              <svg
+              {/* <svg
                 viewBox="0 0 91 91"
                 className="absolute top-0 left-0 z-0 w-32 h-32 -mt-12 -ml-12 text-[#91B3FA]
             fill-current"
@@ -266,7 +269,7 @@ function SignUp() {
                     </g>
                   </g>
                 </g>
-              </svg>
+              </svg> */}
             </div>
           </div>
         </div>

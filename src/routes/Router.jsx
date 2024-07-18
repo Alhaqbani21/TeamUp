@@ -9,8 +9,7 @@ import Book from '../pages/Book';
 import Booking from '../pages/Booking';
 import Profile from '../pages/Profile';
 import Landingpage from '../pages/Landingpage';
-import AddUser from '../pages/AddUser';
-import LoginFireBase from '../pages/LoginFireBase';
+
 import { AuthProvider } from '../contexts/AuthContext';
 import ProtectedRoute from '../components/ProtectedRoute';
 
@@ -74,14 +73,6 @@ const router = createBrowserRouter([
         <Profile />
       </ProtectedRoute>
     ),
-  },
-  {
-    path: '/addUser',
-    element: <AddUser />,
-  },
-  {
-    path: '/LoginFireBase',
-    element: <LoginFireBase />,
   },
 ]);
 

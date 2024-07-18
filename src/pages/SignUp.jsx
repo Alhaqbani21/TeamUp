@@ -1,6 +1,97 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from 'react-router-dom';
+import { auth, db } from '../config/firebase';
+import {
+  createUserWithEmailAndPassword,
+  GoogleAuthProvider,
+  signInWithPopup,
+} from 'firebase/auth';
+import { useState } from 'react';
+import { setDoc, doc, getDoc } from 'firebase/firestore';
+
 // import image1 from "../assets/image1.jpg";
+
 function SignUp() {
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const navigate = useNavigate();
+
+  async function signUpEmailAndPassword() {
+    if (email && password && name) {
+      try {
+        const userCredential = await createUserWithEmailAndPassword(
+          auth,
+          email,
+          password
+        );
+        const user = userCredential.user;
+
+        // Add user to users collection
+        await setDoc(doc(db, 'users', user.uid), {
+          name: name,
+          email: email,
+          joinedAt: formatDate(new Date().toISOString()),
+          location: 'Saudi Arabia, Riyadh',
+          points: 0,
+          matchesPlayed: 0,
+        });
+
+        // Add user to leaderboard collection
+        await setDoc(doc(db, 'leaderboard', user.uid), {
+          name: name,
+          points: 0,
+        });
+
+        navigate('../login');
+      } catch (error) {
+        console.error('Error signing up: ', error);
+        // Handle errors appropriately
+      }
+    }
+  }
+
+  async function signUpGoogle() {
+    const provider = new GoogleAuthProvider();
+    try {
+      const result = await signInWithPopup(auth, provider);
+      const user = result.user;
+
+      // Check if the user document exists in users collection
+      const userDoc = await getDoc(doc(db, 'users', user.uid));
+      if (!userDoc.exists()) {
+        // Add user to users collection
+        await setDoc(doc(db, 'users', user.uid), {
+          name: user.displayName,
+          email: user.email,
+          joinedAt: formatDate(new Date().toISOString()),
+          location: 'Saudi Arabia, Riyadh',
+          points: 0,
+          matchesPlayed: 0,
+        });
+      }
+
+      // Check if the user document exists in leaderboard collection
+      const leaderboardDoc = await getDoc(doc(db, 'leaderboard', user.uid));
+      if (!leaderboardDoc.exists()) {
+        // Add user to leaderboard collection
+        await setDoc(doc(db, 'leaderboard', user.uid), {
+          name: user.displayName,
+          points: 0,
+        });
+      }
+
+      navigate('../Home');
+    } catch (error) {
+      console.error('Error signing up with Google: ', error);
+      // Handle errors appropriately
+    }
+  }
+
+  function formatDate(dateString) {
+    const options = { year: 'numeric', month: 'long', day: 'numeric' };
+    return new Date(dateString).toLocaleDateString(undefined, options);
+  }
+
   return (
     <>
       {/* component */}
@@ -35,6 +126,8 @@ function SignUp() {
                       Username
                     </p>
                     <input
+                      value={name}
+                      onChange={(e) => setName(e.target.value)}
                       placeholder="John"
                       type="text"
                       className="border placeholder-gray-400 focus:outline-none
@@ -47,6 +140,8 @@ function SignUp() {
                       Email
                     </p>
                     <input
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
                       placeholder="123@ex.com"
                       type="text"
                       className="border placeholder-gray-400 focus:outline-none
@@ -62,6 +157,8 @@ function SignUp() {
                       Password
                     </p>
                     <input
+                      value={password}
+                      onChange={(e) => setPassword(e.target.value)}
                       placeholder="Password"
                       type="password"
                       className="border placeholder-gray-400 focus:outline-none
@@ -70,16 +167,23 @@ function SignUp() {
                     />
                   </div>
                   <div className="relative">
-                    <Link
-                      to={"/Login"}
-                      className="w-full inline-block pt-4 pr-5 pb-4 pl-5 text-xl font-medium text-center text-white bg-[#007955]
+                    <div
+                      onClick={signUpEmailAndPassword}
+                      className="cursor-pointer w-full inline-block pt-4 pr-5 pb-4 pl-5 text-xl font-medium text-center text-white bg-[#007955]
                   rounded-lg transition duration-200 hover:bg-[#215244]"
                     >
                       SignUp
-                    </Link>
+                    </div>
+                    <div
+                      onClick={signUpGoogle}
+                      className="cursor-pointer my-3 w-full inline-block pt-4 pr-5 pb-4 pl-5 text-xl font-medium text-center text-white bg-[#007955]
+                  rounded-lg transition duration-200 hover:bg-[#215244]"
+                    >
+                      Google
+                    </div>
                     <p className="text-center text-sm mt-2">
-                      Do you have an account?{" "}
-                      <Link className="text-blue-500 underline" to={"../login"}>
+                      Do you have an account?{' '}
+                      <Link className="text-blue-500 underline" to={'../login'}>
                         Login
                       </Link>
                     </p>

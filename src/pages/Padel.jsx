@@ -35,9 +35,7 @@ export default function Padel() {
   }
   return (
     <>
-      {/* <video loop autoplay muted className="h-40">
-        <source src={V} />
-      </video> */}
+
       <main className="hero min-h-screen rounded-xl  ">
         <div className="w-[80vw] max-sm:flex-col max-sm:items-center max-sm:w-full gap-5 bg-base-100 rounded-lg flex">
           <div className="h-[70vh]  max-sm:h-[50vh] max-sm:w-[80vw] w-[60vw] rounded-s-xl relative ">
@@ -87,48 +85,11 @@ export default function Padel() {
               </div>
             )}
           </div>
+          <DetailePlayers  PlayersA={PlayersA} PlayersB={PlayersB} teamA={teamA}  time='17 Jul, 5:00PM-6:30PM' cost='50 SAR' location='Riyadh Padel ' map=
+                        "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d231841.9078419849!2d47.07881927490232!3d24.77730544035784!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3e2f012025ed9db1%3A0xa56f148f6e1a0b53!2zUml5YWRoIFBhZGVsIHwg2YXYsdmD2LIg2KjYp9iv2YQg2KfZhNix2YrYp9i2!5e0!3m2!1sar!2ssa!4v1720995659360!5m2!1sar!2ssa"
+/>
 
-          <div className=" w-full   h-max text-xl text-black bg-base-100 px-7 ">
-            <div
-              className="flex justify-between
-        w-full p-3  "
-            >
-              {teamA == "TeamA" ? (
-                <DetailePlayers team="A" PlayersA={PlayersA} />
-              ) : (
-                <DetailePlayers team="B" PlayersA={PlayersB} />
-              )}
-            </div>
-            {/* <div className=" max-sm:mt-2  gap-3 mt-7 items-center px-3">
-          <h1>  Time remaining</h1> 
-           </div> */}
-            <div className="flex max-sm:mt-2  gap-3 mt-7 items-center px-3">
-              <h1>Time</h1>
-              <div className=" text-secondary text-lg">
-                17 Jul, 5:00PM-6:30PM
-              </div>
-            </div>
-            <div className="flex max-sm:mt-0  gap-3 mt-7 items-center px-3">
-              <h1>Cost</h1>
-              <div className="text-secondary text-lg">200 SAR</div>
-            </div>
-            <div
-              className="flex max-sm:mt-0  justify-between mt-4 rounded-t-md
-   w-full px-3"
-            >
-              <span className="">Riyadh Padel </span>
-            </div>
-            <iframe
-              className="justify-between max-sm:w-full rounded-t-md
-         p-3"
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d231841.9078419849!2d47.07881927490232!3d24.77730544035784!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3e2f012025ed9db1%3A0xa56f148f6e1a0b53!2zUml5YWRoIFBhZGVsIHwg2YXYsdmD2LIg2KjYp9iv2YQg2KfZhNix2YrYp9i2!5e0!3m2!1sar!2ssa!4v1720995659360!5m2!1sar!2ssa"
-              width="600"
-              height="350"
-              allowFullScreen=""
-              loading="lazy"
-              referrerPolicy="no-referrer-when-downgrade"
-            ></iframe>
-          </div>
+       
         </div>
       </main>{" "}
     </>

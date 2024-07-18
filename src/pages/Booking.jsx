@@ -19,7 +19,7 @@ function Booking() {
           className="absolute inset-0 object-cover w-full h-full"
           alt=""
         />
-        <div className="relative bg-opacity-75 bg-black min-h-screen">
+        <div className="relative bg-opacity-75 bg-black min-h-screen ">
           <svg
             className="absolute inset-x-0 bottom-0 text-white"
             viewBox="0 0 1160 163"
@@ -58,11 +58,11 @@ function Booking() {
               </div>
               <div className="w-full max-w-xl xl:px-8 xl:w-5/12">
                 <Fade direction="right" delay={200}>
-                  <div className="bg-white rounded-lg shadow-2xl p-7 sm:p-10 mt-[12em] ml-[8em] w-5/6">
+                  <div className="bg-white rounded-lg shadow-2xl p-7 sm:p-10 mt-[12em] ml-[8em] w-5/6  max-sm:mx-auto ">
                     <h3 className="mb-4 text-xl font-semibold sm:text-center sm:mb-6 sm:text-2xl max-sm:text-center max-sm:mr-4">
                       Available Times
                     </h3>
-                    <form className="max-w-md mx-auto max-sm:mr-9  ">
+                    <form className="max-w-md mx-auto  max-sm:mx-auto ">
                       <div className="grid grid-cols-2 gap-4 mb-4">
                         <button
                           type="button"

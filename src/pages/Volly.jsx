@@ -100,47 +100,15 @@ export default function Volly() {
             </>
           )}
         </div>
-
-        <div className="max-sm:p-0 w-full max-sm:mt-8 h-max text-xl text-black bg-base-100 px-7 ">
-          {/* <Timer date="Jul 18, 2024 10:00:00" /> */}
-
-          <div
-            className="flex justify-between
-        w-full p-3  "
-          >
-            {teamA == "TeamA" ? (
-              <DetailePlayers team="A" PlayersA={PlayersA} />
-            ) : (
-              <DetailePlayers team="B" PlayersA={PlayersB} />
-            )}
-          </div>
-          <div className="flex  max-sm:mt-2  gap-3 mt-9 items-center px-3">
-            <h1>Time</h1>
-            <div className=" text-secondary text-lg">
-              18 Jul, 8:00PM-11:30PM
-            </div>
-          </div>
-          <div className="flex  max-sm:mt-0  gap-3 mt-7 items-center px-3">
-            <h1>Cost</h1>
-            <div className=" text-secondary text-lg">150 SAR</div>
-          </div>
-          <div className=" mt-4  max-sm:mt-0 px-3">
-            <br />
-
-            {/* <span className="">Volleyball Ground </span> */}
-            <address className="text-sm">Volleyball Ground </address>
-          </div>
-          <iframe
-            className="justify-between max-sm:w-full rounded-t-md
-         p-3"
-            width="600"
-            height="350"
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d28984.649675036628!2d46.65272988916017!3d24.758404600000002!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3e2ee391d45fed47%3A0x288dfaf3ede32e76!2z2YXZhNi52Kgg2KfZhNmD2LHYqSDYp9mE2LfYp9im2LHYqSAtIFZvbGxleWJhbGwgR3JvdW5k!5e0!3m2!1sar!2ssa!4v1721094221754!5m2!1sar!2ssa"
-            allowFullScreen=""
-            loading="lazy"
-            referrerPolicy="no-referrer-when-downgrade"
-          ></iframe>
-        </div>
+        <DetailePlayers
+          PlayersA={PlayersA}
+          PlayersB={PlayersB}
+          teamA={teamA}
+          time="18 Jul, 8:00PM-11:00PM"
+          cost="80 SAR"
+          location="Volleyball Ground"
+          map="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d28984.649675036628!2d46.65272988916017!3d24.758404600000002!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3e2ee391d45fed47%3A0x288dfaf3ede32e76!2z2YXZhNi52Kgg2KfZhNmD2LHYqSDYp9mE2LfYp9im2LHYqSAtIFZvbGxleWJhbGwgR3JvdW5k!5e0!3m2!1sar!2ssa!4v1721094221754!5m2!1sar!2ssa"
+        />
       </div>
     </main>
   );

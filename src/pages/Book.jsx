@@ -3,35 +3,30 @@ import SideBar from "../components/SideBar";
 import Cardheder from "../components/Cardheder";
 import { Link } from "react-router-dom";
 import BottomNavBar from "../components/BottomNavBar";
-import { addDoc, collection } from "firebase/firestore";
-import { db } from "../config/firebase";
+// import { addDoc, collection } from "firebase/firestore";
+// import { db } from "../config/firebase";
 import React from "react";
 function Book() {
-  const [name, setname] = React.useState("");
-  const [price, setprice] = React.useState("");
-  const [category, setcategory] = React.useState("");
-  const [img, setimg] = React.useState("");
-  const [location, setmap] = React.useState("");
-  const dd=collection(db, "stadium")
-  const onSubmit = async () => {
-    try {
-      await addDoc(dd, {
-        name,
-        price,
-        category,
-        img,
-        location,
-        timeSlot: [
-          { isBooked: false, time: "4:00-6:00" },
-          { isBooked: false, time: "6:00-8:00" },
-          { isBooked: false, time: "8:00-10:00" },
-          { isBooked: false, time: "10:00-12:00" },
-        ],
-      });
-    } catch (err) {
-      console.error(err);
-    }
-  };
+  // const dd=collection(db, "stadium")
+  // const onSubmit = async () => {
+  //   try {
+  //     await addDoc(dd, {
+  //       name,
+  //       price,
+  //       category,
+  //       img,
+  //       location,
+  //       timeSlot: [
+  //         { isBooked: false, time: "4:00-6:00" },
+  //         { isBooked: false, time: "6:00-8:00" },
+  //         { isBooked: false, time: "8:00-10:00" },
+  //         { isBooked: false, time: "10:00-12:00" },
+  //       ],
+  //     });
+  //   } catch (err) {
+  //     console.error(err);
+  //   }
+  // };
   return (
     <>
       <div className="h-screen w-full bg-base-100 relative flex overflow-hidden">
@@ -49,37 +44,7 @@ function Book() {
               <h2 className="text-center text-3xl p-2 tracking-widest  text-[#007955]">
                 All Stadiums
               </h2>
-              <br />
-              <br />
-              <input
-                className="px-4"
-                placeholder="name"
-                type="text"
-                onChange={(e) => setname(e.target.value)}
-              />
-              <input
-                placeholder="price"
-                type="number"
-                onChange={(e) => setprice(e.target.value)}
-              />
-              <input
-                placeholder="categors"
-                type="TEXT"
-                onChange={(e) => setcategory(e.target.value)}
-              />
 
-              <input
-                placeholder="img"
-                type="text"
-                onChange={(e) => setimg(e.target.value)}
-              />
-
-              <input
-                placeholder="map"
-                type="text"
-                onChange={(e) => setmap(e.target.value)}
-              />
-              <button onClick={onSubmit}> Send </button>
               <div className="flex space-x-2 justify-center items-center max-sm:flex-col">
                 <div className="grid lg:grid-cols-2 md:grid-cols-2 max-sm:grid-cols-1 gap-8 justify-items-center mt-8 px-4 max-sm:w-[27em] ">
                   {/* c1 */}

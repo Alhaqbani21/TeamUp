@@ -1,69 +1,264 @@
 import { Link } from "react-router-dom";
 
+// import image1 from "../assets/image1.jpg";
+
 function Login() {
   return (
     <>
-      {/* component */}
-      <div className="min-h-screen bg-[#e3e6e6] py-6 flex flex-col justify-center sm:py-12">
-        <div className="relative py-3 sm:max-w-xl sm:mx-auto max-sm:max-w-xl max-sm:mx-auto ">
-          <div className="absolute inset-0 bg-gradient-to-r from-[#a0e2c6] to-[#007955] shadow-lg transform -skew-y-6 sm:skew-y-0 sm:-rotate-6 sm:rounded-3xl max-sm:rounded-3xl max-sm:-rotate-6 "></div>
-          <div className="relative px-4 py-10 bg-white shadow-lg sm:rounded-3xl sm:p-20 max-sm:p-20 max-sm:rounded-3xl">
-            <div className="max-w-md mx-auto">
-              <div>
-                <h1 className="text-3xl font-bold ">Login</h1>
+      <div className="bg-white relative lg:py-20">
+        <div
+          className="flex flex-col items-center justify-between pt-0 pr-10 pb-0 pl-10 mt-0 mr-auto mb-0 ml-auto max-w-7xl
+      xl:px-5 lg:flex-row"
+        >
+          <div className="flex flex-col items-center w-full pt-5 pr-10 pb-20 pl-10 lg:pt-20 lg:flex-row">
+            <div className="w-full bg-cover relative max-w-md lg:max-w-2xl lg:w-7/12">
+              <div className="flex flex-col items-center justify-center w-full h-full relative lg:pr-10">
+                <img
+                  src="https://i.pinimg.com/564x/06/90/7e/06907e118f54b6005cfd81e672a5b925.jpg"
+                  className="btn-"
+                />
               </div>
-              <div className="divide-y divide-gray-200">
-                <div className="py-8 text-base leading-6 space-y-4 text-gray-700 sm:text-lg sm:leading-7">
+            </div>
+            <div className="w-full mt-20 mr-0 mb-0 ml-0 relative z-10 max-w-2xl lg:mt-0 lg:w-5/12">
+              <div
+                className="flex flex-col items-start justify-start pt-10 pr-10 pb-10 pl-10 bg-white shadow-2xl rounded-xl
+            relative z-10"
+              >
+                <p className="w-full text-4xl font-medium text-center leading-snug font-serif">
+                  LogIn
+                </p>
+                <div className="w-full mt-6 mr-0 mb-0 ml-0 relative space-y-8">
                   <div className="relative">
+                    <p className="bg-white pt-0 pr-2 pb-0 pl-2 -mt-3 mr-0 mb-0 ml-2 font-medium text-gray-600 absolute">
+                      Email
+                    </p>
                     <input
-                      autoComplete="off"
-                      id="email"
-                      name="email"
+                      placeholder="123@ex.com"
                       type="text"
-                      className="peer placeholder-transparent h-10 w-full border-b-2 border-gray-300 text-gray-900 focus:outline-none focus:borer-rose-600"
-                      placeholder="Email address"
+                      className="border placeholder-gray-400 focus:outline-none
+                  focus:border-black w-full pt-4 pr-4 pb-4 pl-4 mt-2 mr-0 mb-0 ml-0 text-base block bg-white
+                  border-gray-300 rounded-md"
                     />
-                    <label
-                      htmlFor="email"
-                      className="absolute left-0 -top-3.5 text-gray-600 text-sm peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-440 peer-placeholder-shown:top-2 transition-all peer-focus:-top-3.5 peer-focus:text-gray-600 peer-focus:text-sm"
-                    >
-                      Email Address
-                    </label>
                   </div>
                   <div className="relative">
-                    <input
-                      autoComplete="off"
-                      id="password"
-                      name="password"
-                      type="password"
-                      className="peer placeholder-transparent h-10 w-full border-b-2 border-gray-300 text-gray-900 focus:outline-none focus:borer-rose-600"
-                      placeholder="Password"
-                    />
-                    <label
-                      htmlFor="password"
-                      className="absolute left-0 -top-3.5 text-gray-600 text-sm peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-440 peer-placeholder-shown:top-2 transition-all peer-focus:-top-3.5 peer-focus:text-gray-600 peer-focus:text-sm"
+                    <p
+                      className="bg-white pt-0 pr-2 pb-0 pl-2 -mt-3 mr-0 mb-0 ml-2 font-medium text-gray-600
+                  absolute"
                     >
                       Password
-                    </label>
+                    </p>
+                    <input
+                      placeholder="Password"
+                      type="password"
+                      className="border placeholder-gray-400 focus:outline-none
+                  focus:border-black w-full pt-4 pr-4 pb-4 pl-4 mt-2 mr-0 mb-0 ml-0 text-base block bg-white
+                  border-gray-300 rounded-md"
+                    />
                   </div>
-                  <Link to={"/SignUp"}>
-                    <h1 className="text-sm text-black ">
-                      I Do not have an account?
-                    </h1>
-                  </Link>
                   <div className="relative">
-                    <Link to={"/Home"}>
-                      {" "}
-                      <button
-                        className="middle none center mr-3 rounded-lg bg-gradient-to-tr from-[#007955] to-[#508172] py-3 px-6 font-sans text-xs font-bold uppercase text-white shadow-md shadow-[#508172] transition-all hover:shadow-lg hover:shadow-[#508172] active:opacity-[0.85] disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
-                        data-ripple-light="true"
-                      >
-                        Login
-                      </button>
+                    <Link
+                      to={"/Home"}
+                      className="w-full inline-block pt-4 pr-5 pb-4 pl-5 text-xl font-medium text-center text-white bg-[#007955]
+                  rounded-lg transition duration-200 hover:bg-[#215244]"
+                    >
+                      LogIn
                     </Link>
+                    <p className="text-center text-sm mt-2">
+                      I Do not have an account?{" "}
+                      <Link
+                        className="text-blue-500 underline"
+                        to={"../SignUp"}
+                      >
+                        SignUp
+                      </Link>
+                    </p>
                   </div>
                 </div>
               </div>
+              {/* <svg
+                viewBox="0 0 91 91"
+                className="absolute top-0 left-0 z-0 w-32 h-32 -mt-12 -ml-12 text-[#91B3FA]
+            fill-current"
+              >
+                <g stroke="none" strokeWidth={1} fillRule="evenodd">
+                  <g fillRule="nonzero">
+                    <g>
+                      <g>
+                        <circle cx="3.261" cy="3.445" r="2.72" />
+                        <circle cx="15.296" cy="3.445" r="2.719" />
+                        <circle cx="27.333" cy="3.445" r="2.72" />
+                        <circle cx="39.369" cy="3.445" r="2.72" />
+                        <circle cx="51.405" cy="3.445" r="2.72" />
+                        <circle cx="63.441" cy="3.445" r="2.72" />
+                        <circle cx="75.479" cy="3.445" r="2.72" />
+                        <circle cx="87.514" cy="3.445" r="2.719" />
+                      </g>
+                      <g transform="translate(0 12)">
+                        <circle cx="3.261" cy="3.525" r="2.72" />
+                        <circle cx="15.296" cy="3.525" r="2.719" />
+                        <circle cx="27.333" cy="3.525" r="2.72" />
+                        <circle cx="39.369" cy="3.525" r="2.72" />
+                        <circle cx="51.405" cy="3.525" r="2.72" />
+                        <circle cx="63.441" cy="3.525" r="2.72" />
+                        <circle cx="75.479" cy="3.525" r="2.72" />
+                        <circle cx="87.514" cy="3.525" r="2.719" />
+                      </g>
+                      <g transform="translate(0 24)">
+                        <circle cx="3.261" cy="3.605" r="2.72" />
+                        <circle cx="15.296" cy="3.605" r="2.719" />
+                        <circle cx="27.333" cy="3.605" r="2.72" />
+                        <circle cx="39.369" cy="3.605" r="2.72" />
+                        <circle cx="51.405" cy="3.605" r="2.72" />
+                        <circle cx="63.441" cy="3.605" r="2.72" />
+                        <circle cx="75.479" cy="3.605" r="2.72" />
+                        <circle cx="87.514" cy="3.605" r="2.719" />
+                      </g>
+                      <g transform="translate(0 36)">
+                        <circle cx="3.261" cy="3.686" r="2.72" />
+                        <circle cx="15.296" cy="3.686" r="2.719" />
+                        <circle cx="27.333" cy="3.686" r="2.72" />
+                        <circle cx="39.369" cy="3.686" r="2.72" />
+                        <circle cx="51.405" cy="3.686" r="2.72" />
+                        <circle cx="63.441" cy="3.686" r="2.72" />
+                        <circle cx="75.479" cy="3.686" r="2.72" />
+                        <circle cx="87.514" cy="3.686" r="2.719" />
+                      </g>
+                      <g transform="translate(0 49)">
+                        <circle cx="3.261" cy="2.767" r="2.72" />
+                        <circle cx="15.296" cy="2.767" r="2.719" />
+                        <circle cx="27.333" cy="2.767" r="2.72" />
+                        <circle cx="39.369" cy="2.767" r="2.72" />
+                        <circle cx="51.405" cy="2.767" r="2.72" />
+                        <circle cx="63.441" cy="2.767" r="2.72" />
+                        <circle cx="75.479" cy="2.767" r="2.72" />
+                        <circle cx="87.514" cy="2.767" r="2.719" />
+                      </g>
+                      <g transform="translate(0 61)">
+                        <circle cx="3.261" cy="2.846" r="2.72" />
+                        <circle cx="15.296" cy="2.846" r="2.719" />
+                        <circle cx="27.333" cy="2.846" r="2.72" />
+                        <circle cx="39.369" cy="2.846" r="2.72" />
+                        <circle cx="51.405" cy="2.846" r="2.72" />
+                        <circle cx="63.441" cy="2.846" r="2.72" />
+                        <circle cx="75.479" cy="2.846" r="2.72" />
+                        <circle cx="87.514" cy="2.846" r="2.719" />
+                      </g>
+                      <g transform="translate(0 73)">
+                        <circle cx="3.261" cy="2.926" r="2.72" />
+                        <circle cx="15.296" cy="2.926" r="2.719" />
+                        <circle cx="27.333" cy="2.926" r="2.72" />
+                        <circle cx="39.369" cy="2.926" r="2.72" />
+                        <circle cx="51.405" cy="2.926" r="2.72" />
+                        <circle cx="63.441" cy="2.926" r="2.72" />
+                        <circle cx="75.479" cy="2.926" r="2.72" />
+                        <circle cx="87.514" cy="2.926" r="2.719" />
+                      </g>
+                      <g transform="translate(0 85)">
+                        <circle cx="3.261" cy="3.006" r="2.72" />
+                        <circle cx="15.296" cy="3.006" r="2.719" />
+                        <circle cx="27.333" cy="3.006" r="2.72" />
+                        <circle cx="39.369" cy="3.006" r="2.72" />
+                        <circle cx="51.405" cy="3.006" r="2.72" />
+                        <circle cx="63.441" cy="3.006" r="2.72" />
+                        <circle cx="75.479" cy="3.006" r="2.72" />
+                        <circle cx="87.514" cy="3.006" r="2.719" />
+                      </g>
+                    </g>
+                  </g>
+                </g>
+              </svg>
+              <svg
+                viewBox="0 0 91 91"
+                className="absolute bottom-0 right-0 z-0 w-32 h-32 -mb-12 -mr-12 text-[#007955]
+            fill-current"
+              >
+                <g stroke="none" strokeWidth={1} fillRule="evenodd">
+                  <g fillRule="nonzero">
+                    <g>
+                      <g>
+                        <circle cx="3.261" cy="3.445" r="2.72" />
+                        <circle cx="15.296" cy="3.445" r="2.719" />
+                        <circle cx="27.333" cy="3.445" r="2.72" />
+                        <circle cx="39.369" cy="3.445" r="2.72" />
+                        <circle cx="51.405" cy="3.445" r="2.72" />
+                        <circle cx="63.441" cy="3.445" r="2.72" />
+                        <circle cx="75.479" cy="3.445" r="2.72" />
+                        <circle cx="87.514" cy="3.445" r="2.719" />
+                      </g>
+                      <g transform="translate(0 12)">
+                        <circle cx="3.261" cy="3.525" r="2.72" />
+                        <circle cx="15.296" cy="3.525" r="2.719" />
+                        <circle cx="27.333" cy="3.525" r="2.72" />
+                        <circle cx="39.369" cy="3.525" r="2.72" />
+                        <circle cx="51.405" cy="3.525" r="2.72" />
+                        <circle cx="63.441" cy="3.525" r="2.72" />
+                        <circle cx="75.479" cy="3.525" r="2.72" />
+                        <circle cx="87.514" cy="3.525" r="2.719" />
+                      </g>
+                      <g transform="translate(0 24)">
+                        <circle cx="3.261" cy="3.605" r="2.72" />
+                        <circle cx="15.296" cy="3.605" r="2.719" />
+                        <circle cx="27.333" cy="3.605" r="2.72" />
+                        <circle cx="39.369" cy="3.605" r="2.72" />
+                        <circle cx="51.405" cy="3.605" r="2.72" />
+                        <circle cx="63.441" cy="3.605" r="2.72" />
+                        <circle cx="75.479" cy="3.605" r="2.72" />
+                        <circle cx="87.514" cy="3.605" r="2.719" />
+                      </g>
+                      <g transform="translate(0 36)">
+                        <circle cx="3.261" cy="3.686" r="2.72" />
+                        <circle cx="15.296" cy="3.686" r="2.719" />
+                        <circle cx="27.333" cy="3.686" r="2.72" />
+                        <circle cx="39.369" cy="3.686" r="2.72" />
+                        <circle cx="51.405" cy="3.686" r="2.72" />
+                        <circle cx="63.441" cy="3.686" r="2.72" />
+                        <circle cx="75.479" cy="3.686" r="2.72" />
+                        <circle cx="87.514" cy="3.686" r="2.719" />
+                      </g>
+                      <g transform="translate(0 49)">
+                        <circle cx="3.261" cy="2.767" r="2.72" />
+                        <circle cx="15.296" cy="2.767" r="2.719" />
+                        <circle cx="27.333" cy="2.767" r="2.72" />
+                        <circle cx="39.369" cy="2.767" r="2.72" />
+                        <circle cx="51.405" cy="2.767" r="2.72" />
+                        <circle cx="63.441" cy="2.767" r="2.72" />
+                        <circle cx="75.479" cy="2.767" r="2.72" />
+                        <circle cx="87.514" cy="2.767" r="2.719" />
+                      </g>
+                      <g transform="translate(0 61)">
+                        <circle cx="3.261" cy="2.846" r="2.72" />
+                        <circle cx="15.296" cy="2.846" r="2.719" />
+                        <circle cx="27.333" cy="2.846" r="2.72" />
+                        <circle cx="39.369" cy="2.846" r="2.72" />
+                        <circle cx="51.405" cy="2.846" r="2.72" />
+                        <circle cx="63.441" cy="2.846" r="2.72" />
+                        <circle cx="75.479" cy="2.846" r="2.72" />
+                        <circle cx="87.514" cy="2.846" r="2.719" />
+                      </g>
+                      <g transform="translate(0 73)">
+                        <circle cx="3.261" cy="2.926" r="2.72" />
+                        <circle cx="15.296" cy="2.926" r="2.719" />
+                        <circle cx="27.333" cy="2.926" r="2.72" />
+                        <circle cx="39.369" cy="2.926" r="2.72" />
+                        <circle cx="51.405" cy="2.926" r="2.72" />
+                        <circle cx="63.441" cy="2.926" r="2.72" />
+                        <circle cx="75.479" cy="2.926" r="2.72" />
+                        <circle cx="87.514" cy="2.926" r="2.719" />
+                      </g>
+                      <g transform="translate(0 85)">
+                        <circle cx="3.261" cy="3.006" r="2.72" />
+                        <circle cx="15.296" cy="3.006" r="2.719" />
+                        <circle cx="27.333" cy="3.006" r="2.72" />
+                        <circle cx="39.369" cy="3.006" r="2.72" />
+                        <circle cx="51.405" cy="3.006" r="2.72" />
+                        <circle cx="63.441" cy="3.006" r="2.72" />
+                        <circle cx="75.479" cy="3.006" r="2.72" />
+                        <circle cx="87.514" cy="3.006" r="2.719" />
+                      </g>
+                    </g>
+                  </g>
+                </g>
+              </svg> */}
             </div>
           </div>
         </div>

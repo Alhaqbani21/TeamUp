@@ -1,68 +1,28 @@
 import { Fade } from "react-awesome-reveal";
-import { useParams } from "react-router-dom";
+import SideBar from "../components/SideBar";
+import BottomNavBar from "../components/BottomNavBar";
 
 function Booking() {
-  const params = useParams().id;
-  const sceImage =
-    params == "padel"
-      ? "https://i.pinimg.com/564x/e9/cd/a7/e9cda718f10716d9eb01c4ce03fa04f3.jpg"
-      : params == "Basketball"
-      ? "https://i.pinimg.com/564x/0a/0d/12/0a0d1234e829cf469e8788283ff149fa.jpg"
-      : params == "Volly"
-      ? "https://i.pinimg.com/564x/8d/1b/93/8d1b93b282c5797459f54a36422d192a.jpg"
-      : "https://img.pikbest.com/ai/illus_our/20230427/c1335e4e27e5cd31007af894089719db.jpg!bw700";
   return (
     <>
-      <div className="relative min-h-screen">
-        <img
-          src={sceImage}
-          className="absolute inset-0 object-cover w-full h-full"
-          alt=""
-        />
-        <div className="relative bg-opacity-75 bg-black min-h-screen ">
-          <svg
-            className="absolute inset-x-0 bottom-0 text-white"
-            viewBox="0 0 1160 163"
-          >
-            <path
-              fill="currentColor"
-              d="M-164 13L-104 39.7C-44 66 76 120 196 141C316 162 436 152 556 119.7C676 88 796 34 916 13C1036 -8 1156 2 1216 7.7L1276 13V162.5H1216C1156 162.5 1036 162.5 916 162.5C796 162.5 676 162.5 556 162.5C436 162.5 316 162.5 196 162.5C76 162.5 -44 162.5 -104 162.5H-164V13Z"
-            />
-          </svg>
-          <div className="relative px-4 py-16 mx-auto overflow-hidden sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-20">
-            <div className="flex flex-col items-center justify-between xl:flex-row">
-              <div className="w-full max-w-xl mb-12 xl:mb-0 xl:pr-16 xl:w-7/12">
-                <h2 className="max-w-lg mb-6 font-sans text-3xl font-bold tracking-tight text-white sm:text-4xl sm:leading-none">
-                  Stad Revolt <br className="hidden md:block" />
-                  Lorem
-                </h2>
-                <p className="max-w-xl mb-4 text-base text-gray-300 md:text-lg">
-                  Sed ut perspiciatis unde omnis iste natus error sit voluptatem
-                  accusantium doloremque laudan, totam rem aperiam, eaque ipsa
-                  quae.
-                </p>
-                <a
-                  href="/Book"
-                  aria-label=""
-                  className="inline-flex items-center font-semibold tracking-wider transition-colors duration-200 text-white hover:text-teal-accent-700"
-                >
-                  Back
-                  <svg
-                    className="inline-block w-3 ml-2"
-                    fill="currentColor"
-                    viewBox="0 0 12 12"
-                  >
-                    <path d="M9.707,5.293l-5-5A1,1,0,0,0,3.293,1.707L7.586,6,3.293,10.293a1,1,0,1,0,1.414,1.414l5-5A1,1,0,0,0,9.707,5.293Z" />
-                  </svg>
-                </a>
-              </div>
-              <div className="w-full max-w-xl xl:px-8 xl:w-5/12">
-                <Fade direction="right" delay={200}>
-                  <div className="bg-white rounded-lg shadow-2xl p-7 sm:p-10 mt-[12em] ml-[8em] w-5/6  max-sm:mx-auto ">
-                    <h3 className="mb-4 text-xl font-semibold sm:text-center sm:mb-6 sm:text-2xl max-sm:text-center max-sm:mr-4">
+      <div className="h-screen w-full bg-[#E2E5E5] relative flex overflow-hidden">
+        <SideBar />
+        <BottomNavBar />
+
+        <div className="absolute top-0 left-1/2 transform -translate-x-1/2 p-2 text-center text-5xl tracking-widest text-secondary">
+          Booking
+        </div>
+
+        <div className="flex flex-col items-center justify-center px-4 py-16 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-20">
+          <div className="flex flex-row space-x-2">
+            <div className="flex flex-col justify-center md:pr-8 xl:pr-0">
+              <div className="w-full max-w-xl xl:px-8">
+                <Fade direction="left" delay={200}>
+                  <div className="bg-white rounded-lg shadow-2xl p-7 sm:p-10 mt-12 mx-auto max-w-sm w-[45em]">
+                    <h3 className="mb-4 text-xl font-semibold text-center sm:mb-6 sm:text-2xl">
                       Available Times
                     </h3>
-                    <form className="max-w-md mx-auto  max-sm:mx-auto ">
+                    <form className="max-w-md mx-auto">
                       <div className="grid grid-cols-2 gap-4 mb-4">
                         <button
                           type="button"
@@ -110,6 +70,27 @@ function Booking() {
                 </Fade>
               </div>
             </div>
+            <div className="flex items-center justify-center -mx-4 lg:pl-8 ml-[9em]">
+              <div className="flex flex-col items-end px-3">
+                <img
+                  className="object-cover mb-6 rounded shadow-lg h-28 sm:h-48 xl:h-56 w-28 sm:w-48 xl:w-56"
+                  src="https://i.pinimg.com/564x/e9/cd/a7/e9cda718f10716d9eb01c4ce03fa04f3.jpg"
+                  alt=""
+                />
+                <img
+                  className="object-cover w-20 h-20 rounded shadow-lg sm:h-32 xl:h-40 sm:w-32 xl:w-40"
+                  src="https://i.pinimg.com/564x/8d/1b/93/8d1b93b282c5797459f54a36422d192a.jpg"
+                  alt=""
+                />
+              </div>
+              <div className="px-3">
+                <img
+                  className="object-cover w-40 h-40 rounded shadow-lg sm:h-64 xl:h-80 sm:w-64 xl:w-80"
+                  src=" https://i.pinimg.com/564x/0a/0d/12/0a0d1234e829cf469e8788283ff149fa.jpg"
+                  alt=""
+                />
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -118,3 +99,124 @@ function Booking() {
 }
 
 export default Booking;
+
+// import { Fade } from "react-awesome-reveal";
+// import { useParams } from "react-router-dom";
+
+// function Booking() {
+//   const params = useParams().id;
+//   const sceImage =
+//     params == "padel"
+//       ? "https://i.pinimg.com/564x/e9/cd/a7/e9cda718f10716d9eb01c4ce03fa04f3.jpg"
+//       : params == "Basketball"
+//       ? "https://i.pinimg.com/564x/0a/0d/12/0a0d1234e829cf469e8788283ff149fa.jpg"
+//       : params == "Volly"
+//       ? "https://i.pinimg.com/564x/8d/1b/93/8d1b93b282c5797459f54a36422d192a.jpg"
+//       : "https://img.pikbest.com/ai/illus_our/20230427/c1335e4e27e5cd31007af894089719db.jpg!bw700";
+//   return (
+//     <>
+//       <div className="relative min-h-screen">
+//         <img
+//           src={sceImage}
+//           className="absolute inset-0 object-cover w-full h-full"
+//           alt=""
+//         />
+//         <div className="relative bg-opacity-75 bg-black min-h-screen ">
+//           <svg
+//             className="absolute inset-x-0 bottom-0 text-white"
+//             viewBox="0 0 1160 163"
+//           >
+//             <path
+//               fill="currentColor"
+//               d="M-164 13L-104 39.7C-44 66 76 120 196 141C316 162 436 152 556 119.7C676 88 796 34 916 13C1036 -8 1156 2 1216 7.7L1276 13V162.5H1216C1156 162.5 1036 162.5 916 162.5C796 162.5 676 162.5 556 162.5C436 162.5 316 162.5 196 162.5C76 162.5 -44 162.5 -104 162.5H-164V13Z"
+//             />
+//           </svg>
+//           <div className="relative px-4 py-16 mx-auto overflow-hidden sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-20">
+//             <div className="flex flex-col items-center justify-between xl:flex-row">
+//               <div className="w-full max-w-xl mb-12 xl:mb-0 xl:pr-16 xl:w-7/12">
+//                 <h2 className="max-w-lg mb-6 font-sans text-3xl font-bold tracking-tight text-white sm:text-4xl sm:leading-none">
+//                   Stad Revolt <br className="hidden md:block" />
+//                   Lorem
+//                 </h2>
+//                 <p className="max-w-xl mb-4 text-base text-gray-300 md:text-lg">
+//                   Sed ut perspiciatis unde omnis iste natus error sit voluptatem
+//                   accusantium doloremque laudan, totam rem aperiam, eaque ipsa
+//                   quae.
+//                 </p>
+//                 <a
+//                   href="/Book"
+//                   aria-label=""
+//                   className="inline-flex items-center font-semibold tracking-wider transition-colors duration-200 text-white hover:text-teal-accent-700"
+//                 >
+//                   Back
+//                   <svg
+//                     className="inline-block w-3 ml-2"
+//                     fill="currentColor"
+//                     viewBox="0 0 12 12"
+//                   >
+//                     <path d="M9.707,5.293l-5-5A1,1,0,0,0,3.293,1.707L7.586,6,3.293,10.293a1,1,0,1,0,1.414,1.414l5-5A1,1,0,0,0,9.707,5.293Z" />
+//                   </svg>
+//                 </a>
+//               </div>
+//               <div className="w-full max-w-xl xl:px-8 xl:w-5/12">
+//                 <Fade direction="right" delay={200}>
+//                   <div className="bg-white rounded-lg shadow-2xl p-7 sm:p-10 mt-[12em] ml-[8em] w-5/6  max-sm:mx-auto ">
+//                     <h3 className="mb-4 text-xl font-semibold sm:text-center sm:mb-6 sm:text-2xl max-sm:text-center max-sm:mr-4">
+//                       Available Times
+//                     </h3>
+//                     <form className="max-w-md mx-auto  max-sm:mx-auto ">
+//                       <div className="grid grid-cols-2 gap-4 mb-4">
+//                         <button
+//                           type="button"
+//                           className="w-full py-2 text-center text-white bg-gray-600 rounded-lg shadow-md hover:bg-primary focus:outline-none"
+//                         >
+//                           4:00 PM
+//                         </button>
+//                         <button
+//                           type="button"
+//                           className="w-full py-2 text-center text-white bg-gray-600 rounded-lg shadow-md hover:bg-primary focus:outline-none"
+//                         >
+//                           6:00 PM
+//                         </button>
+//                         <button
+//                           type="button"
+//                           className="w-full py-2 text-center text-white bg-gray-600 rounded-lg shadow-md hover:bg-primary focus:outline-none"
+//                         >
+//                           8:00 PM
+//                         </button>
+//                         <button
+//                           type="button"
+//                           className="w-full py-2 text-center text-white bg-gray-600 rounded-lg shadow-md hover:bg-primary focus:outline-none"
+//                         >
+//                           10:00 PM
+//                         </button>
+//                       </div>
+//                       <div className="mb-4">
+//                         <button
+//                           type="button"
+//                           className="w-full py-2 text-center text-white bg-gray-600 rounded-lg shadow-md hover:bg-primary focus:outline-none"
+//                         >
+//                           12:00 PM
+//                         </button>
+//                       </div>
+//                       <div>
+//                         <button
+//                           type="submit"
+//                           className="w-full py-3 text-center text-white bg-green-600 rounded-lg shadow-md hover:bg-green-700 focus:outline-none"
+//                         >
+//                           Booking
+//                         </button>
+//                       </div>
+//                     </form>
+//                   </div>
+//                 </Fade>
+//               </div>
+//             </div>
+//           </div>
+//         </div>
+//       </div>
+//     </>
+//   );
+// }
+
+// export default Booking;

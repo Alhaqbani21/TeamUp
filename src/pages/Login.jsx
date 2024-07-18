@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 function Login() {
   return (
     <>
-      <div className="bg-white relative lg:py-20">
+      <div className="bg-white relative lg:py-20 h-screen">
         <div
           className="flex flex-col items-center justify-between pt-0 pr-10 pb-0 pl-10 mt-0 mr-auto mb-0 ml-auto max-w-7xl
       xl:px-5 lg:flex-row"
@@ -25,7 +25,7 @@ function Login() {
             relative z-10"
               >
                 <p className="w-full text-4xl font-medium text-center leading-snug font-serif">
-                  LogIn
+                  Login
                 </p>
                 <div className="w-full mt-6 mr-0 mb-0 ml-0 relative space-y-8">
                   <div className="relative">

@@ -10,19 +10,21 @@ import { Fade } from "react-awesome-reveal";
 import { useParams } from "react-router-dom";
 import { auth, db } from "../config/firebase";
 import React, { useState } from "react";
+import { MdOutlineAttachMoney } from "react-icons/md";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function Booking() {
   const params = useParams().id;
   const [isLoading, setIsLoding] = useState(false);
   const [userData, setUserData] = useState({});
   const [dataStadium, setDataStadium] = useState({});
-  const [index, setIndex] = useState(-1);
+  const [indexA, setIndex] = useState(-1);
   const dataBase = doc(db, "stadium", params);
   const dataBaseMatch = collection(db, "matches");
   const getData = async () => {
     try {
       const dataDoc = await getDoc(dataBase);
-      // console.log(dataDoc.data());
       setDataStadium(dataDoc.data());
       setIsLoding(true);
     } catch (error) {
@@ -31,11 +33,12 @@ function Booking() {
   };
   const users = async () => {
     const user = auth.currentUser;
-    // console.log(user);
 
     const userDoc = await getDoc(doc(db, "users", user.uid));
     if (userDoc.exists()) {
-      setUserData(userDoc.data());
+      const id = userDoc.data();
+      id["id"] = user.uid;
+      setUserData(id);
     }
   };
 
@@ -48,9 +51,13 @@ function Booking() {
     let array = [];
     array = dataStadium.timeSlot;
 
-    if (index != -1) {
-      const time = array[index].time;
-      const admin = { name: userData.name, point: userData.points };
+    if (indexA != -1) {
+      const time = array[indexA].time;
+      const admin = {
+        name: userData.name,
+        point: userData.points,
+        userId: userData.id,
+      };
       const teamA =
         dataStadium.category == "Padel"
           ? Array.from({ length: 2 }, (_, index) => (index == 0 ? admin : null))
@@ -76,31 +83,41 @@ function Booking() {
         teamB: teamB,
         category: dataStadium.category,
         pending: [{}],
-        Admin: userData.name,
+        Admin: { name: userData.name, userId: userData.id },
       });
 
-      array[index] = { time: array[index].time, isBooked: true };
+      array[indexA] = { time: array[indexA].time, isBooked: true };
       await updateDoc(dataBase, { timeSlot: array });
       console.log("yes");
       setIndex(-1);
+    } else {
+      toast.warn("Please select a suitable time");
     }
   };
   return (
     <>
       {!isLoading ? (
-        <span className="loading m-auto  loading-spinner loading-md"></span>
+        <div className="h-screen flex justify-center items-center w-full m-auto">
+          <span className="loading loading-spinner loading-lg"></span>
+        </div>
       ) : (
         <div>
           <div
-            className="hero h-96"
+            className="hero h-[50vh]"
             style={{
               backgroundImage: `url(${dataStadium.img})`,
             }}
           >
+            <ToastContainer autoClose={2000} />
+
+            {console.log(indexA)}
             <div className="hero-overlay bg-black bg-opacity-75"></div>
             <div className="hero-content w-full flex justify-start text-neutral-content text-start">
               <div className="">
-                <h1 className="mb-5 text-5xl font-bold"> {dataStadium.name}</h1>
+                <h1 className="mb-5 text-5xl font-bold">
+                  {" "}
+                  {dataStadium.category}
+                </h1>
                 <p className="mb-5 max-w-md">
                   {dataStadium.name.includes("Padel") ? (
                     <span>
@@ -142,11 +159,46 @@ function Booking() {
               </div>
             </div>
           </div>
-          <div className="w-full max-w-xl xl:px-8 mt-9 xl:w-5/12">
-            <br />
+          <div className="w-[90vw]   relative m-auto rounded-xl">
+            <section className="flex pb-4 pt-9 max-sm:flex-col justify-around items-center w-full border-base-300 border-2 rounded-xl mt-9 bg-base-100 shadow-lg">
+              <div className="text-xl flex gap-3 flex-col  ">
+                <h1 className="font-medium">{dataStadium.name} Stadium</h1>
+                <div className="flex items-center gap-6 ">
+                  <small>{dataStadium.distance}</small>
+                  <div className=" flex text-base">
+                    <MdOutlineAttachMoney size={20} className="text-secndary" />
 
-            <section className="flex">
-              <div className=" rounded-lg shadow-2xl p-7 sm:p-10  w-5/6  max-sm:mx-auto ">
+                    {dataStadium.price}
+                  </div>
+                </div>
+
+                <div className="carousel max-sm:w-[60vw] w-[30vw] h-60 rounded-box">
+                  <div id="slide1" className="carousel-item relative w-full">
+                    <img src={dataStadium.stadiumImg[0]} className="w-full" />
+                    <div className="absolute left-5 right-5 top-1/2 flex -translate-y-1/2 transform justify-between">
+                      <a href="#slide2" className="btn btn-circle">
+                        ❮
+                      </a>
+                      <a href="#slide2" className="btn btn-circle">
+                        ❯
+                      </a>
+                    </div>
+                  </div>
+                  <div id="slide2" className="carousel-item relative w-full">
+                    <img src={dataStadium.stadiumImg[1]} className="w-full " />
+                    <div className="absolute left-5 right-5 top-1/2 flex -translate-y-1/2 transform justify-between">
+                      <a href="#slide1" className="btn btn-circle">
+                        ❮
+                      </a>
+                      <a href="#slide1" className="btn btn-circle">
+                        ❯
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div className=" max-w-xl xl:px-8 xl:w-5/12 rounded-lg  p-7 sm:p-10  w-5/6  max-sm:mx-auto ">
                 <h3 className="mb-4 text-xl font-semibold sm:text-center sm:mb-6 sm:text-2xl max-sm:text-center max-sm:mr-4">
                   Available Times
                 </h3>
@@ -157,7 +209,10 @@ function Booking() {
                         key={index}
                         onClick={() => setIndex(index)}
                         type="button"
-                        // style={{backgroundColor:item.isBooked?'':'transparent'}}
+                        style={{
+                          backgroundColor: index == indexA ? "#16a34a" : "",
+                          color: index == indexA ? "#fff" : "",
+                        }}
                         disabled={item.isBooked}
                         className={
                           item.isBooked
@@ -177,13 +232,14 @@ function Booking() {
                       type="submit"
                       className="w-full py-3 text-center text-white bg-green-600 rounded-lg shadow-md hover:bg-green-700 focus:outline-none"
                     >
-                      Booking
+                      Book
                     </button>
                   </div>
                 </div>
               </div>
             </section>
           </div>
+          <br />
           {/* <img
             src={}
             className="absolute inset-0 object-cover w-full h-full"

@@ -3,3 +3,6 @@
 :root {
   font-family: 'Manrope', sans-serif;
 }
+#scroll{
+  scrollbar-width: none;
+}

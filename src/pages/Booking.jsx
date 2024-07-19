@@ -21,7 +21,7 @@ function Booking() {
   const [isLoading, setIsLoding] = useState(false);
   const [userData, setUserData] = useState({});
   const [dataStadium, setDataStadium] = useState({});
-  const [index, setIndex] = useState(-1);
+  const [indexA, setIndex] = useState(-1);
   const dataBase = doc(db, 'stadium', params);
   const dataBaseMatch = collection(db, 'matches');
   const getData = async () => {
@@ -84,8 +84,8 @@ function Booking() {
         teamA: teamA,
         teamB: teamB,
         category: dataStadium.category,
-        pending: [],
         Admin: { name: userData.name, userId: userData.id },
+        pending: [],
       });
 
       array[indexA] = { time: array[indexA].time, isBooked: true };

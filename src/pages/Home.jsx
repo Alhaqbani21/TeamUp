@@ -108,7 +108,7 @@ function Home() {
       await updateDoc(matchRef, {
         pending: arrayUnion({
           userId: currentUser.uid,
-          name: currentUser.displayName,
+          name: currentUser.displayName || userData.name,
           point: userData.points,
           team: team, // Include the team information
         }),

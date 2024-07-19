@@ -3,31 +3,9 @@ import SideBar from "../components/SideBar";
 import Cardheder from "../components/Cardheder";
 import { Link } from "react-router-dom";
 import BottomNavBar from "../components/BottomNavBar";
-// import { addDoc, collection } from "firebase/firestore";
-// import { db } from "../config/firebase";
+
 import React from "react";
 function Book() {
-  
-  // const dd=collection(db, "stadium")
-  // const onSubmit = async () => {
-  //   try {
-  //     await addDoc(dd, {
-  //       name,
-  //       price,
-  //       category,
-  //       img,
-  //       location,
-  //       timeSlot: [
-  //         { isBooked: false, time: "4:00-6:00" },
-  //         { isBooked: false, time: "6:00-8:00" },
-  //         { isBooked: false, time: "8:00-10:00" },
-  //         { isBooked: false, time: "10:00-12:00" },
-  //       ],
-  //     });
-  //   } catch (err) {
-  //     console.error(err);
-  //   }
-  // };
   return (
     <>
       <div className="h-screen w-full bg-base-100 relative flex overflow-hidden">

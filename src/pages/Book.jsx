@@ -63,12 +63,14 @@ function Book() {
                                     {e.name}
                                   </p>
 
-                                  <h1 className="text-gray-800 font-bold mt-10">
-                                    {e.price}
-                                  </h1>
                                   <h1 className="bg-[#007955] text-xs text-white px-4 py-2 font-semibold rounded uppercase hover:bg-[#6bc1a7] mt-10  inline-block">
                                     <span className="text-white">2 hour</span>
                                   </h1>
+
+                                  <h1 className="text-gray-800 font-bold mt-10">
+                                    $ {e.price}
+                                  </h1>
+
                                   <div className="border-t-2 border-gray-800 my-4 w-[14em] inline-block mt-9"></div>
                                 </div>
                               </div>

@@ -7,7 +7,7 @@ import {
   updateDoc,
 } from "firebase/firestore";
 import { Fade } from "react-awesome-reveal";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { auth, db } from "../config/firebase";
 import React, { useState } from "react";
 import { MdOutlineAttachMoney } from "react-icons/md";
@@ -16,6 +16,8 @@ import "react-toastify/dist/ReactToastify.css";
 
 function Booking() {
   const params = useParams().id;
+  const navigate = useNavigate();
+
   const [isLoading, setIsLoding] = useState(false);
   const [userData, setUserData] = useState({});
   const [dataStadium, setDataStadium] = useState({});
@@ -90,6 +92,7 @@ function Booking() {
       await updateDoc(dataBase, { timeSlot: array });
       console.log("yes");
       setIndex(-1);
+      navigate("../Home");
     } else {
       toast.warn("Please select a suitable time");
     }

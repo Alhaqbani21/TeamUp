@@ -34,9 +34,9 @@ export default function Reservation() {
           <SideBar />
           <BottomNavBar />
         </div>
-        <div className="w-full  h-full flex flex-col justify-between">
+        <div className="w-full   h-full flex flex-col justify-between">
           {/* <NavBar /> */}
-          <main className="max-w-full max-sm:px-1 h-full flex relative overflow-y-auto">
+          <main id="scroll" className="max-w-full max-sm:px-1 h-full flex relative overflow-y-auto">
             {view === "padel" ? (
               <Padel />
             ) : view === "Basketball" ? (

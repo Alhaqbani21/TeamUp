@@ -3,11 +3,7 @@ import Basketballw from "../assets/Volly.jpg";
 import team1 from "../assets/person2.png";
 import team2 from "../assets/person3.png";
 import Players from "../components/Players";
-import Platinum_1_Rank from "../assets/Platinum_1_Rank.png";
-import Gold_1_Rank from "../assets/Gold_1_Rank.png";
-import Iron_1_Rank from "../assets/Iron_1_Rank.png";
-import Silver_1_Rank from "../assets/Silver_1_Rank.png";
-import { Fade } from "react-awesome-reveal";
+
 import Timer from "../components/Timer";
 import DetailePlayers from "../components/DetailePlayers";
 export default function Volly() {
@@ -30,21 +26,10 @@ export default function Volly() {
     { name: "Khalid", points: 120 },
   ];
 
-  function getRankImage(points) {
-    if (points >= 150) {
-      return Platinum_1_Rank;
-    } else if (points >= 100) {
-      return Gold_1_Rank;
-    } else if (points >= 50) {
-      return Silver_1_Rank;
-    } else {
-      return Iron_1_Rank;
-    }
-  }
   return (
     <main className="hero min-h-screen rounded-xl ">
-      <div className="w-[80vw] max-sm:w-[90vw] max-sm:flex-col  max-sm:justify-center max-sm:items-center  gap-9 bg-base-100 rounded-lg flex">
-        <div className="h-[70vh]  max-sm:h-[50vh] max-sm:w-[80vw] w-[60vw] rounded-s-xl  relative ">
+      <div className="w-[80vw]  max-sm:w-[90vw] max-sm:flex-col  max-sm:justify-center max-sm:items-center  gap-9 bg-base-100 rounded-lg flex">
+        <div className="h-[70vh] max-xl:w-[90vw]  max-sm:h-[50vh] max-sm:w-[80vw] w-[60vw] rounded-s-xl  relative ">
           <div className="w-full pt-3 justify-around bg-transparent   flex gap-1">
             <div
               onClick={() => setteamA("TeamA")}
@@ -74,7 +59,7 @@ export default function Volly() {
             </div>
           </div>
           <img
-            className="h-[70vh] max-sm:w-full max-sm:h-[50vh] w-[60vw]"
+            className="h-[70vh] max-xl:w-[90vw] max-sm:w-full max-sm:h-[50vh] w-[60vw]"
             src={Basketballw}
             alt=""
           />

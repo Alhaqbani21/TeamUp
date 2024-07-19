@@ -82,7 +82,7 @@ function Landingpage() {
             technological advancement
           </h1>
           <div className="flex  justify-center items-center mt-[8em]">
-            <div className="flex flex-col justify-center w-full px-8 mx-6 my-12 text-center rounded-md md:w-96 lg:w-80 xl:w-64 dark:bg-gray-800 dark:text-gray-100">
+            <div className="flex flex-col justify-center w-full px-8 mx-6 my-12 text-center rounded-md md:w-96 lg:w-80 xl:w-64 ">
               <div className="flex-1 my-4">
                 <p className="text-xl font-semibold leading-snug">
                   {/* Abdulaziz  */}
@@ -125,7 +125,7 @@ function Landingpage() {
                 </a>
               </div>
             </div>
-            <div className="flex flex-col justify-center w-full px-8 mx-6 my-12 text-center rounded-md md:w-96 lg:w-80 xl:w-64 dark:bg-gray-800 dark:text-gray-100">
+            <div className="flex flex-col justify-center w-full px-8 mx-6 my-12 text-center rounded-md md:w-96 lg:w-80 xl:w-64 ">
               <div className="flex-1 my-4">
                 <p className="text-xl font-semibold leading-snug">
                   Amal Ghazai
@@ -167,7 +167,7 @@ function Landingpage() {
                 </a>
               </div>
             </div>
-            <div className="flex flex-col justify-center w-full px-8 mx-6 my-12 text-center rounded-md md:w-96 lg:w-80 xl:w-64 dark:bg-gray-800 dark:text-gray-100">
+            <div className="flex flex-col justify-center w-full px-8 mx-6 my-12 text-center rounded-md md:w-96 lg:w-80 xl:w-64 ">
               <div className="flex-1 my-4">
                 <p className="text-xl font-semibold leading-snug">
                   Amwaj Alharbi

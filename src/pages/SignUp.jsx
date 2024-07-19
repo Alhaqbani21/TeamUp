@@ -95,24 +95,25 @@ function SignUp() {
   return (
     <>
       {/* component */}
-      <div className="bg-white relative lg:py-20 ">
+      <div className="bg-white relative ">
         <div
-          className="flex flex-col items-center justify-between pt-0 pr-10 pb-0 pl-10 mt-0 mr-auto mb-0 ml-auto 
-      xl:px-5 lg:flex-row"
+          className="flex flex-col items-center justify-between  
+       lg:flex-row"
         >
-          <div className="flex flex-col items-center w-full pt-5 pr-10 pb-20 pl-10 lg:pt-20 lg:flex-row">
+          <div className="flex justify-center items-center w-full min-h-screen ">
+            {/* <div className="flex flex-col items-center w-full pt-5 pr-10 pb-20 pl-10 lg:pt-20 lg:flex-row"> */}
             <div className="w-full bg-cover relative max-w-md lg:max-w-2xl lg:w-7/12">
-              <div className="flex flex-col items-center justify-center w-full h-full relative lg:pr-10">
+              <div className="flex flex-col items-center justify-center w-full h-full relative lg:pr-10 max-sm:hidden">
                 <img
                   src="https://i.pinimg.com/564x/06/90/7e/06907e118f54b6005cfd81e672a5b925.jpg"
                   className="btn-"
                 />
               </div>
             </div>
-            <div className="w-full mt-20 mr-0 mb-0 ml-0 relative z-10 max-w-2xl lg:mt-0 lg:w-5/12">
+            <div className="w-full mt-20 mr-0 mb-0 ml-0 relative z-10 max-w-2xl lg:mt-0 lg:w-5/12 max-sm:w-[71em] max-sm:mr-[6em]">
               <div
                 className="flex flex-col items-start justify-start pt-10 pr-10 pb-10 pl-10 bg-white shadow-2xl rounded-xl
-            relative z-10"
+            relative z-10 w-[39em]  h-[45em]"
               >
                 <p className="w-full text-4xl font-medium text-center leading-snug font-serif">
                   Sign up
@@ -123,12 +124,12 @@ function SignUp() {
                       className="bg-white pt-0 pr-2 pb-0 pl-2 -mt-3 mr-0 mb-0 ml-2 font-medium text-gray-600
                   absolute"
                     >
-                      Username
+                      Name
                     </p>
                     <input
                       value={name}
                       onChange={(e) => setName(e.target.value)}
-                      placeholder="John"
+                      placeholder="enter your name"
                       type="text"
                       className="border placeholder-gray-400 focus:outline-none
                   focus:border-black w-full pt-4 pr-4 pb-4 pl-4 mt-2 mr-0 mb-0 ml-0 text-base block bg-white
@@ -142,7 +143,7 @@ function SignUp() {
                     <input
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
-                      placeholder="123@ex.com"
+                      placeholder="enter your email"
                       type="text"
                       className="border placeholder-gray-400 focus:outline-none
                   focus:border-black w-full pt-4 pr-4 pb-4 pl-4 mt-2 mr-0 mb-0 ml-0 text-base block bg-white
@@ -159,20 +160,20 @@ function SignUp() {
                     <input
                       value={password}
                       onChange={(e) => setPassword(e.target.value)}
-                      placeholder="Password"
+                      placeholder="enter your Password"
                       type="password"
                       className="border placeholder-gray-400 focus:outline-none
                   focus:border-black w-full pt-4 pr-4 pb-4 pl-4 mt-2 mr-0 mb-0 ml-0 text-base block bg-white
                   border-gray-300 rounded-md"
                     />
                   </div>
+                  <p className=" text-center text-sm ">
+                    Do you have an account?{" "}
+                    <Link className="text-blue-500 underline" to={"../login"}>
+                      Login
+                    </Link>
+                  </p>
                   <div className="relative">
-                    <p className="text-left text-sm mb-3">
-                      Do you have an account?{" "}
-                      <Link className="text-blue-500 underline" to={"../login"}>
-                        Login
-                      </Link>
-                    </p>
                     <div
                       onClick={signUpEmailAndPassword}
                       className="cursor-pointer w-full inline-block pt-4 pr-5 pb-4 pl-5 text-xl font-medium text-center text-white bg-[#007955]
@@ -187,10 +188,14 @@ function SignUp() {
                     </div>
                     <div
                       onClick={signUpGoogle}
-                      className="cursor-pointer my-3 w-full inline-block pt-4 pr-5 pb-4 pl-5 text-xl font-medium text-center text-white bg-[#83afa2]
+                      className="cursor-pointer my-3 w-full inline-block pt-4 pr-5 pb-4 pl-5 text-xl font-medium text-center text-white bg-[#ccd2d0]
                   rounded-lg transition duration-200 hover:bg-[#215244]"
                     >
-                      Google
+                      <img
+                        className="w-[3em] mx-auto"
+                        src="https://cdn.pixabay.com/photo/2014/08/02/10/07/google-408194_1280.png"
+                        alt="Google"
+                      />
                     </div>
                   </div>
                 </div>

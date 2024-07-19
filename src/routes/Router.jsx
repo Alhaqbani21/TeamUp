@@ -12,6 +12,7 @@ import Landingpage from '../pages/Landingpage';
 
 import { AuthProvider } from '../contexts/AuthContext';
 import ProtectedRoute from '../components/ProtectedRoute';
+import MatchPage from '../pages/MatchPage';
 
 const router = createBrowserRouter([
   {
@@ -71,6 +72,14 @@ const router = createBrowserRouter([
     element: (
       <ProtectedRoute>
         <Profile />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: '/match/:id',
+    element: (
+      <ProtectedRoute>
+        <MatchPage />
       </ProtectedRoute>
     ),
   },

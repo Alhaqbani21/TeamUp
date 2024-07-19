@@ -67,9 +67,7 @@ function Home() {
 
         return {
           id: match.id,
-          stadiumName: `${match.stadiumName} - ${
-            teamACount + teamBCount
-          }/${totalSlots}`,
+          stadiumName: `${match.stadiumName} `,
           distance: match.distance,
           price: match.price,
           date: '15 Jul',
@@ -111,7 +109,8 @@ function Home() {
         pending: arrayUnion({
           userId: currentUser.uid,
           name: currentUser.displayName,
-          points: userData.points,
+          point: userData.points,
+          team: team, // Include the team information
         }),
       });
       console.log(

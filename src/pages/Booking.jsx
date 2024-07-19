@@ -5,14 +5,14 @@ import {
   getDoc,
   getDocs,
   updateDoc,
-} from "firebase/firestore";
-import { Fade } from "react-awesome-reveal";
-import { useNavigate, useParams } from "react-router-dom";
-import { auth, db } from "../config/firebase";
-import React, { useState } from "react";
-import { MdOutlineAttachMoney } from "react-icons/md";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+} from 'firebase/firestore';
+import { Fade } from 'react-awesome-reveal';
+import { useNavigate, useParams } from 'react-router-dom';
+import { auth, db } from '../config/firebase';
+import React, { useState } from 'react';
+import { MdOutlineAttachMoney } from 'react-icons/md';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function Booking() {
   const params = useParams().id;
@@ -21,9 +21,9 @@ function Booking() {
   const [isLoading, setIsLoding] = useState(false);
   const [userData, setUserData] = useState({});
   const [dataStadium, setDataStadium] = useState({});
-  const [indexA, setIndex] = useState(-1);
-  const dataBase = doc(db, "stadium", params);
-  const dataBaseMatch = collection(db, "matches");
+  const [index, setIndex] = useState(-1);
+  const dataBase = doc(db, 'stadium', params);
+  const dataBaseMatch = collection(db, 'matches');
   const getData = async () => {
     try {
       const dataDoc = await getDoc(dataBase);
@@ -36,10 +36,10 @@ function Booking() {
   const users = async () => {
     const user = auth.currentUser;
 
-    const userDoc = await getDoc(doc(db, "users", user.uid));
+    const userDoc = await getDoc(doc(db, 'users', user.uid));
     if (userDoc.exists()) {
       const id = userDoc.data();
-      id["id"] = user.uid;
+      id['id'] = user.uid;
       setUserData(id);
     }
   };
@@ -61,17 +61,17 @@ function Booking() {
         userId: userData.id,
       };
       const teamA =
-        dataStadium.category == "Padel"
+        dataStadium.category == 'Padel'
           ? Array.from({ length: 2 }, (_, index) => (index == 0 ? admin : null))
-          : dataStadium.category == "Basketball"
+          : dataStadium.category == 'Basketball'
           ? Array.from({ length: 5 }, (_, index) => (index == 0 ? admin : null))
           : Array.from({ length: 6 }, (_, index) =>
               index == 0 ? admin : null
             );
       const teamB =
-        dataStadium.category == "Padel"
+        dataStadium.category == 'Padel'
           ? Array.from({ length: 2 }, (_) => null)
-          : dataStadium.category == "Basketball"
+          : dataStadium.category == 'Basketball'
           ? Array.from({ length: 5 }, (_) => null)
           : Array.from({ length: 6 }, (_) => null);
 
@@ -84,17 +84,17 @@ function Booking() {
         teamA: teamA,
         teamB: teamB,
         category: dataStadium.category,
-        pending: [{}],
+        pending: [],
         Admin: { name: userData.name, userId: userData.id },
       });
 
       array[indexA] = { time: array[indexA].time, isBooked: true };
       await updateDoc(dataBase, { timeSlot: array });
-      console.log("yes");
+      console.log('yes');
       setIndex(-1);
-      navigate("../Home");
+      navigate('../Home');
     } else {
-      toast.warn("Please select a suitable time");
+      toast.warn('Please select a suitable time');
     }
   };
   return (
@@ -118,19 +118,19 @@ function Booking() {
             <div className="hero-content w-full flex justify-start text-neutral-content text-start">
               <div className="">
                 <h1 className="mb-5 text-5xl font-bold">
-                  {" "}
+                  {' '}
                   {dataStadium.category}
                 </h1>
                 <p className="mb-5 max-w-md">
-                  {dataStadium.name.includes("Padel") ? (
+                  {dataStadium.name.includes('Padel') ? (
                     <span>
-                      {" "}
+                      {' '}
                       Padel is a sport that requires good coordination and quick
                       reflexes. If those skills aren’t there yet, you will find
                       that will be an improvement in these skills, game after
                       game.
                     </span>
-                  ) : dataStadium.name.includes("Basketball") ? (
+                  ) : dataStadium.name.includes('Basketball') ? (
                     <span>
                       Basketball is a fast moving game that involves a lot of
                       variety, including shooting, dribbling, passing,
@@ -213,15 +213,15 @@ function Booking() {
                         onClick={() => setIndex(index)}
                         type="button"
                         style={{
-                          backgroundColor: index == indexA ? "#16a34a" : "",
-                          color: index == indexA ? "#fff" : "",
+                          backgroundColor: index == indexA ? '#16a34a' : '',
+                          color: index == indexA ? '#fff' : '',
                         }}
                         disabled={item.isBooked}
                         className={
                           item.isBooked
                             ? // "rounded-lg shadow-md hover:bg-primary " +
-                              "bg-gray-400 w-full rounded-lg shadow-md  py-2 text-center text-white "
-                            : " hover:bg-green-700 border border-green-700 w-full rounded-lg shadow-md  py-2 text-center hover:text-white"
+                              'bg-gray-400 w-full rounded-lg shadow-md  py-2 text-center text-white '
+                            : ' hover:bg-green-700 border border-green-700 w-full rounded-lg shadow-md  py-2 text-center hover:text-white'
                         }
                       >
                         {item.time} PM

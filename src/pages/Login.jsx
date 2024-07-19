@@ -1,4 +1,5 @@
 import { useState } from "react";
+import image from "../assets/googel.png";
 
 import {
   signInWithEmailAndPassword,
@@ -97,6 +98,24 @@ function Login() {
                   Login
                 </p>
                 <div className="w-full mt-6 mr-0 mb-0 ml-0 relative space-y-8">
+                  <button
+                    onClick={handleGoogleSignIn}
+                    className="cursor-pointer my-3 w-full inline-block pt-4 pr-5 pb-4 pl-5 text-xl font-medium text-center text-white 
+    rounded-lg transition duration-200   border border-gray-600"
+                    data-ripple-light="true"
+                  >
+                    <div className="flex items-center justify-center ">
+                      <img className="w-[3em]" src={image} alt="Google" />
+                      <p className="text-sm text-gray-600 transition duration-200 ">
+                        Sign Up with Google
+                      </p>
+                    </div>
+                  </button>
+                  <div className="my-10 border-b text-center">
+                    <div className="leading-none px-2 inline-block text-sm text-gray-600 tracking-wide font-medium bg-white transform translate-y-1/2">
+                      OR
+                    </div>
+                  </div>
                   <div className="relative">
                     <p className="bg-white pt-0 pr-2 pb-0 pl-2 -mt-3 mr-0 mb-0 ml-2 font-medium text-gray-600 absolute">
                       Email
@@ -142,23 +161,6 @@ function Login() {
                     >
                       LogIn
                     </div>
-                    <div className="my-10 border-b text-center">
-                      <div className="leading-none px-2 inline-block text-sm text-gray-600 tracking-wide font-medium bg-white transform translate-y-1/2">
-                        Or Login with Google
-                      </div>
-                    </div>
-                    <button
-                      onClick={handleGoogleSignIn}
-                      className="cursor-pointer my-3 w-full inline-block pt-4 pr-5 pb-4 pl-5 text-xl font-medium text-center text-white bg-[#ccd2d0]
-                  rounded-lg transition duration-200 hover:bg-[#215244]"
-                      data-ripple-light="true"
-                    >
-                      <img
-                        className="w-[3em] mx-auto"
-                        src="https://cdn.pixabay.com/photo/2014/08/02/10/07/google-408194_1280.png"
-                        alt="Google"
-                      />
-                    </button>
                   </div>
                 </div>
               </div>

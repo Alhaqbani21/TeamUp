@@ -68,7 +68,7 @@ function Book() {
                                   </h1>
 
                                   <h1 className="text-gray-800 font-bold mt-10">
-                                    $ {e.price}
+                                    {e.price} SAR
                                   </h1>
 
                                   <div className="border-t-2 border-gray-800 my-4 w-[14em] inline-block mt-9"></div>

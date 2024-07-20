@@ -181,7 +181,7 @@ export default function DetailePlayers(props) {
           <div className="text-secondry text-base">{props.cost}</div>
         </div>
       </div>
-     
+
       <iframe
         className="justify-between max-xl:w-full max-sm:w-full rounded-t-md p-3"
         src={props.location}

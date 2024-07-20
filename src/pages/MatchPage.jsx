@@ -13,7 +13,6 @@ import {
   doc,
   getDoc,
   updateDoc,
-  arrayUnion,
   arrayRemove,
   getDocs,
   collection,
@@ -46,16 +45,38 @@ export default function MatchPage() {
         userId: player.userId,
       };
 
-      await updateDoc(matchRef, {
-        pending: arrayRemove(player),
-        [`team${team}`]: teamArray,
-      });
+      // Find the player in the pending array to ensure exact match for arrayRemove
+      const playerToRemove = matchData.pending.find(
+        (p) => p.userId === player.userId
+      );
 
-      setMatchData((prevData) => ({
-        ...prevData,
-        pending: prevData.pending.filter((p) => p.userId !== player.userId),
-        [`team${team}`]: teamArray,
-      }));
+      if (playerToRemove) {
+        await updateDoc(matchRef, {
+          pending: arrayRemove(playerToRemove),
+          [`team${team}`]: teamArray,
+        });
+
+        // Update the local state to reflect the changes
+        setMatchData((prevData) => {
+          const newPending = prevData.pending.filter(
+            (p) => p.userId !== player.userId
+          );
+          const newTeam = [...prevData[`team${team}`]];
+          newTeam[emptyIndex] = {
+            ...teamArray[emptyIndex],
+            point:
+              prevData.pending.find((p) => p.userId === player.userId)?.point ||
+              0,
+          };
+          return {
+            ...prevData,
+            pending: newPending,
+            [`team${team}`]: newTeam,
+          };
+        });
+      } else {
+        console.error('Player not found in pending array.');
+      }
     } else {
       console.error('No empty spots available in the team.');
     }
@@ -63,13 +84,24 @@ export default function MatchPage() {
 
   const handleReject = async (player) => {
     const matchRef = doc(db, 'matches', id);
-    await updateDoc(matchRef, {
-      pending: arrayRemove(player),
-    });
-    setMatchData((prevData) => ({
-      ...prevData,
-      pending: prevData.pending.filter((p) => p.userId !== player.userId),
-    }));
+    const matchSnapshot = await getDoc(matchRef);
+    const matchData = matchSnapshot.data();
+
+    // Find the player in the pending array to ensure exact match for arrayRemove
+    const playerToRemove = matchData.pending.find(
+      (p) => p.userId === player.userId
+    );
+
+    if (playerToRemove) {
+      await updateDoc(matchRef, {
+        pending: arrayRemove(playerToRemove),
+      });
+
+      setMatchData((prevData) => ({
+        ...prevData,
+        pending: prevData.pending.filter((p) => p.userId !== player.userId),
+      }));
+    }
   };
 
   useEffect(() => {
@@ -111,7 +143,7 @@ export default function MatchPage() {
 
   const today = new Date().getDate();
   const monthArray = [
-    'Jun',
+    'Jan',
     'Feb',
     'Mar',
     'Apr',
@@ -145,10 +177,10 @@ export default function MatchPage() {
 
   return (
     <>
-      <div className="h-screen w-full bg-base-100 relative flex ">
+      <div className="h-screen w-full bg-base-100 relative flex">
         <SideBar />
         <BottomNavBar />
-        <div className="w-full h-full flex  justify-between ">
+        <div className="w-full h-full flex justify-between">
           <main className="hero min-h-screen rounded-xl">
             <div
               className="w-[80vw] max-sm:flex-col max-sm:items-center max-sm:w-full gap-5 bg-base-100

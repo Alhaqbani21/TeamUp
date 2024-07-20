@@ -126,7 +126,6 @@ function Home() {
         pending: arrayUnion({
           userId: currentUser.uid,
           name: currentUser.displayName || userData.name,
-          point: userData.points,
           team: team, // Include the team information
         }),
       });

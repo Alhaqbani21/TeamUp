@@ -39,14 +39,14 @@ export default function Timer({ date }) {
     <>
  
       <div className="flex max-sm:justify-center  max-sm:text-lg text-2xl font-bold gap-5 text-primary">
-        {day != "0" && (
+        {/* {day != "0" && (
           <div>
             <span className="countdown font-mono text-2xl">
               <span style={{ "--value": day }}></span>
             </span>
             day
           </div>
-        )}
+        )} */}
         <div>
           <span className="countdown font-mono text-2xl">
             <span style={{ "--value": hours }}></span>:

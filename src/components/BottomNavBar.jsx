@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
-import { CiCirclePlus } from 'react-icons/ci';
-import { MdOutlineLeaderboard, MdSportsHandball } from 'react-icons/md';
-import { Link, useLocation } from 'react-router-dom';
-import { IoHomeOutline } from 'react-icons/io5';
-import { BiUserCircle } from 'react-icons/bi';
+import React, { useState } from "react";
+import { CiCirclePlus } from "react-icons/ci";
+import { MdOutlineLeaderboard, MdSportsHandball } from "react-icons/md";
+import { Link, useLocation } from "react-router-dom";
+import { IoHomeOutline } from "react-icons/io5";
+import { BiUserCircle } from "react-icons/bi";
 
 function BottomNavBar() {
   const location = useLocation();
@@ -15,41 +15,41 @@ function BottomNavBar() {
 
   return (
     <aside className="md:hidden fixed bottom-0 w-full bg-primary py-5 z-50 flex justify-around items-center rounded-t-3xl">
-      <Link to={'../Home'} onClick={() => handleIconClick('../Home')}>
+      <Link to={"../Home"} onClick={() => handleIconClick("../Home")}>
         <div
           className={`flex flex-col items-center ${
-            activePath === '../Home' ? 'text-secondary font-bold' : 'text-white'
+            activePath === "../Home" ? "text-secondary font-bold" : "text-white"
           }`}
         >
           <IoHomeOutline size={25} />
         </div>
       </Link>
-      <Link to={'../Book'} onClick={() => handleIconClick('../Book')}>
+      <Link to={"../Book"} onClick={() => handleIconClick("../Book")}>
         <div
           className={`flex flex-col items-center ${
-            activePath === '../Book' ? 'text-secondary font-bold' : 'text-white'
+            activePath === "../Book" ? "text-secondary font-bold" : "text-white"
           }`}
         >
           <CiCirclePlus size={25} />
         </div>
       </Link>
-      <Link to={'../top10'} onClick={() => handleIconClick('../top10')}>
+      <Link to={"../top10"} onClick={() => handleIconClick("../top10")}>
         <div
           className={`flex flex-col items-center ${
-            activePath === '../top10'
-              ? 'text-secondary font-bold'
-              : 'text-white'
+            activePath === "../top10"
+              ? "text-secondary font-bold"
+              : "text-white"
           }`}
         >
           <MdOutlineLeaderboard size={25} />
         </div>
       </Link>
-      <Link to={'../Players'} onClick={() => handleIconClick('../Players')}>
+      <Link to={"../match"} onClick={() => handleIconClick("../match")}>
         <div
           className={`flex flex-col items-center ${
-            activePath === '../Players'
-              ? 'text-secondary font-bold'
-              : 'text-white'
+            activePath === "../match"
+              ? "text-secondary font-bold"
+              : "text-white"
           }`}
         >
           <MdSportsHandball
@@ -58,12 +58,12 @@ function BottomNavBar() {
           />
         </div>
       </Link>
-      <Link to={'../profile'} onClick={() => handleIconClick('../profile')}>
+      <Link to={"../profile"} onClick={() => handleIconClick("../profile")}>
         <div
           className={`flex flex-col items-center ${
-            activePath === '../profile'
-              ? 'text-secondary font-bold'
-              : 'text-white'
+            activePath === "../profile"
+              ? "text-secondary font-bold"
+              : "text-white"
           }`}
         >
           <BiUserCircle size={25} />

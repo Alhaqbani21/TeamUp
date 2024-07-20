@@ -49,14 +49,14 @@ function SideBar() {
           </div>
         </Link>
 
-        <Link className="w-full" to={"../Players"}>
+        <Link className="w-full" to={"../match"}>
           <div className="h-10 w-full flex items-center justify-start pl-2 space-x-2  cursor-pointer  hover:bg-base-200">
             <MdSportsHandball
               size={25}
               className="group-hover:text-black text-white"
             />
             <span className=" group-hover:text-secondary font-bold hidden group-hover:inline-block">
-              Players
+              Match
             </span>
           </div>
         </Link>

@@ -23,6 +23,7 @@ import { fetchMatches } from '../services/matchesService';
 import SortComponent from '../components/SortComponent';
 import moment from 'moment'; // Import moment
 import VollyballImage from '../assets/VollyballImage.png';
+import { ToastContainer, toast } from 'react-toastify';
 
 function Home() {
   const navigate = useNavigate();
@@ -133,6 +134,7 @@ function Home() {
       );
       // Fetch updated matches data after the join request
       fetchMatchesData();
+      toast.success('Wait to be accepted');
     } catch (error) {
       console.error('Error requesting to join match: ', error);
     }
@@ -209,6 +211,7 @@ function Home() {
   return (
     <div className="h-screen w-full bg-base-100 relative flex overflow-hidden">
       <SideBar />
+      <ToastContainer autoClose={2000} />;
       <BottomNavBar />
       <div className="w-full h-full flex flex-col justify-between ">
         <main className="max-w-full h-full flex relative overflow-y-auto overflow-x-hidden ">

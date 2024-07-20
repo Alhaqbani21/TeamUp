@@ -56,62 +56,62 @@ export default function MatchPage() {
           userId: player.userId,
         };
 
-        const exactPlayer = matchData.pending.find(
-          (p) => p.userId === player.userId
-        );
+      // Find the player in the pending array to ensure exact match for arrayRemove
+      const playerToRemove = matchData.pending.find(
+        (p) => p.userId === player.userId
+      );
 
-        if (exactPlayer) {
-          await updateDoc(matchRef, {
-            pending: arrayRemove(exactPlayer),
-            [`team${team}`]: teamArray,
-          });
+      if (playerToRemove) {
+        await updateDoc(matchRef, {
+          pending: arrayRemove(playerToRemove),
+          [`team${team}`]: teamArray,
+        });
 
-          setMatchData((prevData) => {
-            const updatedTeam = [...prevData[`team${team}`]];
-            updatedTeam[emptyIndex] = {
-              ...updatedTeam[emptyIndex],
-              point: usersPointsMap[player.userId] ?? 0,
-            };
-
-            return {
-              ...prevData,
-              pending: prevData.pending.filter(
-                (p) => p.userId !== player.userId
-              ),
-              [`team${team}`]: updatedTeam,
-            };
-          });
-        }
+        // Update the local state to reflect the changes
+        setMatchData((prevData) => {
+          const newPending = prevData.pending.filter(
+            (p) => p.userId !== player.userId
+          );
+          const newTeam = [...prevData[`team${team}`]];
+          newTeam[emptyIndex] = {
+            ...teamArray[emptyIndex],
+            point:
+              prevData.pending.find((p) => p.userId === player.userId)?.point ||
+              0,
+          };
+          return {
+            ...prevData,
+            pending: newPending,
+            [`team${team}`]: newTeam,
+          };
+        });
       } else {
-        console.error('No empty spots available in the team.');
+        console.error('Player not found in pending array.');
       }
-    } catch (error) {
-      console.error('Error accepting player: ', error);
+    } else {
+      console.error('No empty spots available in the team.');
     }
   };
 
   const handleReject = async (player) => {
     const matchRef = doc(db, 'matches', id);
-    try {
-      const matchSnapshot = await getDoc(matchRef);
-      const matchData = matchSnapshot.data();
+    const matchSnapshot = await getDoc(matchRef);
+    const matchData = matchSnapshot.data();
 
-      const exactPlayer = matchData.pending.find(
-        (p) => p.userId === player.userId
-      );
+    // Find the player in the pending array to ensure exact match for arrayRemove
+    const playerToRemove = matchData.pending.find(
+      (p) => p.userId === player.userId
+    );
 
-      if (exactPlayer) {
-        await updateDoc(matchRef, {
-          pending: arrayRemove(exactPlayer),
-        });
+    if (playerToRemove) {
+      await updateDoc(matchRef, {
+        pending: arrayRemove(playerToRemove),
+      });
 
-        setMatchData((prevData) => ({
-          ...prevData,
-          pending: prevData.pending.filter((p) => p.userId !== player.userId),
-        }));
-      }
-    } catch (error) {
-      console.error('Error rejecting player: ', error);
+      setMatchData((prevData) => ({
+        ...prevData,
+        pending: prevData.pending.filter((p) => p.userId !== player.userId),
+      }));
     }
   };
 
@@ -149,7 +149,7 @@ export default function MatchPage() {
 
   const today = new Date().getDate();
   const monthArray = [
-    'Jun',
+    'Jan',
     'Feb',
     'Mar',
     'Apr',
@@ -183,10 +183,10 @@ export default function MatchPage() {
 
   return (
     <>
-      <div className="h-screen w-full bg-base-100 relative flex ">
+      <div className="h-screen w-full bg-base-100 relative flex">
         <SideBar />
         <BottomNavBar />
-        <div className="w-full h-full flex  justify-between ">
+        <div className="w-full h-full flex justify-between">
           <main className="hero min-h-screen rounded-xl">
             <div
               className="w-[80vw] max-sm:flex-col max-sm:items-center max-sm:w-full gap-5 bg-base-100

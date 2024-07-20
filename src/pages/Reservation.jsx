@@ -1,7 +1,5 @@
 import React from "react";
 import SideBar from "../components/SideBar";
-// import AA from "../components/AA";
-// import Side from '../components/Side';
 import BottomNavBar from "../components/BottomNavBar";
 import { collection, doc, getDoc, getDocs } from "firebase/firestore";
 import { auth, db } from "../config/firebase";
@@ -11,6 +9,10 @@ import basketBallImage from "../assets/basketBallImage.png";
 import padelImage from "../assets/padel_Image.png";
 import basketBall from "../assets/basket_Ball.png";
 import VollyBall from "../assets/VollyBall.png";
+import NoMatch from "../assets/Nomatch.png";
+import win from "../assets/win.png";
+import team1 from "../assets/person2.png";
+import team2 from "../assets/person3.png";
 export default function Reservation() {
   const backgroundImagePadel =
     "https://champs-sportsclub.com/wp-content/uploads/2024/05/Playing-Tennis-padel-1.jpg";
@@ -41,15 +43,6 @@ export default function Reservation() {
         }
       });
       setMatches(array);
-      // console.log(matches);
-      // setMatchData({
-      //   ...data,
-      //   teamA: data.teamA || [null, null],
-      //   teamB: data.teamB || [null, null],
-      //   pending: data.pending || [],
-      // });
-      // }
-      // setLoading(false);
     };
     fetchMatchData();
   }, []);
@@ -59,97 +52,147 @@ export default function Reservation() {
       <SideBar />
       <BottomNavBar />
       <div className="w-full h-full flex  justify-between ">
-        <main className="w-full mx-9 h-full flex-row flex relative overflow-y-auto overflow-x-hidden ">
-          <div className="flex flex-col w-full my-4">
-            <div className="p-8  grid grid-cols-3 max-sm:grid-cols-1 items-center w-full ">
-              {matches.map((e,index) => (
-                <div key={index}
-                  className={` h-max pb-4 m-4 shadow-xl  text-primary overflow-hidden relative rounded-md`}
-                  // style={{
+        {/* Open the modal using document.getElementById('ID').showModal() method */}
+        <button
+          className="btn m-9"
+          onClick={() => document.getElementById("my_modal_2").showModal()}
+        >
+          open modal
+        </button>
+        <dialog id="my_modal_2" className="modal">
+          <div className="modal-box flex flex-col items-center">
+            <h3 className="font-bold flex flex-col items-center text-lg">
+              {/* <p className="py-4 text-3xl">Who's the winner</p> */}
+              <p className="py-4 text-3xl">Who wins the match</p>
+              <span>8:00-10:00 PM</span>
+            </h3>
 
-                  // }}
-                >
-                  {/* <div className="absolute inset-0 bg-black opacity-50 filter blur-lg"></div> */}
-                  <div className="relative p-4 flex flex-col  justify-center">
-                    <div className="flex flex-col justify-between items-center  py-2">
-                      <div className="flex  justify-between w-full">
-                        <h1 className="text-xl font-bold text-primary">
-                          {e.stadiumName}
-                        </h1>
-                      </div>
-                      <div className="flex w-full justify-between">
-                        <div className="justify-around flex flex-col py-2 text-sm">
-                          {`${e.time} PM`}
-                          <div
-                            className={`flex justify-between items-center  mt-4 ${
-                              e.teamA.length + e.teamB.length ===
-                              [...e.teamA, ...e.teamB].filter((e) => e !== null)
-                                .length
-                                ? `text-gray-400`
-                                : "text-secondary"
-                            } py-2 px-4 rounded-lg`}
-                          >
-                            <span className="font-bold ">
-                              {e.teamA.length + e.teamB.length ===
-                              [...e.teamA, ...e.teamB].filter((e) => e !== null)
-                                .length ? (
-                                <>
-                                  {`${
-                                    [...e.teamA, ...e.teamB].filter(
-                                      (e) => e !== null
-                                    ).length
-                                  }
-                           / ${e.teamA.length + e.teamB.length} completed`}
-                                </>
-                              ) : (
-                                <>
-                                  <span className=" mr-1">{`${
-                                    [...e.teamA, ...e.teamB].filter(
-                                      (e) => e !== null
-                                    ).length
-                                  }/${e.teamA.length + e.teamB.length}`}</span>
-                                  {" players joined"}
-                                </>
-                              )}
-                            </span>
+            <img
+              className="w-60"
+              src={win}
+              // "https://i.pinimg.com/564x/57/39/19/573919be00ab8c395668ebde2806d4c2.jpg"
+              alt=""
+            />
+
+            <div className="flex gap-9 ">
+              <label className="label cursor-pointer">
+                <span className="px-2 label-text">Team A</span>
+
+                <input
+                  type="radio"
+                  name="radio-10"
+                  className="radio checked:bg-secondary"
+                  defaultChecked
+                />
+              </label>
+
+              <label className="label cursor-pointer">
+                <span className="px-2 label-text">Team B</span>
+                <input
+                  type="radio"
+                  name="radio-10"
+                  className="radio checked:bg-secondary"
+                  defaultChecked
+                />
+              </label>
+            </div>
+            <button className="btn mt-9 w-20 btn-secondary">send</button>
+          </div>
+          <form method="dialog" className="modal-backdrop">
+            <button>close</button>
+          </form>
+        </dialog>
+
+        {matches.length ? (
+          <main className="w-full mx-1 h-full flex-row flex overflow-y-auto ">
+            <div className="flex flex-col w-full my-4">
+              <div className="text-center text-5xl p-2 tracking-widest text-secondary">
+                my matches
+              </div>
+              <div className=" grid max-sm:grid-cols-1 grid-cols-3 w-[90vw] gap-10 m-auto items-center  ">
+                {matches.map((e, index) => (
+                  <div
+                    key={index}
+                    className={`w-[30vw]  max-sm:w-full h-max pb-4 shadow-xl bg-primary overflow-hidden relative rounded-md`}
+                    style={{
+                      backgroundImage: `url(${
+                        e.category === "Padel"
+                          ? backgroundImagePadel
+                          : e.category === "Basketball"
+                          ? basketBallImage
+                          : VollyballImage
+                      })`,
+                      backgroundSize: "cover",
+                      backgroundPosition: "center",
+                    }}
+                  >
+                    <div className="absolute inset-0 bg-black opacity-50 filter blur-lg"></div>
+                    <div className="relative p-4 flex flex-col  justify-center">
+                      <div className="flex justify-between items-center  py-2">
+                        <div className="flex flex-col justify-center">
+                          <h1 className="text-xl font-bold text-white">
+                            {e.stadiumName}
+                          </h1>
+                          <div className="text-gray-300 py-2 text-sm">
+                            {`${e.time} PM`}
                           </div>
-                          <Link
-                            to={`./${e.id}`}
-                            className=" text-white btn-secondary  btn  font-bold"
-                          >
-                            {" "}
-                            details
-                            {/* {price / totalPlayers} */}
-                          </Link>
                         </div>
-                        <img
-                          className="w-40 h-40 "
-                          src={
-                            e.category == "Padel"
-                              ? backgroundImagePadel
-                              : e.category == "Basketball"
-                              ? basketBallImage
-                              : VollyballImage
-                          }
-                          alt=""
-                        />
-                        <svg
-                          className="absolute inset-x-0 bottom-0 text-base-100"
-                          viewBox="0 0 1160 163"
-                        >
-                          <path
-                            fill="currentColor"
-                            d="M-164 13L-104 39.7C-44  76 120 196 141C316 162 416 152 556 119.7C676 88 796 34 916 13C1036 -8 1156 2 1216 7.7L1276 13V162.5H1216C1156 162.5 1036 162.5 916 162.5C796 162.5 676 162.5 556 162.5C436 162.5 316 162.5 196 162.5C76 162.5 -44 162.5 -104 162.5H-164V13Z"
-                          />
-                        </svg>
+                      </div>
+                      <button
+                        onClick={() => {
+                          navigate(`./${e.id}`);
+                        }}
+                        className="w-max p-3 cursor-pointer
+                         text-orange-300 mr-1 font-bold"
+                      >
+                        details
+                      </button>
+                      <div
+                        className={`flex justify-between items-center mt-4 ${
+                          e.teamA.length + e.teamB.length ===
+                          [...e.teamA, ...e.teamB].filter((e) => e !== null)
+                            .length
+                            ? `bg-gray-400`
+                            : "bg-secondary"
+                        } py-2 px-4 rounded-lg`}
+                      >
+                        <span className="font-medium text-white">
+                          {e.teamA.length + e.teamB.length ===
+                          [...e.teamA, ...e.teamB].filter((e) => e !== null)
+                            .length ? (
+                            <>
+                              {`${
+                                [...e.teamA, ...e.teamB].filter(
+                                  (e) => e !== null
+                                ).length
+                              }
+                           / ${e.teamA.length + e.teamB.length} completed`}
+                            </>
+                          ) : (
+                            <>
+                              <span className="text-orange-300 mr-1">{`${
+                                [...e.teamA, ...e.teamB].filter(
+                                  (e) => e !== null
+                                ).length
+                              }/${e.teamA.length + e.teamB.length}`}</span>
+                              {" players joined"}
+                            </>
+                          )}
+                        </span>
                       </div>
                     </div>
                   </div>
-                </div>
-              ))}
+                ))}
+              </div>
             </div>
+          </main>
+        ) : (
+          <div className="h-screen flex flex-col justify-center items-center w-full">
+            <img className="w-60" src={NoMatch} alt="" />
+            <br />
+            <span className="text-lg font-bold">There is no match booked </span>
           </div>
-        </main>
+        )}
       </div>
     </div>
   );

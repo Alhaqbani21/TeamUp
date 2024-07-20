@@ -11,12 +11,18 @@ import BottomNavBar from "../components/BottomNavBar";
 import { useAuth } from "../contexts/AuthContext";
 import { useNavigate } from "react-router-dom";
 import { db } from "../config/firebase";
-import { updateDoc, arrayUnion, doc, getDoc } from "firebase/firestore";
+import {
+  updateDoc,
+  arrayUnion,
+  doc,
+  getDoc,
+  getDocs,
+  collection,
+} from "firebase/firestore";
 import { fetchMatches } from "../services/matchesService";
 import SortComponent from "../components/SortComponent";
 import moment from "moment"; // Import moment
 import VollyballImage from "../assets/VollyballImage.png";
-import { ToastContainer, toast } from "react-toastify";
 
 function Home() {
   const navigate = useNavigate();
@@ -56,6 +62,13 @@ function Home() {
   const fetchMatchesData = async () => {
     try {
       const fetchedMatches = await fetchMatches();
+      const usersSnapshot = await getDocs(collection(db, "users"));
+
+      const usersPointsMap = usersSnapshot.docs.reduce((acc, doc) => {
+        const userData = doc.data();
+        acc[doc.id] = userData.points; // Assuming the user ID is the document ID
+        return acc;
+      }, {});
 
       const formattedMatches = fetchedMatches.map((match) => {
         const teamACount = (match.teamA || []).filter(
@@ -78,13 +91,13 @@ function Home() {
           teamA: (match.teamA || []).map((player) => ({
             name: player?.name || "",
             img: ImageUrl,
-            point: player?.point ?? 0,
+            point: usersPointsMap[player?.userId] ?? 0,
             userId: player?.userId,
           })),
           teamB: (match.teamB || []).map((player) => ({
             name: player?.name || "",
             img: ImageUrl,
-            point: player?.point ?? 0,
+            point: usersPointsMap[player?.userId] ?? 0,
             userId: player?.userId,
           })),
           backgroundImage:
@@ -98,6 +111,7 @@ function Home() {
           pending: match.pending || [],
         };
       });
+
       setMatches(formattedMatches);
     } catch (error) {
       console.error("Error fetching matches: ", error);

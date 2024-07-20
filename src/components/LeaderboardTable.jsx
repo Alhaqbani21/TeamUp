@@ -21,7 +21,7 @@ function LeaderboardTable({ players }) {
     <div className="w-[70%] max-md:w-[90%]">
       {players.map((player, index) => (
         <div
-          key={player.rank}
+          key={player.id}
           className={`flex items-center p-4 ${
             index % 2 === 0 ? 'bg-primary' : 'bg-[#3146617c]'
           } rounded-lg my-2 shadow-lg`}

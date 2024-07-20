@@ -20,6 +20,8 @@ import {
 import { useAuth } from '../contexts/AuthContext';
 import SideBar from '../components/SideBar';
 import BottomNavBar from '../components/BottomNavBar';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export default function MatchPage() {
   const [teamA, setteamA] = useState('TeamA');
@@ -73,6 +75,7 @@ export default function MatchPage() {
             [`team${team}`]: newTeam,
           };
         });
+        toast.success('Player has been accepted');
       } else {
         console.error('Player not found in pending array.');
       }
@@ -82,25 +85,55 @@ export default function MatchPage() {
   };
 
   const handleReject = async (player) => {
-    const matchRef = doc(db, 'matches', id);
-    const matchSnapshot = await getDoc(matchRef);
-    const matchData = matchSnapshot.data();
+    toast.warn(
+      ({ closeToast }) => (
+        <div className="flex gap-2">
+          <p>Are you sure?</p>
+          <button
+            className="border-2 border-[#0c0c0c] w-[3em] rounded-full"
+            onClick={async () => {
+              const matchRef = doc(db, 'matches', id);
+              const matchSnapshot = await getDoc(matchRef);
+              const matchData = matchSnapshot.data();
 
-    // Find the player in the pending array to ensure exact match for arrayRemove
-    const playerToRemove = matchData.pending.find(
-      (p) => p.userId === player.userId
+              // Find the player in the pending array to ensure exact match for arrayRemove
+              const playerToRemove = matchData.pending.find(
+                (p) => p.userId === player.userId
+              );
+
+              if (playerToRemove) {
+                await updateDoc(matchRef, {
+                  pending: arrayRemove(playerToRemove),
+                });
+
+                setMatchData((prevData) => ({
+                  ...prevData,
+                  pending: prevData.pending.filter(
+                    (p) => p.userId !== player.userId
+                  ),
+                }));
+                toast.success('Player has been rejected');
+              } else {
+                toast.error('Player not found in the pending list');
+              }
+              closeToast();
+            }}
+          >
+            Yes
+          </button>
+          <button
+            className="border-2 border-[#0c0c0c] w-[3em] rounded-full"
+            onClick={() => {
+              toast.warn('Rejection cancelled');
+              closeToast();
+            }}
+          >
+            No
+          </button>
+        </div>
+      ),
+      { autoClose: false }
     );
-
-    if (playerToRemove) {
-      await updateDoc(matchRef, {
-        pending: arrayRemove(playerToRemove),
-      });
-
-      setMatchData((prevData) => ({
-        ...prevData,
-        pending: prevData.pending.filter((p) => p.userId !== player.userId),
-      }));
-    }
   };
 
   useEffect(() => {
@@ -178,7 +211,10 @@ export default function MatchPage() {
     <>
       <div className="h-screen w-full bg-base-100 relative flex">
         <SideBar />
+        <ToastContainer autoClose={2000} />
+
         <BottomNavBar />
+
         <div className="w-full h-full flex justify-between">
           <main className="hero min-h-screen rounded-xl">
             <div

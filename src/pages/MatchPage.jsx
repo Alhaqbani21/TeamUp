@@ -214,10 +214,7 @@ export default function MatchPage() {
         <ToastContainer autoClose={2000} />
 
         <BottomNavBar />
-<<<<<<< HEAD
-=======
 
->>>>>>> Amal
         <div className="w-full h-full flex justify-between">
           <main className="hero min-h-screen rounded-xl">
             <div

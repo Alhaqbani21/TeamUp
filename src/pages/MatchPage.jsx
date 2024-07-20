@@ -41,7 +41,6 @@ export default function MatchPage() {
     if (emptyIndex !== -1) {
       teamArray[emptyIndex] = {
         name: player.name,
-        point: player.point,
         userId: player.userId,
       };
 

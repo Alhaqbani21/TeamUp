@@ -9,8 +9,6 @@ import Timer from "../components/Timer";
 import DetailePlayers from "../components/DetailePlayers";
 import { useParams } from "react-router-dom";
 import { db } from "../config/firebase";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 import {
   doc,
   getDoc,
@@ -22,6 +20,8 @@ import {
 import { useAuth } from "../contexts/AuthContext";
 import SideBar from "../components/SideBar";
 import BottomNavBar from "../components/BottomNavBar";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export default function MatchPage() {
   const [teamA, setteamA] = useState("TeamA");
@@ -214,6 +214,10 @@ export default function MatchPage() {
         <ToastContainer autoClose={2000} />
 
         <BottomNavBar />
+<<<<<<< HEAD
+=======
+
+>>>>>>> Amal
         <div className="w-full h-full flex justify-between">
           <main className="hero min-h-screen rounded-xl">
             <div

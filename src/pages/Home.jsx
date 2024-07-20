@@ -70,7 +70,23 @@ function Home() {
         acc[doc.id] = userData.points; // Assuming the user ID is the document ID
         return acc;
       }, {});
-
+      const today = new Date().getDate();
+      const monthArray = [
+        'Jan',
+        'Feb',
+        'Mar',
+        'Apr',
+        'May',
+        'Jun',
+        'Jul',
+        'Aug',
+        'Sep',
+        'Oct',
+        'Nov',
+        'Dec',
+      ];
+      const month = monthArray[new Date().getMonth()];
+     
       const formattedMatches = fetchedMatches.map((match) => {
         const teamACount = (match.teamA || []).filter(
           (player) => player && player.name
@@ -86,9 +102,9 @@ function Home() {
           stadiumName: `${match.stadiumName} `,
           distance: match.distance,
           price: match.price,
-          date: "15 Jul",
+          date:`${today} ${month}`,
           time: match.time,
-          status: "Upcoming",
+          // status: "Upcoming",
           teamA: (match.teamA || []).map((player) => ({
             name: player?.name || "",
             img: ImageUrl,

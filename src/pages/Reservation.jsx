@@ -1,27 +1,27 @@
-import React from 'react';
-import SideBar from '../components/SideBar';
-import BottomNavBar from '../components/BottomNavBar';
-import { collection, doc, getDoc, getDocs } from 'firebase/firestore';
-import { auth, db } from '../config/firebase';
-import { Link, useNavigate } from 'react-router-dom';
-import VollyballImage from '../assets/VollyballImage.png';
-import basketBallImage from '../assets/basketBallImage.png';
-import padelImage from '../assets/padel_Image.png';
-import basketBall from '../assets/basket_Ball.png';
-import VollyBall from '../assets/VollyBall.png';
-import NoMatch from '../assets/Nomatch.png';
-import win from '../assets/win.png';
-import team1 from '../assets/person2.png';
-import team2 from '../assets/person3.png';
+import React from "react";
+import SideBar from "../components/SideBar";
+import BottomNavBar from "../components/BottomNavBar";
+import { collection, doc, getDoc, getDocs } from "firebase/firestore";
+import { auth, db } from "../config/firebase";
+import { Link, useNavigate } from "react-router-dom";
+import VollyballImage from "../assets/VollyballImage.png";
+import basketBallImage from "../assets/basketBallImage.png";
+import padelImage from "../assets/padel_Image.png";
+import basketBall from "../assets/basket_Ball.png";
+import VollyBall from "../assets/VollyBall.png";
+import NoMatch from "../assets/Nomatch.png";
+import win from "../assets/win.png";
+import team1 from "../assets/person2.png";
+import team2 from "../assets/person3.png";
 export default function Reservation() {
   const backgroundImagePadel =
-    'https://champs-sportsclub.com/wp-content/uploads/2024/05/Playing-Tennis-padel-1.jpg';
+    "https://champs-sportsclub.com/wp-content/uploads/2024/05/Playing-Tennis-padel-1.jpg";
   const [matches, setMatches] = React.useState([]);
   const user = auth.currentUser;
   const navigate = useNavigate();
   React.useEffect(() => {
     const fetchMatchData = async () => {
-      const matchRef = collection(db, 'matches');
+      const matchRef = collection(db, "matches");
 
       const matchSnapshot = await getDocs(matchRef);
 
@@ -34,6 +34,7 @@ export default function Reservation() {
       data.map((match) => {
         const filterTeamA = match.teamA.filter((e) => e !== null);
         const filterTeamB = match.teamB.filter((e) => e !== null);
+
         if (match.Admin.userId == user.uid) {
           array.push(match);
         } else if (filterTeamA.find((e) => e.userId == user.uid)) {
@@ -42,6 +43,7 @@ export default function Reservation() {
           array.push(match);
         }
       });
+
       setMatches(array);
     };
     fetchMatchData();
@@ -53,12 +55,12 @@ export default function Reservation() {
       <BottomNavBar />
       <div className="w-full h-full flex  justify-between ">
         {/* Open the modal using document.getElementById('ID').showModal() method */}
-        {/* <button
-          className="btn m-9"
+        <button
+          className="btn absolute m-9"
           onClick={() => document.getElementById("my_modal_2").showModal()}
         >
           open modal
-        </button> */}
+        </button>
         <dialog id="my_modal_2" className="modal">
           <div className="modal-box flex flex-col items-center">
             <h3 className="font-bold flex flex-col items-center text-lg">
@@ -107,25 +109,32 @@ export default function Reservation() {
           <main className="w-full mx-1 h-full flex-row flex overflow-y-auto ">
             <div className="flex flex-col w-full my-4">
               <div className="text-center text-5xl p-2 tracking-widest text-secondary">
-                My matches
+                my matches
               </div>
               <div className=" grid max-sm:grid-cols-1 grid-cols-3 w-[90vw] gap-10 m-auto items-center  ">
                 {matches.map((e, index) => (
                   <div
                     key={index}
-                    className={`w-[30vw]  max-sm:w-full h-max pb-4 shadow-xl bg-primary overflow-hidden relative rounded-md`}
+                    className={`w-[30vw]  max-sm:w-full h-max pb-4  bg-primary  overflow-hiddn relative rounded-md`}
                     style={{
                       backgroundImage: `url(${
-                        e.category === 'Padel'
+                        e.category === "Padel"
                           ? backgroundImagePadel
-                          : e.category === 'Basketball'
+                          : e.category === "Basketball"
                           ? basketBallImage
                           : VollyballImage
                       })`,
-                      backgroundSize: 'cover',
-                      backgroundPosition: 'center',
+                      backgroundSize: "cover",
+                      backgroundPosition: "center",
                     }}
                   >
+                    <div>
+                      {e.Admin.userId == user.uid && (
+                        <span className="badge outline-none border-none bg-orange-300 p-3 right-3 z-10 text-white -top-2 absolute ">
+                        Requst  {e.pending.length}
+                        </span>
+                      )}
+                    </div>
                     <div className="absolute inset-0 bg-black opacity-50 filter blur-lg"></div>
                     <div className="relative p-4 flex flex-col  justify-center">
                       <div className="flex justify-between items-center  py-2">
@@ -153,7 +162,7 @@ export default function Reservation() {
                           [...e.teamA, ...e.teamB].filter((e) => e !== null)
                             .length
                             ? `bg-gray-400`
-                            : 'bg-secondary'
+                            : "bg-secondary"
                         } py-2 px-4 rounded-lg`}
                       >
                         <span className="font-medium text-white">
@@ -175,7 +184,7 @@ export default function Reservation() {
                                   (e) => e !== null
                                 ).length
                               }/${e.teamA.length + e.teamB.length}`}</span>
-                              {' players joined'}
+                              {" players joined"}
                             </>
                           )}
                         </span>

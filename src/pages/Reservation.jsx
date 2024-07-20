@@ -1,7 +1,5 @@
 import React from "react";
 import SideBar from "../components/SideBar";
-// import AA from "../components/AA";
-// import Side from '../components/Side';
 import BottomNavBar from "../components/BottomNavBar";
 import { collection, doc, getDoc, getDocs } from "firebase/firestore";
 import { auth, db } from "../config/firebase";
@@ -43,15 +41,7 @@ export default function Reservation() {
         }
       });
       setMatches(array);
-      // console.log(matches);
-      // setMatchData({
-      //   ...data,
-      //   teamA: data.teamA || [null, null],
-      //   teamB: data.teamB || [null, null],
-      //   pending: data.pending || [],
-      // });
-      // }
-      // setLoading(false);
+    
     };
     fetchMatchData();
   }, []);
@@ -62,12 +52,16 @@ export default function Reservation() {
       <BottomNavBar />
       <div className="w-full h-full flex  justify-between ">
         {matches.length ? (
-          <main className="w-full mx-9 h-full flex-row flex relative overflow-y-auto overflow-x-hidden ">
+          <main className="w-full mx-1 h-full flex-row flex overflow-y-auto ">
             <div className="flex flex-col w-full my-4">
-              <div className="p-8  grid grid-cols-3 items-center w-full ">
-                {matches.map((e) => (
+              <div className="text-center text-5xl p-2 tracking-widest text-secondary">
+                my matches
+              </div>
+              <div className=" grid max-sm:grid-cols-1 grid-cols-3 w-[90vw] gap-10 m-auto items-center  ">
+                {matches.map((e, index) => (
                   <div
-                    className={`w-96 h-max pb-4 mb-4 shadow-xl bg-primary overflow-hidden relative rounded-md`}
+                    key={index}
+                    className={`w-[30vw]  max-sm:w-full h-max pb-4 shadow-xl bg-primary overflow-hidden relative rounded-md`}
                     style={{
                       backgroundImage: `url(${
                         e.category === "Padel"

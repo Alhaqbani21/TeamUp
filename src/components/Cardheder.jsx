@@ -1,10 +1,11 @@
-import React from 'react';
-import { Fade } from 'react-awesome-reveal';
-import padelImage from '../assets/padel_Image.png';
-import basketBall from '../assets/basket_Ball.png';
-import VollyBall from '../assets/VollyBall.png';
-import CardCategory from '../components/CardCategory';
+// import React from "react";
+import { Fade } from "react-awesome-reveal";
+import padelImage from "../assets/padel_Image.png";
+import basketBall from "../assets/basket_Ball.png";
+import VollyBall from "../assets/VollyBall.png";
+import CardCategory from "../components/CardCategory";
 
+// eslint-disable-next-line react/prop-types
 function Cardheder({ handleCategoryClick, selectedCategory }) {
   return (
     <>
@@ -14,25 +15,25 @@ function Cardheder({ handleCategoryClick, selectedCategory }) {
       <Fade triggerOnce={true} direction="left">
         <div className="flex justify-center items-center gap-3 h-min max-md:flex-col py-12">
           <CardCategory
-            title={'Padel'}
-            bgColor={'green-400'}
+            title={"Padel"}
+            bgColor={"green-400"}
             img={padelImage}
-            onClick={() => handleCategoryClick('Padel')}
-            isSelected={selectedCategory === 'Padel'}
+            onClick={() => handleCategoryClick("Padel")}
+            isSelected={selectedCategory === "Padel"}
           />
           <CardCategory
-            bgColor={'orange-400'}
+            bgColor={"orange-400"}
             img={basketBall}
-            title={'Basketball'}
-            onClick={() => handleCategoryClick('Basketball')}
-            isSelected={selectedCategory === 'Basketball'}
+            title={"Basketball"}
+            onClick={() => handleCategoryClick("Basketball")}
+            isSelected={selectedCategory === "Basketball"}
           />
           <CardCategory
-            bgColor={'cyan-400'}
+            bgColor={"cyan-400"}
             img={VollyBall}
-            title={'Volleyball'}
-            onClick={() => handleCategoryClick('Volleyball')}
-            isSelected={selectedCategory === 'Volleyball'}
+            title={"Volleyball"}
+            onClick={() => handleCategoryClick("Volleyball")}
+            isSelected={selectedCategory === "Volleyball"}
           />
         </div>
       </Fade>

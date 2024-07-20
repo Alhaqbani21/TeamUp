@@ -101,13 +101,13 @@ function Login() {
                   <button
                     onClick={handleGoogleSignIn}
                     className="cursor-pointer my-3 w-full inline-block pt-4 pr-5 pb-4 pl-5 text-xl font-medium text-center text-white 
-    rounded-lg transition duration-200   border border-gray-600"
+                   rounded-lg transition duration-200   border border-gray-600"
                     data-ripple-light="true"
                   >
                     <div className="flex items-center justify-center ">
                       <img className="w-[3em]" src={image} alt="Google" />
                       <p className="text-sm text-gray-600 transition duration-200 ">
-                        Sign Up with Google
+                        Login with Google
                       </p>
                     </div>
                   </button>

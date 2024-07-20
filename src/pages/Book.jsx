@@ -1,16 +1,16 @@
-import { Fade } from 'react-awesome-reveal';
-import SideBar from '../components/SideBar';
-import Cardheder from '../components/Cardheder';
-import { Link } from 'react-router-dom';
-import BottomNavBar from '../components/BottomNavBar';
-import { getDocs, collection } from 'firebase/firestore';
-import { db } from '../config/firebase';
-import { useEffect, useState } from 'react';
+import { Fade } from "react-awesome-reveal";
+import SideBar from "../components/SideBar";
+import Cardheder from "../components/Cardheder";
+import { Link } from "react-router-dom";
+import BottomNavBar from "../components/BottomNavBar";
+import { getDocs, collection } from "firebase/firestore";
+import { db } from "../config/firebase";
+import { useEffect, useState } from "react";
 
 function Book() {
   const [data, setData] = useState([]);
-  const [selectedCategory, setSelectedCategory] = useState('');
-  const dataBase = collection(db, 'stadium');
+  const [selectedCategory, setSelectedCategory] = useState("");
+  const dataBase = collection(db, "stadium");
 
   useEffect(() => {
     const get = async () => {
@@ -26,7 +26,7 @@ function Book() {
 
   const handleCategoryClick = (category) => {
     setSelectedCategory((prevCategory) =>
-      prevCategory === category ? '' : category
+      prevCategory === category ? "" : category
     );
   };
 
@@ -49,7 +49,9 @@ function Book() {
           <main className="max-w-full h-full flex relative">
             <div className="w-full p-4">
               <h2 className="text-center text-3xl p-2 tracking-widest text-[#007955]">
-                All Stadiums
+                {selectedCategory
+                  ? `${selectedCategory} Stadiums`
+                  : "All Stadiums"}
               </h2>
               <div className="flex space-x-2 justify-center items-center max-sm:flex-col">
                 <div className="grid lg:grid-cols-2 md:grid-cols-2 max-sm:grid-cols-1 gap-8 justify-items-center mt-8 px-4 max-sm:w-[27em]">

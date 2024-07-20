@@ -1,31 +1,31 @@
-import { useState } from "react";
-import image from "../assets/googel.png";
+import { useState } from 'react';
+import image from '../assets/googel.png';
 
 import {
   signInWithEmailAndPassword,
   GoogleAuthProvider,
   signInWithPopup,
-} from "firebase/auth";
-import { auth, db } from "../config/firebase";
-import { Link, useNavigate } from "react-router-dom";
-import { setDoc, doc, getDoc } from "firebase/firestore";
+} from 'firebase/auth';
+import { auth, db } from '../config/firebase';
+import { Link, useNavigate } from 'react-router-dom';
+import { setDoc, doc, getDoc } from 'firebase/firestore';
 
 // import image1 from "../assets/image1.jpg";
 
 function Login() {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [error, setError] = useState("");
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
   const navigate = useNavigate();
 
   async function handleLogin() {
     if (email && password) {
       try {
         await signInWithEmailAndPassword(auth, email, password);
-        navigate("../Home");
+        navigate('../Home');
       } catch (error) {
         setError(error.message);
-        console.error("Error logging in: ", error);
+        console.error('Error logging in: ', error);
       }
     }
   }
@@ -37,39 +37,31 @@ function Login() {
       const user = result.user;
 
       // Check if the user document exists in users collection
-      const userDoc = await getDoc(doc(db, "users", user.uid));
+      const userDoc = await getDoc(doc(db, 'users', user.uid));
       if (!userDoc.exists()) {
         // Add user to users collection
-        await setDoc(doc(db, "users", user.uid), {
+        await setDoc(doc(db, 'users', user.uid), {
           name: user.displayName,
           email: user.email,
           joinedAt: formatDate(new Date().toISOString()),
-          location: "Saudi Arabia, Riyadh",
+          location: 'Saudi Arabia, Riyadh',
           points: 0,
           matchesPlayed: 0,
         });
       }
 
       // Check if the user document exists in leaderboard collection
-      const leaderboardDoc = await getDoc(doc(db, "leaderboard", user.uid));
-      if (!leaderboardDoc.exists()) {
-        // Add user to leaderboard collection
-        await setDoc(doc(db, "leaderboard", user.uid), {
-          name: user.displayName,
-          points: 0,
-        });
-      }
 
-      navigate("../Home");
+      navigate('../Home');
     } catch (error) {
-      console.error("Error signing up with Google: ", error);
+      console.error('Error signing up with Google: ', error);
       // Handle errors appropriately
     }
   }
 
   // to format the date for the JoindAt
   function formatDate(dateString) {
-    const options = { year: "numeric", month: "long", day: "numeric" };
+    const options = { year: 'numeric', month: 'long', day: 'numeric' };
     return new Date(dateString).toLocaleDateString(undefined, options);
   }
 
@@ -148,8 +140,8 @@ function Login() {
                     />
                   </div>
                   <p className="text-center text-sm mt-2">
-                    I Do not have an account?{" "}
-                    <Link className="text-blue-500 underline" to={"../SignUp"}>
+                    I Do not have an account?{' '}
+                    <Link className="text-blue-500 underline" to={'../SignUp'}>
                       SignUp
                     </Link>
                   </p>

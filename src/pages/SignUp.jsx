@@ -1,20 +1,20 @@
-import { Link, useNavigate } from "react-router-dom";
-import image from "../assets/googel.png";
-import { auth, db } from "../config/firebase";
+import { Link, useNavigate } from 'react-router-dom';
+import image from '../assets/googel.png';
+import { auth, db } from '../config/firebase';
 import {
   createUserWithEmailAndPassword,
   GoogleAuthProvider,
   signInWithPopup,
-} from "firebase/auth";
-import { useState } from "react";
-import { setDoc, doc, getDoc } from "firebase/firestore";
+} from 'firebase/auth';
+import { useState } from 'react';
+import { setDoc, doc, getDoc } from 'firebase/firestore';
 
 // import image1 from "../assets/image1.jpg";
 
 function SignUp() {
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   const navigate = useNavigate();
 
   async function signUpEmailAndPassword() {
@@ -28,24 +28,18 @@ function SignUp() {
         const user = userCredential.user;
 
         // Add user to users collection
-        await setDoc(doc(db, "users", user.uid), {
+        await setDoc(doc(db, 'users', user.uid), {
           name: name,
           email: email,
           joinedAt: formatDate(new Date().toISOString()),
-          location: "Saudi Arabia, Riyadh",
+          location: 'Saudi Arabia, Riyadh',
           points: 0,
           matchesPlayed: 0,
         });
 
-        // Add user to leaderboard collection
-        await setDoc(doc(db, "leaderboard", user.uid), {
-          name: name,
-          points: 0,
-        });
-
-        navigate("../login");
+        navigate('../login');
       } catch (error) {
-        console.error("Error signing up: ", error);
+        console.error('Error signing up: ', error);
         // Handle errors appropriately
       }
     }
@@ -58,38 +52,28 @@ function SignUp() {
       const user = result.user;
 
       // Check if the user document exists in users collection
-      const userDoc = await getDoc(doc(db, "users", user.uid));
+      const userDoc = await getDoc(doc(db, 'users', user.uid));
       if (!userDoc.exists()) {
         // Add user to users collection
-        await setDoc(doc(db, "users", user.uid), {
+        await setDoc(doc(db, 'users', user.uid), {
           name: user.displayName,
           email: user.email,
           joinedAt: formatDate(new Date().toISOString()),
-          location: "Saudi Arabia, Riyadh",
+          location: 'Saudi Arabia, Riyadh',
           points: 0,
           matchesPlayed: 0,
         });
       }
 
-      // Check if the user document exists in leaderboard collection
-      const leaderboardDoc = await getDoc(doc(db, "leaderboard", user.uid));
-      if (!leaderboardDoc.exists()) {
-        // Add user to leaderboard collection
-        await setDoc(doc(db, "leaderboard", user.uid), {
-          name: user.displayName,
-          points: 0,
-        });
-      }
-
-      navigate("../Home");
+      navigate('../Home');
     } catch (error) {
-      console.error("Error signing up with Google: ", error);
+      console.error('Error signing up with Google: ', error);
       // Handle errors appropriately
     }
   }
 
   function formatDate(dateString) {
-    const options = { year: "numeric", month: "long", day: "numeric" };
+    const options = { year: 'numeric', month: 'long', day: 'numeric' };
     return new Date(dateString).toLocaleDateString(undefined, options);
   }
 
@@ -186,8 +170,8 @@ function SignUp() {
                     />
                   </div>
                   <p className=" text-center text-sm ">
-                    Do you have an account?{" "}
-                    <Link className="text-blue-500 underline" to={"../login"}>
+                    Do you have an account?{' '}
+                    <Link className="text-blue-500 underline" to={'../login'}>
                       Login
                     </Link>
                   </p>

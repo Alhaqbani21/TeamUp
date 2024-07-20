@@ -1,16 +1,16 @@
-import React, { useEffect, useState } from "react";
-import SideBar from "../components/SideBar";
-import CardCategory from "../components/CardCategory";
-import padelImage from "../assets/padel_Image.png";
-import basketBall from "../assets/basket_Ball.png";
-import VollyBall from "../assets/VollyBall.png";
-import MatchCard from "../components/MatchCard";
-import { Fade } from "react-awesome-reveal";
-import basketBallImage from "../assets/basketBallImage.png";
-import BottomNavBar from "../components/BottomNavBar";
-import { useAuth } from "../contexts/AuthContext";
-import { useNavigate } from "react-router-dom";
-import { db } from "../config/firebase";
+import React, { useEffect, useState } from 'react';
+import SideBar from '../components/SideBar';
+import CardCategory from '../components/CardCategory';
+import padelImage from '../assets/padel_Image.png';
+import basketBall from '../assets/basket_Ball.png';
+import VollyBall from '../assets/VollyBall.png';
+import MatchCard from '../components/MatchCard';
+import { Fade } from 'react-awesome-reveal';
+import basketBallImage from '../assets/basketBallImage.png';
+import BottomNavBar from '../components/BottomNavBar';
+import { useAuth } from '../contexts/AuthContext';
+import { useNavigate } from 'react-router-dom';
+import { db } from '../config/firebase';
 import {
   updateDoc,
   arrayUnion,
@@ -18,30 +18,31 @@ import {
   getDoc,
   getDocs,
   collection,
-} from "firebase/firestore";
-import { fetchMatches } from "../services/matchesService";
-import SortComponent from "../components/SortComponent";
-import moment from "moment"; // Import moment
-import VollyballImage from "../assets/VollyballImage.png";
+} from 'firebase/firestore';
+import { fetchMatches } from '../services/matchesService';
+import SortComponent from '../components/SortComponent';
+import moment from 'moment'; // Import moment
+import VollyballImage from '../assets/VollyballImage.png';
+import { ToastContainer, toast } from 'react-toastify';
 
 function Home() {
   const navigate = useNavigate();
   const { currentUser } = useAuth();
   const [matches, setMatches] = useState([]);
   const [userData, setUserData] = useState(null);
-  const [sortOption, setSortOption] = useState("");
-  const [searchInput, setSearchInput] = useState("");
-  const [searchQuery, setSearchQuery] = useState("");
-  const [selectedCategory, setSelectedCategory] = useState("All");
+  const [sortOption, setSortOption] = useState('');
+  const [searchInput, setSearchInput] = useState('');
+  const [searchQuery, setSearchQuery] = useState('');
+  const [selectedCategory, setSelectedCategory] = useState('All');
 
   const ImageUrl =
-    "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAOEAAADhCAMAAAAJbSJIAAAAM1BMVEXY2Nitra2qqqqurq7b29uzs7PIyMjS0tLV1dW8vLzU1NTQ0NDAwMDDw8PHx8fExMS3t7dSrNoXAAAFPklEQVR4nO2d25bqIAxAWxp6r/b/v/aItVpnHC00NzzZL766F5AAhVAUhmEYhmEYhmEYhkLgivS/IOHi1Q91PU3jOE3nemiKbzKFoqk7726Ut99qnobiGyyhqLvq4vWCi6af+rwloRjm13YPy2pqs3WEYqre6q2S85ClI/Td++bbSvr8HKHo9urdHOu8HGGK0Vsc5z4fR2h8VAOujmM2imOKX1CssmhGaJMa8OZ41q8IdbLeVXGWFvgEpPbQO1Uv7fCe+ajgBdW5EUOwdIoVD8SYJ0W12R9JUK0ioAkq7agQNxH9pKgvoh5PEz9opY1+ADWyYOmV9dMGW7B0nS7FCltQWUDFjTJ3RUVDcaAQVDUUCfpowJ2UKNL00auikn6KH0fv6Iin4MkEL7M3absAeq7foiHYUDZhSIrSfmSZYqUSb0TaJtQwEklHYWAWbkSYiQXFG7GnbsKylN3rR1/3vkJSsACiGekW2YRBnCoWJGMNjAyCsvNvhk4q200JVxVb5FYYMPEYlnKG5Ol+wTVShgWPYOnOUoIsuSIgli9OXIZSSyjomATFMiL10nBjKLW+4BIs3UlGsOUahmKnpdhCqdishnwD44FQumA0lEkXbLNSOUOOHYwbTkKQMeH/F4YyvdTa0AxjDK2X0hieGbOFZXwaGGdtQh+7GdcWQjNvpv3ggNSeMN8KeBIyZPlqcTUU+nLBteUtt+nN823tiowgY7oQOxnFcExhQeywAsdX/IDcJ1KuubfgZ26mTzOCZ9uYdr0FzwzxfJuRPPfFtKEoJ8iUL0QPe3N0U+HDiQzRVPiUcEsuKH1Fnz7pi98qIV/oi18qoV4kCp6HWiFuROmD7AV1I6q48UzZiDpK1tBdzlMQSG+QGUrnwhUgm9hU0morVLNT6esyG2iWGDrCzAJNP/XSWlsApfTOMypS4Qb0jUVVJRUC2ENR0yBcwC5uomA++hPcaCN//fcFmBtvalL9M4iKSqajv8BSVFx2D+eIjdIuuoAQUbXXhoThqKD4ztNHjpQvVVR05x0H4o3zTQaC156a5qhvpvY3Kc2YV1FvaGKXU65UUIkmChhiIo4rxyKjBrwB9V5H53L0C0DTfY45zvlTxi9AQHF6+/yDc9WYRZXyd4QnPMIDJS/synlqMm6+DVC09bnz6/srAT93df8Vj7A8CC/ntM1woenbr3pHxzAMwzC+nutbfzS5W/4ZQYB2qKdu9pWvCPDed+O5boRmdlA057lyr+bTqFxnsGPdMlsC/PneH5WnHxn34GAYOe3uktWZ5xHB/TsTBJId/VoZ6j3vGRJKzrSdVbD9Ho6E7Zj4Hh46bqISZCxG8x5XUWyNQy87AJ9xI74gW/nAfTiPPRoJj8gmgnxgSkeIeQbzbG3Ldus+CrxvjY1OwZD+cRR7rYJYikq76ALKsQ22CqVJHB+LfIUvEjl6NoXyqggSx07za5vJvOaIIVvVi0McCai6o8xK+uSGs1bZIZIvf+XRRwOJ/VR9oniQWNuFsRbbYZLOFHPV1kEhqdYZY8FADBLaMI9MsZLQiDmNwkD0DRu+Rw+QiA6n+eTClciCbnp2f3cTexszp1SxELkWzi3OBKJiDWeNZzSiSqBkNZ9ZiXoSirF4LiIxK4wsNi9+E9FJcxyGUXtS2U1oFmIGovR/TWT/BniegSZm4pbZ0vDO/scFGF88QGX3nhtjCWtcdgfTTJNFjGE+24jP7F4FZ5oOzdAMc8AMzVA/ZmiG+jFDM9SPGZqhfszQDPVjhmaoHzM0Q/2YoRnqxwzNUD9m+K2G/wBMuHLbUScvSAAAAABJRU5ErkJggg==";
+    'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAOEAAADhCAMAAAAJbSJIAAAAM1BMVEXY2Nitra2qqqqurq7b29uzs7PIyMjS0tLV1dW8vLzU1NTQ0NDAwMDDw8PHx8fExMS3t7dSrNoXAAAFPklEQVR4nO2d25bqIAxAWxp6r/b/v/aItVpnHC00NzzZL766F5AAhVAUhmEYhmEYhmEYhkLgivS/IOHi1Q91PU3jOE3nemiKbzKFoqk7726Ut99qnobiGyyhqLvq4vWCi6af+rwloRjm13YPy2pqs3WEYqre6q2S85ClI/Td++bbSvr8HKHo9urdHOu8HGGK0Vsc5z4fR2h8VAOujmM2imOKX1CssmhGaJMa8OZ41q8IdbLeVXGWFvgEpPbQO1Uv7fCe+ajgBdW5EUOwdIoVD8SYJ0W12R9JUK0ioAkq7agQNxH9pKgvoh5PEz9opY1+ADWyYOmV9dMGW7B0nS7FCltQWUDFjTJ3RUVDcaAQVDUUCfpowJ2UKNL00auikn6KH0fv6Iin4MkEL7M3absAeq7foiHYUDZhSIrSfmSZYqUSb0TaJtQwEklHYWAWbkSYiQXFG7GnbsKylN3rR1/3vkJSsACiGekW2YRBnCoWJGMNjAyCsvNvhk4q200JVxVb5FYYMPEYlnKG5Ol+wTVShgWPYOnOUoIsuSIgli9OXIZSSyjomATFMiL10nBjKLW+4BIs3UlGsOUahmKnpdhCqdishnwD44FQumA0lEkXbLNSOUOOHYwbTkKQMeH/F4YyvdTa0AxjDK2X0hieGbOFZXwaGGdtQh+7GdcWQjNvpv3ggNSeMN8KeBIyZPlqcTUU+nLBteUtt+nN823tiowgY7oQOxnFcExhQeywAsdX/IDcJ1KuubfgZ26mTzOCZ9uYdr0FzwzxfJuRPPfFtKEoJ8iUL0QPe3N0U+HDiQzRVPiUcEsuKH1Fnz7pi98qIV/oi18qoV4kCp6HWiFuROmD7AV1I6q48UzZiDpK1tBdzlMQSG+QGUrnwhUgm9hU0morVLNT6esyG2iWGDrCzAJNP/XSWlsApfTOMypS4Qb0jUVVJRUC2ENR0yBcwC5uomA++hPcaCN//fcFmBtvalL9M4iKSqajv8BSVFx2D+eIjdIuuoAQUbXXhoThqKD4ztNHjpQvVVR05x0H4o3zTQaC156a5qhvpvY3Kc2YV1FvaGKXU65UUIkmChhiIo4rxyKjBrwB9V5H53L0C0DTfY45zvlTxi9AQHF6+/yDc9WYRZXyd4QnPMIDJS/synlqMm6+DVC09bnz6/srAT93df8Vj7A8CC/ntM1woenbr3pHxzAMwzC+nutbfzS5W/4ZQYB2qKdu9pWvCPDed+O5boRmdlA057lyr+bTqFxnsGPdMlsC/PneH5WnHxn34GAYOe3uktWZ5xHB/TsTBJId/VoZ6j3vGRJKzrSdVbD9Ho6E7Zj4Hh46bqISZCxG8x5XUWyNQy87AJ9xI74gW/nAfTiPPRoJj8gmgnxgSkeIeQbzbG3Ldus+CrxvjY1OwZD+cRR7rYJYikq76ALKsQ22CqVJHB+LfIUvEjl6NoXyqggSx07za5vJvOaIIVvVi0McCai6o8xK+uSGs1bZIZIvf+XRRwOJ/VR9oniQWNuFsRbbYZLOFHPV1kEhqdYZY8FADBLaMI9MsZLQiDmNwkD0DRu+Rw+QiA6n+eTClciCbnp2f3cTexszp1SxELkWzi3OBKJiDWeNZzSiSqBkNZ9ZiXoSirF4LiIxK4wsNi9+E9FJcxyGUXtS2U1oFmIGovR/TWT/BniegSZm4pbZ0vDO/scFGF88QGX3nhtjCWtcdgfTTJNFjGE+24jP7F4FZ5oOzdAMc8AMzVA/ZmiG+jFDM9SPGZqhfszQDPVjhmaoHzM0Q/2YoRnqxwzNUD9m+K2G/wBMuHLbUScvSAAAAABJRU5ErkJggg==';
   const backgroundImagePadel =
-    "https://champs-sportsclub.com/wp-content/uploads/2024/05/Playing-Tennis-padel-1.jpg";
+    'https://champs-sportsclub.com/wp-content/uploads/2024/05/Playing-Tennis-padel-1.jpg';
 
   useEffect(() => {
     if (!currentUser) {
-      navigate("/LoginFireBase");
+      navigate('/LoginFireBase');
     } else {
       fetchMatchesData();
       fetchUserData();
@@ -50,19 +51,19 @@ function Home() {
 
   const fetchUserData = async () => {
     try {
-      const userDoc = await getDoc(doc(db, "users", currentUser.uid));
+      const userDoc = await getDoc(doc(db, 'users', currentUser.uid));
       if (userDoc.exists()) {
         setUserData(userDoc.data());
       }
     } catch (error) {
-      console.error("Error fetching user data: ", error);
+      console.error('Error fetching user data: ', error);
     }
   };
 
   const fetchMatchesData = async () => {
     try {
       const fetchedMatches = await fetchMatches();
-      const usersSnapshot = await getDocs(collection(db, "users"));
+      const usersSnapshot = await getDocs(collection(db, 'users'));
 
       const usersPointsMap = usersSnapshot.docs.reduce((acc, doc) => {
         const userData = doc.data();
@@ -85,25 +86,25 @@ function Home() {
           stadiumName: `${match.stadiumName} `,
           distance: match.distance,
           price: match.price,
-          date: "15 Jul",
+          date: '15 Jul',
           time: match.time,
-          status: "Upcoming",
+          status: 'Upcoming',
           teamA: (match.teamA || []).map((player) => ({
-            name: player?.name || "",
+            name: player?.name || '',
             img: ImageUrl,
             point: usersPointsMap[player?.userId] ?? 0,
             userId: player?.userId,
           })),
           teamB: (match.teamB || []).map((player) => ({
-            name: player?.name || "",
+            name: player?.name || '',
             img: ImageUrl,
             point: usersPointsMap[player?.userId] ?? 0,
             userId: player?.userId,
           })),
           backgroundImage:
-            match.category === "Padel"
+            match.category === 'Padel'
               ? backgroundImagePadel
-              : match.category === "Basketball"
+              : match.category === 'Basketball'
               ? basketBallImage
               : VollyballImage,
           category: match.category,
@@ -114,18 +115,17 @@ function Home() {
 
       setMatches(formattedMatches);
     } catch (error) {
-      console.error("Error fetching matches: ", error);
+      console.error('Error fetching matches: ', error);
     }
   };
 
   const handleRequestJoin = async (team, index, matchId) => {
     try {
-      const matchRef = doc(db, "matches", matchId);
+      const matchRef = doc(db, 'matches', matchId);
       await updateDoc(matchRef, {
         pending: arrayUnion({
           userId: currentUser.uid,
           name: currentUser.displayName || userData.name,
-          point: userData.points,
           team: team, // Include the team information
         }),
       });
@@ -134,18 +134,18 @@ function Home() {
       );
       // Fetch updated matches data after the join request
       fetchMatchesData();
-      toast.success("Wait to be accepted");
+      toast.success('Wait to be accepted');
     } catch (error) {
-      console.error("Error requesting to join match: ", error);
+      console.error('Error requesting to join match: ', error);
     }
   };
 
   const sortMatches = (matches, sortOption) => {
-    if (sortOption === "distance") {
+    if (sortOption === 'distance') {
       return matches.sort(
         (a, b) => parseFloat(a.distance) - parseFloat(b.distance)
       );
-    } else if (sortOption === "nearestFull") {
+    } else if (sortOption === 'nearestFull') {
       return matches.sort((a, b) => {
         const aPlayers =
           a.teamA.filter((p) => p.name).length +
@@ -160,8 +160,8 @@ function Home() {
     } else {
       return matches.sort((a, b) => {
         const now = moment();
-        const aTime = moment(a.time.split("-")[0], "h:mmA");
-        const bTime = moment(b.time.split("-")[0], "h:mmA");
+        const aTime = moment(a.time.split('-')[0], 'h:mmA');
+        const bTime = moment(b.time.split('-')[0], 'h:mmA');
         return aTime.diff(now) - bTime.diff(now);
       });
     }
@@ -173,7 +173,7 @@ function Home() {
 
   const handleCategoryClick = (category) => {
     if (selectedCategory === category) {
-      setSelectedCategory("All");
+      setSelectedCategory('All');
     } else {
       setSelectedCategory(category);
     }
@@ -184,14 +184,14 @@ function Home() {
   };
 
   const handleKeyDown = (event) => {
-    if (event.key === "Enter") {
+    if (event.key === 'Enter') {
       handleSearch();
     }
   };
 
   const filteredMatches = matches.filter((match) => {
     const matchesCategory =
-      selectedCategory === "All" || match.category === selectedCategory;
+      selectedCategory === 'All' || match.category === selectedCategory;
     const matchesSearchInput = match.stadiumName
       .toLowerCase()
       .includes(searchQuery.toLowerCase());
@@ -222,26 +222,26 @@ function Home() {
             <Fade triggerOnce={true} direction="left">
               <div className="bg-base-100 flex justify-center items-center gap-3 h-min max-md:flex-col py-12 ">
                 <CardCategory
-                  title={"Padel"}
-                  bgColor={"green-400"}
+                  title={'Padel'}
+                  bgColor={'green-400'}
                   img={padelImage}
-                  onClick={() => handleCategoryClick("Padel")}
-                  isSelected={selectedCategory === "Padel"}
+                  onClick={() => handleCategoryClick('Padel')}
+                  isSelected={selectedCategory === 'Padel'}
                 />
 
                 <CardCategory
-                  bgColor={"orange-400"}
+                  bgColor={'orange-400'}
                   img={basketBall}
-                  title={"Basket ball"}
-                  onClick={() => handleCategoryClick("Basketball")}
-                  isSelected={selectedCategory === "Basketball"}
+                  title={'Basket ball'}
+                  onClick={() => handleCategoryClick('Basketball')}
+                  isSelected={selectedCategory === 'Basketball'}
                 />
                 <CardCategory
-                  bgColor={"cyan-400"}
+                  bgColor={'cyan-400'}
                   img={VollyBall}
-                  title={"Volly ball"}
-                  onClick={() => handleCategoryClick("Vollyball")}
-                  isSelected={selectedCategory === "Vollyball"}
+                  title={'Volly ball'}
+                  onClick={() => handleCategoryClick('Vollyball')}
+                  isSelected={selectedCategory === 'Vollyball'}
                 />
               </div>
             </Fade>

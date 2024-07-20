@@ -1,42 +1,42 @@
-import { useState } from 'react';
-import image from '../assets/googel.png';
+import { useState } from "react";
+import image from "../assets/googel.png";
 import {
   signInWithEmailAndPassword,
   GoogleAuthProvider,
   signInWithPopup,
-} from 'firebase/auth';
-import { auth, db } from '../config/firebase';
-import { Link, useNavigate } from 'react-router-dom';
-import { setDoc, doc, getDoc } from 'firebase/firestore';
-import { useFormik } from 'formik';
-import * as Yup from 'yup';
+} from "firebase/auth";
+import { auth, db } from "../config/firebase";
+import { Link, useNavigate } from "react-router-dom";
+import { setDoc, doc, getDoc } from "firebase/firestore";
+import { useFormik } from "formik";
+import * as Yup from "yup";
 
 function Login() {
-  const [error, setError] = useState('');
+  const [error, setError] = useState("");
   const navigate = useNavigate();
 
   const validationSchema = Yup.object({
     email: Yup.string()
-      .email('Invalid email address')
-      .required('Email is required'),
+      .email("Invalid email address")
+      .required("Email is required"),
     password: Yup.string()
-      .min(6, 'Password must be at least 6 characters')
-      .required('Password is required'),
+      .min(6, "Password must be at least 6 characters")
+      .required("Password is required"),
   });
 
   const formik = useFormik({
     initialValues: {
-      email: '',
-      password: '',
+      email: "",
+      password: "",
     },
     validationSchema: validationSchema,
     onSubmit: async (values) => {
       try {
         await signInWithEmailAndPassword(auth, values.email, values.password);
-        navigate('../Home');
+        navigate("../Home");
       } catch (error) {
         setError(error.message);
-        console.error('Error logging in: ', error);
+        console.error("Error logging in: ", error);
       }
     },
   });
@@ -48,28 +48,28 @@ function Login() {
       const user = result.user;
 
       // Check if the user document exists in users collection
-      const userDoc = await getDoc(doc(db, 'users', user.uid));
+      const userDoc = await getDoc(doc(db, "users", user.uid));
       if (!userDoc.exists()) {
         // Add user to users collection
-        await setDoc(doc(db, 'users', user.uid), {
+        await setDoc(doc(db, "users", user.uid), {
           name: user.displayName,
           email: user.email,
           joinedAt: formatDate(new Date().toISOString()),
-          location: 'Saudi Arabia, Riyadh',
+          location: "Saudi Arabia, Riyadh",
           points: 0,
           matchesPlayed: 0,
         });
       }
 
-      navigate('../Home');
+      navigate("../Home");
     } catch (error) {
       setError(error.message);
-      console.error('Error signing in with Google: ', error);
+      console.error("Error signing in with Google: ", error);
     }
   }
 
   function formatDate(dateString) {
-    const options = { year: 'numeric', month: 'long', day: 'numeric' };
+    const options = { year: "numeric", month: "long", day: "numeric" };
     return new Date(dateString).toLocaleDateString(undefined, options);
   }
 
@@ -126,8 +126,8 @@ function Login() {
                       type="text"
                       className={`border placeholder-gray-400 focus:outline-none focus:border-black w-full pt-4 pr-4 pb-4 pl-4 mt-2 mr-0 mb-0 ml-0 text-base block bg-white border-gray-300 rounded-md ${
                         formik.touched.email && formik.errors.email
-                          ? 'border-red-500'
-                          : ''
+                          ? "border-red-500"
+                          : ""
                       }`}
                     />
                     {formik.touched.email && formik.errors.email ? (
@@ -149,8 +149,8 @@ function Login() {
                       type="password"
                       className={`border placeholder-gray-400 focus:outline-none focus:border-black w-full pt-4 pr-4 pb-4 pl-4 mt-2 mr-0 mb-0 ml-0 text-base block bg-white border-gray-300 rounded-md ${
                         formik.touched.password && formik.errors.password
-                          ? 'border-red-500'
-                          : ''
+                          ? "border-red-500"
+                          : ""
                       }`}
                     />
                     {formik.touched.password && formik.errors.password ? (
@@ -165,8 +165,8 @@ function Login() {
                     </div>
                   )}
                   <p className="text-center text-sm mt-4">
-                    Do not have an account?{' '}
-                    <Link className="text-blue-500 underline" to={'../SignUp'}>
+                    Do not have an account?{" "}
+                    <Link className="text-blue-500 underline" to={"../SignUp"}>
                       Sign Up
                     </Link>
                   </p>

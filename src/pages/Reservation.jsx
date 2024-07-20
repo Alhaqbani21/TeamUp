@@ -13,10 +13,14 @@ import NoMatch from "../assets/Nomatch.png";
 import win from "../assets/win.png";
 import team1 from "../assets/person2.png";
 import team2 from "../assets/person3.png";
+import { FaUserTie } from "react-icons/fa6";
+
 export default function Reservation() {
   const backgroundImagePadel =
     "https://champs-sportsclub.com/wp-content/uploads/2024/05/Playing-Tennis-padel-1.jpg";
   const [matches, setMatches] = React.useState([]);
+  const [timeModal, setTimeModal] = React.useState("");
+  const [userModal, setUserModal] = React.useState("");
   const user = auth.currentUser;
   const navigate = useNavigate();
   React.useEffect(() => {
@@ -55,63 +59,14 @@ export default function Reservation() {
       <BottomNavBar />
       <div className="w-full h-full flex  justify-between ">
         {/* Open the modal using document.getElementById('ID').showModal() method */}
-        <button
-          className="btn absolute m-9"
-          onClick={() => document.getElementById("my_modal_2").showModal()}
-        >
-          open modal
-        </button>
-        <dialog id="my_modal_2" className="modal">
-          <div className="modal-box flex flex-col items-center">
-            <h3 className="font-bold flex flex-col items-center text-lg">
-              {/* <p className="py-4 text-3xl">Who's the winner</p> */}
-              <p className="py-4 text-3xl">Who wins the match</p>
-              <span>8:00-10:00 PM</span>
-            </h3>
-
-            <img
-              className="w-60"
-              src={win}
-              // "https://i.pinimg.com/564x/57/39/19/573919be00ab8c395668ebde2806d4c2.jpg"
-              alt=""
-            />
-
-            <div className="flex gap-9 ">
-              <label className="label cursor-pointer">
-                <span className="px-2 label-text">Team A</span>
-
-                <input
-                  type="radio"
-                  name="radio-10"
-                  className="radio checked:bg-secondary"
-                  defaultChecked
-                />
-              </label>
-
-              <label className="label cursor-pointer">
-                <span className="px-2 label-text">Team B</span>
-                <input
-                  type="radio"
-                  name="radio-10"
-                  className="radio checked:bg-secondary"
-                  defaultChecked
-                />
-              </label>
-            </div>
-            <button className="btn mt-9 w-20 btn-secondary">send</button>
-          </div>
-          <form method="dialog" className="modal-backdrop">
-            <button>close</button>
-          </form>
-        </dialog>
 
         {matches.length ? (
           <main className="w-full mx-1 h-full flex-row flex overflow-y-auto ">
             <div className="flex flex-col w-full my-4">
               <div className="text-center text-5xl p-2 tracking-widest text-secondary">
-                my matches
+                My matches
               </div>
-              <div className=" grid max-sm:grid-cols-1 grid-cols-3 w-[90vw] gap-10 m-auto items-center  ">
+              <div className="relative grid max-sm:grid-cols-1 grid-cols-3 w-[90vw] gap-10 m-auto items-center  ">
                 {matches.map((e, index) => (
                   <div
                     key={index}
@@ -128,19 +83,51 @@ export default function Reservation() {
                       backgroundPosition: "center",
                     }}
                   >
-                    <div className="absolute inset-0 bg-black opacity-50 filter blur-lg"></div>
-                    <div className="relative p-4 flex flex-col  justify-center">
+                    {Number(e.time.substring(0, 2).split(":").join("")) <
+                      Number(new Date().getHours()) - 12 && (
+                      <button
+                        onClick={() => {
+                          setTimeModal(e.time);
+                          document.getElementById("my_modal_2").showModal();
+                        }}
+                        className=" text-red-600 absolute top-20 left-40 z-10  text-3xl "
+                      >
+                        Finished
+                      </button>
+                    )}
+                    <div
+                      className="absolute inset-0 bg-black opacity-50 filter blur-lg"
+                      style={{
+                        opacity:
+                          Number(e.time.substring(0, 2).split(":").join("")) <
+                            Number(new Date().getHours()) - 12 && "0.7",
+                      }}
+                    ></div>
+
+                    <div
+                      style={{
+                        opacity:
+                          Number(e.time.substring(0, 2).split(":").join("")) <
+                            Number(new Date().getHours()) - 12 && "0.4",
+                      }}
+                      className="relative p-4 flex flex-col  justify-center"
+                    >
                       <div className="flex justify-between items-center  py-2">
                         <div className="flex flex-col w-full justify-center">
                           <div className=" flex justify-between w-full font-bold text-white">
                             <h1 className="text-xl font-bold text-white">
                               {e.stadiumName}
                             </h1>
-
                             <div>
                               {e.Admin.userId == user.uid && (
                                 <span className="badge outline-none border-none bg-orange-300 p-3">
-                                  {e.pending.length} Request
+                                  {e.pending.length == 0 ? (
+                                    <>
+                                      <FaUserTie />
+                                    </>
+                                  ) : (
+                                    <>Request</>
+                                  )}
                                 </span>
                               )}
                             </div>
@@ -151,10 +138,14 @@ export default function Reservation() {
                         </div>
                       </div>
                       <button
+                        disabled={
+                          Number(e.time.substring(0, 2).split(":").join("")) <
+                            Number(new Date().getHours()) - 12 && true
+                        }
                         onClick={() => {
                           navigate(`./${e.id}`);
                         }}
-                        className="w-max p-3 cursor-pointer
+                        className="w-max p-3 
                          text-orange-300 mr-1 font-bold"
                       >
                         details
@@ -206,6 +197,49 @@ export default function Reservation() {
           </div>
         )}
       </div>
+      <dialog id="my_modal_2" className="modal">
+        <div className="modal-box flex flex-col items-center">
+          <h3 className="font-bold flex flex-col items-center text-lg">
+            {/* <p className="py-4 text-3xl">Who's the winner</p> */}
+            <p className="py-4 text-3xl">Who wins the match</p>
+            <span>{timeModal} PM</span>
+          </h3>
+
+          <img
+            className="w-60"
+            src={win}
+            // "https://i.pinimg.com/564x/57/39/19/573919be00ab8c395668ebde2806d4c2.jpg"
+            alt=""
+          />
+
+          <div className="flex gap-9 ">
+            <label className="label cursor-pointer">
+              <span className="px-2 label-text">Team A</span>
+
+              <input
+                type="radio"
+                name="radio-10"
+                className="radio checked:bg-secondary"
+                defaultChecked
+              />
+            </label>
+
+            <label className="label cursor-pointer">
+              <span className="px-2 label-text">Team B</span>
+              <input
+                type="radio"
+                name="radio-10"
+                className="radio checked:bg-secondary"
+                defaultChecked
+              />
+            </label>
+          </div>
+          <button className="btn mt-9 w-20 btn-secondary">send</button>
+        </div>
+        <form method="dialog" className="modal-backdrop">
+          <button>close</button>
+        </form>
+      </dialog>
     </div>
   );
 }

@@ -105,17 +105,6 @@ export default function MatchPage() {
     );
   };
 
-  // const handleReject = async (player) => {
-  //   const matchRef = doc(db, "matches", id);
-  //   await updateDoc(matchRef, {
-  //     pending: arrayRemove(player),
-  //   });
-  //   setMatchData((prevData) => ({
-  //     ...prevData,
-  //     pending: prevData.pending.filter((p) => p.userId !== player.userId),
-  //   }));
-  // };
-
   useEffect(() => {
     const fetchMatchData = async () => {
       const matchRef = doc(db, "matches", id);

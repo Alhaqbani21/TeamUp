@@ -13,11 +13,20 @@ import React, { useState } from "react";
 import { MdOutlineAttachMoney } from "react-icons/md";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import Slider from "react-slick";
+import { FaMapMarkerAlt } from "react-icons/fa";
 
 function Booking() {
   const params = useParams().id;
   const navigate = useNavigate();
-
+  const settings = {
+    dots: true,
+    arrows: false,    infinite: true,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    autoplay: true,
+    autoplaySpeed: 3000,
+  };
   const [isLoading, setIsLoding] = useState(false);
   const [userData, setUserData] = useState({});
   const [dataStadium, setDataStadium] = useState({});
@@ -84,8 +93,8 @@ function Booking() {
         teamA: teamA,
         teamB: teamB,
         category: dataStadium.category,
-        pending: [{}],
         Admin: { name: userData.name, userId: userData.id },
+        pending: [],
       });
 
       array[indexA] = { time: array[indexA].time, isBooked: true };
@@ -113,7 +122,7 @@ function Booking() {
           >
             <ToastContainer autoClose={2000} />
 
-            {console.log(indexA)}
+            {/* {console.log(indexA)} */}
             <div className="hero-overlay bg-black bg-opacity-75"></div>
             <div className="hero-content w-full flex justify-start text-neutral-content text-start">
               <div className="">
@@ -167,37 +176,27 @@ function Booking() {
               <div className="text-xl flex gap-3 flex-col  ">
                 <h1 className="font-medium">{dataStadium.name} Stadium</h1>
                 <div className="flex items-center gap-6 ">
-                  <small>{dataStadium.distance}</small>
+                  <small className="flex text-base">
+                  <FaMapMarkerAlt size={20} className="text-secndary"/>
+
+                    {dataStadium.distance}</small>
                   <div className=" flex text-base">
                     <MdOutlineAttachMoney size={20} className="text-secndary" />
 
                     {dataStadium.price}
                   </div>
                 </div>
-
-                <div className="carousel max-sm:w-[60vw] w-[30vw] h-60 rounded-box">
-                  <div id="slide1" className="carousel-item relative w-full">
-                    <img src={dataStadium.stadiumImg[0]} className="w-full" />
-                    <div className="absolute left-5 right-5 top-1/2 flex -translate-y-1/2 transform justify-between">
-                      <a href="#slide2" className="btn btn-circle">
-                        ❮
-                      </a>
-                      <a href="#slide2" className="btn btn-circle">
-                        ❯
-                      </a>
-                    </div>
-                  </div>
-                  <div id="slide2" className="carousel-item relative w-full">
-                    <img src={dataStadium.stadiumImg[1]} className="w-full " />
-                    <div className="absolute left-5 right-5 top-1/2 flex -translate-y-1/2 transform justify-between">
-                      <a href="#slide1" className="btn btn-circle">
-                        ❮
-                      </a>
-                      <a href="#slide1" className="btn btn-circle">
-                        ❯
-                      </a>
-                    </div>
-                  </div>
+                <div className="slider-container  max-sm:w-[60vw] w-[30vw] h-max rounded-box">
+                  <Slider className="rounded-box " {...settings}>
+                    <img
+                      src={dataStadium.stadiumImg[0]}
+                      className="w-full h-60 rounded-box"
+                    />
+                    <img
+                      src={dataStadium.stadiumImg[1]}
+                      className="w-full  h-60  rounded-box "
+                    />
+                  </Slider>
                 </div>
               </div>
 

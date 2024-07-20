@@ -1,6 +1,10 @@
 import React from 'react';
 
 function TopThree({ players, crown }) {
+  const truncateName = (name) => {
+    return name.length > 12 ? `${name.substring(0, 12)}...` : name;
+  };
+
   return (
     <div className="flex justify-center items-center mb-8 shadow-2xl p-2 rounded-xl ">
       {players[1] && (
@@ -11,7 +15,7 @@ function TopThree({ players, crown }) {
             className="w-24 h-24 rounded-full border-2 border-white"
           />
           <span className="text-lg font-semibold text-primary mt-2 truncate">
-            {players[1].name}
+            {truncateName(players[1].name)}
           </span>
           <span className="text-sm text-blue-500">
             {players[1].points} points
@@ -33,7 +37,7 @@ function TopThree({ players, crown }) {
             />
           </div>
           <span className="text-lg font-semibold text-primary mt-2 truncate">
-            {players[0].name}
+            {truncateName(players[0].name)}
           </span>
           <span className="text-sm text-blue-500">
             {players[0].points} points
@@ -48,7 +52,7 @@ function TopThree({ players, crown }) {
             className="w-24 h-24 rounded-full border-2 border-white"
           />
           <span className="text-lg font-semibold text-primary mt-2 truncate">
-            {players[2].name}
+            {truncateName(players[2].name)}
           </span>
           <span className="text-sm text-blue-500">
             {players[2].points} points

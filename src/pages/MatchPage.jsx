@@ -88,23 +88,6 @@ export default function MatchPage() {
     const matchSnapshot = await getDoc(matchRef);
     const matchData = matchSnapshot.data();
 
-    // Find the player in the pending array to ensure exact match for arrayRemove
-    const playerToRemove = matchData.pending.find(
-      (p) => p.userId === player.userId
-    );
-
-    if (playerToRemove) {
-      await updateDoc(matchRef, {
-        pending: arrayRemove(playerToRemove),
-      });
-
-      setMatchData((prevData) => ({
-        ...prevData,
-        pending: prevData.pending.filter((p) => p.userId !== player.userId),
-      }));
-    }
-  };
-
   useEffect(() => {
     const fetchMatchData = async () => {
       const matchRef = doc(db, "matches", id);

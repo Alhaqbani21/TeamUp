@@ -214,7 +214,10 @@ export default function MatchPage() {
         <ToastContainer autoClose={2000} />
 
         <BottomNavBar />
+<<<<<<< HEAD
 
+=======
+>>>>>>> 21daab3 (Merge branch 'main' of https://github.com/Alhaqbani21/Tuwaiq_Final_Project)
         <div className="w-full h-full flex justify-between">
           <main className="hero min-h-screen rounded-xl">
             <div

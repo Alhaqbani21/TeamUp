@@ -115,7 +115,7 @@ export default function Reservation() {
                 {matches.map((e, index) => (
                   <div
                     key={index}
-                    className={`w-[30vw]  max-sm:w-full h-max pb-4  bg-primary  overflow-hiddn relative rounded-md`}
+                    className={`w-[30vw] overflow-hidden  max-sm:w-full h-max pb-4  bg-primary  overflow-hiddn relative rounded-md`}
                     style={{
                       backgroundImage: `url(${
                         e.category === "Padel"
@@ -128,20 +128,23 @@ export default function Reservation() {
                       backgroundPosition: "center",
                     }}
                   >
-                    <div>
-                      {e.Admin.userId == user.uid && (
-                        <span className="badge outline-none border-none bg-orange-300 p-3 right-3 z-10 text-white -top-2 absolute ">
-                        Requst  {e.pending.length}
-                        </span>
-                      )}
-                    </div>
                     <div className="absolute inset-0 bg-black opacity-50 filter blur-lg"></div>
                     <div className="relative p-4 flex flex-col  justify-center">
                       <div className="flex justify-between items-center  py-2">
-                        <div className="flex flex-col justify-center">
-                          <h1 className="text-xl font-bold text-white">
-                            {e.stadiumName}
-                          </h1>
+                        <div className="flex flex-col w-full justify-center">
+                          <div className=" flex justify-between w-full font-bold text-white">
+                            <h1 className="text-xl font-bold text-white">
+                              {e.stadiumName}
+                            </h1>
+
+                            <div>
+                              {e.Admin.userId == user.uid && (
+                                <span className="badge outline-none border-none bg-orange-300 p-3">
+                                  {e.pending.length} Request
+                                </span>
+                              )}
+                            </div>
+                          </div>
                           <div className="text-gray-300 py-2 text-sm">
                             {`${e.time} PM`}
                           </div>

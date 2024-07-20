@@ -10,7 +10,9 @@ import padelImage from "../assets/padel_Image.png";
 import basketBall from "../assets/basket_Ball.png";
 import VollyBall from "../assets/VollyBall.png";
 import NoMatch from "../assets/Nomatch.png";
-
+import win from "../assets/win.png";
+import team1 from "../assets/person2.png";
+import team2 from "../assets/person3.png";
 export default function Reservation() {
   const backgroundImagePadel =
     "https://champs-sportsclub.com/wp-content/uploads/2024/05/Playing-Tennis-padel-1.jpg";
@@ -41,7 +43,6 @@ export default function Reservation() {
         }
       });
       setMatches(array);
-    
     };
     fetchMatchData();
   }, []);
@@ -51,6 +52,57 @@ export default function Reservation() {
       <SideBar />
       <BottomNavBar />
       <div className="w-full h-full flex  justify-between ">
+        {/* Open the modal using document.getElementById('ID').showModal() method */}
+        <button
+          className="btn m-9"
+          onClick={() => document.getElementById("my_modal_2").showModal()}
+        >
+          open modal
+        </button>
+        <dialog id="my_modal_2" className="modal">
+          <div className="modal-box flex flex-col items-center">
+            <h3 className="font-bold flex flex-col items-center text-lg">
+              {/* <p className="py-4 text-3xl">Who's the winner</p> */}
+              <p className="py-4 text-3xl">Who wins the match</p>
+              <span>8:00-10:00 PM</span>
+            </h3>
+
+            <img
+              className="w-60"
+              src={win}
+              // "https://i.pinimg.com/564x/57/39/19/573919be00ab8c395668ebde2806d4c2.jpg"
+              alt=""
+            />
+
+            <div className="flex gap-9 ">
+              <label className="label cursor-pointer">
+                <span className="px-2 label-text">Team A</span>
+
+                <input
+                  type="radio"
+                  name="radio-10"
+                  className="radio checked:bg-secondary"
+                  defaultChecked
+                />
+              </label>
+
+              <label className="label cursor-pointer">
+                <span className="px-2 label-text">Team B</span>
+                <input
+                  type="radio"
+                  name="radio-10"
+                  className="radio checked:bg-secondary"
+                  defaultChecked
+                />
+              </label>
+            </div>
+            <button className="btn mt-9 w-20 btn-secondary">send</button>
+          </div>
+          <form method="dialog" className="modal-backdrop">
+            <button>close</button>
+          </form>
+        </dialog>
+
         {matches.length ? (
           <main className="w-full mx-1 h-full flex-row flex overflow-y-auto ">
             <div className="flex flex-col w-full my-4">

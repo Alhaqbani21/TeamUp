@@ -13,7 +13,6 @@ import {
   doc,
   getDoc,
   updateDoc,
-  arrayUnion,
   arrayRemove,
   getDocs,
   collection,
@@ -28,48 +27,92 @@ export default function MatchPage() {
   const [matchData, setMatchData] = useState(null);
   const [loading, setLoading] = useState(true);
   const { currentUser } = useAuth();
+  const [usersPointsMap, setUsersPointsMap] = useState({});
+
+  const fetchUserData = async () => {
+    const usersSnapshot = await getDocs(collection(db, 'users'));
+    const usersPointsMap = usersSnapshot.docs.reduce((acc, doc) => {
+      const userData = doc.data();
+      acc[doc.id] = userData.points;
+      return acc;
+    }, {});
+    setUsersPointsMap(usersPointsMap);
+  };
 
   const handleAccept = async (player) => {
     const matchRef = doc(db, 'matches', id);
-    const matchSnapshot = await getDoc(matchRef);
-    const matchData = matchSnapshot.data();
+    try {
+      const matchSnapshot = await getDoc(matchRef);
+      const matchData = matchSnapshot.data();
 
-    const team = player.team;
-    const teamArray = matchData[`team${team}`];
+      const team = player.team;
+      const teamArray = matchData[`team${team}`];
 
-    // Find the first empty spot in the team array
-    const emptyIndex = teamArray.findIndex((p) => !p);
-    if (emptyIndex !== -1) {
-      teamArray[emptyIndex] = {
-        name: player.name,
-        point: player.point,
-        userId: player.userId,
-      };
+      // Find the first empty spot in the team array
+      const emptyIndex = teamArray.findIndex((p) => !p);
+      if (emptyIndex !== -1) {
+        teamArray[emptyIndex] = {
+          name: player.name,
+          userId: player.userId,
+        };
 
-      await updateDoc(matchRef, {
-        pending: arrayRemove(player),
-        [`team${team}`]: teamArray,
-      });
+        const exactPlayer = matchData.pending.find(
+          (p) => p.userId === player.userId
+        );
 
-      setMatchData((prevData) => ({
-        ...prevData,
-        pending: prevData.pending.filter((p) => p.userId !== player.userId),
-        [`team${team}`]: teamArray,
-      }));
-    } else {
-      console.error('No empty spots available in the team.');
+        if (exactPlayer) {
+          await updateDoc(matchRef, {
+            pending: arrayRemove(exactPlayer),
+            [`team${team}`]: teamArray,
+          });
+
+          setMatchData((prevData) => {
+            const updatedTeam = [...prevData[`team${team}`]];
+            updatedTeam[emptyIndex] = {
+              ...updatedTeam[emptyIndex],
+              point: usersPointsMap[player.userId] ?? 0,
+            };
+
+            return {
+              ...prevData,
+              pending: prevData.pending.filter(
+                (p) => p.userId !== player.userId
+              ),
+              [`team${team}`]: updatedTeam,
+            };
+          });
+        }
+      } else {
+        console.error('No empty spots available in the team.');
+      }
+    } catch (error) {
+      console.error('Error accepting player: ', error);
     }
   };
 
   const handleReject = async (player) => {
     const matchRef = doc(db, 'matches', id);
-    await updateDoc(matchRef, {
-      pending: arrayRemove(player),
-    });
-    setMatchData((prevData) => ({
-      ...prevData,
-      pending: prevData.pending.filter((p) => p.userId !== player.userId),
-    }));
+    try {
+      const matchSnapshot = await getDoc(matchRef);
+      const matchData = matchSnapshot.data();
+
+      const exactPlayer = matchData.pending.find(
+        (p) => p.userId === player.userId
+      );
+
+      if (exactPlayer) {
+        await updateDoc(matchRef, {
+          pending: arrayRemove(exactPlayer),
+        });
+
+        setMatchData((prevData) => ({
+          ...prevData,
+          pending: prevData.pending.filter((p) => p.userId !== player.userId),
+        }));
+      }
+    } catch (error) {
+      console.error('Error rejecting player: ', error);
+    }
   };
 
   useEffect(() => {
@@ -80,12 +123,7 @@ export default function MatchPage() {
       if (matchSnapshot.exists()) {
         const data = matchSnapshot.data();
 
-        const usersSnapshot = await getDocs(collection(db, 'users'));
-        const usersPointsMap = usersSnapshot.docs.reduce((acc, doc) => {
-          const userData = doc.data();
-          acc[doc.id] = userData.points;
-          return acc;
-        }, {});
+        await fetchUserData();
 
         const mapPoints = (team) =>
           (data[team] || []).map((player) => ({
@@ -107,7 +145,7 @@ export default function MatchPage() {
     };
 
     fetchMatchData();
-  }, [id]);
+  }, [id, usersPointsMap]);
 
   const today = new Date().getDate();
   const monthArray = [

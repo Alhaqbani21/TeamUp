@@ -11,6 +11,8 @@ import basketBallImage from "../assets/basketBallImage.png";
 import padelImage from "../assets/padel_Image.png";
 import basketBall from "../assets/basket_Ball.png";
 import VollyBall from "../assets/VollyBall.png";
+import NoMatch from "../assets/Nomatch.png";
+
 export default function Reservation() {
   const backgroundImagePadel =
     "https://champs-sportsclub.com/wp-content/uploads/2024/05/Playing-Tennis-padel-1.jpg";
@@ -59,97 +61,92 @@ export default function Reservation() {
       <SideBar />
       <BottomNavBar />
       <div className="w-full h-full flex  justify-between ">
-        <main className="w-full mx-9 h-full flex-row flex relative overflow-y-auto overflow-x-hidden ">
-          <div className="flex flex-col w-full my-4">
-            <div className="p-8  grid grid-cols-3 max-sm:grid-cols-1 items-center w-full ">
-              {matches.map((e,index) => (
-                <div key={index}
-                  className={` h-max pb-4 m-4 shadow-xl  text-primary overflow-hidden relative rounded-md`}
-                  // style={{
-
-                  // }}
-                >
-                  {/* <div className="absolute inset-0 bg-black opacity-50 filter blur-lg"></div> */}
-                  <div className="relative p-4 flex flex-col  justify-center">
-                    <div className="flex flex-col justify-between items-center  py-2">
-                      <div className="flex  justify-between w-full">
-                        <h1 className="text-xl font-bold text-primary">
-                          {e.stadiumName}
-                        </h1>
-                      </div>
-                      <div className="flex w-full justify-between">
-                        <div className="justify-around flex flex-col py-2 text-sm">
-                          {`${e.time} PM`}
-                          <div
-                            className={`flex justify-between items-center  mt-4 ${
-                              e.teamA.length + e.teamB.length ===
-                              [...e.teamA, ...e.teamB].filter((e) => e !== null)
-                                .length
-                                ? `text-gray-400`
-                                : "text-secondary"
-                            } py-2 px-4 rounded-lg`}
-                          >
-                            <span className="font-bold ">
-                              {e.teamA.length + e.teamB.length ===
-                              [...e.teamA, ...e.teamB].filter((e) => e !== null)
-                                .length ? (
-                                <>
-                                  {`${
-                                    [...e.teamA, ...e.teamB].filter(
-                                      (e) => e !== null
-                                    ).length
-                                  }
-                           / ${e.teamA.length + e.teamB.length} completed`}
-                                </>
-                              ) : (
-                                <>
-                                  <span className=" mr-1">{`${
-                                    [...e.teamA, ...e.teamB].filter(
-                                      (e) => e !== null
-                                    ).length
-                                  }/${e.teamA.length + e.teamB.length}`}</span>
-                                  {" players joined"}
-                                </>
-                              )}
-                            </span>
+        {matches.length ? (
+          <main className="w-full mx-9 h-full flex-row flex relative overflow-y-auto overflow-x-hidden ">
+            <div className="flex flex-col w-full my-4">
+              <div className="p-8  grid grid-cols-3 items-center w-full ">
+                {matches.map((e) => (
+                  <div
+                    className={`w-96 h-max pb-4 mb-4 shadow-xl bg-primary overflow-hidden relative rounded-md`}
+                    style={{
+                      backgroundImage: `url(${
+                        e.category === "Padel"
+                          ? backgroundImagePadel
+                          : e.category === "Basketball"
+                          ? basketBallImage
+                          : VollyballImage
+                      })`,
+                      backgroundSize: "cover",
+                      backgroundPosition: "center",
+                    }}
+                  >
+                    <div className="absolute inset-0 bg-black opacity-50 filter blur-lg"></div>
+                    <div className="relative p-4 flex flex-col  justify-center">
+                      <div className="flex justify-between items-center  py-2">
+                        <div className="flex flex-col justify-center">
+                          <h1 className="text-xl font-bold text-white">
+                            {e.stadiumName}
+                          </h1>
+                          <div className="text-gray-300 py-2 text-sm">
+                            {`${e.time} PM`}
                           </div>
-                          <Link
-                            to={`./${e.id}`}
-                            className=" text-white btn-secondary  btn  font-bold"
-                          >
-                            {" "}
-                            details
-                            {/* {price / totalPlayers} */}
-                          </Link>
                         </div>
-                        <img
-                          className="w-40 h-40 "
-                          src={
-                            e.category == "Padel"
-                              ? backgroundImagePadel
-                              : e.category == "Basketball"
-                              ? basketBallImage
-                              : VollyballImage
-                          }
-                          alt=""
-                        />
-                        <svg
-                          className="absolute inset-x-0 bottom-0 text-base-100"
-                          viewBox="0 0 1160 163"
-                        >
-                          <path
-                            fill="currentColor"
-                            d="M-164 13L-104 39.7C-44  76 120 196 141C316 162 416 152 556 119.7C676 88 796 34 916 13C1036 -8 1156 2 1216 7.7L1276 13V162.5H1216C1156 162.5 1036 162.5 916 162.5C796 162.5 676 162.5 556 162.5C436 162.5 316 162.5 196 162.5C76 162.5 -44 162.5 -104 162.5H-164V13Z"
-                          />
-                        </svg>
+                      </div>
+                      <button
+                        onClick={() => {
+                          navigate(`./${e.id}`);
+                        }}
+                        className="w-max p-3 cursor-pointer
+                         text-orange-300 mr-1 font-bold"
+                      >
+                        details
+                      </button>
+                      <div
+                        className={`flex justify-between items-center mt-4 ${
+                          e.teamA.length + e.teamB.length ===
+                          [...e.teamA, ...e.teamB].filter((e) => e !== null)
+                            .length
+                            ? `bg-gray-400`
+                            : "bg-secondary"
+                        } py-2 px-4 rounded-lg`}
+                      >
+                        <span className="font-medium text-white">
+                          {e.teamA.length + e.teamB.length ===
+                          [...e.teamA, ...e.teamB].filter((e) => e !== null)
+                            .length ? (
+                            <>
+                              {`${
+                                [...e.teamA, ...e.teamB].filter(
+                                  (e) => e !== null
+                                ).length
+                              }
+                           / ${e.teamA.length + e.teamB.length} completed`}
+                            </>
+                          ) : (
+                            <>
+                              <span className="text-orange-300 mr-1">{`${
+                                [...e.teamA, ...e.teamB].filter(
+                                  (e) => e !== null
+                                ).length
+                              }/${e.teamA.length + e.teamB.length}`}</span>
+                              {" players joined"}
+                            </>
+                          )}
+                        </span>
                       </div>
                     </div>
                   </div>
-                </div>
-              ))}
+                ))}
+              </div>
             </div>
+          </main>
+        ) : (
+          <div className="h-screen flex flex-col justify-center items-center w-full">
+            <img className="w-60" src={NoMatch} alt="" />
+            <br />
+            <span className="text-lg font-bold">There is no match booked </span>
           </div>
-        </main>
+        )}
       </div>
     </div>
   );

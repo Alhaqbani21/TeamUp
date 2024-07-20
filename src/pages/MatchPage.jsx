@@ -1,32 +1,34 @@
-import React, { useEffect, useState } from 'react';
-import padel from '../assets/padel.jpg';
-import volleyball from '../assets/Volly.jpg';
-import basketball from '../assets/Basketball.jpg';
-import team1 from '../assets/person2.png';
-import team2 from '../assets/person3.png';
-import Players from '../components/Players';
-import Timer from '../components/Timer';
-import DetailePlayers from '../components/DetailePlayers';
-import { useParams } from 'react-router-dom';
-import { db } from '../config/firebase';
+import React, { useEffect, useState } from "react";
+import padel from "../assets/padel.jpg";
+import volleyball from "../assets/Volly.jpg";
+import basketball from "../assets/Basketball.jpg";
+import team1 from "../assets/person2.png";
+import team2 from "../assets/person3.png";
+import Players from "../components/Players";
+import Timer from "../components/Timer";
+import DetailePlayers from "../components/DetailePlayers";
+import { useParams } from "react-router-dom";
+import { db } from "../config/firebase";
 import {
   doc,
   getDoc,
   updateDoc,
   arrayUnion,
   arrayRemove,
-} from 'firebase/firestore';
-import { useAuth } from '../contexts/AuthContext';
+} from "firebase/firestore";
+import { useAuth } from "../contexts/AuthContext";
+import SideBar from "../components/SideBar";
+import BottomNavBar from "../components/BottomNavBar";
 
 export default function MatchPage() {
-  const [teamA, setteamA] = useState('TeamA');
+  const [teamA, setteamA] = useState("TeamA");
   const { id } = useParams();
   const [matchData, setMatchData] = useState(null);
   const [loading, setLoading] = useState(true);
   const { currentUser } = useAuth();
 
   const handleAccept = async (player) => {
-    const matchRef = doc(db, 'matches', id);
+    const matchRef = doc(db, "matches", id);
     const matchSnapshot = await getDoc(matchRef);
     const matchData = matchSnapshot.data();
 
@@ -53,12 +55,12 @@ export default function MatchPage() {
         [`team${team}`]: teamArray,
       }));
     } else {
-      console.error('No empty spots available in the team.');
+      console.error("No empty spots available in the team.");
     }
   };
 
   const handleReject = async (player) => {
-    const matchRef = doc(db, 'matches', id);
+    const matchRef = doc(db, "matches", id);
     await updateDoc(matchRef, {
       pending: arrayRemove(player),
     });
@@ -70,7 +72,7 @@ export default function MatchPage() {
 
   useEffect(() => {
     const fetchMatchData = async () => {
-      const matchRef = doc(db, 'matches', id);
+      const matchRef = doc(db, "matches", id);
       const matchSnapshot = await getDoc(matchRef);
       if (matchSnapshot.exists()) {
         const data = matchSnapshot.data();
@@ -85,9 +87,30 @@ export default function MatchPage() {
     };
     fetchMatchData();
   }, [id]);
+  const today = new Date().getDate();
+  const monthArray = [
+    "Jun",
+    "Feb",
+    "Mar",
+    "Apr",
+    "May",
+    "Jun",
+    "Jul",
+    "Aug",
+    "Sep",
+    "Oct",
+    "Nov",
+    "Dec",
+  ];
+  const month = monthArray[new Date().getMonth()];
+  const year = new Date().getFullYear();
 
   if (loading) {
-    return <div>Loading...</div>;
+    return (
+      <div className="h-screen flex justify-center items-center w-full m-auto">
+        <span className="loading loading-spinner loading-lg"></span>
+      </div>
+    );
   }
 
   if (!matchData) {
@@ -95,217 +118,244 @@ export default function MatchPage() {
   }
 
   const isAdmin = currentUser.uid === matchData.Admin.userId;
-  const isVolleyball = matchData.category === 'Volleyball';
-  const isBasketball = matchData.category === 'Basketball';
+  const isVolleyball = matchData.category === "Volleyball";
+  const isBasketball = matchData.category === "Basketball";
 
   return (
     <>
-      <main className="hero min-h-screen rounded-xl">
-        <div className="w-[80vw] max-sm:flex-col max-sm:items-center max-sm:w-full gap-5 bg-base-100 rounded-lg flex">
-          <div className="h-[70vh] max-sm:h-[50vh] max-sm:w-[80vw] w-[60vw] rounded-s-xl relative">
-            <div className="w-full pt-3 justify-around bg-transparent flex gap-1">
-              <div
-                onClick={() => setteamA('TeamA')}
-                className="group cursor-pointer"
-              >
-                <img
-                  src={team1}
-                  className="rounded-full group-hover:opacity-70 hover:cursor-pointer bg-primary h-12 w-12"
-                />
-                Team A
-              </div>
-              <div className="flex flex-col justify-center items-center">
-                <Timer date={'Jul 17, 2024 17:00:00'} />
-                05:00 PM
-              </div>
-              <div
-                onClick={() => setteamA('TeamB')}
-                className="group cursor-pointer"
-              >
-                <img
-                  src={team2}
-                  className="group-hover:opacity-70 rounded-full bg-base-300 h-12 w-12"
-                />
-                Team B
-              </div>
-            </div>
+      <div className="h-screen w-full bg-base-100 relative flex ">
+        <SideBar />
+        <BottomNavBar />
+        <div className="w-full h-full flex  justify-between ">
+          <main className="hero min-h-screen rounded-xl">
+            <div className="w-[80vw] max-sm:flex-col max-sm:items-center max-sm:w-full gap-5 bg-base-100
+             rounded-lg flex">
+              <div className="h-[70vh] max-sm:h-[50vh] max-sm:w-[80vw] w-[60vw] rounded-s-xl relative">
+                <div className="w-full pt-3 justify-around bg-transparent flex gap-1">
+                  <div
+                    onClick={() => setteamA("TeamA")}
+                    className="group cursor-pointer"
+                  >
+                    <img
+                      src={team1}
+                      className="rounded-full group-hover:opacity-70 hover:cursor-pointer bg-primary h-12 w-12"
+                    />
+                    Team A
+                  </div>
+                  <div className="flex flex-col justify-center items-center">
+                    <Timer
+                      date={`${month} ${today}, ${year} ${
+                        Number(
+                          matchData.time.substring(0, 2).split(":").join("")
+                        ) + 12
+                      }:00:00`}
+                    />
+                    {matchData.time.substring(0, 5)} PM
+                    <br />
+                  </div>
+                  <div
+                    onClick={() => setteamA("TeamB")}
+                    className="group cursor-pointer"
+                  >
+                    <img
+                      src={team2}
+                      className="group-hover:opacity-70 rounded-full bg-base-300 h-12 w-12"
+                    />
+                    Team B
+                  </div>
+                </div>
 
-            <img
-              className="h-[70vh] max-sm:w-full max-sm:h-[40vh] w-[60vw]"
-              src={
-                isVolleyball ? volleyball : isBasketball ? basketball : padel
-              }
-              alt=""
-            />
-            {isVolleyball ? (
-              teamA === 'TeamA' ? (
-                <>
-                  {matchData.teamA.map(
-                    (player, index) =>
-                      player &&
-                      player.name && (
-                        <Players
-                          key={index}
-                          name={player.name}
-                          x={
-                            [
-                              'left-0',
-                              'right-10',
-                              'left-48',
-                              'left-28',
-                              'left-10',
-                              'right-0',
-                            ][index]
-                          }
-                          y={
-                            [
-                              'top-14',
-                              'top-20',
-                              'top-40',
-                              'top-14',
-                              'top-40',
-                              'top-40',
-                            ][index]
-                          }
-                          img={team1}
-                        />
-                      )
-                  )}
-                </>
-              ) : (
-                <>
-                  {matchData.teamB.map(
-                    (player, index) =>
-                      player &&
-                      player.name && (
-                        <Players
-                          key={index}
-                          name={player.name}
-                          x={
-                            [
-                              'right-10',
-                              'left-0',
-                              'right-28',
-                              'right-40',
-                              'right-0',
-                              'left-10',
-                            ][index]
-                          }
-                          y={
-                            [
-                              'bottom-10',
-                              'bottom-0',
-                              'bottom-0',
-                              'bottom-10',
-                              'bottom-14',
-                              'bottom-14',
-                            ][index]
-                          }
-                          img={team2}
-                        />
-                      )
-                  )}
-                </>
-              )
-            ) : isBasketball ? (
-              teamA === 'TeamA' ? (
-                <>
-                  {matchData.teamA.map(
-                    (player, index) =>
-                      player &&
-                      player.name && (
-                        <Players
-                          key={index}
-                          name={player.name}
-                          x={
-                            ['left-20', 'right-20', 'left-32', 'left-10'][index]
-                          }
-                          y={['top-14', 'top-14', 'bottom-40', 'top-40'][index]}
-                          img={team1}
-                        />
-                      )
-                  )}
-                </>
-              ) : (
-                <>
-                  {matchData.teamB.map(
-                    (player, index) =>
-                      player &&
-                      player.name && (
-                        <Players
-                          key={index}
-                          name={player.name}
-                          x={
-                            ['right-10', 'left-10', 'right-28', 'left-20'][
-                              index
-                            ]
-                          }
-                          y={
-                            ['bottom-0', 'bottom-0', 'bottom-1', 'bottom-20'][
-                              index
-                            ]
-                          }
-                          img={team2}
-                        />
-                      )
-                  )}
-                </>
-              )
-            ) : teamA === 'TeamA' ? (
-              <div>
-                {matchData.teamA[0] && matchData.teamA[0].name && (
-                  <Players
-                    name={matchData.teamA[0].name || ''}
-                    x="left-20"
-                    y="top-24"
-                    img={team1}
-                  />
-                )}
-                {matchData.teamA[1] && matchData.teamA[1].name && (
-                  <Players
-                    name={matchData.teamA[1].name || ''}
-                    x="right-20"
-                    y="top-24"
-                    img={team1}
-                  />
+                <img
+                  className="h-[70vh] max-sm:w-full max-sm:h-[40vh] w-[60vw]"
+                  src={
+                    isVolleyball
+                      ? volleyball
+                      : isBasketball
+                      ? basketball
+                      : padel
+                  }
+                  alt=""
+                />
+                {isVolleyball ? (
+                  teamA === "TeamA" ? (
+                    <>
+                      {matchData.teamA.map(
+                        (player, index) =>
+                          player &&
+                          player.name && (
+                            <Players
+                              key={index}
+                              name={player.name}
+                              x={
+                                [
+                                  "left-0",
+                                  "right-10",
+                                  "left-48",
+                                  "left-28",
+                                  "left-10",
+                                  "right-0",
+                                ][index]
+                              }
+                              y={
+                                [
+                                  "top-14",
+                                  "top-20",
+                                  "top-40",
+                                  "top-14",
+                                  "top-40",
+                                  "top-40",
+                                ][index]
+                              }
+                              img={team1}
+                            />
+                          )
+                      )}
+                    </>
+                  ) : (
+                    <>
+                      {matchData.teamB.map(
+                        (player, index) =>
+                          player &&
+                          player.name && (
+                            <Players
+                              key={index}
+                              name={player.name}
+                              x={
+                                [
+                                  "right-10",
+                                  "left-0",
+                                  "right-28",
+                                  "right-40",
+                                  "right-0",
+                                  "left-10",
+                                ][index]
+                              }
+                              y={
+                                [
+                                  "bottom-10",
+                                  "bottom-0",
+                                  "bottom-0",
+                                  "bottom-10",
+                                  "bottom-14",
+                                  "bottom-14",
+                                ][index]
+                              }
+                              img={team2}
+                            />
+                          )
+                      )}
+                    </>
+                  )
+                ) : isBasketball ? (
+                  teamA === "TeamA" ? (
+                    <>
+                      {matchData.teamA.map(
+                        (player, index) =>
+                          player &&
+                          player.name && (
+                            <Players
+                              key={index}
+                              name={player.name}
+                              x={
+                                ["left-20", "right-20", "left-32", "left-10"][
+                                  index
+                                ]
+                              }
+                              y={
+                                ["top-14", "top-14", "bottom-40", "top-40"][
+                                  index
+                                ]
+                              }
+                              img={team1}
+                            />
+                          )
+                      )}
+                    </>
+                  ) : (
+                    <>
+                      {matchData.teamB.map(
+                        (player, index) =>
+                          player &&
+                          player.name && (
+                            <Players
+                              key={index}
+                              name={player.name}
+                              x={
+                                ["right-10", "left-10", "right-28", "left-20"][
+                                  index
+                                ]
+                              }
+                              y={
+                                [
+                                  "bottom-0",
+                                  "bottom-0",
+                                  "bottom-1",
+                                  "bottom-20",
+                                ][index]
+                              }
+                              img={team2}
+                            />
+                          )
+                      )}
+                    </>
+                  )
+                ) : teamA === "TeamA" ? (
+                  <div>
+                    {matchData.teamA[0] && matchData.teamA[0].name && (
+                      <Players
+                        name={matchData.teamA[0].name || ""}
+                        x="left-20"
+                        y="top-24"
+                        img={team1}
+                      />
+                    )}
+                    {matchData.teamA[1] && matchData.teamA[1].name && (
+                      <Players
+                        name={matchData.teamA[1].name || ""}
+                        x="right-20"
+                        y="top-24"
+                        img={team1}
+                      />
+                    )}
+                  </div>
+                ) : (
+                  <div>
+                    {matchData.teamB[0] && matchData.teamB[0].name && (
+                      <Players
+                        name={matchData.teamB[0].name || ""}
+                        x="right-20"
+                        y="bottom-10"
+                        img={team2}
+                      />
+                    )}
+                    {matchData.teamB[1] && matchData.teamB[1].name && (
+                      <Players
+                        name={matchData.teamB[1].name || ""}
+                        x="left-20"
+                        y="bottom-10"
+                        img={team2}
+                      />
+                    )}
+                  </div>
                 )}
               </div>
-            ) : (
-              <div>
-                {matchData.teamB[0] && matchData.teamB[0].name && (
-                  <Players
-                    name={matchData.teamB[0].name || ''}
-                    x="right-20"
-                    y="bottom-10"
-                    img={team2}
-                  />
-                )}
-                {matchData.teamB[1] && matchData.teamB[1].name && (
-                  <Players
-                    name={matchData.teamB[1].name || ''}
-                    x="left-20"
-                    y="bottom-10"
-                    img={team2}
-                  />
-                )}
-              </div>
-            )}
-          </div>
-          <DetailePlayers
-            PlayersA={matchData.teamA}
-            PlayersB={matchData.teamB}
-            teamA={teamA}
-            time={matchData.time}
-            cost={matchData.price}
-            location={matchData.location}
-            map={matchData.map}
-            pendingPlayers={matchData.pending}
-            onAccept={handleAccept}
-            onReject={handleReject}
-            isAdmin={isAdmin}
-          />
+              <DetailePlayers
+                PlayersA={matchData.teamA}
+                PlayersB={matchData.teamB}
+                teamA={teamA}
+                time={matchData.time}
+                cost={matchData.price}
+                location={matchData.location}
+                map={matchData.map}
+                pendingPlayers={matchData.pending}
+                onAccept={handleAccept}
+                onReject={handleReject}
+                isAdmin={isAdmin}
+              />
+            </div>
+          </main>
         </div>
-      </main>
+      </div>
     </>
   );
 }

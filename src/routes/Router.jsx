@@ -1,34 +1,34 @@
-import * as React from 'react';
-import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-import Home from '../pages/Home';
-import SignUp from '../pages/SignUp';
-import Login from '../pages/Login';
-import Top10 from '../pages/Top10';
-import Reservation from '../pages/Reservation';
-import Book from '../pages/Book';
-import Booking from '../pages/Booking';
-import Profile from '../pages/Profile';
-import Landingpage from '../pages/Landingpage';
+import * as React from "react";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import Home from "../pages/Home";
+import SignUp from "../pages/SignUp";
+import Login from "../pages/Login";
+import Top10 from "../pages/Top10";
+import Reservation from "../pages/Reservation";
+import Book from "../pages/Book";
+import Booking from "../pages/Booking";
+import Profile from "../pages/Profile";
+import Landingpage from "../pages/Landingpage";
 
-import { AuthProvider } from '../contexts/AuthContext';
-import ProtectedRoute from '../components/ProtectedRoute';
-import MatchPage from '../pages/MatchPage';
+import { AuthProvider } from "../contexts/AuthContext";
+import ProtectedRoute from "../components/ProtectedRoute";
+import MatchPage from "../pages/MatchPage";
 
 const router = createBrowserRouter([
   {
-    path: '/',
+    path: "/",
     element: <Landingpage />,
   },
   {
-    path: '/SignUp',
+    path: "/SignUp",
     element: <SignUp />,
   },
   {
-    path: '/Login',
+    path: "/Login",
     element: <Login />,
   },
   {
-    path: '/Home',
+    path: "/Home",
     element: (
       <ProtectedRoute>
         <Home />
@@ -36,7 +36,7 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: '/top10',
+    path: "/top10",
     element: (
       <ProtectedRoute>
         <Top10 />
@@ -44,7 +44,7 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: '/Players',
+    path: "/match",
     element: (
       <ProtectedRoute>
         <Reservation />
@@ -52,7 +52,7 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: '/Book',
+    path: "/Book",
     element: (
       <ProtectedRoute>
         <Book />
@@ -60,7 +60,7 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: '/Booking/:id',
+    path: "/Booking/:id",
     element: (
       <ProtectedRoute>
         <Booking />
@@ -68,7 +68,7 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: '/profile',
+    path: "/profile",
     element: (
       <ProtectedRoute>
         <Profile />
@@ -76,7 +76,7 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: '/match/:id',
+    path: "/match/:id",
     element: (
       <ProtectedRoute>
         <MatchPage />

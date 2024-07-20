@@ -28,7 +28,7 @@ export default function DetailePlayers(props) {
   });
 
   return (
-    <div className="shadow-md h-max w-[40vw] rounded-xl mt-7 max-sm:mt-8 max-xl:w-full text-xl text-black bg-base-100 px-7">
+    <div className="shadow-md h-max w-max rounded-xl mt-7 max-sm:mt-8 max-xl:w-full text-xl text-black bg-base-100 px-7">
       <div className="border-black">
         {props.isAdmin && filteredPendingPlayers.length > 0 && (
           <table className="table table-zebra">
@@ -181,15 +181,11 @@ export default function DetailePlayers(props) {
           <div className="text-secondry text-base">{props.cost}</div>
         </div>
       </div>
-      <div className="flex justify-between mt-4 rounded-t-md w-full px-3">
-        {/* <address className="text-sm mt-2 w-full overflow-hidden overflow-ellipsis break-words">
-          {props.location}
-        </address> */}
-      </div>
+     
       <iframe
         className="justify-between max-xl:w-full max-sm:w-full rounded-t-md p-3"
         src={props.location}
-        width="600"
+        width="500"
         height="350"
         allowFullScreen=""
         loading="lazy"

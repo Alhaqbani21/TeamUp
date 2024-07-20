@@ -10,7 +10,7 @@ function TopThree({ players, crown }) {
             alt={players[1].name}
             className="w-24 h-24 rounded-full border-2 border-white"
           />
-          <span className="text-lg font-semibold text-primary mt-2">
+          <span className="text-lg font-semibold text-primary mt-2 truncate">
             {players[1].name}
           </span>
           <span className="text-sm text-blue-500">
@@ -32,7 +32,7 @@ function TopThree({ players, crown }) {
               className="absolute -top-6 left-1/2 transform -translate-x-1/2 w-20 h-12"
             />
           </div>
-          <span className="text-lg font-semibold text-primary mt-2">
+          <span className="text-lg font-semibold text-primary mt-2 truncate">
             {players[0].name}
           </span>
           <span className="text-sm text-blue-500">
@@ -47,7 +47,7 @@ function TopThree({ players, crown }) {
             alt={players[2].name}
             className="w-24 h-24 rounded-full border-2 border-white"
           />
-          <span className="text-lg font-semibold text-primary mt-2">
+          <span className="text-lg font-semibold text-primary mt-2 truncate">
             {players[2].name}
           </span>
           <span className="text-sm text-blue-500">

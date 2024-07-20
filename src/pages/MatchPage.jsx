@@ -1,13 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import padel from '../assets/padel.jpg';
+import volleyball from '../assets/Volly.jpg';
+import basketball from '../assets/Basketball.jpg';
 import team1 from '../assets/person2.png';
 import team2 from '../assets/person3.png';
 import Players from '../components/Players';
-import Platinum_1_Rank from '../assets/Platinum_1_Rank.png';
-import Gold_1_Rank from '../assets/Gold_1_Rank.png';
-import Iron_1_Rank from '../assets/Iron_1_Rank.png';
-import Silver_1_Rank from '../assets/Silver_1_Rank.png';
-import { Fade } from 'react-awesome-reveal';
 import Timer from '../components/Timer';
 import DetailePlayers from '../components/DetailePlayers';
 import { useParams } from 'react-router-dom';
@@ -34,7 +31,7 @@ export default function MatchPage() {
     const matchData = matchSnapshot.data();
 
     const team = player.team;
-    const teamArray = matchData[`team` + team];
+    const teamArray = matchData[`team${team}`];
 
     // Find the first empty spot in the team array
     const emptyIndex = teamArray.findIndex((p) => !p);
@@ -47,13 +44,13 @@ export default function MatchPage() {
 
       await updateDoc(matchRef, {
         pending: arrayRemove(player),
-        [`team` + team]: teamArray,
+        [`team${team}`]: teamArray,
       });
 
       setMatchData((prevData) => ({
         ...prevData,
         pending: prevData.pending.filter((p) => p.userId !== player.userId),
-        [`team` + team]: teamArray,
+        [`team${team}`]: teamArray,
       }));
     } else {
       console.error('No empty spots available in the team.');
@@ -98,6 +95,8 @@ export default function MatchPage() {
   }
 
   const isAdmin = currentUser.uid === matchData.Admin.userId;
+  const isVolleyball = matchData.category === 'Volleyball';
+  const isBasketball = matchData.category === 'Basketball';
 
   return (
     <>
@@ -133,14 +132,130 @@ export default function MatchPage() {
 
             <img
               className="h-[70vh] max-sm:w-full max-sm:h-[40vh] w-[60vw]"
-              src={padel}
+              src={
+                isVolleyball ? volleyball : isBasketball ? basketball : padel
+              }
               alt=""
             />
-            {teamA === 'TeamA' ? (
+            {isVolleyball ? (
+              teamA === 'TeamA' ? (
+                <>
+                  {matchData.teamA.map(
+                    (player, index) =>
+                      player &&
+                      player.name && (
+                        <Players
+                          key={index}
+                          name={player.name}
+                          x={
+                            [
+                              'left-0',
+                              'right-10',
+                              'left-48',
+                              'left-28',
+                              'left-10',
+                              'right-0',
+                            ][index]
+                          }
+                          y={
+                            [
+                              'top-14',
+                              'top-20',
+                              'top-40',
+                              'top-14',
+                              'top-40',
+                              'top-40',
+                            ][index]
+                          }
+                          img={team1}
+                        />
+                      )
+                  )}
+                </>
+              ) : (
+                <>
+                  {matchData.teamB.map(
+                    (player, index) =>
+                      player &&
+                      player.name && (
+                        <Players
+                          key={index}
+                          name={player.name}
+                          x={
+                            [
+                              'right-10',
+                              'left-0',
+                              'right-28',
+                              'right-40',
+                              'right-0',
+                              'left-10',
+                            ][index]
+                          }
+                          y={
+                            [
+                              'bottom-10',
+                              'bottom-0',
+                              'bottom-0',
+                              'bottom-10',
+                              'bottom-14',
+                              'bottom-14',
+                            ][index]
+                          }
+                          img={team2}
+                        />
+                      )
+                  )}
+                </>
+              )
+            ) : isBasketball ? (
+              teamA === 'TeamA' ? (
+                <>
+                  {matchData.teamA.map(
+                    (player, index) =>
+                      player &&
+                      player.name && (
+                        <Players
+                          key={index}
+                          name={player.name}
+                          x={
+                            ['left-20', 'right-20', 'left-32', 'left-10'][index]
+                          }
+                          y={['top-14', 'top-14', 'bottom-40', 'top-40'][index]}
+                          img={team1}
+                        />
+                      )
+                  )}
+                </>
+              ) : (
+                <>
+                  {matchData.teamB.map(
+                    (player, index) =>
+                      player &&
+                      player.name && (
+                        <Players
+                          key={index}
+                          name={player.name}
+                          x={
+                            ['right-10', 'left-10', 'right-28', 'left-20'][
+                              index
+                            ]
+                          }
+                          y={
+                            ['bottom-0', 'bottom-0', 'bottom-1', 'bottom-20'][
+                              index
+                            ]
+                          }
+                          img={team2}
+                        />
+                      )
+                  )}
+                </>
+              )
+            ) : teamA === 'TeamA' ? (
               <div>
                 {matchData.teamA[0] && matchData.teamA[0].name && (
                   <Players
-                    name={(matchData.teamA[0] && matchData.teamA[0].name) || ''}
+                    name={matchData.teamA[0].name || ''}
                     x="left-20"
                     y="top-24"
                     img={team1}
@@ -148,7 +263,7 @@ export default function MatchPage() {
                 )}
                 {matchData.teamA[1] && matchData.teamA[1].name && (
                   <Players
-                    name={(matchData.teamA[1] && matchData.teamA[1].name) || ''}
+                    name={matchData.teamA[1].name || ''}
                     x="right-20"
                     y="top-24"
                     img={team1}
@@ -159,7 +274,7 @@ export default function MatchPage() {
               <div>
                 {matchData.teamB[0] && matchData.teamB[0].name && (
                   <Players
-                    name={(matchData.teamB[0] && matchData.teamB[0].name) || ''}
+                    name={matchData.teamB[0].name || ''}
                     x="right-20"
                     y="bottom-10"
                     img={team2}
@@ -167,7 +282,7 @@ export default function MatchPage() {
                 )}
                 {matchData.teamB[1] && matchData.teamB[1].name && (
                   <Players
-                    name={(matchData.teamB[1] && matchData.teamB[1].name) || ''}
+                    name={matchData.teamB[1].name || ''}
                     x="left-20"
                     y="bottom-10"
                     img={team2}

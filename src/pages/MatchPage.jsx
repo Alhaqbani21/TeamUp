@@ -27,34 +27,23 @@ export default function MatchPage() {
   const [matchData, setMatchData] = useState(null);
   const [loading, setLoading] = useState(true);
   const { currentUser } = useAuth();
-  const [usersPointsMap, setUsersPointsMap] = useState({});
-
-  const fetchUserData = async () => {
-    const usersSnapshot = await getDocs(collection(db, 'users'));
-    const usersPointsMap = usersSnapshot.docs.reduce((acc, doc) => {
-      const userData = doc.data();
-      acc[doc.id] = userData.points;
-      return acc;
-    }, {});
-    setUsersPointsMap(usersPointsMap);
-  };
 
   const handleAccept = async (player) => {
     const matchRef = doc(db, 'matches', id);
-    try {
-      const matchSnapshot = await getDoc(matchRef);
-      const matchData = matchSnapshot.data();
+    const matchSnapshot = await getDoc(matchRef);
+    const matchData = matchSnapshot.data();
 
-      const team = player.team;
-      const teamArray = matchData[`team${team}`];
+    const team = player.team;
+    const teamArray = matchData[`team${team}`];
 
-      // Find the first empty spot in the team array
-      const emptyIndex = teamArray.findIndex((p) => !p);
-      if (emptyIndex !== -1) {
-        teamArray[emptyIndex] = {
-          name: player.name,
-          userId: player.userId,
-        };
+    // Find the first empty spot in the team array
+    const emptyIndex = teamArray.findIndex((p) => !p);
+    if (emptyIndex !== -1) {
+      teamArray[emptyIndex] = {
+        name: player.name,
+        point: player.point,
+        userId: player.userId,
+      };
 
       // Find the player in the pending array to ensure exact match for arrayRemove
       const playerToRemove = matchData.pending.find(
@@ -123,7 +112,12 @@ export default function MatchPage() {
       if (matchSnapshot.exists()) {
         const data = matchSnapshot.data();
 
-        await fetchUserData();
+        const usersSnapshot = await getDocs(collection(db, 'users'));
+        const usersPointsMap = usersSnapshot.docs.reduce((acc, doc) => {
+          const userData = doc.data();
+          acc[doc.id] = userData.points;
+          return acc;
+        }, {});
 
         const mapPoints = (team) =>
           (data[team] || []).map((player) => ({
@@ -145,7 +139,7 @@ export default function MatchPage() {
     };
 
     fetchMatchData();
-  }, [id, usersPointsMap]);
+  }, [id]);
 
   const today = new Date().getDate();
   const monthArray = [

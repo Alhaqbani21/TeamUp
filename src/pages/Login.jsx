@@ -159,7 +159,7 @@ function Login() {
                       className="cursor-pointer w-full inline-block pt-4 pr-5 pb-4 pl-5 text-xl font-medium text-center text-white bg-[#007955]
                   rounded-lg transition duration-200 hover:bg-[#215244]"
                     >
-                      LogIn
+                      Login
                     </div>
                   </div>
                 </div>

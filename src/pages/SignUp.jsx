@@ -49,6 +49,7 @@ function SignUp() {
           location: 'Saudi Arabia, Riyadh',
           points: 0,
           matchesPlayed: 0,
+          isNotified: false,
         });
 
         navigate('../login');
@@ -73,6 +74,7 @@ function SignUp() {
           location: 'Saudi Arabia, Riyadh',
           points: 0,
           matchesPlayed: 0,
+          isNotified: false,
         });
       }
 

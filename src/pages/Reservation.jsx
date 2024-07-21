@@ -1,6 +1,6 @@
-import React from 'react';
-import SideBar from '../components/SideBar';
-import BottomNavBar from '../components/BottomNavBar';
+import React from "react";
+import SideBar from "../components/SideBar";
+import BottomNavBar from "../components/BottomNavBar";
 import {
   collection,
   deleteDoc,
@@ -8,31 +8,31 @@ import {
   getDoc,
   getDocs,
   updateDoc,
-} from 'firebase/firestore';
-import { auth, db } from '../config/firebase';
-import { Link, useNavigate } from 'react-router-dom';
-import VollyballImage from '../assets/VollyballImage.png';
-import basketBallImage from '../assets/basketBallImage.png';
-import NoMatch from '../assets/Nomatch.png';
-import win from '../assets/win.png';
-import { FaUserTie } from 'react-icons/fa6';
-import { IoIosArrowDown } from 'react-icons/io';
+} from "firebase/firestore";
+import { auth, db } from "../config/firebase";
+import { Link, useNavigate } from "react-router-dom";
+import VollyballImage from "../assets/VollyballImage.png";
+import basketBallImage from "../assets/basketBallImage.png";
+import NoMatch from "../assets/Nomatch.png";
+import win from "../assets/win.png";
+import { FaUserTie } from "react-icons/fa6";
+import { IoIosArrowDown } from "react-icons/io";
 
 export default function Reservation() {
   const backgroundImagePadel =
-    'https://champs-sportsclub.com/wp-content/uploads/2024/05/Playing-Tennis-padel-1.jpg';
+    "https://champs-sportsclub.com/wp-content/uploads/2024/05/Playing-Tennis-padel-1.jpg";
   const [matches, setMatches] = React.useState([]);
-  const [timeModal, setTimeModal] = React.useState('');
+  const [timeModal, setTimeModal] = React.useState("");
   const [userModalA, setUserModalA] = React.useState([]);
   const [userModalB, setUserModalB] = React.useState([]);
-  const [radio, setRadio] = React.useState('teamA');
-  const [idMatch, setIdMatch] = React.useState('');
+  const [radio, setRadio] = React.useState("teamA");
+  const [idMatch, setIdMatch] = React.useState("");
 
   const [hidden, sethidden] = React.useState({ teamA: false, teamB: false });
   const user = auth.currentUser;
   const navigate = useNavigate();
   const fetchMatchData = async () => {
-    const matchRef = collection(db, 'matches');
+    const matchRef = collection(db, "matches");
 
     const matchSnapshot = await getDocs(matchRef);
 
@@ -62,35 +62,41 @@ export default function Reservation() {
   }, []);
   const handelAddPoints = () => {
     const fetchPointes = async () => {
-      const matchRef = doc(db, 'matches', idMatch);
+      const matchRef = doc(db, "matches", idMatch);
 
       const matchSnapshot = await getDoc(matchRef);
       const matchdata = matchSnapshot.data();
 
-      if (radio == 'teamA') {
+      if (radio == "teamA") {
         matchSnapshot.data().teamA.map(async (e) => {
           if (e != null) {
-            const matchId = doc(db, 'users', e.userId);
+            const matchId = doc(db, "users", e.userId);
             const userSnapshot = await getDoc(matchId);
-            let array = [];
-            array = userSnapshot.data();
-            array = { ...array, points: Number(array.points) + 20 };
-            await updateDoc(matchId, { points: array.points });
+            let userData = userSnapshot.data();
+
+            await updateDoc(matchId, {
+              points: userData.points + 20,
+              isNotified: true,
+              matchesPlayed: userData.matchesPlayed + 1,
+            });
           }
         });
       } else {
         matchSnapshot.data().teamB.map(async (e) => {
           if (e != null) {
-            const matchId = doc(db, 'users', e.userId);
+            const matchId = doc(db, "users", e.userId);
             const userSnapshot = await getDoc(matchId);
-            let array = [];
-            array = userSnapshot.data();
-            array = { ...array, points: Number(array.points) + 20 };
-            await updateDoc(matchId, { points: array.points });
+            let userData = userSnapshot.data();
+
+            await updateDoc(matchId, {
+              points: userData.points + 20,
+              isNotified: true,
+              matchesPlayed: userData.matchesPlayed + 1,
+            });
           }
         });
       }
-      const matchStadium = doc(db, 'stadium', matchdata.stadiumID);
+      const matchStadium = doc(db, "stadium", matchdata.stadiumID);
       const stadiumSnapshot = await getDoc(matchStadium);
       const index = stadiumSnapshot
         .data()
@@ -100,7 +106,7 @@ export default function Reservation() {
       arrayTime[index] = { time: arrayTime[index].time, isBooked: false };
       await updateDoc(matchStadium, { timeSlot: arrayTime });
       await deleteDoc(matchRef);
-      document.getElementById('my_modal_2').close();
+      document.getElementById("my_modal_2").close();
       fetchMatchData();
     };
     fetchPointes();
@@ -125,17 +131,17 @@ export default function Reservation() {
                     className={`w-[30vw] overflow-hidden  max-sm:w-full h-max pb-4  bg-primary  overflow-hiddn relative rounded-md`}
                     style={{
                       backgroundImage: `url(${
-                        e.category === 'Padel'
+                        e.category === "Padel"
                           ? backgroundImagePadel
-                          : e.category === 'Basketball'
+                          : e.category === "Basketball"
                           ? basketBallImage
                           : VollyballImage
                       })`,
-                      backgroundSize: 'cover',
-                      backgroundPosition: 'center',
+                      backgroundSize: "cover",
+                      backgroundPosition: "center",
                     }}
                   >
-                    {Number(e.time.substring(0, 2).split(':').join('')) <=
+                    {Number(e.time.substring(0, 2).split(":").join("")) <=
                       Number(new Date().getHours()) - 12 && (
                       // 1 > Number(new Date().getHours()) - 12 && (
                       <button
@@ -145,7 +151,7 @@ export default function Reservation() {
                           setUserModalA(e.teamA.filter((i) => i != null));
                           setUserModalB(e.teamB.filter((i) => i != null));
                           setIdMatch(e.id);
-                          document.getElementById('my_modal_2').showModal();
+                          document.getElementById("my_modal_2").showModal();
                         }}
                         className=" text-red-600 absolute top-20 left-40 z-10  text-3xl "
                       >
@@ -156,16 +162,16 @@ export default function Reservation() {
                       className="absolute inset-0 bg-black opacity-50 filter blur-lg"
                       style={{
                         opacity:
-                          Number(e.time.substring(0, 2).split(':').join('')) <=
-                            Number(new Date().getHours()) - 12 && '0.7',
+                          Number(e.time.substring(0, 2).split(":").join("")) <=
+                            Number(new Date().getHours()) - 12 && "0.7",
                       }}
                     ></div>
 
                     <div
                       style={{
                         opacity:
-                          Number(e.time.substring(0, 2).split(':').join('')) <=
-                            Number(new Date().getHours()) - 12 && '0.4',
+                          Number(e.time.substring(0, 2).split(":").join("")) <=
+                            Number(new Date().getHours()) - 12 && "0.4",
                       }}
                       className="relative p-4 flex flex-col  justify-center"
                     >
@@ -196,7 +202,7 @@ export default function Reservation() {
                       </div>
                       <button
                         disabled={
-                          Number(e.time.substring(0, 2).split(':').join('')) <=
+                          Number(e.time.substring(0, 2).split(":").join("")) <=
                             Number(new Date().getHours()) - 12 && true
                         }
                         onClick={() => {
@@ -213,7 +219,7 @@ export default function Reservation() {
                           [...e.teamA, ...e.teamB].filter((e) => e !== null)
                             .length
                             ? `bg-gray-400`
-                            : 'bg-secondary'
+                            : "bg-secondary"
                         } py-2 px-4 rounded-lg`}
                       >
                         <span className="font-medium text-white">
@@ -235,7 +241,7 @@ export default function Reservation() {
                                   (e) => e !== null
                                 ).length
                               }/${e.teamA.length + e.teamB.length}`}</span>
-                              {' players joined'}
+                              {" players joined"}
                             </>
                           )}
                         </span>
@@ -273,7 +279,7 @@ export default function Reservation() {
             <label className="label cursor-pointer">
               <div className="flex items-center justify-center flex-col relative ">
                 <span className="px-2 font-bold label-text">
-                  Your team{' '}
+                  Your team{" "}
                   <button
                     onClick={() =>
                       sethidden({ ...hidden, teamA: !hidden.teamA })
@@ -284,7 +290,7 @@ export default function Reservation() {
                 </span>
 
                 <ul
-                  style={{ display: hidden.teamA == false ? 'none' : '' }}
+                  style={{ display: hidden.teamA == false ? "none" : "" }}
                   className=" 
                   list-disc list-inside absolute  text-primary  
                   px-1 rounded-md w-max bg-base-100 
@@ -300,7 +306,7 @@ export default function Reservation() {
               </div>
               <input
                 onChange={() => {
-                  setRadio('teamA');
+                  setRadio("teamA");
                 }}
                 type="radio"
                 name="radio-10"
@@ -321,7 +327,7 @@ export default function Reservation() {
                   </button>
                 </span>
                 <ul
-                  style={{ display: hidden.teamB == false ? 'none' : '' }}
+                  style={{ display: hidden.teamB == false ? "none" : "" }}
                   className="   list-disc list-inside absolute  text-primary  
                   px-1 rounded-md w-max bg-base-100 
                    top-7  shadow-lg 
@@ -336,7 +342,7 @@ export default function Reservation() {
               </div>
               <input
                 onChange={() => {
-                  setRadio('teamB');
+                  setRadio("teamB");
                 }}
                 type="radio"
                 name="radio-10"

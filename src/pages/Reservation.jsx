@@ -81,6 +81,17 @@ export default function Reservation() {
             });
           }
         });
+        matchSnapshot.data().teamB.map(async (e) => {
+          if (e != null) {
+            const matchId = doc(db, "users", e.userId);
+            const userSnapshot = await getDoc(matchId);
+            let userData = userSnapshot.data();
+
+            await updateDoc(matchId, {
+              matchesPlayed: userData.matchesPlayed + 1,
+            });
+          }
+        });
       } else {
         matchSnapshot.data().teamB.map(async (e) => {
           if (e != null) {
@@ -91,6 +102,17 @@ export default function Reservation() {
             await updateDoc(matchId, {
               points: userData.points + 20,
               isNotified: true,
+              matchesPlayed: userData.matchesPlayed + 1,
+            });
+          }
+        });
+        matchSnapshot.data().teamA.map(async (e) => {
+          if (e != null) {
+            const matchId = doc(db, "users", e.userId);
+            const userSnapshot = await getDoc(matchId);
+            let userData = userSnapshot.data();
+
+            await updateDoc(matchId, {
               matchesPlayed: userData.matchesPlayed + 1,
             });
           }
@@ -201,10 +223,10 @@ export default function Reservation() {
                         </div>
                       </div>
                       <button
-                        disabled={
-                          Number(e.time.substring(0, 2).split(":").join("")) <=
-                            Number(new Date().getHours()) - 12 && true
-                        }
+                        // disabled={
+                        //   Number(e.time.substring(0, 2).split(":").join("")) <=
+                        //     Number(new Date().getHours()) - 12 && true
+                        // }
                         onClick={() => {
                           navigate(`./${e.id}`);
                         }}

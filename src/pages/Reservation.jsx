@@ -136,9 +136,10 @@ export default function Reservation() {
                     }}
                   >
                     {
-                      // Number(e.time.substring(0, 2).split(":").join("")) <
-                      1 > Number(new Date().getHours()) - 12 && (
+                      Number(e.time.substring(0, 2).split(":").join("")) < Number(new Date().getHours()) - 12 && (
+                      // 1 > Number(new Date().getHours()) - 12 && (
                         <button
+                          disabled={e.Admin.userId != user.uid && true}
                           onClick={() => {
                             setTimeModal(e.time);
                             setUserModalA(e.teamA.filter((i) => i != null));

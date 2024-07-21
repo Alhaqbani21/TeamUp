@@ -1,11 +1,11 @@
-import React from "react";
-import Gold_1_Rank from "../assets/Gold_1_Rank.png";
-import Iron_1_Rank from "../assets/Iron_1_Rank.png";
-import Silver_1_Rank from "../assets/Silver_1_Rank.png";
-import Platinum_1_Rank from "../assets/Platinum_1_Rank.png";
-import { MdOutlineAttachMoney, MdAccessTime } from "react-icons/md";
-import { Fade } from "react-awesome-reveal";
-import { TbUserDollar } from "react-icons/tb";
+import React from 'react';
+import Gold_1_Rank from '../assets/Gold_1_Rank.png';
+import Iron_1_Rank from '../assets/Iron_1_Rank.png';
+import Silver_1_Rank from '../assets/Silver_1_Rank.png';
+import Platinum_1_Rank from '../assets/Platinum_1_Rank.png';
+import { MdOutlineAttachMoney, MdAccessTime } from 'react-icons/md';
+import { Fade } from 'react-awesome-reveal';
+import { TbUserDollar } from 'react-icons/tb';
 export default function DetailePlayers(props) {
   function getRankImage(point) {
     if (point >= 150) {
@@ -21,7 +21,7 @@ export default function DetailePlayers(props) {
   const total = props.PlayersB.length + props.PlayersA.length;
   // Filter out pending players for team B if team B is full
   const filteredPendingPlayers = props.pendingPlayers.filter((player) => {
-    if (player.team === "B" && props.PlayersB.every((p) => p && p.name)) {
+    if (player.team === 'B' && props.PlayersB.every((p) => p && p.name)) {
       return false; // Exclude player if team B is full
     }
     return true;
@@ -107,7 +107,7 @@ export default function DetailePlayers(props) {
       <br />
       {/* teams */}
       <div className="flex justify-between w-full p-3 max-sm:mt-5">
-        {props.teamA === "TeamA" ? (
+        {props.teamA === 'TeamA' ? (
           <div className="flex max-sm:justify-center max-sm:w-full max-sm:flex-col max-sm:p-0 items-center max-sm:gap-1 gap-6">
             <div className="text-xl rounded-full bg-base-200 font-bold text-secondary p-2 px-4">
               A
@@ -178,11 +178,10 @@ export default function DetailePlayers(props) {
           <div className="text-base">{props.time}</div>
         </div>
         <div className="tooltip" data-tip="Pirce">
-
-        <div className="flex items-center">
-          <MdOutlineAttachMoney size={20} className="text-secndary" />
-          <div className="text-secondry text-base">{props.cost}</div>
-        </div>
+          <div className="flex items-center">
+            <MdOutlineAttachMoney size={20} className="text-secndary" />
+            <div className="text-secondry text-base">{props.cost}</div>
+          </div>
         </div>
         <div className="tooltip" data-tip="Split the bill">
           <div className="flex items-center">

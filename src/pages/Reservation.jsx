@@ -66,6 +66,7 @@ export default function Reservation() {
 
       const matchSnapshot = await getDoc(matchRef);
       const matchdata = matchSnapshot.data();
+
       if (radio == "teamA") {
         matchSnapshot.data().teamA.map(async (e) => {
           if (e != null) {
@@ -98,12 +99,11 @@ export default function Reservation() {
       arrayTime = stadiumSnapshot.data().timeSlot;
       arrayTime[index] = { time: arrayTime[index].time, isBooked: false };
       await updateDoc(matchStadium, { timeSlot: arrayTime });
-
       await deleteDoc(matchRef);
       document.getElementById("my_modal_2").close();
+      fetchMatchData();
     };
     fetchPointes();
-    fetchMatchData();
   };
   return (
     <div className="h-screen w-full bg-base-100 relative flex overflow-hidden">
@@ -135,30 +135,29 @@ export default function Reservation() {
                       backgroundPosition: "center",
                     }}
                   >
-                    {
-                      Number(e.time.substring(0, 2).split(":").join("")) < Number(new Date().getHours()) - 12 && (
-                      // 1 > Number(new Date().getHours()) - 12 && (
-                        <button
-                          disabled={e.Admin.userId != user.uid && true}
-                          onClick={() => {
-                            setTimeModal(e.time);
-                            setUserModalA(e.teamA.filter((i) => i != null));
-                            setUserModalB(e.teamB.filter((i) => i != null));
-                            setIdMatch(e.id);
-                            document.getElementById("my_modal_2").showModal();
-                          }}
-                          className=" text-red-600 absolute top-20 left-40 z-10  text-3xl "
-                        >
-                          Finished
-                        </button>
-                      )
-                    }
+                    {Number(e.time.substring(0, 2).split(":").join("")) <
+                      Number(new Date().getHours()) - 10 && (
+                      // 1 > Number(new Date().getHours()) - 10 && (
+                      <button
+                        disabled={e.Admin.userId != user.uid && true}
+                        onClick={() => {
+                          setTimeModal(e.time);
+                          setUserModalA(e.teamA.filter((i) => i != null));
+                          setUserModalB(e.teamB.filter((i) => i != null));
+                          setIdMatch(e.id);
+                          document.getElementById("my_modal_2").showModal();
+                        }}
+                        className=" text-red-600 absolute top-20 left-40 z-10  text-3xl "
+                      >
+                        Finished
+                      </button>
+                    )}
                     <div
                       className="absolute inset-0 bg-black opacity-50 filter blur-lg"
                       style={{
                         opacity:
                           Number(e.time.substring(0, 2).split(":").join("")) <
-                            Number(new Date().getHours()) - 12 && "0.7",
+                            Number(new Date().getHours()) - 10 && "0.7",
                       }}
                     ></div>
 
@@ -166,7 +165,7 @@ export default function Reservation() {
                       style={{
                         opacity:
                           Number(e.time.substring(0, 2).split(":").join("")) <
-                            Number(new Date().getHours()) - 12 && "0.4",
+                            Number(new Date().getHours()) - 10 && "0.4",
                       }}
                       className="relative p-4 flex flex-col  justify-center"
                     >
@@ -198,7 +197,7 @@ export default function Reservation() {
                       <button
                         disabled={
                           Number(e.time.substring(0, 2).split(":").join("")) <
-                            Number(new Date().getHours()) - 12 && true
+                            Number(new Date().getHours()) - 10 && true
                         }
                         onClick={() => {
                           navigate(`./${e.id}`);

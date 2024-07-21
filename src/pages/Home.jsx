@@ -54,11 +54,20 @@ function Home() {
       const userDoc = await getDoc(doc(db, 'users', currentUser.uid));
       if (userDoc.exists()) {
         setUserData(userDoc.data());
+        if (userDoc.data().isNotified) {
+          console.log('Notify me');
+          notifyUserWinner();
+          await updateDoc(doc(db, 'users', currentUser.uid), {
+            isNotified: false,
+          });
+        }
       }
     } catch (error) {
       console.error('Error fetching user data: ', error);
     }
   };
+
+  function notifyUserWinner() {}
 
   const fetchMatchesData = async () => {
     try {
@@ -86,7 +95,7 @@ function Home() {
         'Dec',
       ];
       const month = monthArray[new Date().getMonth()];
-     
+
       const formattedMatches = fetchedMatches.map((match) => {
         const teamACount = (match.teamA || []).filter(
           (player) => player && player.name
@@ -102,7 +111,7 @@ function Home() {
           stadiumName: `${match.stadiumName} `,
           distance: match.distance,
           price: match.price,
-          date:`${today} ${month}`,
+          date: `${today} ${month}`,
           time: match.time,
           // status: "Upcoming",
           teamA: (match.teamA || []).map((player) => ({

@@ -35,7 +35,8 @@ function Login() {
         await signInWithEmailAndPassword(auth, values.email, values.password);
         navigate('../Home');
       } catch (error) {
-        setError(error.message);
+        setError('Invalid email or password');
+
         console.error('Error logging in: ', error);
       }
     },

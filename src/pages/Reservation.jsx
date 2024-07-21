@@ -135,7 +135,7 @@ export default function Reservation() {
                       backgroundPosition: "center",
                     }}
                   >
-                    {Number(e.time.substring(0, 2).split(":").join("")) <
+                    {Number(e.time.substring(0, 2).split(":").join("")) <=
                       Number(new Date().getHours()) - 12 && (
                       // 1 > Number(new Date().getHours()) - 12 && (
                       <button
@@ -156,7 +156,7 @@ export default function Reservation() {
                       className="absolute inset-0 bg-black opacity-50 filter blur-lg"
                       style={{
                         opacity:
-                          Number(e.time.substring(0, 2).split(":").join("")) <
+                          Number(e.time.substring(0, 2).split(":").join("")) <=
                             Number(new Date().getHours()) - 12 && "0.7",
                       }}
                     ></div>
@@ -164,7 +164,7 @@ export default function Reservation() {
                     <div
                       style={{
                         opacity:
-                          Number(e.time.substring(0, 2).split(":").join("")) <
+                          Number(e.time.substring(0, 2).split(":").join("")) <=
                             Number(new Date().getHours()) - 12 && "0.4",
                       }}
                       className="relative p-4 flex flex-col  justify-center"
@@ -196,7 +196,7 @@ export default function Reservation() {
                       </div>
                       <button
                         disabled={
-                          Number(e.time.substring(0, 2).split(":").join("")) <
+                          Number(e.time.substring(0, 2).split(":").join("")) <=
                             Number(new Date().getHours()) - 12 && true
                         }
                         onClick={() => {

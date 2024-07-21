@@ -66,7 +66,7 @@ export default function MatchPage() {
     };
 
     fetchMatchData();
-  }, [id, matchData]);
+  }, [id]);
 
   const handleAccept = async (player) => {
     const matchRef = doc(db, 'matches', id);

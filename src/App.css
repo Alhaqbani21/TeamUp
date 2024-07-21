@@ -4,6 +4,6 @@
 :root {
   font-family: 'Manrope', sans-serif;
 }
-#scroll{
+#scroll,.scroll{
   scrollbar-width: none;
 }

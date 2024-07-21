@@ -9,11 +9,6 @@ import Timer from "../components/Timer";
 import DetailePlayers from "../components/DetailePlayers";
 import { useParams } from "react-router-dom";
 import { db } from "../config/firebase";
-<<<<<<< HEAD
-=======
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
->>>>>>> amwaj
 import {
   doc,
   getDoc,
@@ -25,11 +20,8 @@ import {
 import { useAuth } from "../contexts/AuthContext";
 import SideBar from "../components/SideBar";
 import BottomNavBar from "../components/BottomNavBar";
-<<<<<<< HEAD
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-=======
->>>>>>> amwaj
 
 export default function MatchPage() {
   const [teamA, setteamA] = useState("TeamA");

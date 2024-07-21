@@ -1,10 +1,10 @@
-import React from 'react';
-import Gold_1_Rank from '../assets/Gold_1_Rank.png';
-import Iron_1_Rank from '../assets/Iron_1_Rank.png';
-import Silver_1_Rank from '../assets/Silver_1_Rank.png';
-import Platinum_1_Rank from '../assets/Platinum_1_Rank.png';
-import { MdOutlineAttachMoney, MdAccessTime } from 'react-icons/md';
-import { Fade } from 'react-awesome-reveal';
+import React from "react";
+import Gold_1_Rank from "../assets/Gold_1_Rank.png";
+import Iron_1_Rank from "../assets/Iron_1_Rank.png";
+import Silver_1_Rank from "../assets/Silver_1_Rank.png";
+import Platinum_1_Rank from "../assets/Platinum_1_Rank.png";
+import { MdOutlineAttachMoney, MdAccessTime } from "react-icons/md";
+import { Fade } from "react-awesome-reveal";
 
 export default function DetailePlayers(props) {
   function getRankImage(point) {
@@ -21,16 +21,16 @@ export default function DetailePlayers(props) {
 
   // Filter out pending players for team B if team B is full
   const filteredPendingPlayers = props.pendingPlayers.filter((player) => {
-    if (player.team === 'B' && props.PlayersB.every((p) => p && p.name)) {
+    if (player.team === "B" && props.PlayersB.every((p) => p && p.name)) {
       return false; // Exclude player if team B is full
     }
     return true;
   });
 
   return (
-    <div className="shadow-md h-max w-max rounded-xl mt-7 max-sm:mt-8 max-xl:w-full text-xl text-black bg-base-100 px-7">
-      <div className="border-black">
-        {props.isAdmin && filteredPendingPlayers.length > 0 && (
+    <div className="shadow-md h-max w-max rounded-xl mt-7 max-sm:mt-0 max-xl:w-full text-xl text-black bg-base-100 px-7">
+      {props.isAdmin && filteredPendingPlayers.length > 0 && (
+        <div className="border-black max-h-60 overflow-y-auto">
           <table className="table table-zebra">
             <thead>
               <tr>
@@ -101,12 +101,13 @@ export default function DetailePlayers(props) {
                 ))}
             </tbody>
           </table>
-        )}
-      </div>
+        </div>
+      )}
+
       <br />
       {/* teams */}
       <div className="flex justify-between w-full p-3 max-sm:mt-5">
-        {props.teamA === 'TeamA' ? (
+        {props.teamA === "TeamA" ? (
           <div className="flex max-sm:justify-center max-sm:w-full max-sm:flex-col max-sm:p-0 items-center max-sm:gap-1 gap-6">
             <div className="text-xl rounded-full bg-base-200 font-bold text-secondary p-2 px-4">
               A
@@ -139,7 +140,7 @@ export default function DetailePlayers(props) {
             </div>
           </div>
         ) : (
-          <div className="flex max-sm:justify-center max-sm:w-full max-sm:flex-col max-xl:grid-cols-3 max-xl:grid items-center max-sm:gap-1 gap-6">
+          <div className="flex max-sm:justify-center max-sm:w-full max-sm:flex-col max-sm:p-0 items-center max-sm:gap-1 gap-6">
             <div className="text-xl rounded-full bg-base-200 font-bold text-secondary p-2 px-4">
               B
             </div>

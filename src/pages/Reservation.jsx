@@ -1,58 +1,110 @@
 import React from "react";
 import SideBar from "../components/SideBar";
 import BottomNavBar from "../components/BottomNavBar";
-import { collection, doc, getDoc, getDocs } from "firebase/firestore";
+import {
+  collection,
+  deleteDoc,
+  doc,
+  getDoc,
+  getDocs,
+  updateDoc,
+} from "firebase/firestore";
 import { auth, db } from "../config/firebase";
 import { Link, useNavigate } from "react-router-dom";
 import VollyballImage from "../assets/VollyballImage.png";
 import basketBallImage from "../assets/basketBallImage.png";
-import padelImage from "../assets/padel_Image.png";
-import basketBall from "../assets/basket_Ball.png";
-import VollyBall from "../assets/VollyBall.png";
 import NoMatch from "../assets/Nomatch.png";
 import win from "../assets/win.png";
-import team1 from "../assets/person2.png";
-import team2 from "../assets/person3.png";
 import { FaUserTie } from "react-icons/fa6";
+import { IoIosArrowDown } from "react-icons/io";
 
 export default function Reservation() {
   const backgroundImagePadel =
     "https://champs-sportsclub.com/wp-content/uploads/2024/05/Playing-Tennis-padel-1.jpg";
   const [matches, setMatches] = React.useState([]);
   const [timeModal, setTimeModal] = React.useState("");
-  const [userModal, setUserModal] = React.useState("");
+  const [userModalA, setUserModalA] = React.useState([]);
+  const [userModalB, setUserModalB] = React.useState([]);
+  const [radio, setRadio] = React.useState("teamA");
+  const [idMatch, setIdMatch] = React.useState("");
+
+  const [hidden, sethidden] = React.useState({ teamA: false, teamB: false });
   const user = auth.currentUser;
   const navigate = useNavigate();
+  const fetchMatchData = async () => {
+    const matchRef = collection(db, "matches");
+
+    const matchSnapshot = await getDocs(matchRef);
+
+    const data = matchSnapshot.docs.map((e) => ({
+      ...e.data(),
+      id: e.id,
+    }));
+
+    const array = [];
+    data.map((match) => {
+      const filterTeamA = match.teamA.filter((e) => e !== null);
+      const filterTeamB = match.teamB.filter((e) => e !== null);
+
+      if (match.Admin.userId == user.uid) {
+        array.push(match);
+      } else if (filterTeamA.find((e) => e.userId == user.uid)) {
+        array.push(match);
+      } else if (filterTeamB.find((e) => e.userId == user.uid)) {
+        array.push(match);
+      }
+    });
+
+    setMatches(array);
+  };
   React.useEffect(() => {
-    const fetchMatchData = async () => {
-      const matchRef = collection(db, "matches");
-
-      const matchSnapshot = await getDocs(matchRef);
-
-      const data = matchSnapshot.docs.map((e) => ({
-        ...e.data(),
-        id: e.id,
-      }));
-
-      const array = [];
-      data.map((match) => {
-        const filterTeamA = match.teamA.filter((e) => e !== null);
-        const filterTeamB = match.teamB.filter((e) => e !== null);
-
-        if (match.Admin.userId == user.uid) {
-          array.push(match);
-        } else if (filterTeamA.find((e) => e.userId == user.uid)) {
-          array.push(match);
-        } else if (filterTeamB.find((e) => e.userId == user.uid)) {
-          array.push(match);
-        }
-      });
-
-      setMatches(array);
-    };
     fetchMatchData();
   }, []);
+  const handelAddPoints = () => {
+    const fetchPointes = async () => {
+      const matchRef = doc(db, "matches", idMatch);
 
+      const matchSnapshot = await getDoc(matchRef);
+      const matchdata = matchSnapshot.data();
+      if (radio == "teamA") {
+        matchSnapshot.data().teamA.map(async (e) => {
+          if (e != null) {
+            const matchId = doc(db, "users", e.userId);
+            const userSnapshot = await getDoc(matchId);
+            let array = [];
+            array = userSnapshot.data();
+            array = { ...array, points: Number(array.points) + 20 };
+            await updateDoc(matchId, { points: array.points });
+          }
+        });
+      } else {
+        matchSnapshot.data().teamB.map(async (e) => {
+          if (e != null) {
+            const matchId = doc(db, "users", e.userId);
+            const userSnapshot = await getDoc(matchId);
+            let array = [];
+            array = userSnapshot.data();
+            array = { ...array, points: Number(array.points) + 20 };
+            await updateDoc(matchId, { points: array.points });
+          }
+        });
+      }
+      const matchStadium = doc(db, "stadium", matchdata.stadiumID);
+      const stadiumSnapshot = await getDoc(matchStadium);
+      const index = stadiumSnapshot
+        .data()
+        .timeSlot.findIndex((e) => e.time == matchdata.time);
+      let arrayTime = [];
+      arrayTime = stadiumSnapshot.data().timeSlot;
+      arrayTime[index] = { time: arrayTime[index].time, isBooked: false };
+      await updateDoc(matchStadium, { timeSlot: arrayTime });
+
+      await deleteDoc(matchRef);
+      document.getElementById("my_modal_2").close();
+    };
+    fetchPointes();
+    fetchMatchData();
+  };
   return (
     <div className="h-screen w-full bg-base-100 relative flex overflow-hidden">
       <SideBar />
@@ -83,18 +135,23 @@ export default function Reservation() {
                       backgroundPosition: "center",
                     }}
                   >
-                    {Number(e.time.substring(0, 2).split(":").join("")) <
-                      Number(new Date().getHours()) - 12 && (
-                      <button
-                        onClick={() => {
-                          setTimeModal(e.time);
-                          document.getElementById("my_modal_2").showModal();
-                        }}
-                        className=" text-red-600 absolute top-20 left-40 z-10  text-3xl "
-                      >
-                        Finished
-                      </button>
-                    )}
+                    {
+                      // Number(e.time.substring(0, 2).split(":").join("")) <
+                      1 > Number(new Date().getHours()) - 12 && (
+                        <button
+                          onClick={() => {
+                            setTimeModal(e.time);
+                            setUserModalA(e.teamA.filter((i) => i != null));
+                            setUserModalB(e.teamB.filter((i) => i != null));
+                            setIdMatch(e.id);
+                            document.getElementById("my_modal_2").showModal();
+                          }}
+                          className=" text-red-600 absolute top-20 left-40 z-10  text-3xl "
+                        >
+                          Finished
+                        </button>
+                      )
+                    }
                     <div
                       className="absolute inset-0 bg-black opacity-50 filter blur-lg"
                       style={{
@@ -126,7 +183,7 @@ export default function Reservation() {
                                       <FaUserTie />
                                     </>
                                   ) : (
-                                    <>Request</>
+                                    <>{e.pending.length} Request</>
                                   )}
                                 </span>
                               )}
@@ -197,8 +254,8 @@ export default function Reservation() {
           </div>
         )}
       </div>
-      <dialog id="my_modal_2" className="modal">
-        <div className="modal-box flex flex-col items-center">
+      <dialog id="my_modal_2" className="modal ">
+        <div className="modal-box flex flex-col items-center ">
           <h3 className="font-bold flex flex-col items-center text-lg">
             {/* <p className="py-4 text-3xl">Who's the winner</p> */}
             <p className="py-4 text-3xl">Who wins the match</p>
@@ -214,27 +271,87 @@ export default function Reservation() {
 
           <div className="flex gap-9 ">
             <label className="label cursor-pointer">
-              <span className="px-2 label-text">Team A</span>
+              <div className="flex items-center justify-center flex-col relative ">
+                <span className="px-2 font-bold label-text">
+                  Your team{" "}
+                  <button
+                    onClick={() =>
+                      sethidden({ ...hidden, teamA: !hidden.teamA })
+                    }
+                  >
+                    <IoIosArrowDown />
+                  </button>
+                </span>
 
+                <ul
+                  style={{ display: hidden.teamA == false ? "none" : "" }}
+                  className=" 
+                  list-disc list-inside absolute  text-primary  
+                  px-1 rounded-md w-max bg-base-100 
+                   top-7  shadow-lg 
+                   border border-base-300 "
+                >
+                  {userModalA.map((e, i) => (
+                    <li key={i}>
+                      <small>{e.name}</small>
+                    </li>
+                  ))}
+                </ul>
+              </div>
               <input
+                onChange={() => {
+                  setRadio("teamA");
+                }}
                 type="radio"
                 name="radio-10"
                 className="radio checked:bg-secondary"
                 defaultChecked
               />
             </label>
-
-            <label className="label cursor-pointer">
-              <span className="px-2 label-text">Team B</span>
+            <label className="label relative cursor-pointer">
+              <div className="flex justify-center items-center flex-col ">
+                <span className="px-2 font-bold  label-text">
+                  Other team
+                  <button
+                    onClick={() =>
+                      sethidden({ ...hidden, teamB: !hidden.teamB })
+                    }
+                  >
+                    <IoIosArrowDown />
+                  </button>
+                </span>
+                <ul
+                  style={{ display: hidden.teamB == false ? "none" : "" }}
+                  className="   list-disc list-inside absolute  text-primary  
+                  px-1 rounded-md w-max bg-base-100 
+                   top-7  shadow-lg 
+                   border border-base-300 "
+                >
+                  {userModalB.map((e, i) => (
+                    <li key={i}>
+                      <small>{e.name}</small>
+                    </li>
+                  ))}
+                </ul>
+              </div>
               <input
+                onChange={() => {
+                  setRadio("teamB");
+                }}
                 type="radio"
                 name="radio-10"
                 className="radio checked:bg-secondary"
-                defaultChecked
               />
             </label>
           </div>
-          <button className="btn mt-9 w-20 btn-secondary">send</button>
+          <button
+            onClick={() => {
+              handelAddPoints();
+            }}
+            className="btn mt-9 w-20 btn-secondary"
+          >
+            send
+          </button>
         </div>
         <form method="dialog" className="modal-backdrop">
           <button>close</button>

@@ -5,7 +5,7 @@ import Silver_1_Rank from "../assets/Silver_1_Rank.png";
 import Platinum_1_Rank from "../assets/Platinum_1_Rank.png";
 import { MdOutlineAttachMoney, MdAccessTime } from "react-icons/md";
 import { Fade } from "react-awesome-reveal";
-
+import { TbUserDollar } from "react-icons/tb";
 export default function DetailePlayers(props) {
   function getRankImage(point) {
     if (point >= 150) {
@@ -18,7 +18,7 @@ export default function DetailePlayers(props) {
       return Iron_1_Rank;
     }
   }
-
+  const total = props.PlayersB.length + props.PlayersA.length;
   // Filter out pending players for team B if team B is full
   const filteredPendingPlayers = props.pendingPlayers.filter((player) => {
     if (player.team === "B" && props.PlayersB.every((p) => p && p.name)) {
@@ -177,9 +177,18 @@ export default function DetailePlayers(props) {
           <MdAccessTime size={20} className="text-s" />
           <div className="text-base">{props.time}</div>
         </div>
+        <div className="tooltip" data-tip="Pirce">
+
         <div className="flex items-center">
           <MdOutlineAttachMoney size={20} className="text-secndary" />
           <div className="text-secondry text-base">{props.cost}</div>
+        </div>
+        </div>
+        <div className="tooltip" data-tip="Split the bill">
+          <div className="flex items-center">
+            <TbUserDollar size={20} className="text-secndary" />
+            <div className="text-secondry text-base">{props.cost / total}</div>
+          </div>
         </div>
       </div>
 

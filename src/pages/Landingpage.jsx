@@ -1,17 +1,17 @@
 // import { Fade } from "react-awesome-reveal";
-import landingPageVideo from "../assets/landingPageVideo.mp4";
-import { Link } from "react-router-dom";
-import React, { useEffect, useContext } from "react";
-import { useNavigate } from "react-router-dom";
-import { Fade } from "react-awesome-reveal";
-import { useAuth } from "../contexts/AuthContext";
+import landingPageVideo from '../assets/landingPageVideo.mp4';
+import { Link } from 'react-router-dom';
+import React, { useEffect, useContext } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { Fade } from 'react-awesome-reveal';
+import { useAuth } from '../contexts/AuthContext';
 function Landingpage() {
   const { currentUser } = useAuth();
   const navigate = useNavigate();
 
   useEffect(() => {
     if (currentUser) {
-      navigate("/Home");
+      navigate('/Home');
     }
   }, [currentUser, navigate]);
 
@@ -53,8 +53,8 @@ function Landingpage() {
                   Join us now and enjoy <br className="hidden md:block" />
                 </p>
                 <div className="flex">
-                  <Link to={"/SignUp"}>
-                    {" "}
+                  <Link to={'/SignUp'}>
+                    {' '}
                     <button
                       className="middle none center mr-3 rounded-lg bg-[#007955] py-3 px-6 font-sans text-xs font-bold uppercase text-white shadow-md shadow-[#508172] transition-all hover:shadow-lg hover:shadow-[#508172] focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
                       data-ripple-light="true"
@@ -62,8 +62,8 @@ function Landingpage() {
                       SignUp
                     </button>
                   </Link>
-                  <Link to={"/Login"}>
-                    {" "}
+                  <Link to={'/Login'}>
+                    {' '}
                     <button
                       className="middle none center mr-3 rounded-lg bg-gradient-to-tr from-[#007955] to-[#508172] py-3 px-6 font-sans text-xs font-bold uppercase text-white shadow-md shadow-[#508172] transition-all hover:shadow-lg hover:shadow-[#508172] active:opacity-[0.85] disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
                       data-ripple-light="true"
@@ -132,10 +132,14 @@ function Landingpage() {
                   {/* Abdulaziz  */}
                   Alhaqbani
                 </p>
-                <p className="text-[#508172] ">Programmer</p>
+                <p className="text-[#508172] ">Software Engineer</p>
               </div>
               <div className="flex items-center justify-center p-3 space-x-3 border-t-2">
-                <a rel="noopener noreferrer" href="#" title="Email">
+                <a
+                  href="mailto:alhaqbani21@gmail.com"
+                  title="Email"
+                  rel="noopener noreferrer"
+                >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     viewBox="0 0 20 20"
@@ -147,7 +151,12 @@ function Landingpage() {
                   </svg>
                 </a>
 
-                <a rel="noopener noreferrer" href="#" title="LinkedIn">
+                <a
+                  rel="noopener noreferrer"
+                  target="_blank"
+                  href="https://www.linkedin.com/in/alhaqbani-abdulaziz/"
+                  title="LinkedIn"
+                >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     fill="currentColor"
@@ -157,7 +166,12 @@ function Landingpage() {
                     <path d="M8.268 28h-5.805v-18.694h5.805zM5.362 6.756c-1.856 0-3.362-1.538-3.362-3.394s1.505-3.362 3.362-3.362 3.362 1.505 3.362 3.362c0 1.856-1.506 3.394-3.362 3.394zM29.994 28h-5.792v-9.1c0-2.169-0.044-4.95-3.018-4.95-3.018 0-3.481 2.356-3.481 4.794v9.256h-5.799v-18.694h5.567v2.55h0.081c0.775-1.469 2.668-3.019 5.492-3.019 5.875 0 6.955 3.869 6.955 8.894v10.269z"></path>
                   </svg>
                 </a>
-                <a rel="noopener noreferrer" href="#" title="GitHub">
+                <a
+                  rel="noopener noreferrer"
+                  target="_blank"
+                  href="https://github.com/Alhaqbani21"
+                  title="GitHub"
+                >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     fill="currentColor"
@@ -177,7 +191,11 @@ function Landingpage() {
                 <p className="text-[#508172] ">Programmer</p>
               </div>
               <div className="flex items-center justify-center p-3 space-x-3 border-t-2">
-                <a rel="noopener noreferrer" href="#" title="Email">
+                <a
+                  rel="noopener noreferrer"
+                  href="mailto:ammalgh22@gmail.com"
+                  title="Email"
+                >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     viewBox="0 0 20 20"
@@ -189,7 +207,12 @@ function Landingpage() {
                   </svg>
                 </a>
 
-                <a rel="noopener noreferrer" href="#" title="LinkedIn">
+                <a
+                  rel="noopener noreferrer"
+                  target="_blank"
+                  href="https://www.linkedin.com/in/amal-alotaibi-985642259/"
+                  title="LinkedIn"
+                >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     fill="currentColor"
@@ -199,7 +222,12 @@ function Landingpage() {
                     <path d="M8.268 28h-5.805v-18.694h5.805zM5.362 6.756c-1.856 0-3.362-1.538-3.362-3.394s1.505-3.362 3.362-3.362 3.362 1.505 3.362 3.362c0 1.856-1.506 3.394-3.362 3.394zM29.994 28h-5.792v-9.1c0-2.169-0.044-4.95-3.018-4.95-3.018 0-3.481 2.356-3.481 4.794v9.256h-5.799v-18.694h5.567v2.55h0.081c0.775-1.469 2.668-3.019 5.492-3.019 5.875 0 6.955 3.869 6.955 8.894v10.269z"></path>
                   </svg>
                 </a>
-                <a rel="noopener noreferrer" href="#" title="GitHub">
+                <a
+                  rel="noopener noreferrer"
+                  target="_blank"
+                  href="https://github.com/ammalgh"
+                  title="GitHub"
+                >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     fill="currentColor"
@@ -219,7 +247,11 @@ function Landingpage() {
                 <p className="text-[#508172] ">Programmer</p>
               </div>
               <div className="flex items-center justify-center p-3 space-x-3 border-t-2">
-                <a rel="noopener noreferrer" href="#" title="Email">
+                <a
+                  rel="noopener noreferrer"
+                  href="mailto:amwaj@outlook.com"
+                  title="Email"
+                >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     viewBox="0 0 20 20"
@@ -231,7 +263,12 @@ function Landingpage() {
                   </svg>
                 </a>
 
-                <a rel="noopener noreferrer" href="#" title="LinkedIn">
+                <a
+                  rel="noopener noreferrer"
+                  target="_blank"
+                  href="https://www.linkedin.com/in/amwaj-alharbi/"
+                  title="LinkedIn"
+                >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     fill="currentColor"
@@ -241,7 +278,12 @@ function Landingpage() {
                     <path d="M8.268 28h-5.805v-18.694h5.805zM5.362 6.756c-1.856 0-3.362-1.538-3.362-3.394s1.505-3.362 3.362-3.362 3.362 1.505 3.362 3.362c0 1.856-1.506 3.394-3.362 3.394zM29.994 28h-5.792v-9.1c0-2.169-0.044-4.95-3.018-4.95-3.018 0-3.481 2.356-3.481 4.794v9.256h-5.799v-18.694h5.567v2.55h0.081c0.775-1.469 2.668-3.019 5.492-3.019 5.875 0 6.955 3.869 6.955 8.894v10.269z"></path>
                   </svg>
                 </a>
-                <a rel="noopener noreferrer" href="#" title="GitHub">
+                <a
+                  rel="noopener noreferrer"
+                  target="_blank"
+                  href="https://github.com/amwaj-a"
+                  title="GitHub"
+                >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     fill="currentColor"

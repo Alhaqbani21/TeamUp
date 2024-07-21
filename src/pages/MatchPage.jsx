@@ -258,7 +258,7 @@ export default function MatchPage() {
                 </div>
 
                 <img
-                  className="h-[70vh] max-sm:w-full max-sm:h-[40vh] w-[60vw]"
+                  className="h-[70vh] rounded-3xl max-sm:w-full max-sm:h-[40vh] w-[60vw]"
                   src={
                     isVolleyball
                       ? volleyball
@@ -276,6 +276,9 @@ export default function MatchPage() {
                           player &&
                           player.name && (
                             <Players
+                              isAdmin={player.userId == matchData.Admin.userId}
+                              matchId={id}
+                              userId={player.userId}
                               key={index}
                               name={player.name}
                               x={
@@ -310,6 +313,9 @@ export default function MatchPage() {
                           player &&
                           player.name && (
                             <Players
+                              isAdmin={player.userId == matchData.Admin.userId}
+                              matchId={id}
+                              userId={player.userId}
                               key={index}
                               name={player.name}
                               x={
@@ -346,6 +352,9 @@ export default function MatchPage() {
                           player &&
                           player.name && (
                             <Players
+                              isAdmin={player.userId == matchData.Admin.userId}
+                              matchId={id}
+                              userId={player.userId}
                               key={index}
                               name={player.name}
                               x={
@@ -370,6 +379,9 @@ export default function MatchPage() {
                           player &&
                           player.name && (
                             <Players
+                              isAdmin={player.userId == matchData.Admin.userId}
+                              matchId={id}
+                              userId={player.userId}
                               key={index}
                               name={player.name}
                               x={
@@ -395,6 +407,11 @@ export default function MatchPage() {
                   <div>
                     {matchData.teamA[0] && matchData.teamA[0].name && (
                       <Players
+                        isAdmin={
+                          matchData.teamA[0].userId == matchData.Admin.userId
+                        }
+                        matchId={id}
+                        userId={matchData.teamA[0].userId}
                         name={matchData.teamA[0].name || ""}
                         x="left-20"
                         y="top-24"
@@ -403,6 +420,11 @@ export default function MatchPage() {
                     )}
                     {matchData.teamA[1] && matchData.teamA[1].name && (
                       <Players
+                        isAdmin={
+                          matchData.teamA[1].userId == matchData.Admin.userId
+                        }
+                        matchId={id}
+                        userId={matchData.teamA[1].userId}
                         name={matchData.teamA[1].name || ""}
                         x="right-20"
                         y="top-24"
@@ -414,6 +436,11 @@ export default function MatchPage() {
                   <div>
                     {matchData.teamB[0] && matchData.teamB[0].name && (
                       <Players
+                        isAdmin={
+                          matchData.teamB[0].userId == matchData.Admin.userId
+                        }
+                        matchId={id}
+                        userId={matchData.teamB[0].userId}
                         name={matchData.teamB[0].name || ""}
                         x="right-20"
                         y="bottom-10"
@@ -422,6 +449,11 @@ export default function MatchPage() {
                     )}
                     {matchData.teamB[1] && matchData.teamB[1].name && (
                       <Players
+                        isAdmin={
+                          matchData.teamB[1].userId == matchData.Admin.userId
+                        }
+                        matchId={id}
+                        userId={matchData.teamB[1].userId}
                         name={matchData.teamB[1].name || ""}
                         x="left-20"
                         y="bottom-10"

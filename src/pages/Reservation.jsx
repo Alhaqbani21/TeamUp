@@ -136,8 +136,8 @@ export default function Reservation() {
                     }}
                   >
                     {Number(e.time.substring(0, 2).split(":").join("")) <
-                      Number(new Date().getHours()) - 10 && (
-                      // 1 > Number(new Date().getHours()) - 10 && (
+                      Number(new Date().getHours()) - 12 && (
+                      // 1 > Number(new Date().getHours()) - 12 && (
                       <button
                         disabled={e.Admin.userId != user.uid && true}
                         onClick={() => {
@@ -157,7 +157,7 @@ export default function Reservation() {
                       style={{
                         opacity:
                           Number(e.time.substring(0, 2).split(":").join("")) <
-                            Number(new Date().getHours()) - 10 && "0.7",
+                            Number(new Date().getHours()) - 12 && "0.7",
                       }}
                     ></div>
 
@@ -165,7 +165,7 @@ export default function Reservation() {
                       style={{
                         opacity:
                           Number(e.time.substring(0, 2).split(":").join("")) <
-                            Number(new Date().getHours()) - 10 && "0.4",
+                            Number(new Date().getHours()) - 12 && "0.4",
                       }}
                       className="relative p-4 flex flex-col  justify-center"
                     >
@@ -197,7 +197,7 @@ export default function Reservation() {
                       <button
                         disabled={
                           Number(e.time.substring(0, 2).split(":").join("")) <
-                            Number(new Date().getHours()) - 10 && true
+                            Number(new Date().getHours()) - 12 && true
                         }
                         onClick={() => {
                           navigate(`./${e.id}`);

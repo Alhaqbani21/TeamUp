@@ -3,6 +3,7 @@ import landingPageVideo from '../assets/landingPageVideo.mp4';
 import { Link } from 'react-router-dom';
 import React, { useEffect, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { Fade } from 'react-awesome-reveal';
 import { useAuth } from '../contexts/AuthContext';
 function Landingpage() {
   const { currentUser } = useAuth();
@@ -76,8 +77,39 @@ function Landingpage() {
           </div>
         </div>
       </div>
+      {/* Our Activities */}
+      <p className="p-2 text-3xl font-bold   mb-7 text-[#007955]  flex justify-center items-center mt-8">
+        Activities
+      </p>
+      <Fade direction="right">
+        <div className="flex justify-center items-center gap-12 mt-5 max-sm:flex-col">
+          <div>
+            <img
+              className="w-[15em] h-[15em] rounded-md "
+              src="https://i.pinimg.com/474x/5c/93/42/5c9342018257adcbd3583e22de1461d9.jpg"
+            />
+            <h2 className="text-lg text-center mt-4">Volleyball</h2>
+          </div>
+
+          <div>
+            <img
+              className="w-[15em] h-[15em] rounded-md "
+              src="https://i.pinimg.com/564x/e9/cd/a7/e9cda718f10716d9eb01c4ce03fa04f3.jpg"
+            />
+            <h2 className="text-lg text-center mt-4">Padel</h2>
+          </div>
+
+          <div>
+            <img
+              className="w-[15em] h-[15em] rounded-md "
+              src="https://i.pinimg.com/564x/0a/0d/12/0a0d1234e829cf469e8788283ff149fa.jpg"
+            />
+            <h2 className="text-lg text-center mt-4">Basketball</h2>
+          </div>
+        </div>
+      </Fade>
       {/* our team  */}
-      <div className="py-6 bg-base-100  ">
+      <div className="py-6 bg-base-100  mt-6 ">
         <div className="container flex flex-col items-center justify-center p-4 mx-auto sm:p-10">
           <p className="p-2 text-3xl font-bold   mb-7 text-[#007955] ">
             Our Team
@@ -85,7 +117,7 @@ function Landingpage() {
 
           <h1
             className=" font-bold leading-none text-pretty  text-[#508172] sm:text-xl 
-           md:text-lg sm:max-w-md md:max-w-lg lg:max-w-xl xl:max-w-2xl text-xs"
+           md:text-lg sm:max-w-md md:max-w-lg lg:max-w-xl xl:max-w-2xl text-xs "
           >
             Our dedicated team of programmers is passionate about transforming
             ideas into innovative digital solutions. We strive to deliver
@@ -93,17 +125,21 @@ function Landingpage() {
             needs. Join us on a journey of creativity, excellence, and
             technological advancement
           </h1>
-          <div className="flex  justify-center items-center mt-[8em]">
+          <div className="flex  justify-center items-center mt-[5em] max-sm:flex-col max-sm:mt-[2em]">
             <div className="flex flex-col justify-center w-full px-8 mx-6 my-12 text-center rounded-md md:w-96 lg:w-80 xl:w-64 ">
               <div className="flex-1 my-4">
                 <p className="text-xl font-semibold leading-snug">
                   {/* Abdulaziz  */}
                   Alhaqbani
                 </p>
-                <p className="text-[#508172] ">Programmer</p>
+                <p className="text-[#508172] ">Software Engineer</p>
               </div>
               <div className="flex items-center justify-center p-3 space-x-3 border-t-2">
-                <a rel="noopener noreferrer" href="#" title="Email">
+                <a
+                  href="mailto:alhaqbani21@gmail.com"
+                  title="Email"
+                  rel="noopener noreferrer"
+                >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     viewBox="0 0 20 20"
@@ -115,7 +151,12 @@ function Landingpage() {
                   </svg>
                 </a>
 
-                <a rel="noopener noreferrer" href="#" title="LinkedIn">
+                <a
+                  rel="noopener noreferrer"
+                  target="_blank"
+                  href="https://www.linkedin.com/in/alhaqbani-abdulaziz/"
+                  title="LinkedIn"
+                >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     fill="currentColor"
@@ -125,7 +166,12 @@ function Landingpage() {
                     <path d="M8.268 28h-5.805v-18.694h5.805zM5.362 6.756c-1.856 0-3.362-1.538-3.362-3.394s1.505-3.362 3.362-3.362 3.362 1.505 3.362 3.362c0 1.856-1.506 3.394-3.362 3.394zM29.994 28h-5.792v-9.1c0-2.169-0.044-4.95-3.018-4.95-3.018 0-3.481 2.356-3.481 4.794v9.256h-5.799v-18.694h5.567v2.55h0.081c0.775-1.469 2.668-3.019 5.492-3.019 5.875 0 6.955 3.869 6.955 8.894v10.269z"></path>
                   </svg>
                 </a>
-                <a rel="noopener noreferrer" href="#" title="GitHub">
+                <a
+                  rel="noopener noreferrer"
+                  target="_blank"
+                  href="https://github.com/Alhaqbani21"
+                  title="GitHub"
+                >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     fill="currentColor"
@@ -145,7 +191,11 @@ function Landingpage() {
                 <p className="text-[#508172] ">Programmer</p>
               </div>
               <div className="flex items-center justify-center p-3 space-x-3 border-t-2">
-                <a rel="noopener noreferrer" href="#" title="Email">
+                <a
+                  rel="noopener noreferrer"
+                  href="mailto:ammalgh22@gmail.com"
+                  title="Email"
+                >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     viewBox="0 0 20 20"
@@ -157,7 +207,12 @@ function Landingpage() {
                   </svg>
                 </a>
 
-                <a rel="noopener noreferrer" href="#" title="LinkedIn">
+                <a
+                  rel="noopener noreferrer"
+                  target="_blank"
+                  href="https://www.linkedin.com/in/amal-alotaibi-985642259/"
+                  title="LinkedIn"
+                >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     fill="currentColor"
@@ -167,7 +222,12 @@ function Landingpage() {
                     <path d="M8.268 28h-5.805v-18.694h5.805zM5.362 6.756c-1.856 0-3.362-1.538-3.362-3.394s1.505-3.362 3.362-3.362 3.362 1.505 3.362 3.362c0 1.856-1.506 3.394-3.362 3.394zM29.994 28h-5.792v-9.1c0-2.169-0.044-4.95-3.018-4.95-3.018 0-3.481 2.356-3.481 4.794v9.256h-5.799v-18.694h5.567v2.55h0.081c0.775-1.469 2.668-3.019 5.492-3.019 5.875 0 6.955 3.869 6.955 8.894v10.269z"></path>
                   </svg>
                 </a>
-                <a rel="noopener noreferrer" href="#" title="GitHub">
+                <a
+                  rel="noopener noreferrer"
+                  target="_blank"
+                  href="https://github.com/ammalgh"
+                  title="GitHub"
+                >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     fill="currentColor"
@@ -187,7 +247,11 @@ function Landingpage() {
                 <p className="text-[#508172] ">Programmer</p>
               </div>
               <div className="flex items-center justify-center p-3 space-x-3 border-t-2">
-                <a rel="noopener noreferrer" href="#" title="Email">
+                <a
+                  rel="noopener noreferrer"
+                  href="mailto:amwaj@outlook.com"
+                  title="Email"
+                >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     viewBox="0 0 20 20"
@@ -199,7 +263,12 @@ function Landingpage() {
                   </svg>
                 </a>
 
-                <a rel="noopener noreferrer" href="#" title="LinkedIn">
+                <a
+                  rel="noopener noreferrer"
+                  target="_blank"
+                  href="https://www.linkedin.com/in/amwaj-alharbi/"
+                  title="LinkedIn"
+                >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     fill="currentColor"
@@ -209,7 +278,12 @@ function Landingpage() {
                     <path d="M8.268 28h-5.805v-18.694h5.805zM5.362 6.756c-1.856 0-3.362-1.538-3.362-3.394s1.505-3.362 3.362-3.362 3.362 1.505 3.362 3.362c0 1.856-1.506 3.394-3.362 3.394zM29.994 28h-5.792v-9.1c0-2.169-0.044-4.95-3.018-4.95-3.018 0-3.481 2.356-3.481 4.794v9.256h-5.799v-18.694h5.567v2.55h0.081c0.775-1.469 2.668-3.019 5.492-3.019 5.875 0 6.955 3.869 6.955 8.894v10.269z"></path>
                   </svg>
                 </a>
-                <a rel="noopener noreferrer" href="#" title="GitHub">
+                <a
+                  rel="noopener noreferrer"
+                  target="_blank"
+                  href="https://github.com/amwaj-a"
+                  title="GitHub"
+                >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     fill="currentColor"
@@ -228,8 +302,8 @@ function Landingpage() {
       <footer className="footer footer-center bg-[#0a1120]  text-white p-4">
         <aside>
           <p>
-            Copyright © {new Date().getFullYear()} - All right reserved by Team
-            4
+            Copyright © {new Date().getFullYear()} - All right reserved by
+            TeamUp
           </p>
         </aside>
       </footer>

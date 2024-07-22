@@ -15,7 +15,7 @@ export default function Players(props) {
       className={
         "absolute   flex flex-col items-center " +
         props.x +
-        "  w-24 mt-9 " +
+        "  w-24 " +
         props.y
       }
     >

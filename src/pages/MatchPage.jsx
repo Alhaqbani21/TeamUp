@@ -318,14 +318,14 @@ export default function MatchPage() {
 
              rounded-lg "
             >
-              <div className="h-[80vh] max-sm:h-[50vh] max-sm:w-[80vw] w-[40vw] rounded-s-xl relative">
+              <div className="h-[80vh]  max-sm:h-[50vh] max-sm:w-[80vw] w-[40vw] rounded-s-xl relative">
                 <img
                   className="h-[80vh] rounded-3xl max-sm:w-full max-sm:h-[40vh] px-2 w-[60vw] "
                   src={
                     isVolleyball
-                      ? // ? volleyball
+                    ? volleyball
 
-                        img
+                        // img
                       : isBasketball
                       ? basketball
                       : padel
@@ -351,12 +351,12 @@ export default function MatchPage() {
                               }
                               x={
                                 [
-                                  "left-0",
-                                  "left-40",
-                                  "left-40",
-                                  "left-28",
-                                  "left-10",
-                                  "left-20",
+                                  "translate-x-20",
+                                  "translate-x-20",
+                                  "translate-x-52",
+                                  "translate-x-52",
+                                  "translate-x-96",
+                                  "translate-x-80",
                                   // x={
                                   //   [
                                   //     "left-0",
@@ -369,12 +369,12 @@ export default function MatchPage() {
                               }
                               y={
                                 [
-                                  "top-32",
-                                  "bottom-0",
-                                  "top-32",
-                                  "bottom-14",
-                                  "bottom-0",
-                                  "top-32",
+                                  "-translate-y-[30rem]",
+                                  " -translate-y-[23rem]",
+                                  "-translate-y-[30rem]",
+                                  " -translate-y-96",
+                                  "-translate-y-[23rem]",
+                                  "-translate-y-[30rem]",
                                   // y={
                                   //   [
                                   //     "top-14",
@@ -416,12 +416,12 @@ export default function MatchPage() {
                               //     "left-10",
                               x={
                                 [
-                                  "right-0",
-                                  "right-32",
-                                  "right-40",
-                                  "right-20",
-                                  "right-10",
-                                  "right-20",
+                                  "translate-x-20",
+                                  "translate-x-20",
+                                  "translate-x-52",
+                                  "translate-x-52",
+                                  "translate-x-96",
+                                  "translate-x-80",
                                 ][index]
                               }
                               // y={
@@ -434,12 +434,12 @@ export default function MatchPage() {
                               //     "bottom-14",
                               y={
                                 [
-                                  "bottom-14",
-                                  "-bottom-8",
-                                  "top-32",
-                                  "bottom-14",
-                                  "-bottom-8",
-                                  "top-32",
+                                  "-translate-y-[10rem]",
+                                  " -translate-y-[17rem]",
+                                  "-translate-y-[10rem]",
+                                  "-translate-y-[20rem]",
+                                  "-translate-y-[17rem]",
+                                  "-translate-y-[10rem]",
                                 ][index]
                               }
                               img={team2}

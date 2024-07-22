@@ -106,7 +106,7 @@ export default function DetailePlayers(props) {
 
       <br />
       {/* teams */}
-      <div className="flex justify-between w-full p-3 max-sm:mt-5">
+      <div className="flex justify-center w-full p-3 max-sm:mt-5">
         {props.teamA === "TeamA" ? (
           <div className="flex max-sm:justify-center max-sm:w-full max-sm:flex-col max-sm:p-0 items-center max-sm:gap-1 gap-6">
             <div className="text-xl font-bold mr-6 shadow-lg border-2 border-secondary text-secondary rounded-full px-3 py-1">
@@ -172,7 +172,7 @@ export default function DetailePlayers(props) {
         )}
       </div>
       {/* information */}
-      <div className="flex w-full justify-center  gap-8 max-sm:gap-1 max-sm:mt-2 max-sm:px-4 mt-7 items-center">
+      <div className="flex pb-3 w-full justify-center  gap-8 max-sm:gap-1 max-sm:mt-2 max-sm:px-4 mt-7 items-center">
         <div className="flex badge badge-secondary p-3 max-sm:px-0 items-center gap-2">
           <MdAccessTime size={20} className="text-s" />
           <div className="text-base">{props.time}</div>
@@ -192,7 +192,7 @@ export default function DetailePlayers(props) {
       </div>
 
       <iframe
-        className="justify-between max-xl:w-full max-sm:w-full rounded-t-md p-3"
+        className="justify-between rounded-[2rem] max-xl:w-full max-sm:w-full  p-3"
         src={props.location}
         width="500"
         height="350"

@@ -320,7 +320,7 @@ export default function MatchPage() {
             >
               <div className="h-[80vh]  max-sm:h-[50vh] max-sm:w-[80vw] w-[40vw] rounded-s-xl relative">
                 <img
-                  className="h-[80vh] rounded-3xl max-sm:w-full max-sm:h-[40vh] px-2 w-[60vw] "
+                  className="h-[50rem] rounded-3xl max-sm:w-full max-sm:h-[40vh] px-2 w-[60vw] "
                   src={
                     isVolleyball
                       ? volleyball

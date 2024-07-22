@@ -5,7 +5,7 @@ import { db, auth } from '../config/firebase';
 import { HiMiniXCircle } from 'react-icons/hi2';
 export default function Players(props) {
   const user = auth.currentUser.uid;
-  function truncateName(name, maxLength = 5) {
+  function truncateName(name, maxLength = 7) {
     return name.length > maxLength ? `${name.slice(0, maxLength)}...` : name;
   }
   return (

@@ -121,7 +121,7 @@ export default function DetailePlayers(props) {
                     triggerOnce={true}
                     direction="right"
                   >
-                    <div>
+                    <div className="w-20 m-auto">
                       <p className="text-base">{player.name}</p>
                       <div className="flex items-center gap-2">
                         <p className="text-base text-secondary">
@@ -173,7 +173,7 @@ export default function DetailePlayers(props) {
       </div>
       {/* information */}
       <div className="flex pb-3 w-full justify-center  gap-8 max-sm:gap-1 max-sm:mt-2 max-sm:px-4 mt-7 items-center">
-        <div className="flex badge badge-secondary p-3 max-sm:px-0 items-center gap-2">
+        <div className="flex badge badge-secondary p-3 max-sm:px-2 items-center gap-2">
           <MdAccessTime size={20} className="text-s" />
           <div className="text-base">{props.time}</div>
         </div>

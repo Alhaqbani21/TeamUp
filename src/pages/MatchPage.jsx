@@ -281,7 +281,7 @@ export default function MatchPage() {
             className="  flex flex-col max-w-[80vw]
            rounded-xl"
           >
-            <div className="w-[40vw] pt-3 justify-around bg-transparent flex gap-1">
+            <div className="w-[40vw] max-sm:w-full pt-3 justify-around bg-transparent flex gap-1">
               <div
                 onClick={() => setteamA("TeamA")}
                 className="group cursor-pointer"
@@ -319,7 +319,7 @@ export default function MatchPage() {
 
              rounded-lg "
             >
-              <div className="h-[80vh]  max-sm:h-[50vh] max-sm:w-[80vw] w-[40vw] rounded-s-xl relative">
+              <div className="h-[80vh]  max-sm:h-[40vh] max-sm:w-[80vw] w-[40vw] rounded-s-xl relative">
                 <img
                   className="h-[50rem] rounded-3xl max-sm:w-full max-sm:h-[40vh] px-2 w-[60vw] "
                   src={

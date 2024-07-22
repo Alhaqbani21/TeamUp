@@ -351,38 +351,38 @@ export default function MatchPage() {
                               }
                               x={
                                 [
-                                  "translate-x-[7rem]",
-                                  "translate-x-[7rem]",
-                                  "translate-x-[17rem]",
-                                  "translate-x-[17rem]",
-                                  "translate-x-[27rem]",
-                                  "translate-x-[27rem]",
+                                  // "translate-x-[7rem]",
+                                  // "translate-x-[7rem]",
+                                  // "translate-x-[17rem]",
+                                  // "translate-x-[17rem]",
+                                  // "translate-x-[27rem]",
+                                  // "translate-x-[27rem]",
                                   // x={
                                   //   [
-                                  //     "left-0",
-                                  //     "right-10",
-                                  //     "left-48",
-                                  //     "left-28",
-                                  //     "left-10",
-                                  //     "right-0",
+                                  "left-0",
+                                  "right-10",
+                                  "left-48",
+                                  "left-28",
+                                  "left-10",
+                                  "right-0",
                                 ][index]
                               }
                               y={
                                 [
-                                  "-translate-y-[35rem]",
-                                  " -translate-y-[45rem]",
-                                  "-translate-y-[35rem]",
-                                  " -translate-y-[45rem]",
-                                  "-translate-y-[35rem]",
-                                  "-translate-y-[45rem]",
+                                  // "-translate-y-[35rem]",
+                                  // " -translate-y-[45rem]",
+                                  // "-translate-y-[35rem]",
+                                  // " -translate-y-[45rem]",
+                                  // "-translate-y-[35rem]",
+                                  // "-translate-y-[45rem]",
                                   // y={
                                   //   [
-                                  //     "top-14",
-                                  //     "top-20",
-                                  //     "top-40",
-                                  //     "top-14",
-                                  //     "top-40",
-                                  //     "top-40",
+                                  "top-14",
+                                  "top-20",
+                                  "top-40",
+                                  "top-14",
+                                  "top-40",
+                                  "top-40",
                                 ][index]
                               }
                               img={team1}
@@ -406,40 +406,40 @@ export default function MatchPage() {
                               onEject={() =>
                                 handeleject(player.userId, "teamB", player.name)
                               }
-                              // x={
-                              //   [
-                              //     "right-10",
-                              //     "left-0",
-                              //     "right-28",
-                              //     "right-40",
-                              //     "right-0",
-                              //     "left-10",
                               x={
                                 [
-                                  "translate-x-[7rem]",
-                                  "translate-x-[7rem]",
-                                  "translate-x-[17rem]",
-                                  "translate-x-[17rem]",
-                                  "translate-x-[27rem]",
-                                  "translate-x-[27rem]",
+                                  "right-10",
+                                  "left-0",
+                                  "right-28",
+                                  "right-40",
+                                  "right-0",
+                                  "left-10",
+                                  // x={
+                                  //   [
+                                  //     "translate-x-[7rem]",
+                                  //     "translate-x-[7rem]",
+                                  //     "translate-x-[17rem]",
+                                  //     "translate-x-[17rem]",
+                                  //     "translate-x-[27rem]",
+                                  //     "translate-x-[27rem]",
                                 ][index]
                               }
-                              // y={
-                              //   [
-                              //     "bottom-10",
-                              //     "bottom-0",
-                              //     "bottom-0",
-                              //     "bottom-10",
-                              //     "bottom-14",
-                              //     "bottom-14",
                               y={
                                 [
-                                  "-translate-y-[10rem]",
-                                  " -translate-y-[20rem]",
-                                  "-translate-y-[10rem]",
-                                  " -translate-y-[20rem]",
-                                  "-translate-y-[10rem]",
-                                  "-translate-y-[20rem]",
+                                  "bottom-10",
+                                  "bottom-0",
+                                  "bottom-0",
+                                  "bottom-10",
+                                  "bottom-14",
+                                  "bottom-14",
+                                  // y={
+                                  //   [
+                                  //     "-translate-y-[10rem]",
+                                  //     " -translate-y-[20rem]",
+                                  //     "-translate-y-[10rem]",
+                                  //     " -translate-y-[20rem]",
+                                  //     "-translate-y-[10rem]",
+                                  //     "-translate-y-[20rem]",
                                 ][index]
                               }
                               img={team2}

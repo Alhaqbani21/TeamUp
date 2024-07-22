@@ -58,20 +58,20 @@ function Book() {
                   {filteredData.map((e) => (
                     <div key={e.id}>
                       <Fade direction="right">
-                        <div className="bg-[#fffcfc] rounded-md shadow-2xl w-[32em]">
+                        <div className="bg-[#fffcfc] rounded-md shadow-2xl w-[32em] max-sm:w-[22em] ">
                           <Link
                             className="w-full hover:scale-105 transition-all"
                             to={`/Booking/${e.id}`}
                           >
-                            <div className="md:flex px-4 leading-none max-w-4xl mt-0">
+                            <div className="md:flex px-4 leading-none max-w-4xl mt-0 ">
                               <div className="flex-none">
                                 <img
                                   src={e.img}
                                   alt="pic"
-                                  className="h-72 w-56 rounded-md shadow-4xl transform -translate-y-4 border-4 border-gray-300"
+                                  className="h-72 w-56  rounded-md shadow-4xl transform -translate-y-4 border-4 border-gray-300"
                                 />
                               </div>
-                              <div className="flex-col text-black ml-10">
+                              <div className="flex-col text-black ml-10 ">
                                 <p className="pt-4 text-xl font-bold">
                                   {e.name}
                                 </p>

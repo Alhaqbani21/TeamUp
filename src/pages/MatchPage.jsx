@@ -1,18 +1,18 @@
-import React, { useEffect, useState } from 'react';
-import padel from '../assets/padel.jpg';
-import volleyball from '../assets/Volly.jpg';
-import basketball from '../assets/Basketball.jpg';
-import team1 from '../assets/person2.png';
-import team2 from '../assets/person3.png';
-import Players from '../components/Players';
-import Timer from '../components/Timer';
-import DetailePlayers from '../components/DetailePlayers';
-import { useParams } from 'react-router-dom';
-import { db } from '../config/firebase';
-import img from '../assets/vollyballStadium.jpg';
+import React, { useEffect, useState } from "react";
+import padel from "../assets/padel.jpg";
+import volleyball from "../assets/Volly.jpg";
+import basketball from "../assets/Basketball.jpg";
+import team1 from "../assets/person2.png";
+import team2 from "../assets/person3.png";
+import Players from "../components/Players";
+import Timer from "../components/Timer";
+import DetailePlayers from "../components/DetailePlayers";
+import { useParams } from "react-router-dom";
+import { db } from "../config/firebase";
+import img from "../assets/vollyballStadium.jpg";
 
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import {
   doc,
   getDoc,
@@ -20,13 +20,13 @@ import {
   arrayRemove,
   getDocs,
   collection,
-} from 'firebase/firestore';
-import { useAuth } from '../contexts/AuthContext';
-import SideBar from '../components/SideBar';
-import BottomNavBar from '../components/BottomNavBar';
+} from "firebase/firestore";
+import { useAuth } from "../contexts/AuthContext";
+import SideBar from "../components/SideBar";
+import BottomNavBar from "../components/BottomNavBar";
 
 export default function MatchPage() {
-  const [teamA, setteamA] = useState('TeamA');
+  const [teamA, setteamA] = useState("TeamA");
   const { id } = useParams();
   const [matchData, setMatchData] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -34,13 +34,13 @@ export default function MatchPage() {
 
   useEffect(() => {
     const fetchMatchData = async () => {
-      const matchRef = doc(db, 'matches', id);
+      const matchRef = doc(db, "matches", id);
       const matchSnapshot = await getDoc(matchRef);
 
       if (matchSnapshot.exists()) {
         const data = matchSnapshot.data();
 
-        const usersSnapshot = await getDocs(collection(db, 'users'));
+        const usersSnapshot = await getDocs(collection(db, "users"));
         const usersPointsMap = usersSnapshot.docs.reduce((acc, doc) => {
           const userData = doc.data();
           acc[doc.id] = userData.points;
@@ -55,8 +55,8 @@ export default function MatchPage() {
 
         setMatchData({
           ...data,
-          teamA: mapPoints('teamA') || [null, null],
-          teamB: mapPoints('teamB') || [null, null],
+          teamA: mapPoints("teamA") || [null, null],
+          teamB: mapPoints("teamB") || [null, null],
           pending: (data.pending || []).map((player) => ({
             ...player,
             point: usersPointsMap[player.userId] ?? 0,
@@ -70,7 +70,7 @@ export default function MatchPage() {
   }, [id]);
 
   const handleAccept = async (player) => {
-    const matchRef = doc(db, 'matches', id);
+    const matchRef = doc(db, "matches", id);
     const matchSnapshot = await getDoc(matchRef);
     const matchData = matchSnapshot.data();
 
@@ -114,12 +114,12 @@ export default function MatchPage() {
             [`team${team}`]: newTeam,
           };
         });
-        toast.success('Player has been accepted');
+        toast.success("Player has been accepted");
       } else {
-        console.error('Player not found in pending array.');
+        console.error("Player not found in pending array.");
       }
     } else {
-      console.error('No empty spots available in the team.');
+      console.error("No empty spots available in the team.");
     }
   };
 
@@ -131,7 +131,7 @@ export default function MatchPage() {
           <button
             className="border-2 border-[#0c0c0c] w-[3em] rounded-full"
             onClick={async () => {
-              const matchRef = doc(db, 'matches', id);
+              const matchRef = doc(db, "matches", id);
               const matchSnapshot = await getDoc(matchRef);
               const matchData = matchSnapshot.data();
 
@@ -151,9 +151,9 @@ export default function MatchPage() {
                     (p) => p.userId !== player.userId
                   ),
                 }));
-                toast.success('Player has been rejected');
+                toast.success("Player has been rejected");
               } else {
-                toast.error('Player not found in the pending list');
+                toast.error("Player not found in the pending list");
               }
               closeToast();
             }}
@@ -163,7 +163,7 @@ export default function MatchPage() {
           <button
             className="border-2 border-[#0c0c0c] w-[3em] rounded-full"
             onClick={() => {
-              toast.warn('Rejection cancelled');
+              toast.warn("Rejection cancelled");
               closeToast();
             }}
           >
@@ -183,14 +183,14 @@ export default function MatchPage() {
           <button
             className="border-2 border-[#0c0c0c] w-[3em] rounded-full"
             onClick={async () => {
-              const matchRef = doc(db, 'matches', id);
+              const matchRef = doc(db, "matches", id);
               const matchSnapshot = await getDoc(matchRef);
               const matchData = matchSnapshot.data();
               let rejectArray = matchData.rejected || [];
               rejectArray.push({ name, userId });
 
               let teamArray =
-                team === 'teamA' ? [...matchData.teamA] : [...matchData.teamB];
+                team === "teamA" ? [...matchData.teamA] : [...matchData.teamB];
               const index = teamArray.findIndex(
                 (e) => e !== null && e.userId === userId
               );
@@ -213,6 +213,7 @@ export default function MatchPage() {
                 // } else {
                 //   setteamA(teamArray);
                 // }
+                closeToast();
               }
             }}
           >
@@ -221,7 +222,7 @@ export default function MatchPage() {
           <button
             className="border-2 border-[#0c0c0c] w-[3em] rounded-full"
             onClick={() => {
-              toast.warn('Rejection cancelled');
+              toast.warn("Rejection cancelled");
               closeToast();
             }}
           >
@@ -235,18 +236,18 @@ export default function MatchPage() {
 
   const today = new Date().getDate();
   const monthArray = [
-    'Jan',
-    'Feb',
-    'Mar',
-    'Apr',
-    'May',
-    'Jun',
-    'Jul',
-    'Aug',
-    'Sep',
-    'Oct',
-    'Nov',
-    'Dec',
+    "Jan",
+    "Feb",
+    "Mar",
+    "Apr",
+    "May",
+    "Jun",
+    "Jul",
+    "Aug",
+    "Sep",
+    "Oct",
+    "Nov",
+    "Dec",
   ];
   const month = monthArray[new Date().getMonth()];
   const year = new Date().getFullYear();
@@ -264,8 +265,8 @@ export default function MatchPage() {
   }
 
   const isAdmin = currentUser.uid === matchData.Admin.userId;
-  const isVolleyball = matchData.category === 'Volleyball';
-  const isBasketball = matchData.category === 'Basketball';
+  const isVolleyball = matchData.category === "Volleyball";
+  const isBasketball = matchData.category === "Basketball";
 
   return (
     <>
@@ -282,7 +283,7 @@ export default function MatchPage() {
           >
             <div className="w-[40vw] pt-3 justify-around bg-transparent flex gap-1">
               <div
-                onClick={() => setteamA('TeamA')}
+                onClick={() => setteamA("TeamA")}
                 className="group cursor-pointer"
               >
                 <img
@@ -294,7 +295,7 @@ export default function MatchPage() {
               <div className="flex flex-col justify-center items-center">
                 <Timer
                   date={`${month} ${today}, ${year} ${
-                    Number(matchData.time.substring(0, 2).split(':').join('')) +
+                    Number(matchData.time.substring(0, 2).split(":").join("")) +
                     12
                   }:00:00`}
                 />
@@ -302,7 +303,7 @@ export default function MatchPage() {
                 <br />
               </div>
               <div
-                onClick={() => setteamA('TeamB')}
+                onClick={() => setteamA("TeamB")}
                 className="group cursor-pointer"
               >
                 <img
@@ -332,7 +333,7 @@ export default function MatchPage() {
                   alt=""
                 />
                 {isVolleyball ? (
-                  teamA === 'TeamA' ? (
+                  teamA === "TeamA" ? (
                     <>
                       {matchData.teamA.map(
                         (player, index) =>
@@ -346,16 +347,16 @@ export default function MatchPage() {
                               key={index}
                               name={player.name}
                               onEject={() =>
-                                handeleject(player.userId, 'teamA', player.name)
+                                handeleject(player.userId, "teamA", player.name)
                               }
                               x={
                                 [
-                                  'translate-x-[7rem]',
-                                  'translate-x-[7rem]',
-                                  'translate-x-[17rem]',
-                                  'translate-x-[17rem]',
-                                  'translate-x-[27rem]',
-                                  'translate-x-[27rem]',
+                                  "translate-x-[7rem]",
+                                  "translate-x-[7rem]",
+                                  "translate-x-[17rem]",
+                                  "translate-x-[17rem]",
+                                  "translate-x-[27rem]",
+                                  "translate-x-[27rem]",
                                   // x={
                                   //   [
                                   //     "left-0",
@@ -368,12 +369,12 @@ export default function MatchPage() {
                               }
                               y={
                                 [
-                                  '-translate-y-[35rem]',
-                                  ' -translate-y-[45rem]',
-                                  '-translate-y-[35rem]',
-                                  ' -translate-y-[45rem]',
-                                  '-translate-y-[35rem]',
-                                  '-translate-y-[45rem]',
+                                  "-translate-y-[35rem]",
+                                  " -translate-y-[45rem]",
+                                  "-translate-y-[35rem]",
+                                  " -translate-y-[45rem]",
+                                  "-translate-y-[35rem]",
+                                  "-translate-y-[45rem]",
                                   // y={
                                   //   [
                                   //     "top-14",
@@ -403,7 +404,7 @@ export default function MatchPage() {
                               key={index}
                               name={player.name}
                               onEject={() =>
-                                handeleject(player.userId, 'teamB', player.name)
+                                handeleject(player.userId, "teamB", player.name)
                               }
                               // x={
                               //   [
@@ -415,12 +416,12 @@ export default function MatchPage() {
                               //     "left-10",
                               x={
                                 [
-                                  'translate-x-[7rem]',
-                                  'translate-x-[7rem]',
-                                  'translate-x-[17rem]',
-                                  'translate-x-[17rem]',
-                                  'translate-x-[27rem]',
-                                  'translate-x-[27rem]',
+                                  "translate-x-[7rem]",
+                                  "translate-x-[7rem]",
+                                  "translate-x-[17rem]",
+                                  "translate-x-[17rem]",
+                                  "translate-x-[27rem]",
+                                  "translate-x-[27rem]",
                                 ][index]
                               }
                               // y={
@@ -433,12 +434,12 @@ export default function MatchPage() {
                               //     "bottom-14",
                               y={
                                 [
-                                  '-translate-y-[10rem]',
-                                  ' -translate-y-[20rem]',
-                                  '-translate-y-[10rem]',
-                                  ' -translate-y-[20rem]',
-                                  '-translate-y-[10rem]',
-                                  '-translate-y-[20rem]',
+                                  "-translate-y-[10rem]",
+                                  " -translate-y-[20rem]",
+                                  "-translate-y-[10rem]",
+                                  " -translate-y-[20rem]",
+                                  "-translate-y-[10rem]",
+                                  "-translate-y-[20rem]",
                                 ][index]
                               }
                               img={team2}
@@ -448,7 +449,7 @@ export default function MatchPage() {
                     </>
                   )
                 ) : isBasketball ? (
-                  teamA === 'TeamA' ? (
+                  teamA === "TeamA" ? (
                     <>
                       {matchData.teamA.map(
                         (player, index) =>
@@ -462,18 +463,18 @@ export default function MatchPage() {
                               key={index}
                               name={player.name}
                               x={
-                                ['left-20', 'right-20', 'left-32', 'left-10'][
+                                ["left-20", "right-20", "left-32", "left-10"][
                                   index
                                 ]
                               }
                               y={
-                                ['top-14', 'top-14', 'bottom-40', 'top-40'][
+                                ["top-14", "top-14", "bottom-40", "top-40"][
                                   index
                                 ]
                               }
                               img={team1}
                               onEject={() =>
-                                handeleject(player.userId, 'teamA', player.name)
+                                handeleject(player.userId, "teamA", player.name)
                               }
                             />
                           )
@@ -493,19 +494,19 @@ export default function MatchPage() {
                               key={index}
                               name={player.name}
                               onEject={() =>
-                                handeleject(player.userId, 'teamB', player.name)
+                                handeleject(player.userId, "teamB", player.name)
                               }
                               x={
-                                ['right-10', 'left-10', 'right-28', 'left-20'][
+                                ["right-10", "left-10", "right-28", "left-20"][
                                   index
                                 ]
                               }
                               y={
                                 [
-                                  'bottom-0',
-                                  'bottom-0',
-                                  'bottom-1',
-                                  'bottom-20',
+                                  "bottom-0",
+                                  "bottom-0",
+                                  "bottom-1",
+                                  "bottom-20",
                                 ][index]
                               }
                               img={team2}
@@ -514,7 +515,7 @@ export default function MatchPage() {
                       )}
                     </>
                   )
-                ) : teamA === 'TeamA' ? (
+                ) : teamA === "TeamA" ? (
                   <div>
                     {matchData.teamA[0] && matchData.teamA[0].name && (
                       <Players
@@ -524,14 +525,14 @@ export default function MatchPage() {
                         }
                         matchId={id}
                         userId={matchData.teamA[0].userId}
-                        name={matchData.teamA[0].name || ''}
+                        name={matchData.teamA[0].name || ""}
                         x="left-20"
                         y="top-24"
                         img={team1}
                         onEject={() =>
                           handeleject(
                             matchData.teamA[0].userId,
-                            'teamA',
+                            "teamA",
                             matchData.teamA[0].name
                           )
                         }
@@ -545,14 +546,14 @@ export default function MatchPage() {
                         }
                         matchId={id}
                         userId={matchData.teamA[1].userId}
-                        name={matchData.teamA[1].name || ''}
+                        name={matchData.teamA[1].name || ""}
                         x="right-20"
                         y="top-24"
                         img={team1}
                         onEject={() =>
                           handeleject(
                             matchData.teamA[1].userId,
-                            'teamA',
+                            "teamA",
                             matchData.teamA[1].name
                           )
                         }
@@ -569,14 +570,14 @@ export default function MatchPage() {
                         }
                         matchId={id}
                         userId={matchData.teamB[0].userId}
-                        name={matchData.teamB[0].name || ''}
+                        name={matchData.teamB[0].name || ""}
                         x="right-20"
                         y="bottom-10"
                         img={team2}
                         onEject={() =>
                           handeleject(
                             matchData.teamB[0].userId,
-                            'teamB',
+                            "teamB",
                             matchData.teamB[0].name
                           )
                         }
@@ -590,14 +591,14 @@ export default function MatchPage() {
                         }
                         matchId={id}
                         userId={matchData.teamB[1].userId}
-                        name={matchData.teamB[1].name || ''}
+                        name={matchData.teamB[1].name || ""}
                         x="left-20"
                         y="bottom-10"
                         img={team2}
                         onEject={() =>
                           handeleject(
                             matchData.teamB[1].userId,
-                            'teamB',
+                            "teamB",
                             matchData.teamB[1].name
                           )
                         }

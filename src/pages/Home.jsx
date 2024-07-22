@@ -460,12 +460,7 @@ function Home() {
       </div>
       {/*  */}
       {/* You can open the modal using document.getElementById('ID').showModal() method */}
-      <button
-        className="btn"
-        onClick={() => document.getElementById('my_modal_3').showModal()}
-      >
-        open modal
-      </button>
+
       {isModalOpen && userData && (
         <dialog id="my_modal_3" className="modal" open>
           <div className="modal-box">

@@ -1,9 +1,13 @@
 import { doc, getDoc, updateDoc } from "firebase/firestore";
 import React from "react";
 import { HiMiniXMark } from "react-icons/hi2";
-import { db } from "../config/firebase";
+import { db, auth } from "../config/firebase";
 import { HiMiniXCircle } from "react-icons/hi2";
 export default function Players(props) {
+  const user = auth.currentUser.
+  uid
+  ;
+
   return (
     <div
       className={
@@ -13,6 +17,8 @@ export default function Players(props) {
         props.y
       }
     >
+      {user==props.AdminId&&
+     <>
       {!props.isAdmin && (
         <HiMiniXCircle
           onClick={props.onEject}
@@ -20,6 +26,8 @@ export default function Players(props) {
           className="text-red-800 cursor-pointer "
         />
       )}
+     </>  }
+    
 
       <img className="" src={props.img} alt="" />
       {/* {console.log("player")} */}

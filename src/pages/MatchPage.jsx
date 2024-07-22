@@ -309,6 +309,7 @@ export default function MatchPage() {
                           player &&
                           player.name && (
                             <Players
+                              AdminId={matchData.Admin.userId}
                               isAdmin={player.userId == matchData.Admin.userId}
                               matchId={id}
                               userId={player.userId}
@@ -349,6 +350,7 @@ export default function MatchPage() {
                           player &&
                           player.name && (
                             <Players
+                              AdminId={matchData.Admin.userId}
                               isAdmin={player.userId == matchData.Admin.userId}
                               matchId={id}
                               userId={player.userId}
@@ -391,6 +393,7 @@ export default function MatchPage() {
                           player &&
                           player.name && (
                             <Players
+                              AdminId={matchData.Admin.userId}
                               isAdmin={player.userId == matchData.Admin.userId}
                               matchId={id}
                               userId={player.userId}
@@ -421,6 +424,7 @@ export default function MatchPage() {
                           player &&
                           player.name && (
                             <Players
+                              AdminId={matchData.Admin.userId}
                               isAdmin={player.userId == matchData.Admin.userId}
                               matchId={id}
                               userId={player.userId}
@@ -452,6 +456,7 @@ export default function MatchPage() {
                   <div>
                     {matchData.teamA[0] && matchData.teamA[0].name && (
                       <Players
+                        AdminId={matchData.Admin.userId}
                         isAdmin={
                           matchData.teamA[0].userId == matchData.Admin.userId
                         }
@@ -472,6 +477,7 @@ export default function MatchPage() {
                     )}
                     {matchData.teamA[1] && matchData.teamA[1].name && (
                       <Players
+                        AdminId={matchData.Admin.userId}
                         isAdmin={
                           matchData.teamA[1].userId == matchData.Admin.userId
                         }
@@ -495,6 +501,7 @@ export default function MatchPage() {
                   <div>
                     {matchData.teamB[0] && matchData.teamB[0].name && (
                       <Players
+                        AdminId={matchData.Admin.userId}
                         isAdmin={
                           matchData.teamB[0].userId == matchData.Admin.userId
                         }
@@ -515,6 +522,7 @@ export default function MatchPage() {
                     )}
                     {matchData.teamB[1] && matchData.teamB[1].name && (
                       <Players
+                        AdminId={matchData.Admin.userId}
                         isAdmin={
                           matchData.teamB[1].userId == matchData.Admin.userId
                         }

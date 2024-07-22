@@ -49,8 +49,9 @@ function MatchCard({
   onRequestJoin,
   matchId,
   admin,
-  pending,
+  pending = [],
   currentUserId,
+  rejected = [],
 }) {
   const totalPlayers = teamA.length + teamB.length;
   const joinedPlayers = [...teamA, ...teamB].filter(
@@ -65,10 +66,11 @@ function MatchCard({
   const backgroundColor = getBackgroundColor(matchTime);
 
   const isPending = pending.some((p) => p.userId === currentUserId);
+  const isRejected = rejected.some((p) => p.userId === currentUserId);
   const isInTeam = [...teamA, ...teamB].some(
     (player) => player.userId === currentUserId
   );
-  const disableButtons = isPending || isInTeam;
+  const disableButtons = isPending || isInTeam || isRejected;
 
   return (
     <Fade triggerOnce={true} direction="right" className="w-[90%]">
@@ -98,17 +100,12 @@ function MatchCard({
             </div>
           </div>
 
-          {/* <div
-            className={`w-max md:hidden text-white self-center text-lg my-4 bg-gray-700 ${backgroundColor} py-1 px-2 rounded-lg`}
-          >
-            {status}
-          </div> */}
-          <div className="flex max-md:flex-col justify-around items-center my-5 md:grid md:grid-cols-3 md:place-items-center ">
+          <div className="flex max-md:flex-col justify-around items-center my-5 md:grid md:grid-cols-3 md:place-items-center">
             <div className="flex justify-start items-center max-md:mb-10 max-md:self-start max-md:w-full">
               <div className="text-xl font-bold mr-6 shadow-lg border-2 border-orange-300 text-orange-300 rounded-full px-3 py-1">
                 A
               </div>
-              <div className="grid grid-cols-2 max-md:gap-x-1 gap-y-10 min-w-full  gap-x-4">
+              <div className="grid grid-cols-2 max-md:gap-x-1 gap-y-10 min-w-full gap-x-4">
                 {teamA.map((player, index) => (
                   <div
                     key={index}
@@ -140,13 +137,19 @@ function MatchCard({
                         <button
                           className={`text-sm font-medium px-4 py-2 max-md:text-xs bg-gray-700 rounded-lg transition-all ${
                             disableButtons
-                              ? 'text-gray-400 cursor-not-allowed'
+                              ? isRejected
+                                ? 'text-red-300 cursor-not-allowed'
+                                : 'text-gray-300 cursor-not-allowed'
                               : 'text-orange-300 hover:bg-gray-600'
                           }`}
                           onClick={() => onRequestJoin('A', index, matchId)}
                           disabled={disableButtons}
                         >
-                          {disableButtons ? 'Waiting' : 'Join'}
+                          {isRejected
+                            ? 'Rejected'
+                            : isPending
+                            ? 'Pending'
+                            : 'Join'}
                         </button>
                       )}
                     </div>
@@ -163,7 +166,7 @@ function MatchCard({
               <div className="text-xl font-bold border-orange-300 text-orange-300 mr-6 shadow-lg border-2 rounded-full px-3 py-1">
                 B
               </div>
-              <div className="grid grid-cols-2 max-md:gap-x-1 gap-y-10 min-w-full  gap-x-4">
+              <div className="grid grid-cols-2 max-md:gap-x-1 gap-y-10 min-w-full gap-x-4">
                 {teamB.map((player, index) => (
                   <div
                     key={index}
@@ -195,13 +198,19 @@ function MatchCard({
                         <button
                           className={`text-sm font-medium px-4 py-2 max-md:text-xs bg-gray-700 rounded-lg transition-all ${
                             disableButtons
-                              ? 'text-gray-300 cursor-not-allowed'
+                              ? isRejected
+                                ? 'text-red-300 cursor-not-allowed'
+                                : 'text-gray-300 cursor-not-allowed'
                               : 'text-orange-300 hover:bg-gray-600'
                           }`}
                           onClick={() => onRequestJoin('B', index, matchId)}
                           disabled={disableButtons}
                         >
-                          {disableButtons ? 'Pending' : 'Join'}
+                          {isRejected
+                            ? 'Rejected'
+                            : isPending
+                            ? 'Pending'
+                            : 'Join'}
                         </button>
                       )}
                     </div>

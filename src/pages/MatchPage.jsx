@@ -9,6 +9,7 @@ import Timer from "../components/Timer";
 import DetailePlayers from "../components/DetailePlayers";
 import { useParams } from "react-router-dom";
 import { db } from "../config/firebase";
+import img from "../assets/vollyballStadium.jpg";
 
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";

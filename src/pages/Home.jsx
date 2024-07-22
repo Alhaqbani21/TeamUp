@@ -335,6 +335,7 @@ function Home() {
                     matchId={match.id}
                     admin={match.Admin}
                     pending={match.pending}
+                    rejected={match.rejected}
                     currentUserId={currentUser.uid}
                   />
                 ))

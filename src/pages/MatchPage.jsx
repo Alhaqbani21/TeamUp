@@ -275,49 +275,52 @@ export default function MatchPage() {
 
         <BottomNavBar />
 
-        <div className="w-full h-full flex justify-between">
-          <main className="hero min-h-screen rounded-xl">
-            <div
-              className="w-[80vw] max-sm:flex-col max-sm:items-center max-sm:w-full gap-5 bg-base-100
-             rounded-lg flex"
-            >
-              <div className="h-[70vh] max-sm:h-[50vh] max-sm:w-[80vw] w-[40vw] rounded-s-xl relative">
-                <div className="w-full pt-3 justify-around bg-transparent flex gap-1">
-                  <div
-                    onClick={() => setteamA("TeamA")}
-                    className="group cursor-pointer"
-                  >
-                    <img
-                      src={team1}
-                      className="rounded-full group-hover:opacity-70 hover:cursor-pointer bg-primary h-12 w-12"
-                    />
-                    Team A
-                  </div>
-                  <div className="flex flex-col justify-center items-center">
-                    <Timer
-                      date={`${month} ${today}, ${year} ${
-                        Number(
-                          matchData.time.substring(0, 2).split(":").join("")
-                        ) + 12
-                      }:00:00`}
-                    />
-                    {matchData.time.substring(0, 5)} PM
-                    <br />
-                  </div>
-                  <div
-                    onClick={() => setteamA("TeamB")}
-                    className="group cursor-pointer"
-                  >
-                    <img
-                      src={team2}
-                      className="group-hover:opacity-70 rounded-full bg-base-300 h-12 w-12"
-                    />
-                    Team B
-                  </div>
-                </div>
-
+        <div className="m-auto">
+          <main
+            className="  flex flex-col max-w-[80vw]
+           rounded-xl"
+          >
+            <div className="w-full pt-3 justify-around bg-transparent flex gap-1">
+              <div
+                onClick={() => setteamA("TeamA")}
+                className="group cursor-pointer"
+              >
                 <img
-                  className="h-[70vh] rounded-3xl max-sm:w-full max-sm:h-[40vh] px-2 w-[60vw] "
+                  src={team1}
+                  className="rounded-full group-hover:opacity-70 hover:cursor-pointer bg-primary h-12 w-12"
+                />
+                Team A
+              </div>
+              <div className="flex flex-col justify-center items-center">
+                <Timer
+                  date={`${month} ${today}, ${year} ${
+                    Number(matchData.time.substring(0, 2).split(":").join("")) +
+                    12
+                  }:00:00`}
+                />
+                {matchData.time.substring(0, 5)} PM
+                <br />
+              </div>
+              <div
+                onClick={() => setteamA("TeamB")}
+                className="group cursor-pointer"
+              >
+                <img
+                  src={team2}
+                  className="group-hover:opacity-70 rounded-full bg-base-300 h-12 w-12"
+                />
+                Team B
+              </div>
+            </div>
+
+            <div
+              className="w-[80vw] flex max-sm:flex-col max-sm:items-center max-sm:w-full gap-5 bg-base-100
+
+             rounded-lg "
+            >
+              <div className="h-[90vh] max-sm:h-[50vh] max-sm:w-[80vw] w-[40vw] rounded-s-xl relative">
+                <img
+                  className="h-[90vh] rounded-3xl max-sm:w-full max-sm:h-[40vh] px-2 w-[60vw] "
                   src={
                     isVolleyball
                       ? // ? volleyball

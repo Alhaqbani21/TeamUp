@@ -28,7 +28,7 @@ export default function DetailePlayers(props) {
   });
 
   return (
-    <div className="shadow-md h-max  rounded-xl max-sm:max-w-[90vw] max-w-[40vw] mt-7 max-sm:mt-0 max-xl:w-full max-sm:p-0 text-xl text-black bg-base-100 px-7">
+    <div className="shadow-md h-max self-center   rounded-xl max-sm:max-w-[90vw] max-w-[40vw] mt-7 max-sm:mt-0 max-xl:w-full max-sm:p-0 text-xl text-black bg-base-100 px-7">
       {props.isAdmin && filteredPendingPlayers.length > 0 && (
         <div className="border-black max-h-40 max-w-[full] overflow-y-auto">
           <table className="table table-zebra">

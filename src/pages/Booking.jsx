@@ -20,8 +20,8 @@ function Booking() {
   const params = useParams().id;
   const navigate = useNavigate();
   const settings = {
-    dots: true,
     arrows: false,
+    dots: false,
     infinite: true,
     slidesToShow: 1,
     slidesToScroll: 1,
@@ -175,8 +175,8 @@ function Booking() {
               </div>
             </div>
           </div>
-          <div className="w-[90vw]   relative m-auto rounded-xl">
-            <section className="flex pb-4 pt-9 max-sm:flex-col justify-around items-center w-full border-base-300 border-2 rounded-xl mt-9 bg-base-100 shadow-lg">
+          <div className="w-[90vw]  relative m-auto rounded-xl">
+            <section className="flex pb-9 pt-9 max-sm:flex-col justify-around items-center w-full border-base-300 border-2 rounded-xl mt-9 bg-base-100 shadow-lg">
               <div className="text-xl flex gap-3 flex-col  ">
                 <h1 className="font-medium">{dataStadium.name} Stadium</h1>
                 <div className="flex items-center gap-6 ">

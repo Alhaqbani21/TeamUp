@@ -91,10 +91,10 @@ const stadiums = [
       'https://imagizer.imageshack.com/img923/8418/XL4oJ2.jpg',
     ],
     timeSlot: [
-      { isBooked: true, time: '4:00 - 6:00' },
-      { isBooked: true, time: '6:00 - 8:00' },
-      { isBooked: true, time: '8:00 - 10:00' },
-      { isBooked: true, time: '10:00 - 12:00' },
+      { isBooked: false, time: '4:00 - 6:00' },
+      { isBooked: false, time: '6:00 - 8:00' },
+      { isBooked: false, time: '8:00 - 10:00' },
+      { isBooked: false, time: '10:00 - 12:00' },
     ],
   },
   {
@@ -110,10 +110,10 @@ const stadiums = [
       'https://imagizer.imageshack.com/img923/8418/XL4oJ2.jpg',
     ],
     timeSlot: [
-      { isBooked: true, time: '4:00 - 6:00' },
-      { isBooked: true, time: '6:00 - 8:00' },
-      { isBooked: true, time: '8:00 - 10:00' },
-      { isBooked: true, time: '10:00 - 12:00' },
+      { isBooked: false, time: '4:00 - 6:00' },
+      { isBooked: false, time: '6:00 - 8:00' },
+      { isBooked: false, time: '8:00 - 10:00' },
+      { isBooked: false, time: '10:00 - 12:00' },
     ],
   },
 ];

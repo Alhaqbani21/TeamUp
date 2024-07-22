@@ -135,6 +135,7 @@ function Home() {
           category: match.category,
           Admin: match.Admin,
           pending: match.pending || [],
+          rejected: match.rejected || [],
         };
       });
 

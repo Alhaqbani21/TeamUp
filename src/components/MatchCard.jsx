@@ -49,9 +49,9 @@ function MatchCard({
   onRequestJoin,
   matchId,
   admin,
-  pending = [],
+  pending,
   currentUserId,
-  rejected = [],
+  rejected,
 }) {
   const totalPlayers = teamA.length + teamB.length;
   const joinedPlayers = [...teamA, ...teamB].filter(
@@ -67,10 +67,10 @@ function MatchCard({
 
   const isPending = pending.some((p) => p.userId === currentUserId);
   const isRejected = rejected.some((p) => p.userId === currentUserId);
+  console.log(isRejected);
   const isInTeam = [...teamA, ...teamB].some(
     (player) => player.userId === currentUserId
   );
-  const disableButtons = isPending || isInTeam || isRejected;
 
   return (
     <Fade triggerOnce={true} direction="right" className="w-[90%]">
@@ -136,18 +136,22 @@ function MatchCard({
                       ) : (
                         <button
                           className={`text-sm font-medium px-4 py-2 max-md:text-xs bg-gray-700 rounded-lg transition-all ${
-                            disableButtons
-                              ? isRejected
-                                ? 'text-red-300 cursor-not-allowed'
-                                : 'text-gray-300 cursor-not-allowed'
+                            isRejected
+                              ? 'text-red-400 cursor-not-allowed'
+                              : isPending
+                              ? 'text-gray-300 cursor-not-allowed'
+                              : isInTeam
+                              ? 'text-gray-300 cursor-not-allowed'
                               : 'text-orange-300 hover:bg-gray-600'
                           }`}
                           onClick={() => onRequestJoin('A', index, matchId)}
-                          disabled={disableButtons}
+                          disabled={isPending || isInTeam || isRejected}
                         >
                           {isRejected
                             ? 'Rejected'
                             : isPending
+                            ? 'Pending'
+                            : isInTeam
                             ? 'Pending'
                             : 'Join'}
                         </button>
@@ -197,18 +201,22 @@ function MatchCard({
                       ) : (
                         <button
                           className={`text-sm font-medium px-4 py-2 max-md:text-xs bg-gray-700 rounded-lg transition-all ${
-                            disableButtons
-                              ? isRejected
-                                ? 'text-red-300 cursor-not-allowed'
-                                : 'text-gray-300 cursor-not-allowed'
+                            isRejected
+                              ? 'text-red-400 cursor-not-allowed'
+                              : isPending
+                              ? 'text-gray-300 cursor-not-allowed'
+                              : isInTeam
+                              ? 'text-gray-300 cursor-not-allowed'
                               : 'text-orange-300 hover:bg-gray-600'
                           }`}
                           onClick={() => onRequestJoin('B', index, matchId)}
-                          disabled={disableButtons}
+                          disabled={isPending || isInTeam || isRejected}
                         >
                           {isRejected
                             ? 'Rejected'
                             : isPending
+                            ? 'Pending'
+                            : isInTeam
                             ? 'Pending'
                             : 'Join'}
                         </button>

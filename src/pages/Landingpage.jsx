@@ -1,17 +1,17 @@
 // import { Fade } from "react-awesome-reveal";
-import landingPageVideo from "../assets/landingPageVideo.mp4";
-import { Link } from "react-router-dom";
-import React, { useEffect, useContext } from "react";
-import { useNavigate } from "react-router-dom";
-import { Fade } from "react-awesome-reveal";
-import { useAuth } from "../contexts/AuthContext";
+import landingPageVideo from '../assets/landingPageVideo.mp4';
+import { Link } from 'react-router-dom';
+import React, { useEffect, useContext } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { Fade } from 'react-awesome-reveal';
+import { useAuth } from '../contexts/AuthContext';
 function Landingpage() {
   const { currentUser } = useAuth();
   const navigate = useNavigate();
 
   useEffect(() => {
     if (currentUser) {
-      navigate("/Home");
+      navigate('/Home');
     }
   }, [currentUser, navigate]);
 
@@ -27,7 +27,7 @@ function Landingpage() {
         ></video>
         <div className="relative bg-opacity-75   bg-black min-h-screen flex items-center justify-center">
           <svg
-            className="absolute inset-x-0 bottom-0 text-base-100"
+            className="absolute inset-x-0 -bottom-1 text-base-100"
             viewBox="0 0 1160 163"
           >
             <path
@@ -53,8 +53,8 @@ function Landingpage() {
                   Join us now and enjoy <br className="hidden md:block" />
                 </p>
                 <div className="flex">
-                  <Link to={"/SignUp"}>
-                    {" "}
+                  <Link to={'/SignUp'}>
+                    {' '}
                     <button
                       className="middle none center mr-3 rounded-lg bg-[#007955] py-3 px-6 font-sans text-xs font-bold uppercase text-white shadow-md shadow-[#508172] transition-all hover:shadow-lg hover:shadow-[#508172] focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
                       data-ripple-light="true"
@@ -62,8 +62,8 @@ function Landingpage() {
                       SignUp
                     </button>
                   </Link>
-                  <Link to={"/Login"}>
-                    {" "}
+                  <Link to={'/Login'}>
+                    {' '}
                     <button
                       className="middle none center mr-3 rounded-lg bg-gradient-to-tr from-[#007955] to-[#508172] py-3 px-6 font-sans text-xs font-bold uppercase text-white shadow-md shadow-[#508172] transition-all hover:shadow-lg hover:shadow-[#508172] active:opacity-[0.85] disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
                       data-ripple-light="true"

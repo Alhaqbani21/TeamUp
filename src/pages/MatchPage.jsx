@@ -359,12 +359,13 @@ export default function MatchPage() {
                                   // "translate-x-[27rem]",
                                   // x={
                                   //   [
-                                  "left-0",
-                                  "right-10",
-                                  "left-48",
-                                  "left-28",
-                                  "left-10",
-                                  "right-0",
+                                  //   [
+                                  "left-20  max-sm:left-10  ",
+                                  "left-60   ",
+                                  "right-20   max-sm:left-32 ",
+                                  "left-20   max-sm:left-10 ",
+                                  "left-60",
+                                  "right-20   max-sm:left-32",
                                 ][index]
                               }
                               y={
@@ -377,12 +378,12 @@ export default function MatchPage() {
                                   // "-translate-y-[45rem]",
                                   // y={
                                   //   [
-                                  "top-14",
-                                  "top-20",
-                                  "top-40",
-                                  "top-14",
-                                  "top-40",
-                                  "top-40",
+                                  "top-14 max-sm:top-0 ",
+                                  "top-14 max-sm:top-0 ",
+                                  "top-14 max-sm:top-0 ",
+                                  "top-60 max-sm:top-20 ",
+                                  "top-60 max-sm:top-20 ",
+                                  "top-60 max-sm:top-20 ",
                                 ][index]
                               }
                               img={team1}
@@ -408,12 +409,21 @@ export default function MatchPage() {
                               }
                               x={
                                 [
-                                  "right-10",
-                                  "left-0",
-                                  "right-28",
-                                  "right-40",
-                                  "right-0",
-                                  "left-10",
+                                  // "left-0",
+                                  // "left-28",
+                                  // "left-52",
+                                  "left-20  max-sm:left-10  ",
+                                  "left-60   ",
+                                  "right-20   max-sm:left-32 ",
+                                  "left-20   max-sm:left-10 ",
+                                  "left-60",
+                                  "right-20   max-sm:left-32",
+                                  // "left-20  ",
+                                  // "left-60",
+                                  // "right-20",
+                                  // "left-20",
+                                  // "left-60",
+                                  // "right-20",
                                   // x={
                                   //   [
                                   //     "translate-x-[7rem]",
@@ -425,13 +435,14 @@ export default function MatchPage() {
                                 ][index]
                               }
                               y={
+                         
                                 [
-                                  "bottom-10",
-                                  "bottom-0",
-                                  "bottom-0",
-                                  "bottom-10",
-                                  "bottom-14",
-                                  "bottom-14",
+                                  "-bottom-20 max-sm:bottom-0 ",
+                                  "-bottom-20 max-sm:bottom-0",
+                                  "-bottom-20 max-sm:bottom-0",
+                                  "bottom-14 max-sm:bottom-32 ",
+                                  "bottom-14 max-sm:bottom-32 ",
+                                  "bottom-14 max-sm:bottom-32 ",
                                   // y={
                                   //   [
                                   //     "-translate-y-[10rem]",
@@ -463,12 +474,31 @@ export default function MatchPage() {
                               key={index}
                               name={player.name}
                               x={
-                                ["left-20", "right-20", "left-32", "left-10"][
+                                [
+                                  "right-28   max-sm:left-10", 
+                                  "left-10   max-sm:left-10",
+                                  "left-10   max-sm:left-60", 
+                                  "right-28   max-sm:left-60",
+                                   "left-60   max-sm:left-32"
+                               
+                                  // "left-20", "right-20", "left-32", "left-10"
+                                ][
                                   index
                                 ]
                               }
                               y={
-                                ["top-14", "top-14", "bottom-40", "top-40"][
+                                [
+                                  // "top-14", "top-14", "bottom-40", "top-40"
+
+
+                                  "top-10   max-sm:top-28",
+                                  "top-10   max-sm:top-0",
+                                  "top-40   max-sm:top-28",
+                                  "top-40   max-sm:top-0",
+                                  "top-20   max-sm:top-20"
+
+
+                                ][
                                   index
                                 ]
                               }
@@ -497,16 +527,34 @@ export default function MatchPage() {
                                 handeleject(player.userId, "teamB", player.name)
                               }
                               x={
-                                ["right-10", "left-10", "right-28", "left-20"][
+                                // "right-10  , 
+                                //   "left-10  ,
+                                //   "left-10  , 
+                                //   "right-28  ,
+                                //    "left-20  
+
+                                ["right-28   max-sm:left-10", 
+                                  "left-10   max-sm:left-10",
+                                  "left-10   max-sm:left-60", 
+                                  "right-28   max-sm:left-60",
+                                   "left-60   max-sm:left-32"
+                                  ][
                                   index
                                 ]
                               }
                               y={
                                 [
-                                  "bottom-0",
-                                  "bottom-0",
-                                  "bottom-1",
-                                  "bottom-20",
+                                  // "bottom-0   ,
+                                  // "bottom-0   ,
+                                  // "bottom-1   ,
+                                  // "bottom-20  , 
+                                  // "bottom-10
+
+                                  "bottom-0   max-sm:bottom-28",
+                                  "bottom-0   max-sm:bottom-4",
+                                  "bottom-32   max-sm:bottom-28",
+                                  "bottom-32   max-sm:bottom-4",
+                                  "bottom-10   max-sm:bottom-20"
                                 ][index]
                               }
                               img={team2}
@@ -526,8 +574,8 @@ export default function MatchPage() {
                         matchId={id}
                         userId={matchData.teamA[0].userId}
                         name={matchData.teamA[0].name || ""}
-                        x="left-20"
-                        y="top-24"
+                        x="left-20 "
+                        y="top-24   max-sm:top-10 "
                         img={team1}
                         onEject={() =>
                           handeleject(
@@ -548,7 +596,7 @@ export default function MatchPage() {
                         userId={matchData.teamA[1].userId}
                         name={matchData.teamA[1].name || ""}
                         x="right-20"
-                        y="top-24"
+                        y="top-24   max-sm:top-10"
                         img={team1}
                         onEject={() =>
                           handeleject(

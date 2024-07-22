@@ -1,16 +1,16 @@
-import { Fade } from "react-awesome-reveal";
-import SideBar from "../components/SideBar";
-import Cardheder from "../components/Cardheder";
-import { Link } from "react-router-dom";
-import BottomNavBar from "../components/BottomNavBar";
-import { getDocs, collection } from "firebase/firestore";
-import { db } from "../config/firebase";
-import { useEffect, useState } from "react";
+import { Fade } from 'react-awesome-reveal';
+import SideBar from '../components/SideBar';
+import Cardheder from '../components/Cardheder';
+import { Link } from 'react-router-dom';
+import BottomNavBar from '../components/BottomNavBar';
+import { getDocs, collection } from 'firebase/firestore';
+import { db } from '../config/firebase';
+import { useEffect, useState } from 'react';
 
 function Book() {
   const [data, setData] = useState([]);
-  const [selectedCategory, setSelectedCategory] = useState("");
-  const dataBase = collection(db, "stadium");
+  const [selectedCategory, setSelectedCategory] = useState('');
+  const dataBase = collection(db, 'stadium');
 
   useEffect(() => {
     const get = async () => {
@@ -26,7 +26,7 @@ function Book() {
 
   const handleCategoryClick = (category) => {
     setSelectedCategory((prevCategory) =>
-      prevCategory === category ? "" : category
+      prevCategory === category ? '' : category
     );
   };
 
@@ -51,13 +51,13 @@ function Book() {
               <h2 className="text-center text-3xl p-2 tracking-widest text-[#007955]">
                 {selectedCategory
                   ? `${selectedCategory} Stadiums`
-                  : "All Stadiums"}
+                  : 'All Stadiums'}
               </h2>
               <div className="flex space-x-2 justify-center items-center max-sm:flex-col">
-                <div className="grid lg:grid-cols-2 md:grid-cols-2 max-sm:grid-cols-1 gap-8 justify-items-center mt-8 px-4 max-sm:w-[27em]">
+                <div className="grid lg:grid-cols-2 md:grid-cols-2 max-sm:grid-cols-1 gap-8 justify-items-center mt-8 px-4 max-sm:w-[27em] mb-20">
                   {filteredData.map((e) => (
                     <div key={e.id}>
-                      <Fade direction="right">
+                      <Fade direction="right" triggerOnce={true}>
                         <div className="bg-[#fffcfc] rounded-md shadow-2xl w-[32em] max-sm:w-[22em] ">
                           <Link
                             className="w-full hover:scale-105 transition-all"

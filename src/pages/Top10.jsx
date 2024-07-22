@@ -29,7 +29,7 @@ function Top10() {
       <SideBar />
       <BottomNavBar />
       <div className="w-full h-full flex flex-col justify-between">
-        <main className="max-w-full h-full flex relative overflow-y-auto">
+        <main className="max-w-full h-full flex relative overflow-y-auto overflow-x-hidden">
           <div className="flex flex-col w-full my-4">
             <div className="text-center flex justify-center max-md:mb-4 gap-4 items-center text-5xl p-2 tracking-widest text-primary">
               <img className="max-md:hidden w-24" src={trophyImage} alt="" />

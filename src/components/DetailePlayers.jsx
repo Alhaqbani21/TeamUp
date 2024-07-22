@@ -28,9 +28,9 @@ export default function DetailePlayers(props) {
   });
 
   return (
-    <div className="shadow-md h-max w-max rounded-xl mt-7 max-sm:mt-0 max-xl:w-full text-xl text-black bg-base-100 px-7">
+    <div className="shadow-md h-max  rounded-xl max-sm:max-w-[90vw] max-w-[40vw] mt-7 max-sm:mt-0 max-xl:w-full max-sm:p-0 text-xl text-black bg-base-100 px-7">
       {props.isAdmin && filteredPendingPlayers.length > 0 && (
-        <div className="border-black max-h-60 overflow-y-auto">
+        <div className="border-black max-h-40 max-w-[full] overflow-y-auto">
           <table className="table table-zebra">
             <thead>
               <tr>
@@ -112,7 +112,7 @@ export default function DetailePlayers(props) {
             <div className="text-xl font-bold mr-6 shadow-lg border-2 border-secondary text-secondary rounded-full px-3 py-1">
               A
             </div>
-            <div className="flex max-sm:grid max-xl:grid-cols-3 max-xl:grid max-sm:grid-cols-3 max-sm:justify-items-center max-sm:w-full max-sm:gap-2 gap-10">
+            <div className="grid grid-cols-3 text-base max-sm:grid max-sm:grid-cols-3 max-sm:justify-items-center max-sm:w-full max-sm:gap-2 gap-3">
               {props.PlayersA.filter((player) => player && player.name).map(
                 (player, index) => (
                   <Fade
@@ -144,7 +144,7 @@ export default function DetailePlayers(props) {
             <div className="text-xl font-bold mr-6 shadow-lg border-2 border-secondary text-secondary rounded-full px-3 py-1">
               B
             </div>
-            <div className="flex text-base max-sm:grid max-sm:grid-cols-3 max-sm:justify-items-center max-sm:w-full max-sm:gap-2 gap-10">
+            <div className="grid grid-cols-3 text-base max-sm:grid max-sm:grid-cols-3 max-sm:justify-items-center max-sm:w-full max-sm:gap-2 gap-3">
               {props.PlayersB.filter((player) => player && player.name).map(
                 (player, index) => (
                   <Fade
@@ -172,19 +172,19 @@ export default function DetailePlayers(props) {
         )}
       </div>
       {/* information */}
-      <div className="flex gap-8 max-sm:gap-1 max-sm:mt-2 max-sm:px-4 mt-7 items-center">
-        <div className="flex items-center gap-2">
+      <div className="flex w-full justify-center  gap-8 max-sm:gap-1 max-sm:mt-2 max-sm:px-4 mt-7 items-center">
+        <div className="flex badge badge-secondary p-3 max-sm:px-0 items-center gap-2">
           <MdAccessTime size={20} className="text-s" />
           <div className="text-base">{props.time}</div>
         </div>
         <div className="tooltip" data-tip="Pirce">
-          <div className="flex items-center">
-            <MdOutlineAttachMoney size={20} className="text-secndary" />
+          <div className="flex badge badge-secondary  p-3 items-center">
+            <MdOutlineAttachMoney size={20} className="" />
             <div className="text-secondry text-base">{props.cost}</div>
           </div>
         </div>
         <div className="tooltip" data-tip="Split the bill">
-          <div className="flex items-center">
+          <div className="flex badge badge-secondary  p-3  items-center">
             <TbUserDollar size={20} className="text-secndary" />
             <div className="text-secondry text-base">{props.cost / total}</div>
           </div>

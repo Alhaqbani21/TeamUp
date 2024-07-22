@@ -176,36 +176,61 @@ export default function MatchPage() {
   };
 
   const handeleject = async (userId, team, name) => {
-    console.log(userId);
-    const matchRef = doc(db, "matches", id);
-    const matchSnapshot = await getDoc(matchRef);
-    const matchData = matchSnapshot.data();
-    let rejectArray = matchData.rejected || [];
-    rejectArray.push({ name, userId });
+    toast.warn(
+      ({ closeToast }) => (
+        <div className="flex gap-2">
+          <p>Are you sure?</p>
+          <button
+            className="border-2 border-[#0c0c0c] w-[3em] rounded-full"
+            onClick={async () => {
+              const matchRef = doc(db, "matches", id);
+              const matchSnapshot = await getDoc(matchRef);
+              const matchData = matchSnapshot.data();
+              let rejectArray = matchData.rejected || [];
+              rejectArray.push({ name, userId });
 
-    let teamArray =
-      team === "teamA" ? [...matchData.teamA] : [...matchData.teamB];
-    const index = teamArray.findIndex((e) => e !== null && e.userId === userId);
-    console.log(teamArray);
-    if (index !== -1) {
-      teamArray[index] = null; // Replace the player with null to indicate an empty spot
-      await updateDoc(matchRef, {
-        rejected: rejectArray,
-        [team]: teamArray,
-      });
+              let teamArray =
+                team === "teamA" ? [...matchData.teamA] : [...matchData.teamB];
+              const index = teamArray.findIndex(
+                (e) => e !== null && e.userId === userId
+              );
+              console.log(teamArray);
+              if (index !== -1) {
+                teamArray[index] = null; // Replace the player with null to indicate an empty spot
+                await updateDoc(matchRef, {
+                  rejected: rejectArray,
+                  [team]: teamArray,
+                });
 
-      // Update local state to reflect changes
-      setMatchData((prevData) => ({
-        ...prevData,
-        [team]: teamArray,
-        rejected: rejectArray,
-      }));
-      // if (team === "teamA") {
-      //   setteamA(teamArray);
-      // } else {
-      //   setteamA(teamArray);
-      // }
-    }
+                // Update local state to reflect changes
+                setMatchData((prevData) => ({
+                  ...prevData,
+                  [team]: teamArray,
+                  rejected: rejectArray,
+                }));
+                // if (team === "teamA") {
+                //   setteamA(teamArray);
+                // } else {
+                //   setteamA(teamArray);
+                // }
+              }
+            }}
+          >
+            Yes
+          </button>
+          <button
+            className="border-2 border-[#0c0c0c] w-[3em] rounded-full"
+            onClick={() => {
+              toast.warn("Rejection cancelled");
+              closeToast();
+            }}
+          >
+            No
+          </button>
+        </div>
+      ),
+      { autoClose: false }
+    );
   };
 
   const today = new Date().getDate();
@@ -244,7 +269,7 @@ export default function MatchPage() {
 
   return (
     <>
-      <div className="h-screen w-full bg-base-100 relative flex">
+      <div className="h-screen w-full bg-base-100 relative flex ">
         <SideBar />
         <ToastContainer autoClose={2000} />
 
@@ -256,7 +281,7 @@ export default function MatchPage() {
               className="w-[80vw] max-sm:flex-col max-sm:items-center max-sm:w-full gap-5 bg-base-100
              rounded-lg flex"
             >
-              <div className="h-[70vh] max-sm:h-[50vh] max-sm:w-[80vw] w-[60vw] rounded-s-xl relative">
+              <div className="h-[70vh] max-sm:h-[50vh] max-sm:w-[80vw] w-[40vw] rounded-s-xl relative">
                 <div className="w-full pt-3 justify-around bg-transparent flex gap-1">
                   <div
                     onClick={() => setteamA("TeamA")}
@@ -292,10 +317,12 @@ export default function MatchPage() {
                 </div>
 
                 <img
-                  className="h-[70vh] rounded-3xl max-sm:w-full max-sm:h-[40vh] w-[60vw]"
+                  className="h-[70vh] rounded-3xl max-sm:w-full max-sm:h-[40vh] px-2 w-[60vw] "
                   src={
                     isVolleyball
-                      ? volleyball
+                      ? // ? volleyball
+
+                        img
                       : isBasketball
                       ? basketball
                       : padel
@@ -322,21 +349,37 @@ export default function MatchPage() {
                               x={
                                 [
                                   "left-0",
-                                  "right-10",
-                                  "left-48",
+                                  "left-40",
+                                  "left-40",
                                   "left-28",
                                   "left-10",
-                                  "right-0",
+                                  "left-20",
+                                  // x={
+                                  //   [
+                                  //     "left-0",
+                                  //     "right-10",
+                                  //     "left-48",
+                                  //     "left-28",
+                                  //     "left-10",
+                                  //     "right-0",
                                 ][index]
                               }
                               y={
                                 [
-                                  "top-14",
-                                  "top-20",
-                                  "top-40",
-                                  "top-14",
-                                  "top-40",
-                                  "top-40",
+                                  "top-32",
+                                  "bottom-0",
+                                  "top-32",
+                                  "bottom-14",
+                                  "bottom-0",
+                                  "top-32",
+                                  // y={
+                                  //   [
+                                  //     "top-14",
+                                  //     "top-20",
+                                  //     "top-40",
+                                  //     "top-14",
+                                  //     "top-40",
+                                  //     "top-40",
                                 ][index]
                               }
                               img={team1}
@@ -360,24 +403,40 @@ export default function MatchPage() {
                               onEject={() =>
                                 handeleject(player.userId, "teamB", player.name)
                               }
+                              // x={
+                              //   [
+                              //     "right-10",
+                              //     "left-0",
+                              //     "right-28",
+                              //     "right-40",
+                              //     "right-0",
+                              //     "left-10",
                               x={
                                 [
-                                  "right-10",
-                                  "left-0",
-                                  "right-28",
-                                  "right-40",
                                   "right-0",
-                                  "left-10",
+                                  "right-32",
+                                  "right-40",
+                                  "right-20",
+                                  "right-10",
+                                  "right-20",
                                 ][index]
                               }
+                              // y={
+                              //   [
+                              //     "bottom-10",
+                              //     "bottom-0",
+                              //     "bottom-0",
+                              //     "bottom-10",
+                              //     "bottom-14",
+                              //     "bottom-14",
                               y={
                                 [
-                                  "bottom-10",
-                                  "bottom-0",
-                                  "bottom-0",
-                                  "bottom-10",
                                   "bottom-14",
+                                  "-bottom-8",
+                                  "top-32",
                                   "bottom-14",
+                                  "-bottom-8",
+                                  "top-32",
                                 ][index]
                               }
                               img={team2}

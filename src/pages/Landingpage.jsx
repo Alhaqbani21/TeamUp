@@ -38,7 +38,7 @@ function Landingpage() {
           <div className="relative px-4 py-16 mx-auto overflow-hidden sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-20">
             <div className="flex flex-col items-start justify-between xl:flex-row ">
               <div className="  mb-12 xl:mb-0 xl:pr-16 ">
-                <h1 className="max-w-lg mb-6 font-sans text-3xl font-bold tracking-tight text-white sm:text-4xl sm:leading-none">
+                <h1 className="max-w-lg mb-6 font-sans md:text-5xl text-3xl font-bold tracking-tight text-white sm:text-4xl sm:leading-none">
                   TeamUp <br className="hidden md:block" />
                 </h1>
                 <p className="mb-4 text-white md:text-lg sm:max-w-md md:max-w-lg lg:max-w-xl xl:max-w-2xl text-xs leading-relaxed">
@@ -117,7 +117,7 @@ function Landingpage() {
 
           <h1
             className=" font-bold leading-none text-pretty  text-[#508172] sm:text-xl 
-           md:text-lg sm:max-w-md md:max-w-lg lg:max-w-xl xl:max-w-2xl text-xs "
+           md:text-lg sm:max-w-md md:max-w-lg lg:max-w-xl xl:max-w-2xl text-xs max-md:text-center"
           >
             Our dedicated team of programmers is passionate about transforming
             ideas into innovative digital solutions. We strive to deliver
@@ -127,10 +127,9 @@ function Landingpage() {
           </h1>
           <div className="flex  justify-center items-center mt-[5em] max-sm:flex-col max-sm:mt-[2em]">
             <div className="flex flex-col justify-center w-full px-8 mx-6 my-12 text-center rounded-md md:w-96 lg:w-80 xl:w-64 ">
-              <div className="flex-1 my-4">
-                <p className="text-xl font-semibold leading-snug">
-                  {/* Abdulaziz  */}
-                  Alhaqbani
+              <div className="flex flex-col  justify-center items-center my-4">
+                <p className="text-xl font-semibold leading-snug w-max text-wrap">
+                  Abdulaziz Alhaqbani
                 </p>
                 <p className="text-[#508172] ">Software Engineer</p>
               </div>
@@ -184,8 +183,8 @@ function Landingpage() {
               </div>
             </div>
             <div className="flex flex-col justify-center w-full px-8 mx-6 my-12 text-center rounded-md md:w-96 lg:w-80 xl:w-64 ">
-              <div className="flex-1 my-4">
-                <p className="text-xl font-semibold leading-snug">
+              <div className="flex flex-col  justify-center items-center my-4">
+                <p className="text-xl font-semibold leading-snug w-max text-wrap">
                   Amal Ghazai
                 </p>
                 <p className="text-[#508172] ">Programmer</p>
@@ -240,8 +239,8 @@ function Landingpage() {
               </div>
             </div>
             <div className="flex flex-col justify-center w-full px-8 mx-6 my-12 text-center rounded-md md:w-96 lg:w-80 xl:w-64 ">
-              <div className="flex-1 my-4">
-                <p className="text-xl font-semibold leading-snug">
+              <div className="flex flex-col  justify-center items-center my-4">
+                <p className="text-xl font-semibold leading-snug w-max text-wrap">
                   Amwaj Alharbi
                 </p>
                 <p className="text-[#508172] ">Programmer</p>

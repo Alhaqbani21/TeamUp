@@ -10,7 +10,7 @@ import Platinum_1_Rank from "../assets/Platinum_1_Rank.png";
 import Gold_1_Rank from "../assets/Gold_1_Rank.png";
 import Iron_1_Rank from "../assets/Iron_1_Rank.png";
 import Silver_1_Rank from "../assets/Silver_1_Rank.png";
-import PadelBanner from "../assets/PadelBanner.png";
+// import PadelBanner from "../assets/PadelBanner.png";
 import profile from "../assets/profile.jpg";
 import { auth, db } from "../config/firebase";
 import { getDoc, doc } from "firebase/firestore";
@@ -129,9 +129,27 @@ function Profile() {
               className="rounded-full w-40 h-40 border-4 border-white"
             />
             <div className="flex items-center justify-between w-full">
-              <h1 className="text-primary text-4xl font-serif mr-4">
+              <h1 className="text-primary text-4xl font-serif mr-4 ">
                 {userData.name}
               </h1>
+
+              <div className="flex justify-end w-full ml-[62em] max-sm:w-0 max-sm:ml-[18em]">
+                <div
+                  draggable="true"
+                  role="button"
+                  title="Hover chip"
+                  onClick={handleLogout}
+                  className="h-8 mt-7 px-3 w-max text-primary group badge badge-outline flex gap-2 items-center border-[1px] rounded-full hover:opacity-80 "
+                >
+                  <FontAwesomeIcon
+                    icon={faSignOutAlt}
+                    className="cursor-pointer text-red-500"
+                    title="Logout"
+                  />
+                  <span className="block text-sm font-medium">Logout</span>
+                  <ToastContainer position="bottom-center" autoClose={2000} />
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -215,7 +233,7 @@ function Profile() {
                   </dl>
                 </div>
               </div>
-              <div
+              {/* <div
                 draggable="true"
                 role="button"
                 title="Hover chip"
@@ -230,7 +248,7 @@ function Profile() {
                 <span className="block text-sm font-medium  ">Logout</span>
                 <br />
                 <ToastContainer position="bottom-right" autoClose={2000} />
-              </div>
+              </div> */}
             </div>
           </div>
         </div>

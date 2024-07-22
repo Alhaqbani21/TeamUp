@@ -133,7 +133,7 @@ function Profile() {
                 {userData.name}
               </h1>
 
-              <div className="flex justify-end w-full ml-[62em] max-sm:w-0 max-sm:ml-[18em]">
+              <div className="flex justify-end w-full ml-[54em] max-sm:w-0 max-sm:ml-[18em]">
                 <div
                   draggable="true"
                   role="button"
@@ -233,22 +233,6 @@ function Profile() {
                   </dl>
                 </div>
               </div>
-              {/* <div
-                draggable="true"
-                role="button"
-                title="Hover chip"
-                onClick={handleLogout}
-                className="h-8 mt-7 px-3 w-max text-primary group badge badge-outline flex gap-2 items-center border-[1px] rounded-full group  hover:opacity-80"
-              >
-                <FontAwesomeIcon
-                  icon={faSignOutAlt}
-                  className=" cursor-pointer text-red-500"
-                  title="Logout"
-                />
-                <span className="block text-sm font-medium  ">Logout</span>
-                <br />
-                <ToastContainer position="bottom-right" autoClose={2000} />
-              </div> */}
             </div>
           </div>
         </div>

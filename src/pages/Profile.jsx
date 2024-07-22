@@ -10,6 +10,7 @@ import Platinum_1_Rank from "../assets/Platinum_1_Rank.png";
 import Gold_1_Rank from "../assets/Gold_1_Rank.png";
 import Iron_1_Rank from "../assets/Iron_1_Rank.png";
 import Silver_1_Rank from "../assets/Silver_1_Rank.png";
+// import PadelBanner from "../assets/PadelBanner.png";
 import profile from "../assets/profile.jpg";
 import { auth, db } from "../config/firebase";
 import { getDoc, doc } from "firebase/firestore";
@@ -54,7 +55,32 @@ function Profile() {
   }, []);
 
   const handleLogout = () => {
-    document.getElementById("logout_modal").showModal();
+    toast.warn(
+      ({ closeToast }) => (
+        <div className="flex  gap-2">
+          <p>Are you sure ?</p>
+
+          <button
+            className="border-2 border-red-700 bg-red-700  text-white w-[4em] rounded-lg "
+            onClick={() => {
+              confirmLogout();
+              closeToast();
+            }}
+          >
+            Yes
+          </button>
+          {/* <button
+              className="border-2 border-[#0c0c0c] w-[4em] rounded-full"
+              onClick={() => {
+                closeToast();
+              }}
+            >
+              No
+            </button> */}
+        </div>
+      ),
+      { autoClose: false }
+    );
   };
 
   const confirmLogout = async () => {
@@ -89,35 +115,6 @@ function Profile() {
       <SideBar />
 
       <BottomNavBar />
-      <dialog id="logout_modal" className="modal">
-        <div className="modal-box">
-          <button
-            className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2"
-            onClick={() => document.getElementById("logout_modal").close()}
-          >
-            ✕
-          </button>
-          <h3 className="font-bold text-lg flex justify-center items-center">
-            Are you sure you want to Logout?
-          </h3>
-          <div className="flex gap-2 py-4 justify-center items-center">
-            <button
-              className="border-2 border-red-700 bg-red-700 text-white w-[4em] rounded-lg"
-              onClick={() => {
-                confirmLogout();
-                document.getElementById("logout_modal").close();
-              }}
-            >
-              Yes
-            </button>
-            <button
-              onClick={() => document.getElementById("logout_modal").close()}
-            >
-              No
-            </button>
-          </div>
-        </div>
-      </dialog>
       <div className="w-full h-full flex relative flex-col items-center overflow-y-auto overflow-x-hidden">
         <div className="relative w-full">
           <img

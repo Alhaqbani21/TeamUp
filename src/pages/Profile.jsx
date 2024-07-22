@@ -10,7 +10,6 @@ import Platinum_1_Rank from "../assets/Platinum_1_Rank.png";
 import Gold_1_Rank from "../assets/Gold_1_Rank.png";
 import Iron_1_Rank from "../assets/Iron_1_Rank.png";
 import Silver_1_Rank from "../assets/Silver_1_Rank.png";
-// import PadelBanner from "../assets/PadelBanner.png";
 import profile from "../assets/profile.jpg";
 import { auth, db } from "../config/firebase";
 import { getDoc, doc } from "firebase/firestore";
@@ -55,32 +54,7 @@ function Profile() {
   }, []);
 
   const handleLogout = () => {
-    toast.warn(
-      ({ closeToast }) => (
-        <div className="flex  gap-2">
-          <p>Are you sure ?</p>
-
-          <button
-            className="border-2 border-red-700 bg-red-700  text-white w-[4em] rounded-lg "
-            onClick={() => {
-              confirmLogout();
-              closeToast();
-            }}
-          >
-            Yes
-          </button>
-          {/* <button
-              className="border-2 border-[#0c0c0c] w-[4em] rounded-full"
-              onClick={() => {
-                closeToast();
-              }}
-            >
-              No
-            </button> */}
-        </div>
-      ),
-      { autoClose: false }
-    );
+    document.getElementById("logout_modal").showModal();
   };
 
   const confirmLogout = async () => {
@@ -115,6 +89,35 @@ function Profile() {
       <SideBar />
 
       <BottomNavBar />
+      <dialog id="logout_modal" className="modal">
+        <div className="modal-box">
+          <button
+            className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2"
+            onClick={() => document.getElementById("logout_modal").close()}
+          >
+            ✕
+          </button>
+          <h3 className="font-bold text-lg flex justify-center items-center">
+            Are you sure you want to Logout?
+          </h3>
+          <div className="flex gap-2 py-4 justify-center items-center">
+            <button
+              className="border-2 border-red-700 bg-red-700 text-white w-[4em] rounded-lg"
+              onClick={() => {
+                confirmLogout();
+                document.getElementById("logout_modal").close();
+              }}
+            >
+              Yes
+            </button>
+            <button
+              onClick={() => document.getElementById("logout_modal").close()}
+            >
+              No
+            </button>
+          </div>
+        </div>
+      </dialog>
       <div className="w-full h-full flex relative flex-col items-center overflow-y-auto overflow-x-hidden">
         <div className="relative w-full">
           <img
@@ -122,18 +125,21 @@ function Profile() {
             alt="User Cover"
             className="w-full xl:h-[20rem] lg:h-[18rem] md:h-[16rem] sm:h-[14rem] xs:h-[11rem] object-cover filter "
           />
-          <div className="absolute left-[10rem] -bottom-28 max-md:left-1/2 max-md:transform max-md:-translate-x-1/2">
+          <div
+            className="absolute left-[10rem] w-[77vw] 
+           -bottom-28 max-md:left-1/2 max-md:transform max-md:-translate-x-1/2"
+          >
             <img
               src={avatarPlaceholder}
               alt="User Profile"
               className="rounded-full w-40 h-40 border-4 border-white"
             />
-            <div className="flex items-center justify-between w-full">
-              <h1 className="text-primary text-4xl font-serif mr-4 ">
+            <div className="flex items-center  justify-between w-full">
+              <h1 className="text-primary text-4xl font-serif mr-4 w-[8em]">
                 {userData.name}
               </h1>
 
-              <div className="flex justify-end w-full ml-[54em] max-sm:w-0 max-sm:ml-[18em]">
+              <div className="max-sm:ml-6 ">
                 <div
                   draggable="true"
                   role="button"

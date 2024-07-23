@@ -1,8 +1,8 @@
-# TeamUp (Match Management Application )
+# TeamUp (Match Management Application)
 
 ## Description
 
-This is a React-based application for managing sports matches, including Padel, Volleyball, and Basketball. The application allows users to view match details, manage team members, and accept or reject pending player requests. Fully integrated with firebase
+This is a React-based application for managing sports matches, including Padel, Volleyball, and Basketball. The application allows users to view match details, manage team members, and accept or reject pending player requests. Fully integrated with Firebase.
 
 ## Features
 
@@ -11,6 +11,7 @@ This is a React-based application for managing sports matches, including Padel, 
 - Accept or reject pending player requests
 - Dynamic layout adjustments based on the sport category
 - Point system and ranks
+- Winning user friendly alert
 
 ## Installation
 
@@ -40,12 +41,23 @@ This is a React-based application for managing sports matches, including Padel, 
 - If you are an admin, manage team members by accepting or rejecting pending player requests.
 - Switch between different sports to see dynamic layout adjustments.
 
+## Screenshots
 
+1. ![Screenshot 1](screenshots/1.png)
+2. ![Screenshot 2](screenshots/2.png)
+3. ![Screenshot 3](screenshots/3.png)
+4. ![Screenshot 4](screenshots/4.png)
+5. ![Screenshot 5](screenshots/5.png)
+6. ![Screenshot 6](screenshots/6.png)
+7. ![Screenshot 7](screenshots/7.png)
+8. ![Screenshot 8](screenshots/8.png)
+9. ![Screenshot 9](screenshots/9.png)
+10. ![Screenshot 10](screenshots/10.png)
+11. ![Screenshot 11](screenshots/11.png)
+12. ![Screenshot 12](screenshots/12.png)
 
 ## Contributors
 
 - [@Alhaqbani21](https://github.com/Alhaqbani21)
 - [@ammalgh](https://github.com/ammalgh)
 - [@amwaj-a](https://github.com/amwaj-a)
-
-

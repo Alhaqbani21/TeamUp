@@ -13,6 +13,11 @@ This is a React-based application for managing sports matches, including Padel, 
 - Point system and ranks
 - Winning user friendly alert
 
+
+## Try it now 
+[TeamUp](https://team-up.netlify.app/)
+
+
 ## Installation
 
 1. Clone the repository:

@@ -1,39 +1,41 @@
-import { Link, useNavigate } from 'react-router-dom';
-import image from '../assets/googel.png';
-import { auth, db } from '../config/firebase';
+import { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import image from "../assets/googel.png";
+import { auth, db } from "../config/firebase";
 import {
   createUserWithEmailAndPassword,
   GoogleAuthProvider,
   signInWithPopup,
-} from 'firebase/auth';
-import { useState } from 'react';
-import { setDoc, doc, getDoc } from 'firebase/firestore';
-import { useFormik } from 'formik';
-import * as Yup from 'yup';
+} from "firebase/auth";
+import { setDoc, doc, getDoc } from "firebase/firestore";
+import { useFormik } from "formik";
+import * as Yup from "yup";
 
 function SignUp() {
+  const [isLoading, setIsLoading] = useState(false); // Added loading state
   const navigate = useNavigate();
 
   const validationSchema = Yup.object({
     name: Yup.string()
-      .matches(/^[A-Za-z\s]+$/, 'Name can only contain letters and spaces')
-      .required('Name is required'),
+      .matches(/^[A-Za-z\s]+$/, "Name can only contain letters and spaces")
+      .required("Name is required"),
     email: Yup.string()
-      .email('Invalid email address')
-      .required('Email is required'),
+      .email("Invalid email address")
+      .required("Email is required"),
     password: Yup.string()
-      .min(6, 'Password must be at least 6 characters')
-      .required('Password is required'),
+      .min(6, "Password must be at least 6 characters")
+      .required("Password is required"),
   });
 
   const formik = useFormik({
     initialValues: {
-      name: '',
-      email: '',
-      password: '',
+      name: "",
+      email: "",
+      password: "",
     },
     validationSchema: validationSchema,
     onSubmit: async (values) => {
+      setIsLoading(true);
       try {
         const userCredential = await createUserWithEmailAndPassword(
           auth,
@@ -42,57 +44,78 @@ function SignUp() {
         );
         const user = userCredential.user;
 
-        await setDoc(doc(db, 'users', user.uid), {
+        await setDoc(doc(db, "users", user.uid), {
           name: values.name,
           email: values.email,
           joinedAt: formatDate(new Date().toISOString()),
-          location: 'Saudi Arabia, Riyadh',
+          location: "Saudi Arabia, Riyadh",
           points: 0,
           matchesPlayed: 0,
           isNotified: false,
         });
 
-        navigate('../login');
+        navigate("../login");
       } catch (error) {
-        console.error('Error signing up: ', error);
+        console.error("Error signing up: ", error);
+      } finally {
+        setIsLoading(false);
       }
     },
   });
 
   async function signUpGoogle() {
     const provider = new GoogleAuthProvider();
+    setIsLoading(true);
     try {
       const result = await signInWithPopup(auth, provider);
       const user = result.user;
 
-      const userDoc = await getDoc(doc(db, 'users', user.uid));
+      const userDoc = await getDoc(doc(db, "users", user.uid));
       if (!userDoc.exists()) {
-        await setDoc(doc(db, 'users', user.uid), {
+        await setDoc(doc(db, "users", user.uid), {
           name: user.displayName,
           email: user.email,
           joinedAt: formatDate(new Date().toISOString()),
-          location: 'Saudi Arabia, Riyadh',
+          location: "Saudi Arabia, Riyadh",
           points: 0,
           matchesPlayed: 0,
           isNotified: false,
         });
       }
 
-      navigate('../Home');
+      navigate("../Home");
     } catch (error) {
-      console.error('Error signing up with Google: ', error);
+      console.error("Error signing up with Google: ", error);
+    } finally {
+      setIsLoading(false);
     }
   }
 
   function formatDate(dateString) {
-    const options = { year: 'numeric', month: 'long', day: 'numeric' };
+    const options = { year: "numeric", month: "long", day: "numeric" };
     return new Date(dateString).toLocaleDateString(undefined, options);
   }
 
   return (
     <>
-      <div className="bg-white relative min-h-screen flex items-center justify-center">
-        <div className="flex flex-col items-center justify-center lg:flex-row w-full  mx-auto">
+      {isLoading && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
+          <l-infinity
+            size="150"
+            stroke="7"
+            stroke-length="0.30"
+            bg-opacity="0.1"
+            speed="2.0"
+            color="#FB923C"
+          ></l-infinity>
+        </div>
+      )}
+      <div
+        className={`bg-white relative min-h-screen flex items-center justify-center ${
+          isLoading ? "pointer-events-none" : ""
+        }`}
+      >
+        <div className="flex flex-col items-center justify-center lg:flex-row w-full mx-auto">
           <div className="flex justify-center items-center w-full lg:w-7/12">
             <div className="w-full bg-cover relative max-w-md lg:max-w-2xl">
               <div className="flex flex-col items-center justify-center w-full h-full relative lg:pr-10 max-md:hidden lg:flex">
@@ -142,8 +165,8 @@ function SignUp() {
                       type="text"
                       className={`border placeholder-gray-400 focus:outline-none focus:border-black w-full pt-4 pr-4 pb-4 pl-4 mt-2 mr-0 mb-0 ml-0 text-base block bg-white border-gray-300 rounded-md ${
                         formik.touched.name && formik.errors.name
-                          ? 'border-red-500'
-                          : ''
+                          ? "border-red-500"
+                          : ""
                       }`}
                     />
                     {formik.touched.name && formik.errors.name ? (
@@ -165,8 +188,8 @@ function SignUp() {
                       type="text"
                       className={`border placeholder-gray-400 focus:outline-none focus:border-black w-full pt-4 pr-4 pb-4 pl-4 mt-2 mr-0 mb-0 ml-0 text-base block bg-white border-gray-300 rounded-md ${
                         formik.touched.email && formik.errors.email
-                          ? 'border-red-500'
-                          : ''
+                          ? "border-red-500"
+                          : ""
                       }`}
                     />
                     {formik.touched.email && formik.errors.email ? (
@@ -188,8 +211,8 @@ function SignUp() {
                       type="password"
                       className={`border placeholder-gray-400 focus:outline-none focus:border-black w-full pt-4 pr-4 pb-4 pl-4 mt-2 mr-0 mb-0 ml-0 text-base block bg-white border-gray-300 rounded-md ${
                         formik.touched.password && formik.errors.password
-                          ? 'border-red-500'
-                          : ''
+                          ? "border-red-500"
+                          : ""
                       }`}
                     />
                     {formik.touched.password && formik.errors.password ? (
@@ -199,8 +222,8 @@ function SignUp() {
                     ) : null}
                   </div>
                   <p className="text-center text-sm mt-4">
-                    Do you have an account?{' '}
-                    <Link className="text-blue-500 underline" to={'../login'}>
+                    Do you have an account?{" "}
+                    <Link className="text-blue-500 underline" to={"../login"}>
                       Login
                     </Link>
                   </p>

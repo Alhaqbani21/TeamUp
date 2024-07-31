@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import SideBar from "../components/SideBar";
 import BottomNavBar from "../components/BottomNavBar";
 import {
@@ -27,6 +27,7 @@ export default function Reservation() {
   const [userModalB, setUserModalB] = React.useState([]);
   const [radio, setRadio] = React.useState("teamA");
   const [idMatch, setIdMatch] = React.useState("");
+  const [isLoading, setIsLoading] = useState(true);
 
   const [hidden, sethidden] = React.useState({ teamA: false, teamB: false });
   const user = auth.currentUser;
@@ -56,6 +57,8 @@ export default function Reservation() {
     });
 
     setMatches(array);
+
+    setIsLoading(false);
   };
   React.useEffect(() => {
     fetchMatchData();
@@ -146,140 +149,161 @@ export default function Reservation() {
               <div className="text-center text-5xl p-2 tracking-widest text-secondary">
                 My matches
               </div>
+              {isLoading === true && (
+                <div className="flex justify-center items-center w-full">
+                  <l-infinity
+                    size="150"
+                    stroke="10"
+                    stroke-length="0.30"
+                    bg-opacity="0.1"
+                    speed="2.0"
+                    color="#FB923C"
+                  ></l-infinity>
+                </div>
+              )}
               <div className="relative grid max-sm:grid-cols-1 grid-cols-3 w-[90vw] gap-10 m-auto items-center  ">
-                {matches.map((e, index) => (
-                  <div
-                    key={index}
-                    className={`w-[30vw] overflow-hidden  max-sm:w-full h-max pb-4  bg-primary  overflow-hiddn relative rounded-md`}
-                    style={{
-                      backgroundImage: `url(${
-                        e.category === "Padel"
-                          ? backgroundImagePadel
-                          : e.category === "Basketball"
-                          ? basketBallImage
-                          : VollyballImage
-                      })`,
-                      backgroundSize: "cover",
-                      backgroundPosition: "center",
-                    }}
-                  >
-                    {Number(e.time.substring(0, 2).split(":").join("")) <=
-                      Number(new Date().getHours()) - 12 && (
-                      // 1 > Number(new Date().getHours()) - 12 && (
-                      <button
-                        disabled={e.Admin.userId != user.uid && true}
-                        onClick={() => {
-                          setTimeModal(e.time);
-                          setUserModalA(e.teamA.filter((i) => i != null));
-                          setUserModalB(e.teamB.filter((i) => i != null));
-                          setIdMatch(e.id);
-                          document.getElementById("my_modal_2").showModal();
-                        }}
-                        className=" text-red-600 absolute top-20 left-40 z-10  text-3xl "
-                      >
-                        Finished
-                      </button>
-                    )}
+                {isLoading === false &&
+                  matches.map((e, index) => (
                     <div
-                      className="absolute inset-0 bg-black opacity-50 filter blur-lg"
+                      key={index}
+                      className={`w-[30vw] overflow-hidden  max-sm:w-full h-max pb-4  bg-primary  overflow-hiddn relative rounded-md`}
                       style={{
-                        opacity:
-                          Number(e.time.substring(0, 2).split(":").join("")) <=
-                            Number(new Date().getHours()) - 12 && "0.7",
+                        backgroundImage: `url(${
+                          e.category === "Padel"
+                            ? backgroundImagePadel
+                            : e.category === "Basketball"
+                            ? basketBallImage
+                            : VollyballImage
+                        })`,
+                        backgroundSize: "cover",
+                        backgroundPosition: "center",
                       }}
-                    ></div>
-
-                    <div
-                      style={{
-                        opacity:
-                          Number(e.time.substring(0, 2).split(":").join("")) <=
-                            Number(new Date().getHours()) - 12 && "0.4",
-                      }}
-                      className="relative p-4 flex flex-col  justify-center"
                     >
-                      <div className="flex justify-between items-center  py-2">
-                        <div className="flex flex-col w-full justify-center">
-                          <div className=" flex justify-between w-full font-bold text-white">
-                            <h1 className="text-xl font-bold text-white">
-                              {e.stadiumName}
-                            </h1>
-                            <div>
-                              {e.Admin.userId == user.uid && (
-                                <span className="badge outline-none border-none bg-orange-300 p-3">
-                                  {e.pending.length == 0 ? (
-                                    <>
-                                      <FaUserTie />
-                                    </>
-                                  ) : (
-                                    <>{e.pending.length} Request</>
-                                  )}
-                                </span>
-                              )}
+                      {Number(e.time.substring(0, 2).split(":").join("")) <=
+                        Number(new Date().getHours()) - 12 && (
+                        // 1 > Number(new Date().getHours()) - 12 && (
+                        <button
+                          disabled={e.Admin.userId != user.uid && true}
+                          onClick={() => {
+                            setTimeModal(e.time);
+                            setUserModalA(e.teamA.filter((i) => i != null));
+                            setUserModalB(e.teamB.filter((i) => i != null));
+                            setIdMatch(e.id);
+                            document.getElementById("my_modal_2").showModal();
+                          }}
+                          className=" text-red-600 absolute top-20 left-40 z-10  text-3xl "
+                        >
+                          Finished
+                        </button>
+                      )}
+                      <div
+                        className="absolute inset-0 bg-black opacity-50 filter blur-lg"
+                        style={{
+                          opacity:
+                            Number(
+                              e.time.substring(0, 2).split(":").join("")
+                            ) <=
+                              Number(new Date().getHours()) - 12 && "0.7",
+                        }}
+                      ></div>
+
+                      <div
+                        style={{
+                          opacity:
+                            Number(
+                              e.time.substring(0, 2).split(":").join("")
+                            ) <=
+                              Number(new Date().getHours()) - 12 && "0.4",
+                        }}
+                        className="relative p-4 flex flex-col  justify-center"
+                      >
+                        <div className="flex justify-between items-center  py-2">
+                          <div className="flex flex-col w-full justify-center">
+                            <div className=" flex justify-between w-full font-bold text-white">
+                              <h1 className="text-xl font-bold text-white">
+                                {e.stadiumName}
+                              </h1>
+                              <div>
+                                {e.Admin.userId == user.uid && (
+                                  <span className="badge outline-none border-none bg-orange-300 p-3">
+                                    {e.pending.length == 0 ? (
+                                      <>
+                                        <FaUserTie />
+                                      </>
+                                    ) : (
+                                      <>{e.pending.length} Request</>
+                                    )}
+                                  </span>
+                                )}
+                              </div>
+                            </div>
+                            <div className="text-gray-300 py-2 text-sm">
+                              {`${e.time} PM`}
                             </div>
                           </div>
-                          <div className="text-gray-300 py-2 text-sm">
-                            {`${e.time} PM`}
-                          </div>
+                        </div>
+                        <button
+                          // disabled={
+                          //   Number(e.time.substring(0, 2).split(":").join("")) <=
+                          //     Number(new Date().getHours()) - 12 && true
+                          // }
+                          onClick={() => {
+                            navigate(`./${e.id}`);
+                          }}
+                          className="w-max p-3 
+                         text-orange-300 mr-1 font-bold"
+                        >
+                          details
+                        </button>
+                        <div
+                          className={`flex justify-between items-center mt-4 ${
+                            e.teamA.length + e.teamB.length ===
+                            [...e.teamA, ...e.teamB].filter((e) => e !== null)
+                              .length
+                              ? `bg-gray-400`
+                              : "bg-secondary"
+                          } py-2 px-4 rounded-lg`}
+                        >
+                          <span className="font-medium text-white">
+                            {e.teamA.length + e.teamB.length ===
+                            [...e.teamA, ...e.teamB].filter((e) => e !== null)
+                              .length ? (
+                              <>
+                                {`${
+                                  [...e.teamA, ...e.teamB].filter(
+                                    (e) => e !== null
+                                  ).length
+                                }
+                           / ${e.teamA.length + e.teamB.length} completed`}
+                              </>
+                            ) : (
+                              <>
+                                <span className="text-orange-300 mr-1">{`${
+                                  [...e.teamA, ...e.teamB].filter(
+                                    (e) => e !== null
+                                  ).length
+                                }/${e.teamA.length + e.teamB.length}`}</span>
+                                {" players joined"}
+                              </>
+                            )}
+                          </span>
                         </div>
                       </div>
-                      <button
-                        // disabled={
-                        //   Number(e.time.substring(0, 2).split(":").join("")) <=
-                        //     Number(new Date().getHours()) - 12 && true
-                        // }
-                        onClick={() => {
-                          navigate(`./${e.id}`);
-                        }}
-                        className="w-max p-3 
-                         text-orange-300 mr-1 font-bold"
-                      >
-                        details
-                      </button>
-                      <div
-                        className={`flex justify-between items-center mt-4 ${
-                          e.teamA.length + e.teamB.length ===
-                          [...e.teamA, ...e.teamB].filter((e) => e !== null)
-                            .length
-                            ? `bg-gray-400`
-                            : "bg-secondary"
-                        } py-2 px-4 rounded-lg`}
-                      >
-                        <span className="font-medium text-white">
-                          {e.teamA.length + e.teamB.length ===
-                          [...e.teamA, ...e.teamB].filter((e) => e !== null)
-                            .length ? (
-                            <>
-                              {`${
-                                [...e.teamA, ...e.teamB].filter(
-                                  (e) => e !== null
-                                ).length
-                              }
-                           / ${e.teamA.length + e.teamB.length} completed`}
-                            </>
-                          ) : (
-                            <>
-                              <span className="text-orange-300 mr-1">{`${
-                                [...e.teamA, ...e.teamB].filter(
-                                  (e) => e !== null
-                                ).length
-                              }/${e.teamA.length + e.teamB.length}`}</span>
-                              {" players joined"}
-                            </>
-                          )}
-                        </span>
-                      </div>
                     </div>
-                  </div>
-                ))}
+                  ))}
               </div>
             </div>
           </main>
         ) : (
-          <div className="h-screen flex flex-col justify-center items-center w-full">
-            <img className="w-60" src={NoMatch} alt="" />
-            <br />
-            <span className="text-lg font-bold">There is no match booked </span>
-          </div>
+          isLoading === false && (
+            <div className="h-screen flex flex-col justify-center items-center w-full">
+              <img className="w-60" src={NoMatch} alt="" />
+              <br />
+              <span className="text-lg font-bold">
+                There is no match booked{" "}
+              </span>
+            </div>
+          )
         )}
       </div>
       <dialog id="my_modal_2" className="modal ">
